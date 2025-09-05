@@ -1,0 +1,13 @@
+export const INCH = 96
+export const CARD_W_IN = 2.5
+export const CARD_H_IN = 3.5
+export const PAD_LEFT_IN = 0.18
+export const STRIP_W_IN = 0.28
+export const DIAMOND_W_IN = 0.40
+export const DIAMOND_GAP_IN = 0.08
+export const EXTRA_LEFT_IN = 0.18
+export const DIAMOND_W_PX = Math.round(DIAMOND_W_IN * INCH)
+export const HEX_ALWAYS = '#2C5A4B'
+export const HEX_ENEMY = '#A3151C'
+export const HEX_MINE = '#20455D'
+export const META = {CORE: '#DEDFDB', NECRONS: '#c2d5c1', TYRANIDS: '#c0b2c0'}

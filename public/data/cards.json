@@ -1,0 +1,145 @@
+{
+  "factions": {
+    "CORE": {
+      "name": "Core Rules",
+      "detachments": {
+        "(none)": [
+          {
+            "name": "INSANE BRAVERY",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "CORE",
+            "timing": "everyTurn",
+            "phases": [
+              "cmd"
+            ],
+            "when": "Befehl: Nach einem missglückten Battle-shock deiner Kommandophase.",
+            "target": "1 Einheit aus deiner Armee.",
+            "effect": "Deine Einheit gilt als bestanden und ist nicht Battle-shocked."
+          },
+          {
+            "name": "GRENADE",
+            "cp": 1,
+            "type": "Wargear",
+            "group": "CORE",
+            "timing": "ownTurn",
+            "phases": [
+              "shoo"
+            ],
+            "when": "Schussphase.",
+            "target": "1 GRENADES Einheit, die nicht in Engagement Range ist.",
+            "effect": "Wähle 1 gegnerische Einheit in 8\", Würfle 6W6; auf 4+ erleidet sie 1 Mortal Wound (max. 6)."
+          },
+          {
+            "name": "FIRE OVERWATCH",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "CORE",
+            "timing": "enemyTurn",
+            "phases": [
+              "mov",
+              "chg"
+            ],
+            "when": "Wenn der Gegner bewegt, vormarschiert, fällt zurück oder angreift.",
+            "target": "1 Einheit in 24\", die schießen dürfte.",
+            "effect": "Deine Einheit schießt wie in deiner Schussphase (einmal pro Zug)."
+          }
+        ]
+      }
+    },
+    "NECRONS": {
+      "name": "Necrons",
+      "detachments": {
+        "AMONHOTEKH’S GUARD": [
+          {
+            "name": "MERCURIAL RESILIENCE",
+            "cp": 1,
+            "type": "Wargear",
+            "group": "NECRONS – AMONHOTEKH’S GUARD",
+            "timing": "enemyTurn",
+            "phases": [
+              "shoo",
+              "fgt"
+            ],
+            "when": "Wenn eine deiner Einheiten als Ziel gewählt wurde.",
+            "target": "1 NECRONS Einheit, die Ziel eines Angriffs ist.",
+            "effect": "Bis Ende der Phase hat deine Einheit Rettungswurf 5+."
+          },
+          {
+            "name": "DISRUPTION FIELDS",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "NECRONS – AMONHOTEKH’S GUARD",
+            "timing": "everyTurn",
+            "phases": [
+              "fgt"
+            ],
+            "when": "Kampfphase.",
+            "target": "1 NECRONS Einheit, die noch nicht gekämpft hat.",
+            "effect": "+1 Stärke für Nahkampfwaffen der Einheit bis Ende der Phase."
+          },
+          {
+            "name": "WILL OF THE OVERLORD",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "NECRONS – AMONHOTEKH’S GUARD",
+            "timing": "ownTurn",
+            "phases": [
+              "cmd"
+            ],
+            "when": "Deine Kommandophase.",
+            "target": "1 NECRONS Einheit.",
+            "effect": "+1 OC der Modelle bis zu deiner nächsten Kommandophase. Nur wenn ein OVERLORD auf dem Schlachtfeld ist."
+          }
+        ]
+      }
+    },
+    "TYRANIDS": {
+      "name": "Tyranids",
+      "detachments": {
+        "INSIDIOUS INFILTRATORS": [
+          {
+            "name": "Swift Kills",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "TYRANIDS – INSIDIOUS INFILTRATORS",
+            "timing": "everyTurn",
+            "phases": [
+              "fgt"
+            ],
+            "when": "Kampfphase.",
+            "target": "1 TYRANIDS Einheit, die noch nicht zum Kämpfen gewählt wurde.",
+            "effect": "+1 AP im Nahkampf; zusätzlich [ANTI-MONSTER 4+] und [ANTI-VEHICLE 4+]."
+          },
+          {
+            "name": "Pheromonal Trace",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "TYRANIDS – INSIDIOUS INFILTRATORS",
+            "timing": "ownTurn",
+            "phases": [
+              "cmd"
+            ],
+            "when": "Deine Kommandophase.",
+            "target": "1 VON RYAN’S LEAPERS Einheit.",
+            "effect": "Wähle 1 Missionszielmarker in Reichweite und unter deiner Kontrolle – er gilt als gesichert (Combat Patrol-Regeln)."
+          },
+          {
+            "name": "Predators, Not Prey",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "TYRANIDS – INSIDIOUS INFILTRATORS",
+            "timing": "ownTurn",
+            "phases": [
+              "mov",
+              "chg"
+            ],
+            "when": "Bewegungs- oder Angriffsphase.",
+            "target": "1 TYRANIDS Einheit, die sich noch nicht bewegt/angegriffen hat.",
+            "effect": "Besteht Verzweifelte-Flucht automatisch; kann sich horizontal durch Modelle bewegen."
+          }
+        ]
+      }
+    }
+  }
+}
