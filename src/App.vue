@@ -1,35 +1,80 @@
 <template>
-  <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 24px;">
-    <header class="controls">
-      <div>
-        <label>Faction</label>
-        <select v-model="faction" @change="onFactionChange">
-          <option v-for="(f, key) in dataByFaction" :key="key" :value="key">{{ f.name }}</option>
-        </select>
-      </div>
-      <div>
-        <label>Detachment</label>
-        <select v-model="detachment">
-          <option v-for="d in detachmentOptions" :key="d" :value="d">{{ d }}</option>
-        </select>
-      </div>
-      <div>
-        <label><input v-model="includeCore" type="checkbox"/> Include Core stratagems</label>
-      </div>
-    </header>
-    <section>
-      <Page v-for="(page, i) in pages" :key="i" :cards="page" :index="i"/>
-    </section>
+  <div class="app-container">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 32px;">
+      <header class="app-header">
+        <div class="header-content">
+          <h1 class="app-title">
+            <img src="./assets/img/warhammer40logo.webp"/>
+            <span class="subtitle">STRATEGEM CARD PRINTER</span>
+          </h1>
+          <p class="app-description">
+            Generate and print custom strategem cards for your Warhammer 40,000 battles.
+            Select your faction, detachment, and chose the stratagems for your next army.
+            <br>
+            Suitable for 2.5"x 3.5" sleeves (like Magic: The Gathering)
+          </p>
+        </div>
+      </header>
+
+      <section class="controls-section">
+        <div class="controls-grid">
+          <div class="control-group">
+            <label class="control-label">Faction</label>
+            <select v-model="faction" @change="onFactionChange" class="control-select">
+              <option v-for="(f, key) in dataByFaction" :key="key" :value="key">{{ f.name }}</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Detachment</label>
+            <select v-model="detachment" @change="onDetachmentChange" class="control-select">
+              <option v-for="d in detachmentOptions" :key="d" :value="d">{{ d }}</option>
+            </select>
+          </div>
+          <div class="control-group checkbox-group">
+            <label class="checkbox-label">
+              <input v-model="includeCore" type="checkbox" class="control-checkbox"/>
+              <span class="checkbox-text">Include Core Stratagems</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button @click="resetRemovedCards" class="action-btn secondary-btn">
+            <span class="btn-icon">⟲</span>
+            Reset Removed Cards
+          </button>
+          <button @click="openPrintDialog" class="action-btn primary-btn" :disabled="visibleCards.length === 0">
+            <span class="btn-icon">⎙</span>
+            Print Preview ({{ visibleCards.length }} Cards)
+          </button>
+        </div>
+      </section>
+
+      <section v-if="!showPrintPreview" class="cards-section">
+        <Page v-for="(page, i) in pages" :key="i" :cards="page" :index="i" @remove-card="removeCard"/>
+      </section>
+
+      <PrintPreview
+          v-if="showPrintPreview"
+          :visible-cards="visibleCards"
+          @close="closePrintPreview"
+          @print="printCards"
+      />
+    </div>
   </div>
 </template>
+
 <script lang="ts" setup>
 import {computed, ref} from 'vue'
 import Page from './components/Page.vue'
+import PrintPreview from './components/PrintPreview.vue'
 import type {CardData, FactionData} from './types'
 
 const dataByFaction = ref<Record<string, FactionData>>({})
-const CORE = ref<CardData[]>([])
+const Core = ref<CardData[]>([])
 const loadError = ref(false)
+const removedCardIds = ref<Set<string>>(new Set())
+const showPrintPreview = ref(false)
 
 async function loadData() {
   try {
@@ -38,7 +83,7 @@ async function loadData() {
     const json = await res.json()
     if (json.factions) {
       dataByFaction.value = json.factions
-      CORE.value = json.factions.CORE?.detachments?.['(none)'] || []
+      Core.value = json.factions.Core?.detachments?.['(none)'] || []
     } else {
       throw new Error('Unknown JSON shape')
     }
@@ -49,29 +94,291 @@ async function loadData() {
 }
 
 loadData()
-const faction = ref('CORE')
+
+const faction = ref('Core')
 const detachment = ref('(none)')
 const includeCore = ref(true)
-const cards = computed(() => {
+
+const allCards = computed(() => {
   const all: CardData[] = []
-  if (includeCore.value) all.push(...CORE.value)
-  if (faction.value !== 'CORE') {
+  if (includeCore.value) all.push(...Core.value)
+  if (faction.value !== 'Core') {
     const detMap = dataByFaction.value[faction.value]?.detachments || {}
     const d = detMap[detachment.value]
     if (d) all.push(...d)
   }
-  if (faction.value === 'CORE' && detachment.value === '(none)' && !includeCore.value) return []
+  if (faction.value === 'Core' && detachment.value === '(none)' && !includeCore.value) return []
   return all
 })
+
+const visibleCards = computed(() => {
+  return allCards.value.filter(card => !removedCardIds.value.has(getCardId(card)))
+})
+
+const cards = computed(() => visibleCards.value)
+
 const pages = computed(() => {
   const out: CardData[][] = []
   for (let i = 0; i < cards.value.length; i += 9) out.push(cards.value.slice(i, i + 9))
   if (out.length === 0) out.push([])
   return out
 })
-const detachmentOptions = computed(() => Object.keys(dataByFaction.value[faction.value]?.detachments || {'(none)': CORE.value}))
+
+const detachmentOptions = computed(() => Object.keys(dataByFaction.value[faction.value]?.detachments || {'(none)': Core.value}))
+
+function getCardId(card: CardData): string {
+  return `${card.name}_${card.group}_${card.type}`
+}
+
+function removeCard(card: CardData) {
+  removedCardIds.value.add(getCardId(card))
+}
+
+function resetRemovedCards() {
+  removedCardIds.value.clear()
+}
 
 function onFactionChange() {
   detachment.value = detachmentOptions.value[0]
+  resetRemovedCards()
+}
+
+function onDetachmentChange() {
+  resetRemovedCards()
+}
+
+function openPrintDialog() {
+  showPrintPreview.value = true
+}
+
+function closePrintPreview() {
+  showPrintPreview.value = false
+}
+
+function printCards() {
+  window.print()
 }
 </script>
+
+<style scoped>
+.app-container {
+  min-height: 100vh;
+  background: var(--w40k-bg);
+}
+
+.app-header {
+  text-align: center;
+  padding-bottom: 32px;
+  border-bottom: 2px solid var(--w40k-border);
+  margin-bottom: 32px;
+}
+
+.app-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--w40k-gold);
+  margin: 0 0 16px 0;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.app-title img {
+  height: 60px;
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+}
+
+.subtitle {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--w40k-text);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: 8px;
+}
+
+.app-description {
+  font-size: 1rem;
+  color: var(--w40k-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.controls-section {
+  background: var(--w40k-surface);
+  border: 1px solid var(--w40k-border);
+  padding: 32px;
+  margin-bottom: 32px;
+}
+
+.controls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkbox-group {
+  justify-content: center;
+  align-items: center;
+}
+
+.control-label {
+  font-weight: 700;
+  color: var(--w40k-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8rem;
+}
+
+.control-select {
+  padding: 12px 16px;
+  background: var(--w40k-bg);
+  border: 1px solid var(--w40k-border);
+  color: var(--w40k-text);
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+}
+
+.control-select:focus {
+  border-color: var(--w40k-accent);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--w40k-text);
+}
+
+.control-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--w40k-accent);
+}
+
+.checkbox-text {
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--w40k-border);
+  padding-top: 24px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 1px solid var(--w40k-border);
+  background: var(--w40k-surface);
+  color: var(--w40k-text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: inherit;
+}
+
+.primary-btn {
+  background: var(--w40k-accent);
+  border-color: var(--w40k-accent);
+  color: white;
+}
+
+.primary-btn:hover:not(:disabled) {
+  background: var(--w40k-accent-hover);
+  border-color: var(--w40k-accent-hover);
+}
+
+.secondary-btn:hover {
+  background: var(--w40k-surface-light);
+  border-color: var(--w40k-text-muted);
+}
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-icon {
+  font-size: 1.1rem;
+}
+
+.cards-section {
+  margin-top: 32px;
+}
+
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 2rem;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .controls-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .action-btn {
+    justify-content: center;
+  }
+}
+
+/* Print styles */
+@media print {
+  .app-container {
+    background: none !important;
+  }
+
+  .container {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .app-header,
+  .controls-section {
+    display: none !important;
+  }
+
+  .cards-section {
+    display: none !important;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: white !important;
+  }
+}
+</style>

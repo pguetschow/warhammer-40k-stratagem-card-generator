@@ -1,24 +1,8 @@
 <template>
   <svg data-height="115.2pt" data-width="115.2pt" height="100%" preserveAspectRatio="xMidYMid meet"
        version="1.1" viewBox="0 0 115.2 115.2" width="100%" xmlns="http://www.w3.org/2000/svg"
-       xmlns:xlink="http://www.w3.org/1999/xlink">
+       xmlns:xlink="http://www.w3.org/1999/xlink" style="color: var(--strip-color)">
     <title>phase_shoo.svg</title>
-    <metadata>
-      <rdf:RDF xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
-               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-        <cc:Work>
-          <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-          <dc:title>phase_shoo.svg</dc:title>
-          <dc:date>2025-09-05T14:33:13.519092</dc:date>
-          <dc:format>image/svg+xml</dc:format>
-          <dc:creator>
-            <cc:Agent>
-              <dc:title>Matplotlib v3.6.3, https://matplotlib.org/</dc:title>
-            </cc:Agent>
-          </dc:creator>
-        </cc:Work>
-      </rdf:RDF>
-    </metadata>
     <g id="figure_1">
       <g id="patch_1">
         <path d="M 0 115.2
@@ -42,35 +26,35 @@ C 31.54176 64.510726 34.287421 71.139337 39.174042 76.025958
 C 44.060663 80.912579 50.689274 83.65824 57.6 83.65824
 L 57.6 83.65824
 z
-" style="fill: none; stroke: #111111; stroke-width: 5.2; stroke-linejoin: miter"/>
+" style="fill: none; stroke: currentColor; stroke-width: 5.2; stroke-linejoin: miter"/>
         </g>
         <g id="patch_3">
           <path clip-path="url(#p0a64badb0d)" d="M 50.524253 21.198437
 L 64.675747 21.198437
 L 57.6 42.5664
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_4">
           <path clip-path="url(#p0a64badb0d)" d="M 94.001563 50.524253
 L 94.001563 64.675747
 L 72.6336 57.6
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_5">
           <path clip-path="url(#p0a64badb0d)" d="M 64.675747 94.001563
 L 50.524253 94.001563
 L 57.6 72.6336
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_6">
           <path clip-path="url(#p0a64badb0d)" d="M 21.198437 64.675747
 L 21.198437 50.524253
 L 42.5664 57.6
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
       </g>
     </g>
@@ -83,9 +67,7 @@ z
 
 </template>
 
-<script lang="ts" setup>
-// No props needed; color comes from parent via CSS 'color' to 'currentColor'.
-</script>
+
 
 <style scoped>
 :deep(svg) {

@@ -1,6 +1,6 @@
 {
   "factions": {
-    "CORE": {
+    "Core": {
       "name": "Core Rules",
       "detachments": {
         "(none)": [
@@ -43,14 +43,162 @@
             "when": "Wenn der Gegner bewegt, vormarschiert, fällt zurück oder angreift.",
             "target": "1 Einheit in 24\", die schießen dürfte.",
             "effect": "Deine Einheit schießt wie in deiner Schussphase (einmal pro Zug)."
+          },
+          {
+            "name": "Command Re-roll",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "CORE-STRATAGEM",
+            "timing": "everyTurn",
+            "phases": [
+              "cmd",
+              "mov",
+              "shoo",
+              "chg",
+              "fgt"
+            ],
+            "when": "Beliebige Phase, direkt nach einem Wurf deiner Armee.",
+            "target": "Eine deiner Einheiten bzw. ein Modell, das gerade gewürfelt hat.",
+            "effect": "Wiederhole genau einen einzelnen Wurf (Treffer, Verwundung, Schaden, Save, Advance, Charge, Battleshock, Angriffsanzahl)."
+          },
+          {
+            "name": "Counter-offensive",
+            "cp": 2,
+            "type": "Strategic Ploy",
+            "group": "CORE-STRATAGEM",
+            "timing": "everyTurn",
+            "phases": [
+              "fgt"
+            ],
+            "when": "Kampfphase, nachdem ein feindlicher Trupp gekämpft hat.",
+            "target": "Eine deiner Einheiten im Nahkampf, die noch nicht gekämpft hat.",
+            "effect": "Diese Einheit kämpft sofort als nächstes."
+          },
+          {
+            "name": "Epic Challenge",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "CORE-STRATAGEM",
+            "timing": "ownTurn",
+            "phases": [
+              "fgt"
+            ],
+            "when": "Deine Kampfphase, wenn eine Einheit von dir kämpfen soll.",
+            "target": "Ein befreundeter CHARAKTER in dieser Einheit.",
+            "effect": "Bis Phasenende erhalten seine Nahkampfangriffe PRÄZISION."
+          },
+          {
+            "name": "Insane Bravery",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "CORE-STRATAGEM",
+            "timing": "ownTurn",
+            "phases": [
+              "cmd"
+            ],
+            "when": "Deine Kommandophase, wenn eine Einheit einen Battleshock-Test ablegen müsste.",
+            "target": "Eine deiner Einheiten.",
+            "effect": "Besteht den Test automatisch (einmal pro Schlacht)."
+          },
+          {
+            "name": "Grenade",
+            "cp": 1,
+            "type": "Wargear",
+            "group": "CORE-STRATAGEM",
+            "timing": "ownTurn",
+            "phases": [
+              "shoo"
+            ],
+            "when": "Deine Schussphase.",
+            "target": "Eine deiner GRENADES-Einheiten; ein sichtbares Ziel ≤ 8\".",
+            "effect": "Wirf 6W6; für jede 4+ erleidet das Ziel 1 tödliche Verwundung. Danach schießt diese Einheit nicht mehr in dieser Phase."
+          },
+          {
+            "name": "Tank Shock",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "CORE-STRATAGEM",
+            "timing": "ownTurn",
+            "phases": [
+              "chg"
+            ],
+            "when": "Deine Chargephase, nachdem dein VEHICLE einen Charge beendet hat.",
+            "target": "Eine der engagierten feindlichen Einheiten.",
+            "effect": "Wirf eine Anzahl W6 gemäß Regel; für jede 5+ erleidet das Ziel 1 tödliche Verwundung (bis zum angegebenen Maximum)."
+          },
+          {
+            "name": "Rapid Ingress",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "CORE-STRATAGEM",
+            "timing": "enemyTurn",
+            "phases": [
+              "mov"
+            ],
+            "when": "Ende der gegnerischen Bewegungsphase.",
+            "target": "Eine deiner Einheiten in Reserve.",
+            "effect": "Wird jetzt als Verstärkung aufgestellt (Deep Strike, falls erlaubt)."
+          },
+          {
+            "name": "Fire Overwatch",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "CORE-STRATAGEM",
+            "timing": "enemyTurn",
+            "phases": [
+              "mov",
+              "chg"
+            ],
+            "when": "Wenn sich ein Gegner bewegt/aufgestellt wird oder chargt.",
+            "target": "Eine deiner Einheiten mit Sicht; Ziel ≤ 24\".",
+            "effect": "Schießt wie in deiner Schussphase; nur unmodifizierte 6en treffen."
+          },
+          {
+            "name": "Go to Ground",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "CORE-STRATAGEM",
+            "timing": "enemyTurn",
+            "phases": [
+              "shoo"
+            ],
+            "when": "Wenn eine befreundete INFANTRY-Einheit zum Ziel erklärt wird.",
+            "target": "Eine INFANTRY-Einheit deiner Armee.",
+            "effect": "Bis Phasenende erhält sie einen 6+ Rettungswurf und Benefit of Cover."
+          },
+          {
+            "name": "Smokescreen",
+            "cp": 1,
+            "type": "Wargear",
+            "group": "CORE-STRATAGEM",
+            "timing": "enemyTurn",
+            "phases": [
+              "shoo"
+            ],
+            "when": "Wenn eine befreundete SMOKE-Einheit zum Ziel erklärt wird.",
+            "target": "Eine Einheit mit SMOKE.",
+            "effect": "Bis Phasenende hat die Einheit Benefit of Cover und STEALTH."
+          },
+          {
+            "name": "Heroic Intervention",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "CORE-STRATAGEM",
+            "timing": "enemyTurn",
+            "phases": [
+              "chg"
+            ],
+            "when": "Gegnerische Chargephase, nach Deklaration.",
+            "target": "Eine berechtigte Einheit innerhalb 6\" zum Angreifer.",
+            "effect": "Deklariert sofort einen Abfang-Charge gegen den Angreifer."
           }
         ]
       }
     },
-    "NECRONS": {
+    "Necrons": {
       "name": "Necrons",
       "detachments": {
-        "AMONHOTEKH’S GUARD": [
+        "Amonhotekh’s Guard": [
           {
             "name": "MERCURIAL RESILIENCE",
             "cp": 1,
@@ -90,14 +238,385 @@
             "when": "Deine Kommandophase.",
             "target": "1 NECRONS Einheit.",
             "effect": "+1 OC der Modelle bis zu deiner nächsten Kommandophase. Nur wenn ein OVERLORD auf dem Schlachtfeld ist."
+          },
+          {
+            "name": "Mercurial Resilience",
+            "cp": 1,
+            "type": "Wargear",
+            "group": "NECRONS – AMONHOTEKH’S GUARD",
+            "timing": "enemyTurn",
+            "phases": [
+              "shoo",
+              "fgt"
+            ],
+            "when": "Gegnerische Schuss- oder Kampfphase, direkt nachdem eine feindliche Einheit ihre Ziele gewählt hat.",
+            "target": "1 NECRONS Einheit aus deiner Armee, die als Ziel für eine oder mehrere Attacken gewählt wurde.",
+            "effect": "Bis zum Ende der Phase haben Modelle deiner Einheit einen 5+ Rettungswurf."
+          },
+          {
+            "name": "Disruption Fields",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "NECRONS – AMONHOTEKH’S GUARD",
+            "timing": "ownTurn",
+            "phases": [
+              "fgt"
+            ],
+            "when": "Kampfphase, wenn eine Einheit von dir noch nicht zum Kämpfen ausgewählt wurde.",
+            "target": "1 NECRONS Einheit aus deiner Armee.",
+            "effect": "Bis zum Ende der Phase erhalten Nahkampfwaffen von Modellen deiner Einheit +1 Stärke."
+          },
+          {
+            "name": "Will of the Overlord",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "NECRONS – AMONHOTEKH’S GUARD",
+            "timing": "ownTurn",
+            "phases": [
+              "cmd"
+            ],
+            "when": "Deine Kommandophase.",
+            "target": "1 NECRONS Einheit aus deiner Armee.",
+            "effect": "Bis zu Beginn deiner nächsten Kommandophase erhalten Modelle deiner Einheit +1 Objective Control. Einschränkung: Nur verwendbar, wenn sich ein OVERLORD deiner Armee auf dem Schlachtfeld befindet."
+          }
+        ],
+        "Awakened Dynasty": [
+          {
+            "name": "Protocol of the Eternal Revenant",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "NECRONS – AWAKENED DYNASTY",
+            "timing": "everyTurn",
+            "phases": [
+              "cmd",
+              "mov",
+              "shoo",
+              "chg",
+              "fgt"
+            ],
+            "when": "Beliebige Phase, wenn ein NECRONS INFANTRY CHARACTER von dir soeben zerstört wurde.",
+            "target": "Das soeben zerstörte Modell.",
+            "effect": "Stelle es am Phasenende mit der Hälfte seiner Startwunden an der Stelle zurück (außerhalb von Engagement Range). Einmal pro Modell pro Schlacht)."
+          },
+          {
+            "name": "Protocol of the Undying Legions",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "NECRONS – AWAKENED DYNASTY",
+            "timing": "enemyTurn",
+            "phases": [
+              "shoo",
+              "fgt"
+            ],
+            "when": "Gegnerische Schuss- oder Kampfphase, direkt nachdem ein Feind seine Attacken abgeschlossen hat.",
+            "target": "Eine NECRONS-Einheit, die dadurch Verluste erlitten hat.",
+            "effect": "Aktiviere Reanimation Protocols: Reanimiere D3 Wunden (D3+1, falls ein NECRONS CHARACTER die Einheit anführt)."
+          },
+          {
+            "name": "Protocol of the Hungry Void",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "NECRONS – AWAKENED DYNASTY",
+            "timing": "ownTurn",
+            "phases": [
+              "fgt"
+            ],
+            "when": "Deine Kampfphase, wenn eine Einheit noch nicht gekämpft hat.",
+            "target": "Eine NECRONS-Einheit.",
+            "effect": "+1 ST mit Nahkampfwaffen; wenn ein CHARACTER anführt, zusätzlich AP um 1 besser (nicht kumulativ)."
+          },
+          {
+            "name": "Protocol of the Sudden Storm",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "NECRONS – AWAKENED DYNASTY",
+            "timing": "ownTurn",
+            "phases": [
+              "mov"
+            ],
+            "when": "Deine Bewegungsphase.",
+            "target": "Eine NECRONS-Einheit.",
+            "effect": "Bis zum Ende des Zugs erhalten ihre Fernkampfwaffen [ASSAULT]; wenn ein CHARACTER anführt, wiederhole Advance-Würfe."
+          },
+          {
+            "name": "Protocol of the Conquering Tyrant",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "NECRONS – AWAKENED DYNASTY",
+            "timing": "ownTurn",
+            "phases": [
+              "shoo"
+            ],
+            "when": "Deine Schussphase, wenn die Einheit noch nicht geschossen hat.",
+            "target": "Eine NECRONS-Einheit.",
+            "effect": "Gegen Ziele in halber Reichweite: Re-roll Hit-1; wenn ein CHARACTER anführt, vollständiger Hit-Re-roll."
+          },
+          {
+            "name": "Protocol of the Vengeful Stars",
+            "cp": 2,
+            "type": "Strategic Ploy",
+            "group": "NECRONS – AWAKENED DYNASTY",
+            "timing": "enemyTurn",
+            "phases": [
+              "shoo"
+            ],
+            "when": "Gegnerische Schussphase, nachdem eine NECRONS-Einheit von dir zerstört wurde.",
+            "target": "Ein NECRONS CHARACTER innerhalb 6\" dieser Einheit.",
+            "effect": "Nach Abschluss der gegnerischen Attacken schießt deine Einheit wie in deiner Schussphase, nur auf den Angreifer und nur falls legal."
+          }
+        ],
+        "Canoptek Court": [
+          {
+            "name": "Curse of the Cryptek",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "NECRONS – CANOPTEK COURT",
+            "timing": "enemyTurn",
+            "phases": [
+              "shoo",
+              "fgt"
+            ],
+            "when": "Gegnerische Schuss- oder Kampfphase, nachdem ein Feind geschossen/gekämft hat.",
+            "target": "Ein CRYPTEK-Modell von dir, das durch diese Attacken zerstört wurde (auf das Modell anwenden).",
+            "effect": "Bis Spielende: Freundliche CANOPTEK-Modelle erhalten gegen diese Gegner +1 to Hit und +1 to Wound."
+          },
+          {
+            "name": "Cynosure of Eradication",
+            "cp": 2,
+            "type": "Battle Tactic",
+            "group": "NECRONS – CANOPTEK COURT",
+            "timing": "ownTurn",
+            "phases": [
+              "shoo",
+              "fgt"
+            ],
+            "when": "Beginn deiner Schuss- oder Kampfphase.",
+            "target": "Eine CRYPTEK- oder CANOPTEK-Einheit, vollständig innerhalb deiner Power Matrix.",
+            "effect": "Bis Phasenende haben ihre Waffen [DEVASTATING WOUNDS]."
+          },
+          {
+            "name": "Solar Pulse",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "NECRONS – CANOPTEK COURT",
+            "timing": "ownTurn",
+            "phases": [
+              "shoo"
+            ],
+            "when": "Beginn deiner Schussphase.",
+            "target": "Ein CRYPTEK-Modell.",
+            "effect": "Wähle ein Missionsziel innerhalb 18\" zum CRYPTEK: Fernwaffen deiner Armee erhalten [IGNORES COVER] gegen Ziele in dessen Reichweite."
+          },
+          {
+            "name": "Reactive Subroutines",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "NECRONS – CANOPTEK COURT",
+            "timing": "enemyTurn",
+            "phases": [
+              "mov"
+            ],
+            "when": "Gegnerische Bewegungsphase, nachdem ein Feind Normal/Advance/Fall Back beendet hat.",
+            "target": "Eine CANOPTEK-Einheit innerhalb 9\" zum Gegner.",
+            "effect": "Diese Einheit macht einen Normal Move bis 6\"."
+          },
+          {
+            "name": "Countertemporal Shift",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "NECRONS – CANOPTEK COURT",
+            "timing": "enemyTurn",
+            "phases": [
+              "shoo"
+            ],
+            "when": "Gegnerische Schussphase, nachdem der Gegner Ziele gewählt hat.",
+            "target": "Eine CANOPTEK-Einheit, die als Ziel gewählt wurde.",
+            "effect": "Bis Phasenende darf sie nur attackiert werden, wenn die angreifenden Modelle innerhalb 18\" sind."
+          },
+          {
+            "name": "Suboptimal Facade",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "NECRONS – CANOPTEK COURT",
+            "timing": "enemyTurn",
+            "phases": [
+              "chg"
+            ],
+            "when": "Gegnerische Chargephase, direkt nach der Charge-Deklaration.",
+            "target": "Eine CANOPTEK-Einheit als Ziel des Charges, vollständig innerhalb deiner Power Matrix.",
+            "effect": "Aktiviere ihre Reanimation Protocols."
+          }
+        ],
+        "Hypercrypt Legion": [
+          {
+            "name": "Hyperphasic Recall",
+            "cp": 2,
+            "type": "Strategic Ploy",
+            "group": "NECRONS – HYPERCRYPT LEGION",
+            "timing": "enemyTurn",
+            "phases": [
+              "shoo",
+              "fgt"
+            ],
+            "when": "Gegnerische Schuss- oder Kampfphase, nachdem deine INFANTRY Verluste erlitten hat.",
+            "target": "Eine NECRONS INFANTRY-Einheit sowie ein befreundeter MONOLITH.",
+            "effect": "Entferne die Einheit vom Spielfeld; stelle sie vollständig innerhalb 6\" zum MONOLITH und außerhalb von Engagement Range wieder auf."
+          },
+          {
+            "name": "Quantum Deflection",
+            "cp": 1,
+            "type": "Wargear",
+            "group": "NECRONS – HYPERCRYPT LEGION",
+            "timing": "enemyTurn",
+            "phases": [
+              "shoo",
+              "fgt"
+            ],
+            "when": "Gegnerische Schuss- oder Kampfphase, nachdem deine VEHICLE-Einheit als Ziel gewählt wurde.",
+            "target": "Eine NECRONS VEHICLE-Einheit.",
+            "effect": "Bis Phasenende erhält sie einen 4+ Rettungswurf."
+          },
+          {
+            "name": "Reanimation Crypts",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "NECRONS – HYPERCRYPT LEGION",
+            "timing": "ownTurn",
+            "phases": [
+              "cmd"
+            ],
+            "when": "Deine Kommandophase.",
+            "target": "Dein NECRONS WARLORD.",
+            "effect": "Für jede deiner Einheiten in Reserve werden deren Reanimation Protocols aktiviert."
+          },
+          {
+            "name": "Cosmic Precision",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "NECRONS – HYPERCRYPT LEGION",
+            "timing": "ownTurn",
+            "phases": [
+              "mov"
+            ],
+            "when": "Deine Bewegungsphase.",
+            "target": "Eine NECRONS Einheit (ohne MONSTER), die jetzt via Deep Strike/Hyperphasing kommt.",
+            "effect": "Darf irgendwo >6\" zu allen Feinden platziert werden (nicht chargen in diesem Zug)."
+          },
+          {
+            "name": "Dimensional Corridor",
+            "cp": 2,
+            "type": "Strategic Ploy",
+            "group": "NECRONS – HYPERCRYPT LEGION",
+            "timing": "ownTurn",
+            "phases": [
+              "chg"
+            ],
+            "when": "Deine Chargephase.",
+            "target": "Eine NECRONS Einheit, die in diesem Zug durch das Eternity Gate eines MONOLITH aufgestellt wurde.",
+            "effect": "Diese Einheit ist in dieser Phase charge-berechtigt."
+          },
+          {
+            "name": "Entropic Damping",
+            "cp": 1,
+            "type": "Wargear",
+            "group": "NECRONS – HYPERCRYPT LEGION",
+            "timing": "enemyTurn",
+            "phases": [
+              "shoo"
+            ],
+            "when": "Gegnerische Schussphase, nachdem deine TITANIC-Einheit als Ziel gewählt wurde (innerhalb 18\").",
+            "target": "Eine TITANIC-Einheit deiner Armee.",
+            "effect": "Bis Phasenende erhalten die Waffen des angreifenden Trupps [HAZARDOUS]."
+          }
+        ],
+        "Annihilation Legion": [
+          {
+            "name": "Masks of Death",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "NECRONS – ANNIHILATION LEGION",
+            "timing": "enemyTurn",
+            "phases": [
+              "shoo",
+              "fgt"
+            ],
+            "when": "Gegnerische Schuss- oder Kampfphase, wenn deine Einheit als Ziel gewählt wurde.",
+            "target": "Eine DESTROYER CULT- oder FLAYED ONES-Einheit.",
+            "effect": "Bis Phasenende: -1 auf Trefferwürfe gegen diese Einheit."
+          },
+          {
+            "name": "The Spoor of Frailty",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "NECRONS – ANNIHILATION LEGION",
+            "timing": "ownTurn",
+            "phases": [
+              "shoo",
+              "fgt"
+            ],
+            "when": "Deine Schuss- oder Kampfphase, wenn die Einheit noch nicht geschossen/gekämpft hat.",
+            "target": "Eine DESTROYER CULT- oder FLAYED ONES-Einheit.",
+            "effect": "Gegen Ziele unter Startstärke: +1 to Hit; gegen Ziele unter halber Stärke zusätzlich +1 to Wound."
+          },
+          {
+            "name": "Murderous Reanimation",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "NECRONS – ANNIHILATION LEGION",
+            "timing": "ownTurn",
+            "phases": [
+              "fgt"
+            ],
+            "when": "Kampfphase, nachdem deine Einheit ein Ziel zerstört hat oder es unter halbe Stärke gebracht hat.",
+            "target": "Eine DESTROYER CULT- oder FLAYED ONES-Einheit.",
+            "effect": "Aktiviere deren Reanimation Protocols."
+          },
+          {
+            "name": "Pitiless Hunters",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "NECRONS – ANNIHILATION LEGION",
+            "timing": "ownTurn",
+            "phases": [
+              "fgt"
+            ],
+            "when": "Deine Kampfphase, wenn die Einheit noch nicht gekämpft hat.",
+            "target": "Eine DESTROYER CULT- oder FLAYED ONES-Einheit.",
+            "effect": "Bis Phasenende dürfen Pile-in und Consolidate je bis zu 6\" betragen."
+          },
+          {
+            "name": "Blood-fuelled Cruelty",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "NECRONS – ANNIHILATION LEGION",
+            "timing": "enemyTurn",
+            "phases": [
+              "mov"
+            ],
+            "when": "Gegnerische Bewegungsphase, nachdem ein Feind aus dem Nahkampf abgeprallt ist (Fall Back).",
+            "target": "Eine DESTROYER CULT- oder FLAYED ONES-Einheit, die zu Beginn innerhalb von Engagement Range war.",
+            "effect": "Wirf 1W6: 2–5 = D3 tödliche; 6 = 3 tödliche Verwundungen; danach Normal Move, möglichst nahe am Feind enden."
+          },
+          {
+            "name": "Insanity’s Ire",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "NECRONS – ANNIHILATION LEGION",
+            "timing": "enemyTurn",
+            "phases": [
+              "shoo"
+            ],
+            "when": "Gegnerische Schussphase, nachdem der Gegner geschossen hat.",
+            "target": "Eine DESTROYER CULT- oder FLAYED ONES-Einheit, die dadurch Verluste erlitt.",
+            "effect": "Macht einen Normal Move, der möglichst nahe am Schützen endet."
           }
         ]
       }
     },
-    "TYRANIDS": {
+    "Tyranids": {
       "name": "Tyranids",
       "detachments": {
-        "INSIDIOUS INFILTRATORS": [
+        "Insidious Infiltrators": [
           {
             "name": "Swift Kills",
             "cp": 1,
@@ -137,6 +656,46 @@
             "when": "Bewegungs- oder Angriffsphase.",
             "target": "1 TYRANIDS Einheit, die sich noch nicht bewegt/angegriffen hat.",
             "effect": "Besteht Verzweifelte-Flucht automatisch; kann sich horizontal durch Modelle bewegen."
+          },
+          {
+            "name": "Swift Kills",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "TYRANIDS – INSIDIOUS INFILTRATORS",
+            "timing": "everyTurn",
+            "phases": [
+              "fgt"
+            ],
+            "when": "Kampfphase.",
+            "target": "1 TYRANIDS Einheit aus deiner Armee, die in dieser Phase noch nicht zum Kämpfen ausgewählt wurde.",
+            "effect": "Bis zum Ende der Phase erhalten Nahkampfwaffen von Modellen deiner Einheit +1 DS (AP). Außerdem hat deine Einheit die Fähigkeiten [ANTI-MONSTER 4+] und [ANTI-VEHICLE 4+]."
+          },
+          {
+            "name": "Pheromonal Trace",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "TYRANIDS – INSIDIOUS INFILTRATORS",
+            "timing": "ownTurn",
+            "phases": [
+              "cmd"
+            ],
+            "when": "Deine Kommandophase.",
+            "target": "1 VON RYAN’S LEAPERS Einheit aus deiner Armee.",
+            "effect": "Wähle 1 Missionszielmarker, der in Reichweite deiner Einheit liegt und den du kontrollierst. Dieser Missionszielmarker gilt als von dir gesichert (siehe Regeln der Combat Patrol)."
+          },
+          {
+            "name": "Predators, Not Prey",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "TYRANIDS – INSIDIOUS INFILTRATORS",
+            "timing": "ownTurn",
+            "phases": [
+              "mov",
+              "chg"
+            ],
+            "when": "Deine Bewegungsphase oder deine Angriffsphase.",
+            "target": "1 TYRANIDS Einheit aus deiner Armee, die in dieser Phase noch nicht bewegt wurde bzw. noch keinen Angriff erklärt hat.",
+            "effect": "Bis zum Ende der Phase bestehen Modelle deiner Einheit automatisch Verzweifelte-Flucht-Tests. Jedes Mal, wenn ein Modell deiner Einheit sich bewegt, kann es sich horizontal durch andere Modelle bewegen, als wären sie nicht vorhanden."
           }
         ]
       }

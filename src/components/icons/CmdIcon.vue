@@ -1,24 +1,7 @@
 <template>
   <svg data-height="115.2pt" data-width="115.2pt" height="100%" preserveAspectRatio="xMidYMid meet"
        version="1.1" viewBox="0 0 115.2 115.2" width="100%" xmlns="http://www.w3.org/2000/svg"
-       xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>phase_cmd.svg</title>
-    <metadata>
-      <rdf:RDF xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
-               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-        <cc:Work>
-          <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-          <dc:title>phase_cmd.svg</dc:title>
-          <dc:date>2025-09-05T14:24:30.372996</dc:date>
-          <dc:format>image/svg+xml</dc:format>
-          <dc:creator>
-            <cc:Agent>
-              <dc:title>Matplotlib v3.6.3, https://matplotlib.org/</dc:title>
-            </cc:Agent>
-          </dc:creator>
-        </cc:Work>
-      </rdf:RDF>
-    </metadata>
+       xmlns:xlink="http://www.w3.org/1999/xlink" style="color: var(--strip-color)">
     <g id="figure_1">
       <g id="patch_1">
         <path d="M 0 115.2
@@ -35,84 +18,84 @@ z
 L 79.473132 61.456823
 L 96.5376 57.6
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_3">
           <path clip-path="url(#pc625bcb225)" d="M 74.614276 43.323327
 L 78.471099 50.003541
 L 86.133112 41.1264
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_4">
           <path clip-path="url(#pc625bcb225)" d="M 65.196459 36.728901
 L 71.876673 40.585724
 L 74.0736 29.066888
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_5">
           <path clip-path="url(#pc625bcb225)" d="M 53.743177 35.726868
 L 61.456823 35.726868
 L 57.6 18.6624
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_6">
           <path clip-path="url(#pc625bcb225)" d="M 43.323327 40.585724
 L 50.003541 36.728901
 L 41.1264 29.066888
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_7">
           <path clip-path="url(#pc625bcb225)" d="M 36.728901 50.003541
 L 40.585724 43.323327
 L 29.066888 41.1264
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_8">
           <path clip-path="url(#pc625bcb225)" d="M 35.726868 61.456823
 L 35.726868 53.743177
 L 18.6624 57.6
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_9">
           <path clip-path="url(#pc625bcb225)" d="M 40.585724 71.876673
 L 36.728901 65.196459
 L 29.066888 74.0736
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_10">
           <path clip-path="url(#pc625bcb225)" d="M 50.003541 78.471099
 L 43.323327 74.614276
 L 41.1264 86.133112
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_11">
           <path clip-path="url(#pc625bcb225)" d="M 61.456823 79.473132
 L 53.743177 79.473132
 L 57.6 96.5376
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_12">
           <path clip-path="url(#pc625bcb225)" d="M 71.876673 74.614276
 L 65.196459 78.471099
 L 74.0736 86.133112
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_13">
           <path clip-path="url(#pc625bcb225)" d="M 78.471099 65.196459
 L 74.614276 71.876673
 L 86.133112 74.0736
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_14">
           <path clip-path="url(#pc625bcb225)" d="M 80.96256 57.6
@@ -151,7 +134,7 @@ C 71.017879 47.297105 72.253434 49.146244 73.096342 51.181205
 C 73.939251 53.216166 74.37312 55.397374 74.37312 57.6
 M 80.96256 57.6
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
       </g>
     </g>
@@ -164,9 +147,7 @@ z
 
 </template>
 
-<script lang="ts" setup>
-// No props needed; color comes from parent via CSS 'color' to 'currentColor'.
-</script>
+
 
 <style scoped>
 :deep(svg) {

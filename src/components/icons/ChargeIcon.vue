@@ -1,24 +1,7 @@
 <template>
   <svg data-height="115.2pt" data-width="115.2pt" height="100%" preserveAspectRatio="xMidYMid meet"
        version="1.1" viewBox="0 0 115.2 115.2" width="100%" xmlns="http://www.w3.org/2000/svg"
-       xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>phase_chg.svg</title>
-    <metadata>
-      <rdf:RDF xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
-               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-        <cc:Work>
-          <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-          <dc:title>phase_chg.svg</dc:title>
-          <dc:date>2025-09-05T14:20:56.361119</dc:date>
-          <dc:format>image/svg+xml</dc:format>
-          <dc:creator>
-            <cc:Agent>
-              <dc:title>Matplotlib v3.6.3, https://matplotlib.org/</dc:title>
-            </cc:Agent>
-          </dc:creator>
-        </cc:Work>
-      </rdf:RDF>
-    </metadata>
+       xmlns:xlink="http://www.w3.org/1999/xlink" style="color: var(--strip-color)">
     <g id="figure_1">
       <g id="patch_1">
         <path d="M 0 115.2
@@ -38,7 +21,7 @@ L 73.921536 73.728
 L 57.6 53.438976
 L 41.278464 73.728
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_3">
           <path clip-path="url(#pfab9f69499)" d="M 31.63392 51.342336
@@ -48,7 +31,7 @@ L 73.921536 51.342336
 L 57.6 31.053312
 L 41.278464 51.342336
 z
-" style="fill: #111111"/>
+" style="fill: currentColor"/>
         </g>
       </g>
     </g>
@@ -61,9 +44,7 @@ z
 
 </template>
 
-<script lang="ts" setup>
-// No props needed; color comes from parent via CSS 'color' to 'currentColor'.
-</script>
+
 
 <style scoped>
 :deep(svg) {

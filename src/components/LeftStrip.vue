@@ -1,14 +1,14 @@
 <template>
   <div class="side">
     <div class="diamonds-container">
-      <Diamond :color="stripColor"  isCp>
+      <Diamond :color="stripColor" isCp>
         {{ cp }}CP
       </Diamond>
       <Diamond v-for="(p,i) in phases" :key="i" :color="stripColor" >
         <component :is="iconComponent(p)"/>
       </Diamond>
     </div>
-    <div :style="{ top: underlineY + 'px', backgroundColor: stripColor }" class="strip"></div>
+    <div :style="{ backgroundColor: stripColor }" class="strip"></div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -20,7 +20,6 @@ import ChargeIcon from './icons/ChargeIcon.vue'
 import FightIcon from './icons/FightIcon.vue'
 
 const props = defineProps<{
-  underlineY: number,
   cp: number,
   phases: Array<'cmd' | 'mov' | 'shoo' | 'chg' | 'fgt'>,
   stripColor: string
