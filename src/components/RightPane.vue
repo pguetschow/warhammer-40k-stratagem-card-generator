@@ -26,7 +26,7 @@
 import {nextTick, onBeforeUnmount, onMounted, ref} from 'vue'
 import type {CardData} from '../types'
 
-const props = defineProps<{ card: CardData, stripColor: string, metaColor: string }>()
+defineProps<{ card: CardData, stripColor: string, metaColor: string }>()
 const emit = defineEmits<{ (e: 'underline', y: number): void }>()
 const underline = ref<HTMLElement | null>(null)
 
