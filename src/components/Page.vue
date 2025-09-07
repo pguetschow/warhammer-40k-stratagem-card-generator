@@ -3,7 +3,7 @@
     <div class="grid">
       <div v-for="(c,i) in cards" :key="i" class="card-container">
         <Card :card="c"/>
-        <button @click="$emit('remove-card', c)" class="remove-btn" title="Karte entfernen">×</button>
+        <button @click="$emit('remove-card', c)" class="remove-btn" title="Remove Card for Printing">×</button>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@ defineEmits<{ (e: 'remove-card', card: CardData): void }>()
   height: 25px;
   border-radius: 50%;
   border: 1px solid #ccc;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255);
   color: #666;
   cursor: pointer;
   font-size: 16px;
@@ -43,7 +43,7 @@ defineEmits<{ (e: 'remove-card', card: CardData): void }>()
 }
 
 .remove-btn:hover {
-  background: rgba(220, 53, 69, 0.9);
+  background: rgba(220, 53, 69);
   color: white;
   border-color: #dc3545;
 }
