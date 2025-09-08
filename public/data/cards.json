@@ -257,52 +257,48 @@
     "Adeptus Custodes": {
       "name": "Adeptus Custodes",
       "combatPatrols": {
-        "Guardians of the Throne": [
+        "Tristraen’s Gilded Blades": [
           {
-            "name": "Wrath of the Host",
+            "name": "The Gilded Spear",
             "cp": 1,
             "type": "Battle Tactic",
             "timing": "everyTurn",
             "phases": [
-              "command",
-              "movement",
-              "shooting",
-              "charge",
               "fight"
             ],
-            "when": "Any phase, just after a Shield‑Captain model from your army is destroyed by an attack made by an enemy model.",
-            "target": "One Shield‑Captain model from your army that was just destroyed by an attack made by an enemy model. You can use this Stratagem on that model even though it was just destroyed.",
-            "effect": "Until the end of the battle, ranged weapons equipped by Adeptus Custodes models from your army have the [SUSTAINED HITS 1] ability while targeting that enemy model’s unit.",
+            "when": "Fight phase.",
+            "target": "One Adeptus Custodes unit from your army that has not been selected to fight this phase.",
+            "effect": "Until the end of the phase, each time a model in your unit makes a Pile‑in move, it can move up to 6\" instead of up to 3\".",
             "restrictions": "",
-            "group": "ADEPTUS CUSTODES – Guardians of the Throne"
+            "group": "ADEPTUS CUSTODES – Tristraen’s Gilded Blades"
           },
           {
-            "name": "Gilded Magnificence",
-            "cp": 2,
+            "name": "Inescapable Vengeance",
+            "cp": 1,
             "type": "Strategic Ploy",
             "timing": "yourTurn",
             "phases": [
-              "command"
-            ],
-            "when": "Your Command phase.",
-            "target": "One Adeptus Custodes unit from your army.",
-            "effect": "Until the start of your next Command phase, add 1 to the Objective Control characteristic of models in your unit.",
-            "restrictions": "",
-            "group": "ADEPTUS CUSTODES – Guardians of the Throne"
-          },
-          {
-            "name": "Tireless Pursuit",
-            "cp": 1,
-            "type": "Strategic Ploy",
-            "timing": "oppTurn",
-            "phases": [
               "movement"
             ],
-            "when": "Your opponent’s Movement phase, just after an enemy unit ends a Fall Back move.",
-            "target": "One Adeptus Custodes Infantry unit from your army that was within Engagement Range of that enemy unit at the start of the phase.",
-            "effect": "If your unit is not within Engagement Range of one or more enemy models, it can make a Normal move.",
+            "when": "Your Movement phase.",
+            "target": "One Adeptus Custodes unit from your army that has not been selected to move this phase.",
+            "effect": "Until the end of the phase, add 2 to Advance rolls made for your unit.",
             "restrictions": "",
-            "group": "ADEPTUS CUSTODES – Guardians of the Throne"
+            "group": "ADEPTUS CUSTODES – Tristraen’s Gilded Blades"
+          },
+          {
+            "name": "Overawing Magnificence",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "timing": "oppTurn",
+            "phases": [
+              "charge"
+            ],
+            "when": "Your opponent’s Charge phase, just after an enemy unit declares a charge.",
+            "target": "One Adeptus Custodes unit that was selected as a target of that charge.",
+            "effect": "That enemy unit must take a Leadership test. If that test is failed, until the end of the phase, subtract 2 from Charge rolls made for that enemy unit.",
+            "restrictions": "",
+            "group": "ADEPTUS CUSTODES – Tristraen’s Gilded Blades"
           }
         ]
       },
@@ -1725,7 +1721,53 @@
     },
     "Aeldari": {
       "name": "Aeldari",
-      "combatPatrols": {},
+      "combatPatrols": {
+        "The Fatebreakers": [
+          {
+            "name": "Whip-fast Reactions",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets.",
+            "target": "One Aeldari Infantry or Aeldari Mounted unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+            "effect": "Until the end of the phase, each time an attack targets your unit, subtract 1 from the Hit roll.",
+            "restrictions": "",
+            "group": "AELDARI – The Fatebreakers"
+          },
+          {
+            "name": "Storm of Shots",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase.",
+            "target": "Up to two Aeldari Mounted units from your army, or one Aeldari Infantry unit from your army.",
+            "effect": "Until the end of the phase, each time a model in one of those units makes an attack, add 1 to the Hit roll.",
+            "restrictions": "",
+            "group": "AELDARI – The Fatebreakers"
+          },
+          {
+            "name": "Zephyr-swift",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "End of your Shooting phase.",
+            "target": "Up to two Aeldari Mounted units from your army that are not within Engagement Range of one or more enemy units, or one Aeldari Infantry unit from your army that is not within Engagement Range of one or more enemy units.",
+            "effect": "Each of those units can make a Normal move of up to 6\".",
+            "restrictions": "Until the end of the turn, those units are not eligible to declare a charge.",
+            "group": "AELDARI – The Fatebreakers"
+          }
+        ]
+      },
       "detachments": {
         "Armoured Warhost": [
           {
@@ -6659,7 +6701,53 @@
     },
     "Death Guard": {
       "name": "Death Guard",
-      "combatPatrols": {},
+      "combatPatrols": {
+        "The Shambling Horde": [
+          {
+            "name": "Corrosive Effluents",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your Shooting phase or the Fight phase.",
+            "target": "One Death Guard unit from your army that has not been selected to shoot or fight this phase.",
+            "effect": "Until the end of the phase, each time a model in your unit makes an attack, improve the Armour Penetration characteristic of that attack by 1.",
+            "restrictions": "",
+            "group": "DEATH GUARD – The Shambling Horde"
+          },
+          {
+            "name": "Harbingers of Despair",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "timing": "everyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Start of the Fight phase.",
+            "target": "One Death Guard unit from your army.",
+            "effect": "Each enemy unit within Engagement Range of your unit must take a Battle-shock test.",
+            "restrictions": "",
+            "group": "DEATH GUARD – The Shambling Horde"
+          },
+          {
+            "name": "Disgustingly Resilient",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your opponent’s Shooting phase, just after an enemy unit has selected its targets.",
+            "target": "One Death Guard unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+            "effect": "Until the end of the phase, each time an attack is allocated to a model in your unit, subtract 1 from the Damage characteristic of that attack.",
+            "restrictions": "",
+            "group": "DEATH GUARD – The Shambling Horde"
+          }
+        ]
+      },
       "detachments": {
         "Arch-Contaminators": [
           {
@@ -7465,7 +7553,54 @@
     },
     "Drukhari": {
       "name": "Drukhari",
-      "combatPatrols": {},
+      "combatPatrols": {
+        "The Blades of Torment": [
+          {
+            "name": "Quicksilver Reactions",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets.",
+            "target": "One Drukhari Infantry unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+            "effect": "Until the end of the phase, each time an attack targets your unit, subtract 1 from the Hit roll.",
+            "restrictions": "",
+            "group": "DRUKHARI – The Blades of Torment"
+          },
+          {
+            "name": "Many Cuts",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your Shooting phase or the Fight phase.",
+            "target": "One Drukhari Infantry unit from your army that has not been selected to shoot or fight this phase.",
+            "effect": "Until the end of the phase, weapons equipped by models in your unit have the [SUSTAINED HITS 1] ability while targeting a unit that is below its Starting Strength.",
+            "restrictions": "",
+            "group": "DRUKHARI – The Blades of Torment"
+          },
+          {
+            "name": "There and Gone",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "timing": "oppTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "End of your opponent’s Fight phase.",
+            "target": "One Drukhari Infantry unit from your army that is not within Engagement Range of any enemy units, and one friendly Transport model.",
+            "effect": "Your Infantry unit can embark within that Transport model.",
+            "restrictions": "Every model in your Infantry unit must be within 3\" of that Transport model and there must be sufficient transport capacity to embark the entire unit.",
+            "group": "DRUKHARI – The Blades of Torment"
+          }
+        ]
+      },
       "detachments": {
         "Kabalite Corsairs": [
           {
@@ -8505,7 +8640,53 @@
     },
     "Genestealer Cults": {
       "name": "Genestealer Cults",
-      "combatPatrols": {},
+      "combatPatrols": {
+        "Hand of the Magus": [
+          {
+            "name": "Defend the Magus",
+            "cp": 1,
+            "type": "Epic Deed",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Start of your Shooting phase or start of the Fight phase.",
+            "target": "One Magus unit from your army and one enemy unit within Engagement Range of that Magus unit.",
+            "effect": "Until the end of the phase, each time a Genestealer Cults model from your army makes an attack that targets that enemy unit, re-roll a Hit roll of 1 and re-roll a Wound roll of 1.",
+            "restrictions": "",
+            "group": "GENESTEALER CULTS – Hand of the Magus"
+          },
+          {
+            "name": "Lurking Killers",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your opponent’s Shooting phase, just after an enemy unit has selected its targets.",
+            "target": "One Genestealer Cults Infantry unit from your army (excluding Aberrant units) that was selected as the target of one or more of the attacking unit’s attacks.",
+            "effect": "Until the end of the phase, each time an attack targets your unit, subtract 1 from the Hit roll.",
+            "restrictions": "",
+            "group": "GENESTEALER CULTS – Hand of the Magus"
+          },
+          {
+            "name": "Return to the Shadows",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "timing": "oppTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "Your opponent’s Movement phase, just after an enemy unit ends a Normal, Advance or Fall Back move.",
+            "target": "One Genestealer Cults Infantry unit from your army that is within 9\" of that enemy unit.",
+            "effect": "Your unit can make a Normal move of up to D6\". If your unit has the Magus keyword, it can make a Normal move of up to 6\" instead.",
+            "restrictions": "",
+            "group": "GENESTEALER CULTS – Hand of the Magus"
+          }
+        ]
+      },
       "detachments": {
         "Biosanctic Broodsurge": [
           {
@@ -9926,7 +10107,56 @@
     },
     "Leagues of Votann": {
       "name": "Leagues of Votann",
-      "combatPatrols": {},
+      "combatPatrols": {
+        "Warspeke’s Prospect": [
+          {
+            "name": "Payment in Kind",
+            "cp": 1,
+            "type": "Epic Deed",
+            "timing": "everyTurn",
+            "phases": [
+              "command",
+              "movement",
+              "shooting",
+              "charge",
+              "fight"
+            ],
+            "when": "Any phase.",
+            "target": "One Leagues of Votann unit from your army that was just destroyed by an attack made by an enemy model. You can use this Stratagem on that Leagues of Votann unit even though it was just destroyed.",
+            "effect": "Until the end of the battle, each time a Leagues of Votann model from your army makes an attack that targets that enemy model’s unit, re-roll a Hit roll of 1.",
+            "restrictions": "",
+            "group": "LEAGUES OF VOTANN – Warspeke’s Prospect"
+          },
+          {
+            "name": "Pan-spectral Sweep",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase.",
+            "target": "One Leagues of Votann unit from your army that has not been selected to shoot this phase.",
+            "effect": "Until the end of the phase, ranged weapons equipped by models in your unit have the [LETHAL HITS] ability.",
+            "restrictions": "",
+            "group": "LEAGUES OF VOTANN – Warspeke’s Prospect"
+          },
+          {
+            "name": "Skeinwrought Physiology",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your opponent’s Shooting phase, just after an enemy unit has selected its targets.",
+            "target": "One Leagues of Votann unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+            "effect": "Until the end of the phase, improve the Save characteristic of models in your unit by 1.",
+            "restrictions": "",
+            "group": "LEAGUES OF VOTANN – Warspeke’s Prospect"
+          }
+        ]
+      },
       "detachments": {
         "Hearthband": [
           {
@@ -10988,7 +11218,52 @@
     },
     "Orks": {
       "name": "Orks",
-      "combatPatrols": {},
+      "combatPatrols": {
+        "Gordrang’s Gitstompas": [
+          {
+            "name": "Get Stuck In",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "timing": "everyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Fight phase.",
+            "target": "One Orks unit from your army that has not been selected to fight this phase.",
+            "effect": "Until the end of the phase, each time a model in your unit makes a Pile-in or Consolidation move, it can move up to 6\" instead of up to 3\".",
+            "restrictions": "",
+            "group": "ORKS – Gordrang’s Gitstompas"
+          },
+          {
+            "name": "Brutal But Kunnin’",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "timing": "yourTurn",
+            "phases": [
+              "charge"
+            ],
+            "when": "Your Charge phase.",
+            "target": "One Orks Infantry unit from your army.",
+            "effect": "Until the end of the phase, your unit is eligible to declare a charge in a turn in which it Fell Back.",
+            "restrictions": "",
+            "group": "ORKS – Gordrang’s Gitstompas"
+          },
+          {
+            "name": "Krump da Gitz!",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your opponent’s Shooting phase, just after an enemy unit has finished making its attacks.",
+            "target": "One Orks unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+            "effect": "Your unit can make a Normal move of up to D6\", but must end that move as close as possible to that enemy unit.",
+            "restrictions": "",
+            "group": "ORKS – Gordrang’s Gitstompas"
+          }
+        ]
+      },
       "detachments": {
         "Bully Boyz": [
           {
@@ -15072,7 +15347,52 @@
     },
     "T’au Empire": {
       "name": "T’au Empire",
-      "combatPatrols": {},
+      "combatPatrols": {
+        "Sudden Dawn Cadre": [
+          {
+            "name": "Fight by the Code",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase.",
+            "target": "One T’au Empire unit from your army.",
+            "effect": "Until the end of the phase, your unit is eligible to shoot in a turn in which it Fell Back.",
+            "restrictions": "",
+            "group": "T’AU EMPIRE – Sudden Dawn Cadre"
+          },
+          {
+            "name": "Rampart of Fire",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase.",
+            "target": "One T’au Empire unit from your army that has not been selected to shoot this phase.",
+            "effect": "Until the end of the phase, each time a model in your unit makes an attack that targets an enemy unit within 10\", improve the Armour Penetration characteristic of that attack by 1.",
+            "restrictions": "",
+            "group": "T’AU EMPIRE – Sudden Dawn Cadre"
+          },
+          {
+            "name": "Lives Before Territory",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your opponent’s Shooting phase, just after an enemy unit has selected its targets.",
+            "target": "One T’au Empire Infantry or T’au Empire Battlesuit unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+            "effect": "Your unit can make a Normal move of up to D6\" and, until the end of the phase, each time an attack targets your unit, it has the Benefit of Cover against that attack.",
+            "restrictions": "",
+            "group": "T’AU EMPIRE – Sudden Dawn Cadre"
+          }
+        ]
+      },
       "detachments": {
         "Auxiliary Cadre": [
           {
@@ -15729,7 +16049,52 @@
     },
     "Thousand Sons": {
       "name": "Thousand Sons",
-      "combatPatrols": {},
+      "combatPatrols": {
+        "The Coven Temporus": [
+          {
+            "name": "Wreathed in Warpflame",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "timing": "everyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Fight phase.",
+            "target": "One Thousand Sons unit from your army (excluding Tzaangors units) that has not been selected to fight this phase.",
+            "effect": "Until the end of the phase, melee weapons equipped by models in your unit have the [LETHAL HITS] ability and each time a model in your unit makes an attack that targets a Monster or Vehicle unit, an unmodified Hit roll of 5+ scores a Critical Hit.",
+            "restrictions": "",
+            "group": "THOUSAND SONS – The Coven Temporus"
+          },
+          {
+            "name": "Mutant Cunning",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your opponent’s Shooting phase, just after an enemy unit has selected its targets.",
+            "target": "One Tzaangors unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+            "effect": "Your unit can make a Normal move of up to D6\" and, until the end of the phase, each time a ranged attack targets your unit, models in your unit have the Benefit of Cover against that attack.",
+            "restrictions": "",
+            "group": "THOUSAND SONS – The Coven Temporus"
+          },
+          {
+            "name": "Malign Entanglement",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "timing": "oppTurn",
+            "phases": [
+              "charge"
+            ],
+            "when": "Your opponent’s Charge phase, just after an enemy unit has declared a charge.",
+            "target": "One Thousand Sons unit from your army that was selected as a target of that charge.",
+            "effect": "Until the end of the phase, subtract 2 from Charge rolls made for that enemy unit.",
+            "restrictions": "",
+            "group": "THOUSAND SONS – The Coven Temporus"
+          }
+        ]
+      },
       "detachments": {
         "Changehost of Deceit": [
           {
@@ -16445,7 +16810,54 @@
     },
     "Tyranids": {
       "name": "Tyranids",
-      "combatPatrols": {},
+      "combatPatrols": {
+        "The Vardenghast Swarm": [
+          {
+            "name": "Hyper‑Reactive",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets.",
+            "target": "One Tyranids Infantry unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+            "effect": "Until the end of the phase, each time an attack targets your unit, subtract 1 from the Hit roll.",
+            "restrictions": "",
+            "group": "TYRANIDS – The Vardenghast Swarm"
+          },
+          {
+            "name": "Voracious Assault",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your Shooting phase or the Fight phase.",
+            "target": "One Tyranids unit from your army that has not been selected to shoot or fight this phase.",
+            "effect": "Until the end of the phase, each time a model in your unit makes an attack that targets the closest eligible target, you can re-roll the Hit roll.",
+            "restrictions": "",
+            "group": "TYRANIDS – The Vardenghast Swarm"
+          },
+          {
+            "name": "Teeming Broods",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "timing": "yourTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "The Reinforcements step of your Movement phase.",
+            "target": "One Termagants unit from your army. You can use this Stratagem on that unit even if it is destroyed.",
+            "effect": "If your unit is not destroyed, return up to D6 destroyed models to it. Otherwise, add a new unit to your army identical to your destroyed unit, in Strategic Reserves, containing 2D6 models.",
+            "restrictions": "",
+            "group": "TYRANIDS – The Vardenghast Swarm"
+          }
+        ]
+      },
       "detachments": {
         "Assimilation Swarm": [
           {
@@ -17402,7 +17814,53 @@
     },
     "World Eaters": {
       "name": "World Eaters",
-      "combatPatrols": {},
+      "combatPatrols": {
+        "Karagar’s Rampagers": [
+          {
+            "name": "Rage Unchecked",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your Shooting phase or the Fight phase.",
+            "target": "One Berzerkers unit from your army that is Below Half-strength and has not been selected to shoot or fight this phase.",
+            "effect": "Until the end of the phase, weapons equipped by models in your unit have the [SUSTAINED HITS 1] ability.",
+            "restrictions": "",
+            "group": "WORLD EATERS – Karagar’s Rampagers"
+          },
+          {
+            "name": "Unstoppable Fury",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "timing": "everyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Fight phase, just before a World Eaters unit from your army Consolidates.",
+            "target": "That World Eaters unit.",
+            "effect": "Until the end of the phase, each time a model in your unit makes a Consolidation move, it can move up to 6\" instead of up to 3\", provided your unit ends that Consolidation move within Engagement Range of one or more enemy units.",
+            "restrictions": "",
+            "group": "WORLD EATERS – Karagar’s Rampagers"
+          },
+          {
+            "name": "Overwhelming Onslaught",
+            "cp": 1,
+            "type": "Epic Deed",
+            "timing": "yourTurn",
+            "phases": [
+              "charge"
+            ],
+            "when": "Your Charge phase, just after a World Eaters unit from your army ends a Charge move.",
+            "target": "That World Eaters unit.",
+            "effect": "Select one enemy unit within Engagement Range of your unit. That enemy unit must take a Battle-shock test and when doing so, subtract 1 from the result.",
+            "restrictions": "",
+            "group": "WORLD EATERS – Karagar’s Rampagers"
+          }
+        ]
+      },
       "detachments": {
         "Berzerker Warband": [
           {

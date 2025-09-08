@@ -4,8 +4,7 @@
       <header class="app-header">
         <div class="header-content">
           <h1 class="app-title">
-<!--            <img src="./assets/img/warhammer40logo.webp"/>-->
-            <span class="subtitle">WARHAMMER 40k STRATEGEM CARD PRINTER</span>
+            WARHAMMER 40k STRATEGEM CARD PRINTER
           </h1>
           <p class="app-description">
             Generate and print strategem cards for your Warhammer 40,000 battles.
@@ -14,7 +13,7 @@
             Suitable for 2.5"x 3.5" sleeves (like Magic: The Gathering)
           </p>
           <p class="app-description">
-            Based on the Stratagems available at <a href="https://wahapedia.ru/wh40k10ed">Wahapedia</a>.
+            Based on the Stratagems available at <a href="https://wahapedia.ru/wh40k10ed">Wahapedia</a>  and from the official Combat Patrol PDFs.
           </p>
         </div>
       </header>
@@ -291,7 +290,7 @@ function printCards() {
   font-size: 2.5rem;
   font-weight: 900;
   color: var(--w40k-gold);
-  margin: 0 0 16px 0;
+  margin: 40px 20px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   display: flex;
@@ -318,8 +317,8 @@ function printCards() {
 .app-description {
   font-size: 1rem;
   color: var(--w40k-text-muted);
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 800px;
+  margin: 10px auto;
   line-height: 1.6;
 }
 
