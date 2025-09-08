@@ -305,15 +305,6 @@ function printCards() {
   filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
 }
 
-.subtitle {
-  display: block;
-  font-size: 1.7rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-top: 8px;
-}
-
 .app-description {
   font-size: 1rem;
   color: var(--w40k-text-muted);

@@ -29,7 +29,7 @@
           <div class="page-number">Page {{ pageIndex + 1 }} of {{ printPages.length }}</div>
 
           <div class="grid-crop-marks">
-            <div class="crop-line vertical" style="left: calc((210mm - 191mm) / 2 + 0 * 63.5mm)"></div>
+            <div class="crop-line vertical" style="left: calc((210mm - 190.7mm) / 2 + 0 * 63.5mm)"></div>
             <div class="crop-line vertical" style="left: calc((210mm - 190.7mm) / 2 + 1 * 63.5mm)"></div>
             <div class="crop-line vertical" style="left: calc((210mm - 190.7mm) / 2 + 2 * 63.5mm)"></div>
             <div class="crop-line vertical" style="left: calc((210mm - 190.7mm) / 2 + 3 * 63.5mm)"></div>
@@ -327,8 +327,8 @@ const printPages = computed(() => {
       to bottom,
       transparent 0px,
       transparent 3px,
-      #666 3px,
-      #666 5px
+      var(--border) 3px,
+      var(--border) 5px
   );
 }
 
@@ -340,8 +340,8 @@ const printPages = computed(() => {
       to right,
       transparent 0px,
       transparent 3px,
-      #666 3px,
-      #666 5px
+      var(--border) 3px,
+      var(--border) 5px
   );
 }
 
@@ -420,13 +420,6 @@ const printPages = computed(() => {
     height: 297mm !important;
     top: 0 !important;
     overflow: hidden !important;
-    background: repeating-linear-gradient(
-        to bottom,
-        transparent 0px,
-        transparent 3px,
-        #000 3px,
-        #000 5px
-    ) !important;
   }
 
   .crop-line.horizontal {
@@ -434,13 +427,6 @@ const printPages = computed(() => {
     width: 210mm !important;
     left: 0 !important;
     overflow: hidden !important;
-    background: repeating-linear-gradient(
-        to right,
-        transparent 0px,
-        transparent 3px,
-        #000 3px,
-        #000 5px
-    ) !important;
   }
 
   @page {
