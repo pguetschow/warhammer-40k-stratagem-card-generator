@@ -23,7 +23,6 @@
       </div>
     </header>
 
-    <!-- Responsive wrapper that handles scaling -->
     <div class="print-pages-wrapper">
       <div class="print-pages">
         <div v-for="(printPage, pageIndex) in printPages" :key="pageIndex" class="print-page">

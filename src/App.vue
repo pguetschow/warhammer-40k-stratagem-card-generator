@@ -51,7 +51,11 @@
       </section>
 
       <section v-if="!showPrintPreview" class="cards-section">
-        <Page v-for="(page, i) in pages" :key="i" :cards="page" :index="i" @remove-card="removeCard"/>
+        <div v-if="visibleCards.length === 0" class="no-cards-message">
+          <h3>No cards available</h3>
+          <p>Select a faction and detachment to view available strategem cards.</p>
+        </div>
+        <Page v-else :cards="visibleCards" :index="0" @remove-card="removeCard"/>
       </section>
 
       <PrintPreview
@@ -113,15 +117,6 @@ const allCards = computed(() => {
 
 const visibleCards = computed(() => {
   return allCards.value.filter(card => !removedCardIds.value.has(getCardId(card)))
-})
-
-const cards = computed(() => visibleCards.value)
-
-const pages = computed(() => {
-  const out: CardData[][] = []
-  for (let i = 0; i < cards.value.length; i += 9) out.push(cards.value.slice(i, i + 9))
-  if (out.length === 0) out.push([])
-  return out
 })
 
 const detachmentOptions = computed(() => Object.keys(dataByFaction.value[faction.value]?.detachments || {'(none)': Core.value}))
@@ -331,6 +326,29 @@ function printCards() {
 
 .cards-section {
   margin-top: 32px;
+}
+
+.no-cards-message {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--w40k-text-muted);
+  background: var(--w40k-surface);
+  border: 1px solid var(--w40k-border);
+  margin: 20px 0;
+}
+
+.no-cards-message h3 {
+  color: var(--w40k-gold);
+  margin: 0 0 16px 0;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.no-cards-message p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 @media (max-width: 768px) {
