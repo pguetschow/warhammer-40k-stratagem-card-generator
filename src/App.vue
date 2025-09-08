@@ -26,13 +26,13 @@
           </div>
           <div class="control-group">
             <label class="control-label">Detachment</label>
-            <select v-model="detachment" @change="onDetachmentChange" class="control-select">
+            <select v-model="detachment" @change="onDetachmentChange" :disabled=isCore class="control-select">
               <option v-for="d in detachmentOptions" :key="d" :value="d">{{ d }}</option>
             </select>
           </div>
           <div class="control-group checkbox-group">
             <label class="checkbox-label">
-              <input v-model="includeCore" type="checkbox" class="control-checkbox"/>
+              <input v-model="includeCore" :disabled=isCore type="checkbox" class="control-checkbox"/>
               <span class="checkbox-text">Include Core Stratagems</span>
             </label>
           </div>
@@ -102,6 +102,8 @@ loadData()
 const faction = ref('Core')
 const detachment = ref('(none)')
 const includeCore = ref(true)
+
+const isCore = computed(() => faction.value === 'Core')
 
 const allCards = computed(() => {
   const all: CardData[] = []
@@ -212,6 +214,14 @@ function printCards() {
   margin-bottom: 32px;
 }
 
+@media(min-width: 1024px) {
+  .controls-section {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  }
+}
+
 .controls-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -227,7 +237,7 @@ function printCards() {
 
 .checkbox-group {
   justify-content: center;
-  align-items: center;
+  margin-top: 20px;
 }
 
 .control-label {

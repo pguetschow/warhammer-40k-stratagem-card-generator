@@ -32,7 +32,7 @@ defineEmits<{ (e: 'remove-card', card: CardData): void }>()
 /* Large screens: up to 5 cards per row */
 @media (min-width: 1400px) {
   .cards-grid {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(2.6in, 1fr));
     max-width: 1400px;
   }
 }
@@ -40,8 +40,8 @@ defineEmits<{ (e: 'remove-card', card: CardData): void }>()
 /* Medium screens: 3 cards per row */
 @media (max-width: 1024px) {
   .cards-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    max-width: 900px;
+    grid-template-columns: repeat(auto-fit, minmax(2.6in, 1fr));
+    max-width: 90vb;
     gap: 16px;
   }
 }
@@ -49,18 +49,18 @@ defineEmits<{ (e: 'remove-card', card: CardData): void }>()
 /* Tablets: 2 cards per row */
 @media (max-width: 768px) {
   .cards-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    max-width: 640px;
+    grid-template-columns: repeat(auto-fit, minmax(2.6in, 1fr));
+    max-width: 90vb;
     gap: 16px;
     padding: 0 16px;
   }
 }
 
 /* Mobile: 1 card per row */
-@media (max-width: 640px) {
+@media (max-width: 425px) {
   .cards-grid {
-    grid-template-columns: 1fr;
-    max-width: 400px;
+    grid-template-columns: repeat(auto-fit, minmax(2.6in, 1fr));
+    max-width: 90vb;
     gap: 12px;
     padding: 0 12px;
   }
@@ -68,15 +68,14 @@ defineEmits<{ (e: 'remove-card', card: CardData): void }>()
 
 .card-container {
   position: relative;
+  max-width: 2.5in;
   justify-self: center;
-  max-width: 350px;
-  width: 100%;
 }
 
 .remove-btn {
   position: absolute;
   top: -5px;
-  right: 12px;
+  right: -7px;
   width: 25px;
   height: 25px;
   border-radius: 50%;
