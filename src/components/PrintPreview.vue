@@ -170,7 +170,6 @@ const printPages = computed(() => {
   font-size: 1.1rem;
 }
 
-/* Responsive wrapper that handles scaling */
 .print-pages-wrapper {
   width: 100%;
   overflow-x: auto;
@@ -186,7 +185,6 @@ const printPages = computed(() => {
   transition: transform 0.2s ease;
 }
 
-/* Scale down for tablet and mobile devices */
 @media (max-width: 1200px) {
   .print-pages {
     transform: scale(0.9);
@@ -248,7 +246,6 @@ const printPages = computed(() => {
   }
 }
 
-/* Original print page styling - UNCHANGED */
 .print-page {
   page-break-after: always;
   width: 210mm;
