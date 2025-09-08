@@ -69,7 +69,9 @@
                 :disabled="isCore"
                 class="control-select"
             >
-              <option v-for="d in detachmentOptions" :key="d" :value="d">{{ d }}</option>
+              <optgroup v-for="group in detachmentGroups" :key="group.label" :label="group.label">
+                <option v-for="d in group.options" :key="d" :value="d">{{ d }}</option>
+              </optgroup>
             </select>
           </div>
 
@@ -149,7 +151,7 @@ async function loadData() {
         const keys = Object.keys(dataByFaction.value)
         if (keys.length) faction.value = keys[0]
       }
-      detachment.value = detachmentOptions.value[0] || '(none)'
+      detachment.value = firstDetachmentOption.value || '(none)'
     }
   } catch (e) {
     console.warn('Fetch failed, maybe CORS. Use a local server.', e)
@@ -168,8 +170,14 @@ const isCore = computed(() => faction.value === 'Core')
 const allCards = computed(() => {
   const all: CardData[] = []
   if (faction.value !== 'Core') {
-    const detMap = dataByFaction.value[faction.value]?.detachments || {}
-    const d = detMap[detachment.value]
+    const f = dataByFaction.value[faction.value] || {}
+    const detMap = (f as any).detachments || {}
+    let d: CardData[] | undefined = detMap[detachment.value]
+    if (!d) {
+      const cpMap = (f as any).combatPatrols || {}
+      const cp = cpMap[detachment.value]
+      if (Array.isArray(cp)) d = cp as CardData[]
+    }
     if (d) all.push(...d)
   }
   if (includeCore.value) all.push(...Core.value)
@@ -181,13 +189,29 @@ const visibleCards = computed(() => {
   return allCards.value.filter(card => !removedCardIds.value.has(getCardId(card)))
 })
 
-const detachmentOptions = computed(() => {
-  const dets = dataByFaction.value[faction.value]?.detachments
-  if (dets && typeof dets === 'object') {
-    return Object.keys(dets)
+
+const detachmentGroups = computed(() => {
+  const f = dataByFaction.value[faction.value] || {}
+  const army = Object.keys(f?.detachments || {})
+  const patrols = Object.keys((f as any)?.combatPatrols || {})
+  const groups: Array<{ label: string; options: string[] }> = []
+  if (army.length) groups.push({ label: 'Army', options: army })
+  if (patrols.length) groups.push({ label: 'Combat Patrol', options: patrols })
+  if (!groups.length) {
+    // Fallback for Core or empty: keep a placeholder '(none)' mapped to Core
+    groups.push({ label: 'Army', options: Object.keys({'(none)': Core.value}) })
   }
-  return Object.keys({'(none)': Core.value})
+  return groups
 })
+
+const firstDetachmentOption = computed(() => {
+  const groups = detachmentGroups.value
+  for (const g of groups) {
+    if (g.options.length) return g.options[0]
+  }
+  return '(none)'
+})
+
 
 const groupedDropdown = computed(() => {
   const groups = factionGroups.value || {}
@@ -229,7 +253,7 @@ function resetRemovedCards() {
 }
 
 function onFactionChange() {
-  detachment.value = detachmentOptions.value[0] || '(none)'
+  detachment.value = firstDetachmentOption.value || '(none)'
   resetRemovedCards()
 }
 
@@ -307,10 +331,10 @@ function printCards() {
 
 @media(min-width: 1024px) {
   .controls-section {
-      position: sticky;
-      top: 0;
-      z-index: 9999;
-    }
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+  }
   .print-preview-active .controls-section {
     position: static !important;
     top: auto !important;

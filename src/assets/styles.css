@@ -10,7 +10,7 @@
     --meta-fg: #202020;
     --fg: #111111;
 
-    --w40k-bg: #434343;
+    --w40k-bg: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
     --w40k-surface: #1a1a1a;
     --w40k-dropdown: #0a0a0a;
     --w40k-surface-light: #2a2a2a;
@@ -105,7 +105,7 @@ a {
     color: var(--strip-color);
     font-weight: 800;
     line-height: 1.05;
-    font-size: 15px;
+    font-size: 13px;
     text-transform: uppercase;
     height: 40px;
     display: flex;

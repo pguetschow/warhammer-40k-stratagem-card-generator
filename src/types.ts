@@ -16,4 +16,5 @@ export interface CardData {
 export interface FactionData {
     name: string;
     detachments: Record<string, CardData[]>
+    combatPatrols: Record<string, CardData[]>
 }

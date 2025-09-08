@@ -1,21 +1,43 @@
 {
   "factionGroups": {
     "Forces of the Imperium": [
-      "Adepta Sororitas", "Adeptus Custodes", "Adeptus Mechanicus", "Astra Militarum",
-      "Grey Knights", "Imperial Knights", "Space Marines", "Imperial Agents",
-      "Imperial Navy", "Adeptus Arbites", "The Inquisition"
+      "Adepta Sororitas",
+      "Adeptus Custodes",
+      "Adeptus Mechanicus",
+      "Astra Militarum",
+      "Grey Knights",
+      "Imperial Knights",
+      "Space Marines",
+      "Imperial Agents",
+      "Imperial Navy",
+      "Adeptus Arbites",
+      "The Inquisition"
     ],
     "Forces of Chaos": [
-      "Chaos Space Marines", "Chaos Daemons", "Chaos Knights",
-      "Death Guard", "Thousand Sons", "World Eaters", "Emperor’s Children"
+      "Chaos Space Marines",
+      "Chaos Daemons",
+      "Chaos Knights",
+      "Death Guard",
+      "Thousand Sons",
+      "World Eaters",
+      "Emperor’s Children"
     ],
     "Xenos": [
-      "Aeldari", "Drukhari", "Harlequins", "Ynnari",
-      "Necrons", "T’au Empire", "Genestealer Cults", "Orks",
-      "Leagues of Votann", "Tyranids"
+      "Aeldari",
+      "Drukhari",
+      "Harlequins",
+      "Ynnari",
+      "Necrons",
+      "T’au Empire",
+      "Genestealer Cults",
+      "Orks",
+      "Leagues of Votann",
+      "Tyranids"
     ],
     "Other": [
-      "Adeptus Titanicus", "Unaligned Forces", "Core"
+      "Adeptus Titanicus",
+      "Unaligned Forces",
+      "Core"
     ]
   },
   "factions": {
@@ -906,6 +928,96 @@
             "restrictions": ""
           }
         ]
+      },
+      "combatPatrols": {
+        "Tristraen’s Gilded Blades": [
+          {
+            "name": "The Gilded Spear",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Adeptus Custodes – Combat Patrol: Tristraen’s Gilded Blades",
+            "timing": "Activation",
+            "phases": [
+              "Fight phase"
+            ],
+            "when": "When you select a unit to fight.",
+            "target": "One ADEPTUS CUSTODES unit that has not been selected to fight this phase.",
+            "effect": "Longer pile‑ins; pile-in moves up to 6\" for decisive engagements.",
+            "restrictions": ""
+          },
+          {
+            "name": "Inescapable Vengeance",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "Adeptus Custodes – Combat Patrol: Tristraen’s Gilded Blades",
+            "timing": "Activation",
+            "phases": [
+              "Movement phase"
+            ],
+            "when": "When you select a unit to move.",
+            "target": "One ADEPTUS CUSTODES unit that has not been selected to move this phase.",
+            "effect": "Advance with purpose; add 2\" to Advance rolls.",
+            "restrictions": ""
+          },
+          {
+            "name": "Overawing Magnificence",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Adeptus Custodes – Combat Patrol: Tristraen’s Gilded Blades",
+            "timing": "Reaction",
+            "phases": [
+              "Charge phase"
+            ],
+            "when": "After an enemy declares a charge targeting your unit.",
+            "target": "One ADEPTUS CUSTODES unit that was selected as a target of that charge.",
+            "effect": "Force a Leadership test; on a fail, that enemy suffers -2 to Charge rolls.",
+            "restrictions": ""
+          }
+        ],
+        "Guardians of the Throne": [
+          {
+            "name": "The Gilded Spear",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Adeptus Custodes – Combat Patrol: Guardians of the Throne",
+            "timing": "Reaction",
+            "phases": [
+              "Any phase"
+            ],
+            "when": "After your SHIELD‑CAPTAIN is destroyed by an enemy attack.",
+            "target": "One SHIELD‑CAPTAIN model from your army that was just destroyed by an enemy model’s attack.",
+            "effect": "Until the end of the battle, ranged weapons equipped by ADEPTUS CUSTODES models from your army have the [SUSTAINED HITS 1] ability while targeting that enemy model’s unit.",
+            "restrictions": ""
+          },
+          {
+            "name": "Inescapable Vengeance",
+            "cp": 2,
+            "type": "Strategic Ploy",
+            "group": "Adeptus Custodes – Combat Patrol: Guardians of the Throne",
+            "timing": "Activation",
+            "phases": [
+              "Command phase"
+            ],
+            "when": "At the start of your Command phase.",
+            "target": "One ADEPTUS CUSTODES unit from your army.",
+            "effect": "Until the start of your next Command phase, add 1 to the Objective Control (OC) characteristic of models in your unit.",
+            "restrictions": ""
+          },
+          {
+            "name": "Overawing Magnificence",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "Adeptus Custodes – Combat Patrol: Guardians of the Throne",
+            "timing": "Reaction",
+            "phases": [
+              "Movement phase"
+            ],
+            "when": "Your opponent’s Movement phase, just after an enemy unit ends a Fall Back move.",
+            "target": "One ADEPTUS CUSTODES INFANTRY unit from your army that was within Engagement Range of that enemy unit at the start of the phase.",
+            "effect": "If your unit is not within Engagement Range of any enemy models, it can make a Normal move.",
+            "restrictions": ""
+          }
+        ]
       }
     },
     "Adeptus Mechanicus": {
@@ -1615,98 +1727,101 @@
             "restrictions": "Each unit targeted with this Stratagem must be more than 3\" away from all enemy units."
           }
         ]
+      },
+      "combatPatrols": {
+        "Purge Corps Deltic-9": [
+          {
+            "name": "Acceptable Risk Ratio",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "Adeptus Mechanicus – Combat Patrol: Purge Corps Deltic-9",
+            "timing": "Activation",
+            "phases": [
+              "Shooting phase"
+            ],
+            "when": "When you select a unit to shoot.",
+            "target": "One ADEPTUS MECHANICUS unit that has not been selected to shoot this phase.",
+            "effect": "Trade risk for output; re‑roll 1s to Hit or improve AP when you select a high-risk mode.",
+            "restrictions": ""
+          },
+          {
+            "name": "An Evaluation of Mettle",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "Adeptus Mechanicus – Combat Patrol: Purge Corps Deltic-9",
+            "timing": "Activation",
+            "phases": [
+              "Fight phase"
+            ],
+            "when": "When you select a unit to fight.",
+            "target": "One ADEPTUS MECHANICUS unit that has not been selected to fight this phase.",
+            "effect": "Test their metal; improve melee efficiency (e.g., +1 to Wound vs. tougher enemies) for the phase.",
+            "restrictions": ""
+          },
+          {
+            "name": "Optimised Efficiency",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Adeptus Mechanicus – Combat Patrol: Purge Corps Deltic-9",
+            "timing": "Activation",
+            "phases": [
+              "Shooting phase"
+            ],
+            "when": "When you select a unit to shoot.",
+            "target": "One ADEPTUS MECHANICUS unit that has not been selected to shoot this phase.",
+            "effect": "Well-oiled machine; improve accuracy or Sustained Hits to clear priority targets.",
+            "restrictions": ""
+          }
+        ],
+        "Maniple Verask-Alpha": [
+          {
+            "name": "Retribution Codes",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "Adeptus Mechanicus – Combat Patrol: Maniple Verask-Alpha",
+            "timing": "Reaction",
+            "phases": [
+              "Any"
+            ],
+            "when": "When a TECH-PRIEST model from your army is destroyed by an enemy unit.",
+            "target": "That enemy unit.",
+            "effect": "Until the end of the battle, each time an ADEPTUS MECHANICUS model in your army attacks that enemy unit, you can re‑roll a Hit roll of 1.",
+            "restrictions": ""
+          },
+          {
+            "name": "Reactive Field‑Shroud",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Adeptus Mechanicus – Combat Patrol: Maniple Verask-Alpha",
+            "timing": "Activation",
+            "phases": [
+              "Any"
+            ],
+            "when": "Just after an enemy unit targets one of your units for an attack.",
+            "target": "One ADEPTUS MECHANICUS unit from your army that was selected as the target.",
+            "effect": "Until the end of the phase, models in your unit have a 4+ invulnerable save.",
+            "restrictions": ""
+          },
+          {
+            "name": "Retrogradial Targeting",
+            "cp": 2,
+            "type": "Strategic Ploy",
+            "group": "Adeptus Mechanicus – Combat Patrol: Maniple Verask-Alpha",
+            "timing": "Activation",
+            "phases": [
+              "Movement"
+            ],
+            "when": "Just after a TECH‑PRIEST unit from your army ends a Fall Back move.",
+            "target": "That TECH‑PRIEST unit.",
+            "effect": "Until end of turn, that unit is eligible to shoot even though it Fell Back this turn.",
+            "restrictions": ""
+          }
+        ]
       }
     },
     "Aeldari": {
       "name": "Aeldari",
       "detachments": {
-        "Army Rules": [
-          {
-            "name": "SUDDEN STRIKE",
-            "cp": null,
-            "type": "",
-            "group": "AELDARI – Army Rules",
-            "timing": "anyTurn",
-            "phases": [
-              "chg"
-            ],
-            "when": "",
-            "target": "",
-            "effect": "",
-            "restrictions": ""
-          },
-          {
-            "name": "FLITTING SHADOWS",
-            "cp": null,
-            "type": "",
-            "group": "AELDARI – Army Rules",
-            "timing": "anyTurn",
-            "phases": [
-              "mov",
-              "chg"
-            ],
-            "when": "",
-            "target": "",
-            "effect": "",
-            "restrictions": ""
-          },
-          {
-            "name": "OPPORTUNITY SEIZED",
-            "cp": null,
-            "type": "",
-            "group": "AELDARI – Army Rules",
-            "timing": "anyTurn",
-            "phases": [
-              "mov"
-            ],
-            "when": "",
-            "target": "",
-            "effect": "",
-            "restrictions": ""
-          },
-          {
-            "name": "SWIFT AS THE WIND",
-            "cp": null,
-            "type": "",
-            "group": "AELDARI – Army Rules",
-            "timing": "anyTurn",
-            "phases": [
-              "mov"
-            ],
-            "when": "",
-            "target": "",
-            "effect": "",
-            "restrictions": ""
-          },
-          {
-            "name": "STAR ENGINES",
-            "cp": null,
-            "type": "",
-            "group": "AELDARI – Army Rules",
-            "timing": "anyTurn",
-            "phases": [
-              "mov"
-            ],
-            "when": "",
-            "target": "",
-            "effect": "",
-            "restrictions": ""
-          },
-          {
-            "name": "FADE BACK",
-            "cp": null,
-            "type": "",
-            "group": "AELDARI – Army Rules",
-            "timing": "anyTurn",
-            "phases": [
-              "shoo"
-            ],
-            "when": "",
-            "target": "",
-            "effect": "",
-            "restrictions": ""
-          }
-        ],
         "Armoured Warhost": [
           {
             "name": "CLOUDSTRIKE",
@@ -2740,6 +2855,54 @@
             "restrictions": "Until the end of the phase, your unit is not eligible to shoot."
           }
         ]
+      },
+      "combatPatrols": {
+        "The Fatebreakers": [
+          {
+            "name": "A Lucky Find",
+            "cp": 1,
+            "type": "Wargear",
+            "group": "Aeldari – Combat Patrol: The Fatebreakers",
+            "timing": "Reaction",
+            "phases": [
+              "Shooting phase",
+              "Fight phase"
+            ],
+            "when": "Your opponent selects targets.",
+            "target": "One AELDARI unit that was selected as a target.",
+            "effect": "Until end of phase, worsen the AP of attacks that target your unit by 1 (i.e., improve your saves).",
+            "restrictions": ""
+          },
+          {
+            "name": "Lithe Warriors",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "Aeldari – Combat Patrol: The Fatebreakers",
+            "timing": "Activation",
+            "phases": [
+              "Movement phase"
+            ],
+            "when": "When you select a unit to move.",
+            "target": "One AELDARI unit that has not been selected to move this phase.",
+            "effect": "Until end of phase, that unit can move more freely (add 2\" to Normal and Advance moves).",
+            "restrictions": ""
+          },
+          {
+            "name": "War Dancers",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Aeldari – Combat Patrol: The Fatebreakers",
+            "timing": "Activation",
+            "phases": [
+              "Fight phase"
+            ],
+            "when": "When you select a unit to fight.",
+            "target": "One AELDARI unit that has not been selected to fight this phase.",
+            "effect": "Until end of phase, that unit fights with heightened grace (improve melee output; e.g., extra accuracy/strikes).",
+            "restrictions": ""
+          }
+        ],
+        "Kygharil’s Protectors": []
       }
     },
     "Astra Militarum": {
@@ -3397,6 +3560,53 @@
             "restrictions": ""
           }
         ]
+      },
+      "combatPatrols": {
+        "Karsk’s Gunners": [
+          {
+            "name": "Send in the Next Wave",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "Astra Militarum – Combat Patrol: Karsk’s Gunners",
+            "timing": "Activation",
+            "phases": [
+              "Movement phase"
+            ],
+            "when": "Reinforcements step.",
+            "target": "One destroyed CADIAN SHOCK TROOPS unit from your army.",
+            "effect": "Return a destroyed unit at starting strength to your battlefield edge.",
+            "restrictions": ""
+          },
+          {
+            "name": "Bring It Down",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Astra Militarum – Combat Patrol: Karsk’s Gunners",
+            "timing": "Activation",
+            "phases": [
+              "Shooting phase"
+            ],
+            "when": "When you select units to shoot and a target enemy unit.",
+            "target": "Any number of ASTRA MILITARUM units; and one enemy unit.",
+            "effect": "Focus fire; those units re‑roll Hit rolls against the chosen enemy for the phase.",
+            "restrictions": ""
+          },
+          {
+            "name": "Artillery Strike",
+            "cp": 2,
+            "type": "Strategic Ploy",
+            "group": "Astra Militarum – Combat Patrol: Karsk’s Gunners",
+            "timing": "Reaction",
+            "phases": [
+              "Command phase"
+            ],
+            "when": "Start of your opponent’s Command phase.",
+            "target": "One OFFICER model from your army.",
+            "effect": "Call a disruption barrage: halve enemy Move and Advance, prevent charges, and -1 to Hit for ranged attacks this turn. Once per battle.",
+            "restrictions": ""
+          }
+        ],
+        "Drayden’s Lance": []
       }
     },
     "Imperial Agents": {
@@ -4542,6 +4752,100 @@
             "restrictions": ""
           }
         ]
+      },
+      "combatPatrols": {
+        "The Penitent Host": [
+          {
+            "name": "Ascetic Discipline",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "Adepta Sororitas – Combat Patrol: The Penitent Host",
+            "timing": "Reaction",
+            "phases": [
+              "Shooting phase",
+              "Fight phase"
+            ],
+            "when": "After an enemy selects targets.",
+            "target": "One ADEPTA SORORITAS unit that was selected as a target.",
+            "effect": "Models in your unit gain a 5+ invulnerable save (4+ for Battle Sisters or Seraphim) for the phase.",
+            "restrictions": ""
+          },
+          {
+            "name": "A Martyr’s Death",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Adepta Sororitas – Combat Patrol: The Penitent Host",
+            "timing": "Activation",
+            "phases": [
+              "Shooting phase",
+              "Fight phase"
+            ],
+            "when": "When you select a unit to act.",
+            "target": "One ADEPTA SORORITAS INFANTRY unit that has not been selected to shoot or fight this phase.",
+            "effect": "Weapons gain Lethal Hits for the phase.",
+            "restrictions": ""
+          },
+          {
+            "name": "Holy Radiance",
+            "cp": 2,
+            "type": "Battle Tactic",
+            "group": "Adepta Sororitas – Combat Patrol: The Penitent Host",
+            "timing": "Reaction",
+            "phases": [
+              "Fight phase"
+            ],
+            "when": "After an enemy selects targets.",
+            "target": "One ADEPTA SORORITAS unit that was selected as a target.",
+            "effect": "Each time a model is destroyed, it can fight on death before being removed.",
+            "restrictions": ""
+          }
+        ],
+        "Sanctuary Guardians": [
+          {
+            "name": "Ascetic Discipline",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Adepta Sororitas – Combat Patrol: Sanctuary Guardians",
+            "timing": "Activation",
+            "phases": [
+              "Shooting phase",
+              "Fight phase"
+            ],
+            "when": "When you select a unit to shoot or fight.",
+            "target": "One ADEPTA SORORITAS unit from your army that has not been selected to shoot or fight this phase.",
+            "effect": "Until the end of the phase, each time a model in your unit makes an attack, on a Critical Wound improve that attack’s AP by 2.",
+            "restrictions": ""
+          },
+          {
+            "name": "A Martyr’s Death",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Adepta Sororitas – Combat Patrol: Sanctuary Guardians",
+            "timing": "Reaction",
+            "phases": [
+              "Shooting phase",
+              "Fight phase"
+            ],
+            "when": "Your opponent’s Shooting or Fight phase, just after an enemy unit selects its targets.",
+            "target": "One ADEPTA SORORITAS unit from your army that was selected as a target; you can discard 1 Miracle dice when you use this Stratagem.",
+            "effect": "Until the end of the phase, each time a model in your unit is destroyed, if it has not shot or fought this phase, roll one D6 (add 1 if you discarded a Miracle dice): on a 4+, do not remove the model; it can shoot or fight after the attacking unit has finished making its attacks, then it is removed.",
+            "restrictions": ""
+          },
+          {
+            "name": "Holy Radiance",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "Adepta Sororitas – Combat Patrol: Sanctuary Guardians",
+            "timing": "Reaction",
+            "phases": [
+              "Shooting phase"
+            ],
+            "when": "Your opponent’s Shooting phase, just after an enemy unit selects its targets.",
+            "target": "One ADEPTA SORORITAS unit from your army that was selected as a target.",
+            "effect": "Until the end of the phase, each time an attack targets your unit, subtract 1 from the Hit roll and models in your unit have the Feel No Pain 5+ ability against that attack.",
+            "restrictions": ""
+          }
+        ]
       }
     },
     "Chaos Daemons": {
@@ -5376,6 +5680,52 @@
             "when": "Fight phase.",
             "target": "One SHADOW LEGION unit from your army that has not been selected to fight this phase.",
             "effect": "Until the end of the phase, melee weapons equipped by models in your unit have the [LANCE] ability. If your unit has the KHORNE keyword, until the end of the phase, improve the Armour Penetration characteristic of those weapons by 1 as well.",
+            "restrictions": ""
+          }
+        ]
+      },
+      "combatPatrols": {
+        "Butchers of Hyporia": [
+          {
+            "name": "Blood‑Maddened Banishment",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Chaos Daemons – Combat Patrol: Butchers of Hyporia",
+            "timing": "Reaction",
+            "phases": [
+              "Fight phase"
+            ],
+            "when": "After an enemy selects targets.",
+            "target": "One BLOODLETTERS unit that was selected as a target.",
+            "effect": "Each time a model is destroyed, on a 4+ it fights on death before being removed.",
+            "restrictions": ""
+          },
+          {
+            "name": "Empyric Predators",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "Chaos Daemons – Combat Patrol: Butchers of Hyporia",
+            "timing": "Reaction",
+            "phases": [
+              "Movement phase"
+            ],
+            "when": "After an enemy ends a Normal/Advance/Fall Back move near you.",
+            "target": "One FLESH HOUNDS unit within 6\" of that enemy unit.",
+            "effect": "Your unit makes a Normal move up to 6\"; it cannot be selected to Fire Overwatch this phase.",
+            "restrictions": ""
+          },
+          {
+            "name": "Manifest Hate",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Chaos Daemons – Combat Patrol: Butchers of Hyporia",
+            "timing": "Reaction",
+            "phases": [
+              "Shooting phase"
+            ],
+            "when": "After an enemy selects targets.",
+            "target": "One LEGIONES DAEMONICA unit that was selected as a target.",
+            "effect": "Models in your unit have a 4+ invulnerable save for the phase.",
             "restrictions": ""
           }
         ]
@@ -6447,6 +6797,70 @@
             "restrictions": ""
           }
         ]
+      },
+      "combatPatrols": {
+        "Dark Zealots": [
+          {
+            "name": "Empyric Rites",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Chaos Space Marines – Combat Patrol: Dark Zealots",
+            "timing": "Reaction",
+            "phases": [
+              "Shooting phase",
+              "Fight phase"
+            ],
+            "when": "After an enemy selects targets.",
+            "target": "One HERETIC ASTARTES INFANTRY unit that was selected as a target.",
+            "effect": "Models in your unit have a 4+ invulnerable save for the phase.",
+            "restrictions": ""
+          },
+          {
+            "name": "Bitter Blows",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Chaos Space Marines – Combat Patrol: Dark Zealots",
+            "timing": "Reaction",
+            "phases": [
+              "Fight phase"
+            ],
+            "when": "After an enemy selects targets.",
+            "target": "One HERETIC ASTARTES INFANTRY unit that was selected as a target.",
+            "effect": "Each time a model in your unit is destroyed, on a 4+ it fights on death before being removed.",
+            "restrictions": ""
+          },
+          {
+            "name": "Malicious Volleys",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Chaos Space Marines – Combat Patrol: Dark Zealots",
+            "timing": "Activation",
+            "phases": [
+              "Shooting phase"
+            ],
+            "when": "When you select a unit to shoot.",
+            "target": "One HERETIC ASTARTES INFANTRY unit that has not been selected to shoot this phase.",
+            "effect": "Re‑roll Hit rolls of 1 (or full re‑rolls against Below Half-strength targets) for that unit’s attacks this phase.",
+            "restrictions": ""
+          }
+        ],
+        "Zarkan’s Daemonkin": [
+          {
+            "name": "Vindictive Strategy",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Chaos Space Marines – Combat Patrol: Zarkan’s Daemonkin",
+            "timing": "Activation",
+            "phases": [
+              "Shooting phase",
+              "Fight phase"
+            ],
+            "when": "When you select a unit to shoot or fight.",
+            "target": "One CHAOS SPACE MARINES unit from your army.",
+            "effect": "Until end of phase, improve that unit’s output against a target unit that is Below Starting Strength; the bonus is stronger if the target is Below Half-strength.",
+            "restrictions": ""
+          }
+        ]
       }
     },
     "Death Guard": {
@@ -7252,6 +7666,53 @@
             "restrictions": ""
           }
         ]
+      },
+      "combatPatrols": {
+        "The Shambling Horde": [
+          {
+            "name": "Corrosive Effluents",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Death Guard – Combat Patrol: The Shambling Horde",
+            "timing": "Activation",
+            "phases": [
+              "Shooting phase",
+              "Fight phase"
+            ],
+            "when": "When you select a unit to shoot or fight.",
+            "target": "One DEATH GUARD unit that has not been selected to act this phase.",
+            "effect": "Improve AP by 1 for that unit’s attacks this phase.",
+            "restrictions": ""
+          },
+          {
+            "name": "Harbingers of Despair",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "Death Guard – Combat Patrol: The Shambling Horde",
+            "timing": "Activation",
+            "phases": [
+              "Fight phase"
+            ],
+            "when": "Start of the phase.",
+            "target": "One DEATH GUARD unit.",
+            "effect": "Each enemy unit within Engagement Range must take a Battle-shock test.",
+            "restrictions": ""
+          },
+          {
+            "name": "Disgustingly Resilient",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Death Guard – Combat Patrol: The Shambling Horde",
+            "timing": "Reaction",
+            "phases": [
+              "Shooting phase"
+            ],
+            "when": "After an enemy selects targets.",
+            "target": "One DEATH GUARD unit that was selected as a target.",
+            "effect": "Reduce incoming Damage by 1 against attacks targeting your unit this phase.",
+            "restrictions": ""
+          }
+        ]
       }
     },
     "Drukhari": {
@@ -7758,6 +8219,52 @@
             "when": "Your Shooting phase, just after a KABALITE WARRIORS unit from your army has shot.",
             "target": "That KABALITE WARRIORS unit.",
             "effect": "Your unit can make a Normal move of up to 3\".",
+            "restrictions": ""
+          }
+        ]
+      },
+      "combatPatrols": {
+        "The Blades of Torment": [
+          {
+            "name": "Caged Savagery",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Drukhari – Combat Patrol: The Blades of Torment",
+            "timing": "Activation",
+            "phases": [
+              "Fight phase"
+            ],
+            "when": "When you select a unit to fight.",
+            "target": "One DRUKHARI unit that has not been selected to fight this phase.",
+            "effect": "Unleash brutality; improve melee lethality for the unit this phase.",
+            "restrictions": ""
+          },
+          {
+            "name": "Shadowed Skies",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "Drukhari – Combat Patrol: The Blades of Torment",
+            "timing": "Reaction",
+            "phases": [
+              "Movement phase"
+            ],
+            "when": "After an enemy unit ends a move near you.",
+            "target": "One DRUKHARI unit within 6\" of that enemy unit.",
+            "effect": "Skulk and redeploy; make a Normal move to reposition.",
+            "restrictions": ""
+          },
+          {
+            "name": "Send More Prisoners",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "Drukhari – Combat Patrol: The Blades of Torment",
+            "timing": "Activation",
+            "phases": [
+              "Movement phase"
+            ],
+            "when": "Reinforcements step.",
+            "target": "One destroyed WYCH CULT unit from your army.",
+            "effect": "Return a destroyed unit at starting strength to the battlefield near your edge.",
             "restrictions": ""
           }
         ]
@@ -9663,6 +10170,53 @@
             "restrictions": ""
           }
         ]
+      },
+      "combatPatrols": {
+        "Aurellios’ Banishers": [
+          {
+            "name": "Vindictive Strategy",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Grey Knights – Combat Patrol: Aurellios’ Banishers",
+            "timing": "Reaction",
+            "phases": [
+              "Shooting phase",
+              "Fight phase"
+            ],
+            "when": "After an enemy selects targets.",
+            "target": "One GREY KNIGHTS INFANTRY unit that was selected as a target.",
+            "effect": "If the attack’s Strength is greater than your Toughness, subtract 1 from the Wound roll against your unit this phase.",
+            "restrictions": ""
+          },
+          {
+            "name": "Violent Unbinding",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Grey Knights – Combat Patrol: Aurellios’ Banishers",
+            "timing": "Reaction",
+            "phases": [
+              "Fight phase"
+            ],
+            "when": "After an enemy selects targets.",
+            "target": "One GREY KNIGHTS INFANTRY unit that was selected as a target.",
+            "effect": "Each time a model in your unit is destroyed, on a 4+ it fights on death before being removed.",
+            "restrictions": ""
+          },
+          {
+            "name": "Daemonic Fervour",
+            "cp": 2,
+            "type": "Strategic Ploy",
+            "group": "Grey Knights – Combat Patrol: Aurellios’ Banishers",
+            "timing": "Reaction",
+            "phases": [
+              "Fight phase"
+            ],
+            "when": "While within Engagement Range in your opponent’s Fight phase.",
+            "target": "One GREY KNIGHTS INFANTRY unit within Engagement Range.",
+            "effect": "Your unit becomes eligible to be removed and redeployed next turn via Teleport Assault (even while within Engagement Range).",
+            "restrictions": ""
+          }
+        ]
       }
     },
     "Leagues of Votann": {
@@ -9959,6 +10513,52 @@
             "target": "One LEAGUES OF VOTANN unit from your army.",
             "effect": "Select one closed Hatchway on the battlefield and open it.",
             "restrictions": "You can only use this Stratagem once."
+          }
+        ]
+      },
+      "combatPatrols": {
+        "Warspeke’s Prospect": [
+          {
+            "name": "Payment in Kind",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "Leagues of Votann – Combat Patrol: Warspeke’s Prospect",
+            "timing": "Reaction",
+            "phases": [
+              "Any"
+            ],
+            "when": "When a LEAGUES OF VOTANN unit from your army is destroyed by an enemy unit.",
+            "target": "That enemy unit.",
+            "effect": "Until the end of the battle, each time a LEAGUES OF VOTANN model in your army attacks that enemy unit, you can re‑roll a Hit roll of 1.",
+            "restrictions": ""
+          },
+          {
+            "name": "Pan‑Spectral Sweep",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Leagues of Votann – Combat Patrol: Warspeke’s Prospect",
+            "timing": "Activation",
+            "phases": [
+              "Shooting phase"
+            ],
+            "when": "When you select a unit to shoot.",
+            "target": "One LEAGUES OF VOTANN unit from your army that has not been selected to shoot this phase.",
+            "effect": "Until the end of the phase, ranged weapons equipped by models in your unit have the [LETHAL HITS] ability.",
+            "restrictions": ""
+          },
+          {
+            "name": "Skeinwrought Physiology",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Leagues of Votann – Combat Patrol: Warspeke’s Prospect",
+            "timing": "Reaction",
+            "phases": [
+              "Any"
+            ],
+            "when": "When a LEAGUES OF VOTANN unit from your army is selected as the target of one or more attacks.",
+            "target": "That unit.",
+            "effect": "Until the end of the phase, improve the Save characteristic of models in your unit by 1.",
+            "restrictions": ""
           }
         ]
       }
@@ -10677,6 +11277,53 @@
             "restrictions": ""
           }
         ]
+      },
+      "combatPatrols": {
+        "Amonhotekh’s Guard": [
+          {
+            "name": "Protocol of Phalanx Engagement",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Necrons – Combat Patrol: Amonhotekh’s Guard",
+            "timing": "Activation",
+            "phases": [
+              "Shooting phase"
+            ],
+            "when": "When you select a unit to shoot.",
+            "target": "One NECRONS unit that has not been selected to shoot this phase.",
+            "effect": "Tight firing discipline; improve hit reliability against designated targets.",
+            "restrictions": ""
+          },
+          {
+            "name": "Protocol of Temporal Rupture",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "Necrons – Combat Patrol: Amonhotekh’s Guard",
+            "timing": "Reaction",
+            "phases": [
+              "Movement phase"
+            ],
+            "when": "After an enemy unit ends a move near you.",
+            "target": "One NECRONS unit within 6\" of that enemy unit.",
+            "effect": "Slip time and step aside; make a Normal move.",
+            "restrictions": ""
+          },
+          {
+            "name": "Protocol of Enhanced Reanimation",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "Necrons – Combat Patrol: Amonhotekh’s Guard",
+            "timing": "Activation",
+            "phases": [
+              "Any"
+            ],
+            "when": "When you make Reanimation Protocols for a unit.",
+            "target": "One NECRONS unit that is making Reanimation Protocols.",
+            "effect": "Bolster reanimation to return more models than usual.",
+            "restrictions": ""
+          }
+        ],
+        "Mindflenser’s Murder Court": []
       }
     },
     "Orks": {
@@ -11494,6 +12141,9 @@
             "restrictions": ""
           }
         ]
+      },
+      "combatPatrols": {
+        "Gordrang’s Gitstompas": []
       }
     },
     "Imperial Knights": {
@@ -14712,6 +15362,53 @@
             "restrictions": ""
           }
         ]
+      },
+      "combatPatrols": {
+        "Strike Force Octavius": [
+          {
+            "name": "Hold Fast",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "Space Marines – Combat Patrol: Strike Force Octavius",
+            "timing": "Activation",
+            "phases": [
+              "Fight phase"
+            ],
+            "when": "Start of the phase, while holding an objective.",
+            "target": "One ADEPTUS ASTARTES unit within range of an objective marker.",
+            "effect": "Dig in on the point; gain a defensive boost while contesting an objective.",
+            "restrictions": ""
+          },
+          {
+            "name": "Steady Advance",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "Space Marines – Combat Patrol: Strike Force Octavius",
+            "timing": "Activation",
+            "phases": [
+              "Movement phase"
+            ],
+            "when": "When you select a unit to move.",
+            "target": "One ADEPTUS ASTARTES unit that has not been selected to move this phase.",
+            "effect": "Advance with discipline; improve advance/aiming such that shooting remains accurate after moving.",
+            "restrictions": ""
+          },
+          {
+            "name": "Ultramar",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Space Marines – Combat Patrol: Strike Force Octavius",
+            "timing": "Activation",
+            "phases": [
+              "Shooting phase"
+            ],
+            "when": "When you select a unit to shoot.",
+            "target": "One ADEPTUS ASTARTES unit that has not been selected to shoot this phase.",
+            "effect": "Well-drilled fire; improve hit consistency (e.g., re-roll 1s to Hit) for that unit this phase.",
+            "restrictions": ""
+          }
+        ],
+        "Strike Team Solarien": []
       }
     },
     "T’au Empire": {
@@ -15368,6 +16065,53 @@
             "restrictions": ""
           }
         ]
+      },
+      "combatPatrols": {
+        "Protectors of Aun’shar": [
+          {
+            "name": "Coordinated Suppression",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "T’au Empire – Combat Patrol: Protectors of Aun’shar",
+            "timing": "Activation",
+            "phases": [
+              "Shooting phase"
+            ],
+            "when": "When you select a unit to shoot.",
+            "target": "One T’AU EMPIRE unit that has not been selected to shoot this phase.",
+            "effect": "Gunline synergy; improve Hit consistency against a chosen enemy unit this phase.",
+            "restrictions": ""
+          },
+          {
+            "name": "Mont’ka",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "T’au Empire – Combat Patrol: Protectors of Aun’shar",
+            "timing": "Activation",
+            "phases": [
+              "Movement phase"
+            ],
+            "when": "When you select a unit to move.",
+            "target": "One T’AU EMPIRE unit that has not been selected to move this phase.",
+            "effect": "Aggressive doctrine; push forward and count as Remained Stationary for shooting or similar benefit.",
+            "restrictions": ""
+          },
+          {
+            "name": "Kauyon",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "T’au Empire – Combat Patrol: Protectors of Aun’shar",
+            "timing": "Activation",
+            "phases": [
+              "Shooting phase"
+            ],
+            "when": "When you select a unit to shoot.",
+            "target": "One T’AU EMPIRE unit that has not been selected to shoot this phase.",
+            "effect": "Patient doctrine; re‑roll some Hit or Wound rolls against a target already wounded this round.",
+            "restrictions": ""
+          }
+        ],
+        "Sudden Dawn Cadre": []
       }
     },
     "Thousand Sons": {
@@ -16080,6 +16824,52 @@
             "when": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets.",
             "target": "One TZAANGORS unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
             "effect": "Until the end of the phase, models in your unit have a 4+ invulnerable save.",
+            "restrictions": ""
+          }
+        ]
+      },
+      "combatPatrols": {
+        "The Coven Temporus": [
+          {
+            "name": "Wreathed in Warpflame",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Thousand Sons – Combat Patrol: The Coven Temporus",
+            "timing": "Activation",
+            "phases": [
+              "Fight phase"
+            ],
+            "when": "When you select a unit to fight.",
+            "target": "One THOUSAND SONS unit (excluding TZAANGORS) that has not been selected to fight this phase.",
+            "effect": "Melee weapons gain Lethal Hits; vs MONSTER/VEHICLE, Critical Hits on 5+.",
+            "restrictions": ""
+          },
+          {
+            "name": "Mutant Cunning",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "Thousand Sons – Combat Patrol: The Coven Temporus",
+            "timing": "Reaction",
+            "phases": [
+              "Shooting phase"
+            ],
+            "when": "After an enemy selects targets.",
+            "target": "One TZAANGORS unit that was selected as a target.",
+            "effect": "Make a Normal move of D6\"; and gain Benefit of Cover against those attacks.",
+            "restrictions": ""
+          },
+          {
+            "name": "Malign Entanglement",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "Thousand Sons – Combat Patrol: The Coven Temporus",
+            "timing": "Reaction",
+            "phases": [
+              "Charge phase"
+            ],
+            "when": "After an enemy declares a charge against your unit.",
+            "target": "One THOUSAND SONS unit that was a target of that charge.",
+            "effect": "That enemy suffers -2 to its Charge roll.",
             "restrictions": ""
           }
         ]
@@ -17039,6 +17829,53 @@
             "restrictions": ""
           }
         ]
+      },
+      "combatPatrols": {
+        "The Vardenghast Swarm": [
+          {
+            "name": "Senses of the Swarm",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "Tyranids – Combat Patrol: The Vardenghast Swarm",
+            "timing": "Activation",
+            "phases": [
+              "Shooting phase"
+            ],
+            "when": "When you select a unit to shoot.",
+            "target": "One TYRANIDS unit that has not been selected to shoot this phase.",
+            "effect": "The hivemind directs fire; improve accuracy or re-roll some Hit rolls.",
+            "restrictions": ""
+          },
+          {
+            "name": "Ravenous Onslaught",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "Tyranids – Combat Patrol: The Vardenghast Swarm",
+            "timing": "Activation",
+            "phases": [
+              "Fight phase"
+            ],
+            "when": "When you select a unit to fight.",
+            "target": "One TYRANIDS unit that has not been selected to fight this phase.",
+            "effect": "Feeding frenzy; improve melee output or grant Sustained/extra attacks.",
+            "restrictions": ""
+          },
+          {
+            "name": "Burst from Below",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "Tyranids – Combat Patrol: The Vardenghast Swarm",
+            "timing": "Activation",
+            "phases": [
+              "Movement phase"
+            ],
+            "when": "In the Reinforcements step.",
+            "target": "One eligible BURROWERS/LURKERS unit in reserves.",
+            "effect": "Emerge from the ground; set up closer than usual or with improved positioning constraints.",
+            "restrictions": ""
+          }
+        ],
+        "Assault Brood": []
       }
     },
     "World Eaters": {
@@ -17695,6 +18532,53 @@
             "when": "Your opponent’s Shooting phase, just after an enemy unit has shot.",
             "target": "One WORLD EATERS INFANTRY, WORLD EATERS MOUNTED or WORLD EATERS DAEMON PRINCE unit from your army that lost one or more wounds as a result of those attacks.",
             "effect": "Your unit can make a Blood Surge move. To do so, roll one D6: models in your unit move a number of inches up to the result, but your unit must end that move as close as possible to the closest enemy unit (excluding AIRCRAFT). When doing so, those models can be moved within Engagement Range of that enemy unit. If your unit is a KHORNE BERZERKERS or VESSEL OF WRATH  unit, you can re-roll the D6 to determine how far your unit can move.",
+            "restrictions": ""
+          }
+        ]
+      },
+      "combatPatrols": {
+        "Karagar’s Rampagers": [
+          {
+            "name": "Rage Unchecked",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "World Eaters – Combat Patrol: Karagar’s Rampagers",
+            "timing": "Activation",
+            "phases": [
+              "Shooting phase",
+              "Fight phase"
+            ],
+            "when": "When you select a unit to shoot or fight and it is Below Half-strength.",
+            "target": "One BERZERKERS unit that is Below Half-strength.",
+            "effect": "Weapons gain Sustained Hits 1 this phase.",
+            "restrictions": ""
+          },
+          {
+            "name": "Unstoppable Fury",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "World Eaters – Combat Patrol: Karagar’s Rampagers",
+            "timing": "Activation",
+            "phases": [
+              "Fight phase"
+            ],
+            "when": "Just before a Consolidation move.",
+            "target": "One WORLD EATERS unit.",
+            "effect": "Consolidate up to 6\" instead of 3\", but must end within Engagement Range.",
+            "restrictions": ""
+          },
+          {
+            "name": "Overwhelming Onslaught",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "World Eaters – Combat Patrol: Karagar’s Rampagers",
+            "timing": "Reaction",
+            "phases": [
+              "Charge phase"
+            ],
+            "when": "After your unit ends a Charge move.",
+            "target": "One WORLD EATERS unit that just Charged.",
+            "effect": "Select an enemy within Engagement Range; that unit must take a Battle-shock test at -1.",
             "restrictions": ""
           }
         ]
