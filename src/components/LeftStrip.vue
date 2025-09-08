@@ -21,15 +21,15 @@ import FightIcon from './icons/FightIcon.vue'
 
 const props = defineProps<{
   cp: number,
-  phases: Array<'cmd' | 'mov' | 'shoo' | 'chg' | 'fgt'>,
+  phases: Array<'command' | 'movement' | 'shooting' | 'charge' | 'fight'>,
   stripColor: string
 }>()
 
 function iconComponent(p: string) {
-  if (p === 'cmd') return CmdIcon;
-  if (p === 'mov') return MoveIcon;
-  if (p === 'shoo') return ShootingIcon;
-  if (p === 'chg') return ChargeIcon;
+  if (p === 'command') return CmdIcon;
+  if (p === 'movement') return MoveIcon;
+  if (p === 'shooting') return ShootingIcon;
+  if (p === 'charge') return ChargeIcon;
   return FightIcon
 }
 </script>

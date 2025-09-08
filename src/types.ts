@@ -1,4 +1,4 @@
-export type PhaseKey = 'cmd' | 'mov' | 'shoo' | 'chg' | 'fgt'
+export type PhaseKey = 'command' | 'movement' | 'shooting' | 'charge' | 'fight'
 
 export interface CardData {
     name: string
