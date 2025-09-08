@@ -23,25 +23,28 @@
       </div>
     </header>
 
-    <div class="print-pages">
-      <div v-for="(printPage, pageIndex) in printPages" :key="pageIndex" class="print-page">
-        <div class="page-number">Page {{ pageIndex + 1 }} of {{ printPages.length }}</div>
+    <!-- Responsive wrapper that handles scaling -->
+    <div class="print-pages-wrapper">
+      <div class="print-pages">
+        <div v-for="(printPage, pageIndex) in printPages" :key="pageIndex" class="print-page">
+          <div class="page-number">Page {{ pageIndex + 1 }} of {{ printPages.length }}</div>
 
-        <div class="grid-crop-marks">
-          <div class="crop-line vertical" style="left: calc((210mm - 191mm) / 2 + 0 * 63.5mm)"></div>
-          <div class="crop-line vertical" style="left: calc((210mm - 190.7mm) / 2 + 1 * 63.5mm)"></div>
-          <div class="crop-line vertical" style="left: calc((210mm - 190.7mm) / 2 + 2 * 63.5mm)"></div>
-          <div class="crop-line vertical" style="left: calc((210mm - 190.7mm) / 2 + 3 * 63.5mm)"></div>
+          <div class="grid-crop-marks">
+            <div class="crop-line vertical" style="left: calc((210mm - 191mm) / 2 + 0 * 63.5mm)"></div>
+            <div class="crop-line vertical" style="left: calc((210mm - 190.7mm) / 2 + 1 * 63.5mm)"></div>
+            <div class="crop-line vertical" style="left: calc((210mm - 190.7mm) / 2 + 2 * 63.5mm)"></div>
+            <div class="crop-line vertical" style="left: calc((210mm - 190.7mm) / 2 + 3 * 63.5mm)"></div>
 
-          <div class="crop-line horizontal" style="top: calc((297mm - 267.3mm) / 2 + 0 * 89mm)"></div>
-          <div class="crop-line horizontal" style="top: calc((297mm - 267.3mm) / 2 + 1 * 89mm)"></div>
-          <div class="crop-line horizontal" style="top: calc((297mm - 267.3mm) / 2 + 2 * 89mm)"></div>
-          <div class="crop-line horizontal" style="top: calc((297mm - 267.3mm) / 2 + 3 * 89mm)"></div>
-        </div>
+            <div class="crop-line horizontal" style="top: calc((297mm - 267.3mm) / 2 + 0 * 89mm)"></div>
+            <div class="crop-line horizontal" style="top: calc((297mm - 267.3mm) / 2 + 1 * 89mm)"></div>
+            <div class="crop-line horizontal" style="top: calc((297mm - 267.3mm) / 2 + 2 * 89mm)"></div>
+            <div class="crop-line horizontal" style="top: calc((297mm - 267.3mm) / 2 + 3 * 89mm)"></div>
+          </div>
 
-        <div class="print-grid">
-          <div v-for="(card, cardIndex) in printPage" :key="cardIndex" class="print-card-wrapper">
-            <Card :card="card" class="print-card"/>
+          <div class="print-grid">
+            <div v-for="(card, cardIndex) in printPage" :key="cardIndex" class="print-card-wrapper">
+              <Card :card="card" class="print-card"/>
+            </div>
           </div>
         </div>
       </div>
@@ -167,10 +170,85 @@ const printPages = computed(() => {
   font-size: 1.1rem;
 }
 
-.print-pages {
-  display: block;
+/* Responsive wrapper that handles scaling */
+.print-pages-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
+.print-pages {
+  display: block;
+  transform-origin: top center;
+  transition: transform 0.2s ease;
+}
+
+/* Scale down for tablet and mobile devices */
+@media (max-width: 1200px) {
+  .print-pages {
+    transform: scale(0.9);
+  }
+
+  .print-pages-wrapper {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .print-pages {
+    transform: scale(0.8);
+  }
+
+  .print-preview-header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .preview-title h2 {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .print-controls {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .print-pages {
+    transform: scale(0.7);
+  }
+
+  .print-pages-wrapper {
+    padding: 0 5px;
+  }
+}
+
+@media (max-width: 640px) {
+  .print-pages {
+    transform: scale(0.6);
+  }
+
+  .print-controls {
+    flex-direction: column;
+  }
+
+  .control-btn {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .print-pages {
+    transform: scale(0.45);
+  }
+}
+
+/* Original print page styling - UNCHANGED */
 .print-page {
   page-break-after: always;
   width: 210mm;
@@ -263,38 +341,6 @@ const printPages = computed(() => {
   );
 }
 
-@media (max-width: 1024px) {
-  .print-preview-header {
-    flex-direction: column;
-    align-items: stretch;
-    text-align: center;
-  }
-
-  .preview-title h2 {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .print-controls {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 640px) {
-  .print-controls {
-    flex-direction: column;
-  }
-
-  .control-btn {
-    justify-content: center;
-  }
-
-  .print-page {
-    transform: scale(0.7);
-    margin-bottom: 20px;
-  }
-}
-
 @media print {
   .print-preview-header {
     display: none !important;
@@ -304,17 +350,23 @@ const printPages = computed(() => {
     display: none !important;
   }
 
+  .print-pages-wrapper {
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .print-pages {
+    transform: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
   body {
     margin: 0 !important;
     padding: 0 !important;
   }
 
   .print-preview {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .print-pages {
     margin: 0 !important;
     padding: 0 !important;
   }
