@@ -37,6 +37,11 @@ body {
     font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif
 }
 
+a {
+    text-decoration: none;
+    color: var(--w40k-gold);
+}
+
 .controls {
     display: flex;
     gap: 16px;

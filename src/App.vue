@@ -13,6 +13,9 @@
             <br>
             Suitable for 2.5"x 3.5" sleeves (like Magic: The Gathering)
           </p>
+          <p class="app-description">
+            Based on the Stratagems available at <a href="https://wahapedia.ru/wh40k10ed">Wahapedia</a>.
+          </p>
         </div>
       </header>
 
@@ -20,19 +23,59 @@
         <div class="controls-grid">
           <div class="control-group">
             <label class="control-label">Faction</label>
-            <select v-model="faction" @change="onFactionChange" class="control-select">
-              <option v-for="(f, key) in dataByFaction" :key="key" :value="key">{{ f.name }}</option>
+            <select
+                v-if="groupedDropdown.length"
+                v-model="faction"
+                @change="onFactionChange"
+                class="control-select"
+            >
+              <optgroup
+                  v-for="grp in groupedDropdown"
+                  :key="grp.group"
+                  :label="grp.group"
+              >
+                <option
+                    v-for="f in grp.items"
+                    :key="f.key"
+                    :value="f.key"
+                >
+                  {{ f.label }}
+                </option>
+              </optgroup>
+            </select>
+
+            <!-- Fallback-->
+            <select
+                v-else
+                v-model="faction"
+                @change="onFactionChange"
+                class="control-select"
+            >
+              <option
+                  v-for="(f, key) in dataByFaction"
+                  :key="key"
+                  :value="key"
+              >
+                {{ f.name }}
+              </option>
             </select>
           </div>
+
           <div class="control-group">
             <label class="control-label">Detachment</label>
-            <select v-model="detachment" @change="onDetachmentChange" :disabled=isCore class="control-select">
+            <select
+                v-model="detachment"
+                @change="onDetachmentChange"
+                :disabled="isCore"
+                class="control-select"
+            >
               <option v-for="d in detachmentOptions" :key="d" :value="d">{{ d }}</option>
             </select>
           </div>
+
           <div class="control-group checkbox-group">
             <label class="checkbox-label">
-              <input v-model="includeCore" :disabled=isCore type="checkbox" class="control-checkbox"/>
+              <input v-model="includeCore" :disabled="isCore" type="checkbox" class="control-checkbox"/>
               <span class="checkbox-text">Include Core Stratagems</span>
             </label>
           </div>
@@ -69,12 +112,15 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, ref} from 'vue'
+import { computed, ref } from 'vue'
 import Page from './components/Page.vue'
 import PrintPreview from './components/PrintPreview.vue'
-import type {CardData, FactionData} from './types'
+import type { CardData, FactionData } from './types'
+
+type FactionGroups = Record<string, string[]>
 
 const dataByFaction = ref<Record<string, FactionData>>({})
+const factionGroups = ref<FactionGroups>({})
 const Core = ref<CardData[]>([])
 const loadError = ref(false)
 const removedCardIds = ref<Set<string>>(new Set())
@@ -82,14 +128,28 @@ const showPrintPreview = ref(false)
 
 async function loadData() {
   try {
-    const res = await fetch('/data/cards.json', {cache: 'no-cache'})
+    const res = await fetch('/data/cards.json', { cache: 'no-cache' })
     if (!res.ok) throw new Error('HTTP ' + res.status)
     const json = await res.json()
+
     if (json.factions) {
       dataByFaction.value = json.factions
       Core.value = json.factions.Core?.detachments?.['(none)'] || []
+      if (json.factionGroups && typeof json.factionGroups === 'object') {
+        factionGroups.value = json.factionGroups as FactionGroups
+      }
     } else {
       throw new Error('Unknown JSON shape')
+    }
+
+    if (!dataByFaction.value[faction.value]) {
+      if (dataByFaction.value.Core) {
+        faction.value = 'Core'
+      } else {
+        const keys = Object.keys(dataByFaction.value)
+        if (keys.length) faction.value = keys[0]
+      }
+      detachment.value = detachmentOptions.value[0] || '(none)'
     }
   } catch (e) {
     console.warn('Fetch failed, maybe CORS. Use a local server.', e)
@@ -107,12 +167,12 @@ const isCore = computed(() => faction.value === 'Core')
 
 const allCards = computed(() => {
   const all: CardData[] = []
-  if (includeCore.value) all.push(...Core.value)
   if (faction.value !== 'Core') {
     const detMap = dataByFaction.value[faction.value]?.detachments || {}
     const d = detMap[detachment.value]
     if (d) all.push(...d)
   }
+  if (includeCore.value) all.push(...Core.value)
   if (faction.value === 'Core' && detachment.value === '(none)' && !includeCore.value) return []
   return all
 })
@@ -121,7 +181,40 @@ const visibleCards = computed(() => {
   return allCards.value.filter(card => !removedCardIds.value.has(getCardId(card)))
 })
 
-const detachmentOptions = computed(() => Object.keys(dataByFaction.value[faction.value]?.detachments || {'(none)': Core.value}))
+const detachmentOptions = computed(() => {
+  const dets = dataByFaction.value[faction.value]?.detachments
+  if (dets && typeof dets === 'object') {
+    return Object.keys(dets)
+  }
+  return Object.keys({'(none)': Core.value})
+})
+
+const groupedDropdown = computed(() => {
+  const groups = factionGroups.value || {}
+  const available = new Set(Object.keys(dataByFaction.value || {}))
+
+  const result: Array<{ group: string; items: Array<{ key: string; label: string }> }> = []
+
+  const preferredOrder = ['Forces of the Imperium', 'Forces of Chaos', 'Xenos', 'Other']
+  for (const groupName of preferredOrder) {
+    const list = groups[groupName] || []
+    const items = list
+        .filter(f => available.has(f))
+        .map(f => ({ key: f, label: dataByFaction.value[f]?.name || f }))
+    if (items.length) {
+      result.push({ group: groupName, items })
+    }
+  }
+
+  const alreadyListed = new Set(result.flatMap(g => g.items.map(i => i.key)))
+  const other = [...available].filter(k => !alreadyListed.has(k))
+  if (other.length) {
+    const items = other.map(f => ({ key: f, label: dataByFaction.value[f]?.name || f }))
+    result.push({ group: 'Other', items })
+  }
+
+  return result
+})
 
 function getCardId(card: CardData): string {
   return `${card.name}_${card.group}_${card.type}`
@@ -136,7 +229,7 @@ function resetRemovedCards() {
 }
 
 function onFactionChange() {
-  detachment.value = detachmentOptions.value[0]
+  detachment.value = detachmentOptions.value[0] || '(none)'
   resetRemovedCards()
 }
 
