@@ -10,17 +10,16 @@
     --meta-fg: #202020;
     --fg: #111111;
 
-
-    /* Warhammer 40K UI Theme */
-    --w40k-bg: #0a0a0a;
+    --w40k-bg: #434343;
     --w40k-surface: #1a1a1a;
+    --w40k-dropdown: #0a0a0a;
     --w40k-surface-light: #2a2a2a;
     --w40k-border: #333333;
     --w40k-text: #e0e0e0;
-    --w40k-text-muted: #999999;
+    --w40k-text-muted: #fdfdfd;
     --w40k-accent: #cc2936;
     --w40k-accent-hover: #aa1f2a;
-    --w40k-gold: #d4af37;
+    --w40k-gold: #ffd44a;
 }
 * {
     box-sizing: border-box

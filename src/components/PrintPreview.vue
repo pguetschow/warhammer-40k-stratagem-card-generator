@@ -90,6 +90,14 @@ const printPages = computed(() => {
   gap: 32px;
   flex-wrap: wrap;
 }
+@media (min-width: 1024px) {
+  .print-preview-header {
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+  }
+}
+
 
 .preview-title h2 {
   display: flex;

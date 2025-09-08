@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div class="app-container" :class="{ 'print-preview-active': showPrintPreview }">
     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 32px;">
       <header class="app-header">
         <div class="header-content">
@@ -284,11 +284,9 @@ function printCards() {
 
 .subtitle {
   display: block;
-  font-size: 1.2rem;
-  color: var(--w40k-text);
+  font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
   margin-top: 8px;
 }
 
@@ -309,9 +307,13 @@ function printCards() {
 
 @media(min-width: 1024px) {
   .controls-section {
-  position: sticky;
-  top: 0;
-  z-index: 999;
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+    }
+  .print-preview-active .controls-section {
+    position: static !important;
+    top: auto !important;
   }
 }
 
@@ -343,7 +345,7 @@ function printCards() {
 
 .control-select {
   padding: 12px 16px;
-  background: var(--w40k-bg);
+  background: var(--w40k-dropdown);
   border: 1px solid var(--w40k-border);
   color: var(--w40k-text);
   font-size: 1rem;
