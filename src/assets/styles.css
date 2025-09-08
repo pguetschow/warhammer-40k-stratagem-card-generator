@@ -95,55 +95,55 @@ body {
 }
 
 .title {
-    margin-left: 65px;
-    padding-top: 10px;
-    padding-bottom: 5px;
-    padding-right: 10px;
+    margin-left: 44px;
+    margin-top: 2px;
+    padding: 10px 5px;
     color: var(--strip-color);
     font-weight: 800;
     line-height: 1.05;
+    font-size: 15px;
     text-transform: uppercase;
-    height: 55px;
+    height: 40px;
     display: flex;
     align-items: center
 }
 
 .underline {
-    margin-left: 45px;
-    width: calc(100% - 45px);
+    margin-left: 30px;
+    width: calc(100% - 30px);
     height: 0;
     border-top: 2px solid var(--strip-color)
 }
 
 .meta-bg {
     position: absolute;
-    left: 45px;
+    left: 35px;
     right: 0;
-    height: 42px;
+    height: 35px;
     background: var(--meta-color);
     z-index: 1
 }
 
 .meta-text {
-    margin-left: 55px;
-    padding: 10px;
-    font-size: 11px;
+    margin-left: 45px;
+    padding: 5px;
+    font-size: 9px;
     line-height: 1.1;
     font-style: italic;
     color: var(--meta-fg);
-    height: 40px;
+    height: 35px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     position: relative;
-    z-index: 2
+    z-index: 2;
+    align-content: center;
 }
 
 .body {
-    margin-left: 65px;
-    padding-top: 5px;
-    padding-right: 10px;
+    margin-left: 45px;
+    padding: 5px 7px 5px 5px;
     display: flex;
     flex-direction: column;
     gap: 5px
@@ -153,20 +153,20 @@ body {
     margin: 0;
     color: var(--strip-color);
     font-weight: 800;
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: .02em
 }
 
 .sec p {
     margin: 0px;
-    font-size: 11px;
-    line-height: 1.15
+    font-size: 9px;
+    line-height: 1.1
 }
 
 .strip {
     position: absolute;
-    left: 15px;
-    top: 50px;
+    left: 10px;
+    top: 45px;
     width: 25px;
     bottom: 0;
     background: var(--strip-color);
@@ -184,8 +184,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 19px;
-    left: 18px;
-    top: 43px;
+    left: 15px;
+    top: 32px;
 }
 
 .diamond {
@@ -220,8 +220,8 @@ body {
 
 .strip {
     position: absolute;
-    left: 0.18in;
-    width: 0.28in;
+    left: 15px;
+    width: 25px;
     bottom: 0;
     z-index: -2
 }

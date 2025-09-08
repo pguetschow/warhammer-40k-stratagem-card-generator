@@ -5,11 +5,12 @@ export interface CardData {
     cp: number
     type: string
     group: string
-    timing: 'ownTurn' | 'enemyTurn' | 'everyTurn' | string
+    timing: 'yourTurn' | 'oppTurn' | 'everyTurn' | string
     phases: PhaseKey[]
     when: string
     target: string
     effect: string
+    restrictions: string
 }
 
 export interface FactionData {

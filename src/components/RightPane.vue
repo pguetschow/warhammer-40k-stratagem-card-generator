@@ -8,16 +8,20 @@
     </div>
     <div class="body">
       <div class="sec">
-        <h6 :style="{ color: stripColor }">WANN:</h6>
+        <h6 :style="{ color: stripColor }">WHEN:</h6>
         <p>{{ card.when }}</p>
       </div>
       <div class="sec">
-        <h6 :style="{ color: stripColor }">ZIEL:</h6>
+        <h6 :style="{ color: stripColor }">TARGET:</h6>
         <p>{{ card.target }}</p>
       </div>
       <div class="sec">
-        <h6 :style="{ color: stripColor }">EFFEKT:</h6>
+        <h6 :style="{ color: stripColor }">EFFECT:</h6>
         <p>{{ card.effect }}</p>
+      </div>
+      <div class="sec" v-if="card.restrictions">
+        <h6 :style="{ color: stripColor }">RESTRICTIONS:</h6>
+        <p>{{ card.restrictions }}</p>
       </div>
     </div>
   </div>
