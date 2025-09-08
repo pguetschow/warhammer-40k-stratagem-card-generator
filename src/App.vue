@@ -4,8 +4,8 @@
       <header class="app-header">
         <div class="header-content">
           <h1 class="app-title">
-            <img src="./assets/img/warhammer40logo.webp"/>
-            <span class="subtitle">STRATEGEM CARD PRINTER</span>
+<!--            <img src="./assets/img/warhammer40logo.webp"/>-->
+            <span class="subtitle">WARHAMMER 40k STRATEGEM CARD PRINTER</span>
           </h1>
           <p class="app-description">
             Generate and print strategem cards for your Warhammer 40,000 battles.
@@ -308,9 +308,10 @@ function printCards() {
 
 .subtitle {
   display: block;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.7rem;
+  font-weight: 800;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
   margin-top: 8px;
 }
 
