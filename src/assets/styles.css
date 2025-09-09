@@ -230,3 +230,39 @@ a {
     bottom: 0;
     z-index: -2
 }
+
+
+.gh-link {
+    background: var(--w40k-surface, #1a1a1a);
+    border: 1px solid var(--w40k-border, #333333);
+    box-shadow: 0 6px 24px rgba(0,0,0,.18), 0 2px 8px rgba(0,0,0,.12);
+    opacity: .85;
+    transition: transform .12s ease, opacity .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.gh-link:hover {
+    transform: translateY(-1px);
+    opacity: 1;
+    box-shadow: 0 10px 28px rgba(0,0,0,.22), 0 4px 12px rgba(0,0,0,.16);
+    background: var(--w40k-surface-light, #2a2a2a);
+}
+.gh-link svg {
+    fill: var(--w40k-gold, #facb3c);
+}
+.gh-link:focus-visible {
+    outline: 2px solid var(--w40k-gold, #facb3c);
+    outline-offset: 2px;
+}
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 1px, 1px);
+    white-space: nowrap;
+    border: 0;
+}
+@media print {
+    .gh-link { display: none !important; }
+}
