@@ -70,7 +70,7 @@
                 @change="onDetachmentChange"
             >
               <optgroup v-for="group in detachmentGroups" :key="group.label" :label="group.label">
-                <option v-for="d in group.options" :key="d" :value="d">{{ d }}</option>
+                <option v-for="d in group.options" :key="d.value" :value="d.value">{{ d.label }}</option>
               </optgroup>
             </select>
           </div>
@@ -119,9 +119,12 @@ import Page from './components/Page.vue'
 import PrintPreview from './components/PrintPreview.vue'
 import type {CardData, FactionData} from './types'
 
-type FactionGroups = Record<string, string[]>
+const ALL_DETACHMENTS_ONLY_KEY = '(all-detachments)'
+const ALL_DETACHMENTS_CP_KEY = '(all-detachments-and-combat-patrols)'
+const ALL_DETACHMENTS_ONLY_LABEL = 'All Detachments'
+const ALL_DETACHMENTS_CP_LABEL = 'All Detachments (incl. Combat Patrols)'
 
-const ALL_DETACHMENTS_KEY = 'All Detachments'
+type FactionGroups = Record<string, string[]>
 
 const dataByFaction = ref<Record<string, FactionData>>({})
 const factionGroups = ref<FactionGroups>({})
@@ -176,8 +179,11 @@ const allCards = computed(() => {
     const detMap = (f as any).detachments || {}
     const cpMap = (f as any).combatPatrols || {}
 
-    if (detachment.value === ALL_DETACHMENTS_KEY) {
-      // Merge all detachments & combat patrols
+    if (detachment.value === ALL_DETACHMENTS_ONLY_KEY) {
+      for (const arr of Object.values(detMap)) {
+        if (Array.isArray(arr)) all.push(...(arr as CardData[]))
+      }
+    } else if (detachment.value === ALL_DETACHMENTS_CP_KEY) {
       for (const arr of Object.values(detMap)) {
         if (Array.isArray(arr)) all.push(...(arr as CardData[]))
       }
@@ -202,24 +208,32 @@ const visibleCards = computed(() => {
   return allCards.value.filter(card => !removedCardIds.value.has(getCardId(card)))
 })
 
+
 const detachmentGroups = computed(() => {
   const f = dataByFaction.value[faction.value] || {}
   const army = Object.keys(f?.detachments || {})
   const patrols = Object.keys((f as any)?.combatPatrols || {})
-  const groups: Array<{ label: string; options: string[] }> = []
 
-  // add "All Detachments" option at the top if there are multiple detachments/patrols
-  const hasMultipleOptions = (army.length + patrols.length) > 1
-  if (hasMultipleOptions && faction.value !== 'Core') {
-    groups.push({ label: 'Quick Select', options: [ALL_DETACHMENTS_KEY] })
+  const groups: Array<{ label: string; options: Array<{ value: string; label: string }> }> = []
+
+  // Quick Select (only if there is at least one option to aggregate)
+  const quick: Array<{ value: string; label: string }> = []
+  if (army.length) {
+    quick.push({value: ALL_DETACHMENTS_ONLY_KEY, label: ALL_DETACHMENTS_ONLY_LABEL})
+  }
+  if (army.length && patrols.length) {
+    quick.push({value: ALL_DETACHMENTS_CP_KEY, label: ALL_DETACHMENTS_CP_LABEL})
+  }
+  if (quick.length && faction.value !== 'Core') {
+    groups.push({label: 'Quick Select', options: quick})
   }
 
-  if (army.length) groups.push({ label: 'Army Detachments', options: army })
-  if (patrols.length) groups.push({ label: 'Combat Patrol', options: patrols })
+  if (army.length) groups.push({label: 'Army Detachments', options: army.map(n => ({value: n, label: n}))})
+  if (patrols.length) groups.push({label: 'Combat Patrol', options: patrols.map(n => ({value: n, label: n}))})
 
   if (!groups.length) {
     // Fallback for Core or empty: keep a placeholder '(none)' mapped to Core
-    groups.push({ label: 'Army', options: Object.keys({ '(none)': Core.value }) })
+    groups.push({label: 'Army', options: [{value: '(none)', label: '(none)'}]})
   }
 
   return groups
@@ -228,7 +242,7 @@ const detachmentGroups = computed(() => {
 const firstDetachmentOption = computed(() => {
   const groups = detachmentGroups.value
   for (const g of groups) {
-    if (g.options.length) return g.options[0]
+    if (g.options.length) return g.options[0].value
   }
   return '(none)'
 })
