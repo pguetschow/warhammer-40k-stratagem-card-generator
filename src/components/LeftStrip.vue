@@ -4,7 +4,7 @@
       <Diamond :color="stripColor" isCp>
         {{ cp }}CP
       </Diamond>
-      <Diamond v-for="(p,i) in phases" :key="i" :color="stripColor" >
+      <Diamond v-for="(p,i) in phases" :key="i" :color="stripColor">
         <component :is="iconComponent(p)"/>
       </Diamond>
     </div>

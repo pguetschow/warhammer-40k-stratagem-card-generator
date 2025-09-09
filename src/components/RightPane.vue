@@ -19,7 +19,7 @@
         <h6 :style="{ color: stripColor }">EFFECT:</h6>
         <p>{{ card.effect }}</p>
       </div>
-      <div class="sec" v-if="card.restrictions">
+      <div v-if="card.restrictions" class="sec">
         <h6 :style="{ color: stripColor }">RESTRICTIONS:</h6>
         <p>{{ card.restrictions }}</p>
       </div>

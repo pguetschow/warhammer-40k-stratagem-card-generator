@@ -1,11 +1,11 @@
 <template>
   <div :style="{'--strip-color': stripColor, '--meta-color': metaColor}" class="card">
-    <LeftStrip :cp="card.cp" :phases="card.phases" :stripColor="stripColor" />
+    <LeftStrip :cp="card.cp" :phases="card.phases" :stripColor="stripColor"/>
     <RightPane :card="card" :metaColor="metaColor" :stripColor="stripColor"/>
   </div>
 </template>
 <script lang="ts" setup>
-import {computed, ref} from 'vue'
+import {computed} from 'vue'
 import type {CardData} from '../types'
 import {metaColorFor, stripColorFor} from '../util/helpers'
 import LeftStrip from './LeftStrip.vue'

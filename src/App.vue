@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container" :class="{ 'print-preview-active': showPrintPreview }">
+  <div :class="{ 'print-preview-active': showPrintPreview }" class="app-container">
     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 32px;">
       <header class="app-header">
         <div class="header-content">
@@ -13,7 +13,8 @@
             Suitable for 2.5"x 3.5" sleeves (like Magic: The Gathering)
           </p>
           <p class="app-description">
-            Based on the Stratagems available at <a href="https://wahapedia.ru/wh40k10ed">Wahapedia</a>  and from the official Combat Patrol PDFs.
+            Based on the Stratagems available at <a href="https://wahapedia.ru/wh40k10ed">Wahapedia</a> and from the
+            official Combat Patrol PDFs.
           </p>
         </div>
       </header>
@@ -25,8 +26,8 @@
             <select
                 v-if="groupedDropdown.length"
                 v-model="faction"
-                @change="onFactionChange"
                 class="control-select"
+                @change="onFactionChange"
             >
               <optgroup
                   v-for="grp in groupedDropdown"
@@ -47,8 +48,8 @@
             <select
                 v-else
                 v-model="faction"
-                @change="onFactionChange"
                 class="control-select"
+                @change="onFactionChange"
             >
               <option
                   v-for="(f, key) in dataByFaction"
@@ -64,9 +65,9 @@
             <label class="control-label">Detachment</label>
             <select
                 v-model="detachment"
-                @change="onDetachmentChange"
                 :disabled="isCore"
                 class="control-select"
+                @change="onDetachmentChange"
             >
               <optgroup v-for="group in detachmentGroups" :key="group.label" :label="group.label">
                 <option v-for="d in group.options" :key="d" :value="d">{{ d }}</option>
@@ -76,18 +77,18 @@
 
           <div class="control-group checkbox-group">
             <label class="checkbox-label">
-              <input v-model="includeCore" :disabled="isCore" type="checkbox" class="control-checkbox"/>
+              <input v-model="includeCore" :disabled="isCore" class="control-checkbox" type="checkbox"/>
               <span class="checkbox-text">Include Core Stratagems</span>
             </label>
           </div>
         </div>
 
         <div class="action-buttons">
-          <button @click="resetRemovedCards" class="action-btn secondary-btn">
+          <button class="action-btn secondary-btn" @click="resetRemovedCards">
             <span class="btn-icon">⟲</span>
             Reset Removed Cards
           </button>
-          <button @click="openPrintDialog" class="action-btn primary-btn" :disabled="visibleCards.length === 0">
+          <button :disabled="visibleCards.length === 0" class="action-btn primary-btn" @click="openPrintDialog">
             <span class="btn-icon">⎙</span>
             Print Preview ({{ visibleCards.length }} Cards)
           </button>
@@ -113,10 +114,10 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import {computed, ref} from 'vue'
 import Page from './components/Page.vue'
 import PrintPreview from './components/PrintPreview.vue'
-import type { CardData, FactionData } from './types'
+import type {CardData, FactionData} from './types'
 
 type FactionGroups = Record<string, string[]>
 
@@ -129,7 +130,7 @@ const showPrintPreview = ref(false)
 
 async function loadData() {
   try {
-    const res = await fetch('/data/cards.json', { cache: 'no-cache' })
+    const res = await fetch('/data/cards.json', {cache: 'no-cache'})
     if (!res.ok) throw new Error('HTTP ' + res.status)
     const json = await res.json()
 
@@ -194,11 +195,11 @@ const detachmentGroups = computed(() => {
   const army = Object.keys(f?.detachments || {})
   const patrols = Object.keys((f as any)?.combatPatrols || {})
   const groups: Array<{ label: string; options: string[] }> = []
-  if (army.length) groups.push({ label: 'Army', options: army })
-  if (patrols.length) groups.push({ label: 'Combat Patrol', options: patrols })
+  if (army.length) groups.push({label: 'Army', options: army})
+  if (patrols.length) groups.push({label: 'Combat Patrol', options: patrols})
   if (!groups.length) {
     // Fallback for Core or empty: keep a placeholder '(none)' mapped to Core
-    groups.push({ label: 'Army', options: Object.keys({'(none)': Core.value}) })
+    groups.push({label: 'Army', options: Object.keys({'(none)': Core.value})})
   }
   return groups
 })
@@ -223,17 +224,17 @@ const groupedDropdown = computed(() => {
     const list = groups[groupName] || []
     const items = list
         .filter(f => available.has(f))
-        .map(f => ({ key: f, label: dataByFaction.value[f]?.name || f }))
+        .map(f => ({key: f, label: dataByFaction.value[f]?.name || f}))
     if (items.length) {
-      result.push({ group: groupName, items })
+      result.push({group: groupName, items})
     }
   }
 
   const alreadyListed = new Set(result.flatMap(g => g.items.map(i => i.key)))
   const other = [...available].filter(k => !alreadyListed.has(k))
   if (other.length) {
-    const items = other.map(f => ({ key: f, label: dataByFaction.value[f]?.name || f }))
-    result.push({ group: 'Other', items })
+    const items = other.map(f => ({key: f, label: dataByFaction.value[f]?.name || f}))
+    result.push({group: 'Other', items})
   }
 
   return result
@@ -320,12 +321,13 @@ function printCards() {
   margin-bottom: 32px;
 }
 
-@media(min-width: 1024px) {
+@media (min-width: 1024px) {
   .controls-section {
     position: sticky;
     top: 0;
     z-index: 9999;
   }
+
   .print-preview-active .controls-section {
     position: static !important;
     top: auto !important;

@@ -8,15 +8,16 @@
           <span class="card-count">{{ visibleCards.length }} Cards Ready</span>
         </h2>
         <p class="preview-description">
-          Review your strategem cards before printing. Each page contains 9 cards in a 3×3 grid with crop marks for easy cutting.
+          Review your strategem cards before printing. Each page contains 9 cards in a 3×3 grid with crop marks for easy
+          cutting.
         </p>
       </div>
       <div class="print-controls">
-        <button @click="$emit('close')" class="control-btn secondary-btn">
+        <button class="control-btn secondary-btn" @click="$emit('close')">
           <span class="btn-icon">←</span>
           Back to Selection
         </button>
-        <button @click="$emit('print')" class="control-btn primary-btn">
+        <button class="control-btn primary-btn" @click="$emit('print')">
           <span class="btn-icon">⎙</span>
           Print Cards
         </button>
@@ -52,9 +53,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
+import {computed} from 'vue'
 import Card from './Card.vue'
-import type { CardData } from '../types'
+import type {CardData} from '../types'
 
 const props = defineProps<{
   visibleCards: CardData[]
@@ -90,6 +91,7 @@ const printPages = computed(() => {
   gap: 32px;
   flex-wrap: wrap;
 }
+
 @media (min-width: 1024px) {
   .print-preview-header {
     position: sticky;

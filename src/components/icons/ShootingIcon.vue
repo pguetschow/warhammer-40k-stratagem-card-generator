@@ -1,8 +1,7 @@
 <template>
   <svg data-height="115.2pt" data-width="115.2pt" height="100%" preserveAspectRatio="xMidYMid meet"
-       version="1.1" viewBox="0 0 115.2 115.2" width="100%" xmlns="http://www.w3.org/2000/svg"
-       xmlns:xlink="http://www.w3.org/1999/xlink" style="color: var(--strip-color)">
-    <title>phase_shoo.svg</title>
+       style="color: var(--strip-color)" version="1.1" viewBox="0 0 115.2 115.2" width="100%"
+       xmlns="http://www.w3.org/2000/svg">
     <g id="figure_1">
       <g id="patch_1">
         <path d="M 0 115.2
@@ -66,7 +65,6 @@ z
   </svg>
 
 </template>
-
 
 
 <style scoped>

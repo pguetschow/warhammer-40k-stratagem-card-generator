@@ -2,7 +2,7 @@
   <div class="cards-grid">
     <div v-for="(c,i) in cards" :key="i" class="card-container">
       <Card :card="c"/>
-      <button @click="$emit('remove-card', c)" class="remove-btn" title="Remove Card for Printing">×</button>
+      <button class="remove-btn" title="Remove Card for Printing" @click="$emit('remove-card', c)">×</button>
     </div>
   </div>
 </template>
