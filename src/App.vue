@@ -8,7 +8,7 @@
           </h1>
           <p class="app-description">
             Generate and print strategem cards for your Warhammer 40,000 battles.
-            Select your faction, detachment, and chose the stratagems for your army.
+            Select your faction, detachment, and choose the stratagems for your army.
             <br>
             Suitable for 2.5"x 3.5" sleeves (like Magic: The Gathering)
           </p>
