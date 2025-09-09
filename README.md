@@ -6,7 +6,7 @@ Generate and print Warhammer 40,000 stratagem cards sized for 2.5″ × 3.5″ s
 Available at [stratagemprint40k.app](https://stratagemprint40k.app).
 
 ## Requirements
-- **Node.js**: 18+ (Vite 5 compatible)
+- **Node.js**: 22.12+ (Vite 5 compatible)
 - **Dependencies**: Vue 3
 - **Dev tooling**: Vite 5, TypeScript 5, `@vitejs/plugin-vue`
 
