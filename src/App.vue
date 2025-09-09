@@ -70,7 +70,7 @@
                 @change="onDetachmentChange"
             >
               <optgroup v-for="group in detachmentGroups" :key="group.label" :label="group.label">
-                <option v-for="d in group.options" :key="d" :value="d">{{ d }}</option>
+                <option v-for="d in group.options" :key="d.value" :value="d.value">{{ d.label }}</option>
               </optgroup>
             </select>
           </div>
@@ -118,6 +118,11 @@ import {computed, ref} from 'vue'
 import Page from './components/Page.vue'
 import PrintPreview from './components/PrintPreview.vue'
 import type {CardData, FactionData} from './types'
+
+const ALL_DETACHMENTS_ONLY_KEY = '(all-detachments)'
+const ALL_DETACHMENTS_CP_KEY = '(all-detachments-and-combat-patrols)'
+const ALL_DETACHMENTS_ONLY_LABEL = 'All Detachments'
+const ALL_DETACHMENTS_CP_LABEL = 'All Detachments (incl. Combat Patrols)'
 
 type FactionGroups = Record<string, string[]>
 
@@ -172,13 +177,27 @@ const allCards = computed(() => {
   if (faction.value !== 'Core') {
     const f = dataByFaction.value[faction.value] || {}
     const detMap = (f as any).detachments || {}
-    let d: CardData[] | undefined = detMap[detachment.value]
-    if (!d) {
-      const cpMap = (f as any).combatPatrols || {}
-      const cp = cpMap[detachment.value]
-      if (Array.isArray(cp)) d = cp as CardData[]
+    const cpMap = (f as any).combatPatrols || {}
+
+    if (detachment.value === ALL_DETACHMENTS_ONLY_KEY) {
+      for (const arr of Object.values(detMap)) {
+        if (Array.isArray(arr)) all.push(...(arr as CardData[]))
+      }
+    } else if (detachment.value === ALL_DETACHMENTS_CP_KEY) {
+      for (const arr of Object.values(detMap)) {
+        if (Array.isArray(arr)) all.push(...(arr as CardData[]))
+      }
+      for (const arr of Object.values(cpMap)) {
+        if (Array.isArray(arr)) all.push(...(arr as CardData[]))
+      }
+    } else {
+      let d: CardData[] | undefined = detMap[detachment.value]
+      if (!d) {
+        const cp = cpMap[detachment.value]
+        if (Array.isArray(cp)) d = cp as CardData[]
+      }
+      if (d) all.push(...d)
     }
-    if (d) all.push(...d)
   }
   if (includeCore.value) all.push(...Core.value)
   if (faction.value === 'Core' && detachment.value === '(none)' && !includeCore.value) return []
@@ -194,24 +213,39 @@ const detachmentGroups = computed(() => {
   const f = dataByFaction.value[faction.value] || {}
   const army = Object.keys(f?.detachments || {})
   const patrols = Object.keys((f as any)?.combatPatrols || {})
-  const groups: Array<{ label: string; options: string[] }> = []
-  if (army.length) groups.push({label: 'Army', options: army})
-  if (patrols.length) groups.push({label: 'Combat Patrol', options: patrols})
+
+  const groups: Array<{ label: string; options: Array<{ value: string; label: string }> }> = []
+
+  // Quick Select (only if there is at least one option to aggregate)
+  const quick: Array<{ value: string; label: string }> = []
+  if (army.length) {
+    quick.push({value: ALL_DETACHMENTS_ONLY_KEY, label: ALL_DETACHMENTS_ONLY_LABEL})
+  }
+  if (army.length && patrols.length) {
+    quick.push({value: ALL_DETACHMENTS_CP_KEY, label: ALL_DETACHMENTS_CP_LABEL})
+  }
+  if (quick.length && faction.value !== 'Core') {
+    groups.push({label: 'Quick Select', options: quick})
+  }
+
+  if (army.length) groups.push({label: 'Army Detachments', options: army.map(n => ({value: n, label: n}))})
+  if (patrols.length) groups.push({label: 'Combat Patrol', options: patrols.map(n => ({value: n, label: n}))})
+
   if (!groups.length) {
     // Fallback for Core or empty: keep a placeholder '(none)' mapped to Core
-    groups.push({label: 'Army', options: Object.keys({'(none)': Core.value})})
+    groups.push({label: 'Army', options: [{value: '(none)', label: '(none)'}]})
   }
+
   return groups
 })
 
 const firstDetachmentOption = computed(() => {
   const groups = detachmentGroups.value
   for (const g of groups) {
-    if (g.options.length) return g.options[0]
+    if (g.options.length) return g.options[0].value
   }
   return '(none)'
 })
-
 
 const groupedDropdown = computed(() => {
   const groups = factionGroups.value || {}
