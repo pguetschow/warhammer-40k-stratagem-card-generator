@@ -31,16 +31,16 @@ All game data lives in **`cards.json`** at the project root. Keep entries consis
 ```json
 {
   "factionGroups": {
-    "<GroupName>": ["<FactionName>", "..."]
+    "<GroupName>": ["<FactionName>"]
   },
   "factions": {
     "<FactionKey>": {
       "name": "<Display Name>",
       "combatPatrols": {
-        "<CombatPatrolName>": [ /* Stratagem[] */ ]
+        "<CombatPatrolName>": []    // List of Stratagem objects
       },
       "detachments": {
-        "<DetachmentName>": [ /* Stratagem[] */ ]
+        "<DetachmentName>": []      // List of Stratagem objects
       }
     }
   }
@@ -62,7 +62,7 @@ All game data lives in **`cards.json`** at the project root. Keep entries consis
   "target": "STRING (who/what it targets)",
   "effect": "STRING (rules effect)",
   "restrictions": "STRING (can be empty)",
-  "group": "STRING (optional label, e.g., "CORE" or "FACTION – Detachment")"
+  "group": "STRING (optional label, e.g., 'CORE or 'FACTION – Detachment')"
 }
 ```
 
