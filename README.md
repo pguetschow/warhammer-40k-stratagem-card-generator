@@ -1,4 +1,4 @@
-# WH40K Stratagem Card Generator (Vue)
+# Warhammer 40K Stratagem Card Generator
 
 ## Description
 Generate and print Warhammer 40,000 stratagem cards sized for 2.5″ × 3.5″ sleeves. Built with Vue 3 + Vite.
