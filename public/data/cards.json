@@ -83,7 +83,7 @@
             "cp": 2,
             "type": "Strategic Ploy",
             "group": "CORE",
-            "timing": "oppTurn",
+            "timing": "anyTurn",
             "phases": [
               "fight"
             ],
@@ -143,7 +143,7 @@
             "cp": 1,
             "type": "Epic Deed",
             "group": "CORE",
-            "timing": "yourTurn",
+            "timing": "anyTurn",
             "phases": [
               "fight"
             ],
