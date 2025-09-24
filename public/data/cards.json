@@ -12264,6 +12264,353 @@
             "effect": "Until the end of the battle, the enemy unit that destroyed your unit is Marked. Each time an ADEPTUS MECHANICUS model from your army makes an attack that targets a Marked unit, that attack has the [LETHAL HITS] ability.",
             "restrictions": ""
           }
+        ],
+        "Spearhead-At-Arms": [
+          {
+            "name": "VIRTUE OF COURAGE",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "IMPERIAL KNIGHTS – Spearhead-At-Arms",
+            "timing": "anyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Start of the Fight phase.",
+            "target": "One ARMIGER model from your army, or one IMPERIAL KNIGHT TITANIC model from your army, and one or more friendly ARMIGER models affected by that model Bondsman ability.",
+            "effect": "Select one enemy unit. Until the end of the phase, each time one of your ARMIGER modelsmakes an attack that targets that enemy unit, add 1 to the Hit roll.",
+            "restrictions": ""
+          },
+            {
+            "name": "EXEMPLAR'S WISDOM",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "IMPERIAL KNIGHTS – Spearhead-At-Arms",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase, just after an IMPERIAL KNIGHTS TITANIC model from your army has shot.",
+            "target": "That IMPERIAL KNIGHTS TITANIC model, and one or more friendlu ARMIGER models affected by that model's Bondsman ability.",
+            "effect": "Select one enemy unit hit by one or more of those attacks. Until the end of the phase, each time one of your ARMIGER models makes an attack that targets that enemy unit, improve the Armour Penetration characteristic of that attack by 1.",
+            "restrictions": ""
+          },            
+          {
+            "name": "THIN THEIR RANKS",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "IMPERIAL KNIGHTS – Spearhead-At-Arms",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Start of your Shooting phase.",
+            "target": "One ARMIGER model from your army, or one IMPERIAL KNIGHTS TITANIC model from your army, and one or more friendly ARMIGER models affected by that model’s Bondsman ability.",
+            "effect": "Until the end of the phase, ranged weapons equipped by your ARMIGER models have the [RAPID FIRE 1] ability.",
+            "restrictions": ""
+          },
+          {
+            "name": "MANTLE OF THE MENTOR",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "IMPERIAL KNIGHTS – Spearhead-At-Arms",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Start of your Shooting phase.",
+            "target": "One ARMIGER model from your army, or one IMPERIAL KNIGHTS TITANIC model from your army, and one or more friendly ARMIGER models affected by that model’s Bondsman ability.",
+            "effect": "Until the end of the phase, your ARMIGER models are eligible to shoot in a turn in which they Fell Back.",
+            "restrictions": ""
+          },
+          {
+            "name": "LET DUTY BE YOUR SHIELD",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "IMPERIAL KNIGHTS – Spearhead-At-Arms",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your opponent’s Shooting phase, just after an enemy unit has selected its targets.",
+            "target": "One ARMIGER unit from your army that was selected as the target of one or more of the attacking units attacks.",
+            "effect": "Until the end of the phase, each time an attack targets your unit, worsen the Armour Penetration characteristic of that attack by 1.",
+            "restrictions": ""
+          },
+          {
+            "name": "SQUIRES OF THE HUNT",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "IMPERIAL KNIGHTS – Spearhead-At-Arms",
+            "timing": "oppTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "End of your opponent’s Fight phase.",
+            "target": "One ARMIGER model from your army, or one IMPERIAL KNIGHTS TITANIC model from your army, and one or more friendly ARMIGER models affected by that model’s Bondsman ability.",
+            "effect": "For each of your ARMIGER models that is within 9\" of one or more battlefield edges and not within Engagement Range of one or more enemy units, remove that ARMIGER model from the battlefield and place it into Strategic Reserves.",
+            "restrictions": ""
+          }
+        ],
+        "Questoris Companions": [
+          {
+            "name": "COURAGEOUS STAND",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "IMPERIAL KNIGHTS – Questoris Companions",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets.",
+            "target": "One IMPERIAL KNIGHTS TITANIC unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+            "effect": "Until the end of the phase, models in your unit that have the Feel No Pain 6+ ability.",
+            "restrictions": ""
+          },
+          {
+            "name": "TITANIC DUEL",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "IMPERIAL KNIGHTS – Questoris Companions",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your Shooting phase or the Fight phase.",
+            "target": "One IMPERIAL KNIGHTS TITANIC model from your army that has not been selected to shoot or fight this phase.",
+            "effect": "Until the end of the phase, each time your model makes an attack that targets a MONSTER, TITANIC or WALKER unit, add 1 to the Hit roll and add 1 to the Wound roll.",
+            "restrictions": ""
+          },          
+          {
+            "name": "MOMENT OF GLORY",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "IMPERIAL KNIGHTS – Questoris Companions",
+            "timing": "anyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Fight phase, just before an IMPERIAL KNIGHTS TITANIC unit from your army Consolidates.",
+            "target": "That IMPERIAL KNIGHTS TITANIC unit.",
+            "effect": "Until the end of the phase, each time an attack is allocated to a model in your unit, an additional 3\" provided your unit can end that move within Engagement Range of one or more enemy units.",
+            "restrictions": ""
+          },
+          {
+            "name": "HERO’S TREAD",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "IMPERIAL KNIGHTS – Questoris Companions",
+            "timing": "yourTurn",
+            "phases": [
+              "command"
+            ],
+            "when": "End of your Command phase.",
+            "target": "One IMPERIAL KNIGHTS TITANIC model from your army that is within range of an objective marker you control.",
+            "effect": "Your Level of Control over that objective marker is 5 (unless it would otherwise be higher), until your opponent’s Level of Control over that objective marker is greater than yours at the end of a phase.",
+            "restrictions": ""
+          },
+          {
+            "name": "UNSTOPPABLE WARRIOR",
+            "cp": 2,
+            "type": "Epic Deed",
+            "group": "IMPERIAL KNIGHTS – Questoris Companions",
+            "timing": "yourTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "Your Movement phase, just after an IMPERIAL KNIGHTS TITANIC unit from your army Falls Back.",
+            "target": "That IMPERIAL KNIGHTS TITANIC unit.",
+            "effect": "Until the end of the turn, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back.",
+            "restrictions": ""
+          },
+          {
+            "name": "DRIVEN BY THE PAST",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "IMPERIAL KNIGHTS – Questoris Companions",
+            "timing": "yourTurn",
+            "phases": [
+              "charge"
+            ],
+            "when": "Your Charge phase.",
+            "target": "One IMPERIAL KNIGHTS TITANIC unit from your army.",
+            "effect": "Until the end of the turn, your unit is eligible to declare a charge in a turn in which it Advanced.",
+            "restrictions": ""
+          }
+        ],
+        "Gate Warden Lance": [
+          {
+            "name": "DRIVE THEM OUT!",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "IMPERIAL KNIGHTS – Gate Warden Lance",
+            "timing": "yourTurn",
+            "phases": [
+              "charge",
+              "fight"
+            ],
+            "when": "Your Shooting phase or the Fight phase.",
+            "target": "One IMPERIAL KNIGHTS unit from your army that has not been selected to shoot or fight this phase.",
+            "effect": "Until the end of the phase, each time a model in your unit makes an attack that targets an enemy unit on your defensive line, an unmodified Hit roll of 5+ scores a Critical Hit.",
+            "restrictions": ""
+          },
+          {
+            "name": "LANCEBREAKER",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "IMPERIAL KNIGHTS – Gate Warden Lance",
+            "timing": "anyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Fight phase, just after an enemy unit has selected its targets.",
+            "target": "One IMPERIAL KNIGHTS unit from your army that was selected as the target of one or more of the attacking unit’s attacks and is on your defensive line.",
+            "effect": "Until the end of the phase, each time an attack targets your unit, if the Strength characteristic of that attack is greater than the Toughness characteristic of your unit, subtract 1 from the Wound roll.",
+            "restrictions": ""
+          },
+          {
+            "name": "STEADFAST SUPERIORITY",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "IMPERIAL KNIGHTS – Gate Warden Lance",
+            "timing": "anyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Fight phase.",
+            "target": "One IMPERIAL KNIGHTS unit from your army that is within Engagement Range of one or more enemy units, that is on your defensive line and that has not already been selected to fight this phase.",
+            "effect": "Until the end of the phase, each time a model in your unit makes an attack, you can re-roll the Hit roll.",
+            "restrictions": ""
+          },
+          {
+            "name": "MARSHAL THE DEFENCE",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "IMPERIAL KNIGHTS – Gate Warden Lance",
+            "timing": "yourTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "Your Movement phase.",
+            "target": "Up to two IMPERIAL KNIGHTS units from your army that have not been selected to move this phase.",
+            "effect": "Until the end of the phase, add 3\" to the Move characteristic of models in your units.",
+            "restrictions": ""
+          },
+          {
+            "name": "TITANIC BOMBARDMENT",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "IMPERIAL KNIGHTS – Gate Warden Lance",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase.",
+            "target": "One IMPERIAL KNIGHTS TITANIC unit from your army that Remained Stationary this turn, that is on your defensive line and that has not been selected to shoot this phase.",
+            "effect": "Until the end of the phase, ranged weapons equipped by models in your unit have the [SUSTAINED HITS 2] ability.",
+            "restrictions": ""
+          },
+          {
+            "name": "FORTRESS OF INTIMIDATION",
+            "cp": 1,
+            "type": "Epic Deed",
+            "group": "IMPERIAL KNIGHTS – Gate Warden Lance",
+            "timing": "oppTurn",
+            "phases": [
+              "charge"
+            ],
+            "when": "Start of your opponent’s Charge phase.",
+            "target": "One IMPERIAL KNIGHTS TITANIC unit from your army that is on your defensive line.",
+            "effect": "Until the end of the phase, each time an enemy unit selects your unit as a target of a charge, that unit must take a Battle-shock test, subtracting 1 from the result.",
+            "restrictions": ""
+          }
+        ],
+        "Valourstrike Lance": [
+          {
+            "name": "RUN THEM THROUGH!",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "IMPERIAL KNIGHTS – Valourstrike Lance",
+            "timing": "anyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Fight phase.",
+            "target": "One IMPERIAL KNIGHTS unit from your army that has not been selected to fight this phase.",
+            "effect": "Until the end of the phase, melee weapons equipped by your models have the [LANCE] ability.",
+            "restrictions": ""
+          },
+          {
+            "name": "THUNDERSTOMP",
+            "cp": 1,
+            "type": "Battle Tactic",
+            "group": "IMPERIAL KNIGHTS – Valourstrike Lance",
+            "timing": "anyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Fight phase.",
+            "target": "One IMPERIAL KNIGHTS model from your army that has not been selected to fight this phase.",
+            "effect": "Until the end of the phase, the Attacks characteristic of any armoured Feet melee weapons equipped by your model is 8, the Attacks characteristic of any titanic Feet melee weapons equipped by your model is 12, and improve the Armour Penetration characteristic of those weapons by 1.",
+            "restrictions": ""
+          },
+          {
+            "name": "FULL TILT",
+            "cp": 2,
+            "type": "Battle Tactic",
+            "group": "IMPERIAL KNIGHTS – Valourstrike Lance",
+            "timing": "yourTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "Your Movement phase.",
+            "target": "One IMPERIAL KNIGHTS unit from your army that has not been selected to move this phase.",
+            "effect": "Until the end of the phase, add 2\" to the Move characteristic of your models and add 2 to Advance rolls made for those models’ units.",
+            "restrictions": ""
+          },
+          {
+            "name": "VOW OF RETRIBUTION",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "IMPERIAL KNIGHTS – Valourstrike Lance",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase.",
+            "target": "One IMPERIAL KNIGHTS unit from your army that has not been selected to shoot this phase.",
+            "effect": "Until the end of the phase, ranged weapons equipped by your models have the [LETHAL HITS] ability.",
+            "restrictions": ""
+          },
+          {
+            "name": "TACTICAL FOIL",
+            "cp": 1,
+            "type": "Strategic Ploy",
+            "group": "IMPERIAL KNIGHTS – Valourstrike Lance",
+            "timing": "oppTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "Your opponent’s Movement phase, just after an enemy unit ends a Normal, Advance or Fall Back move.",
+            "target": "One IMPERIAL KNIGHTS model from your army that is within 9\" of that unit.",
+            "effect": "Your model can make a Normal move of up to D6\".",
+            "restrictions": ""
+          },
+          {
+            "name": "ROTATE ION SHIELDS",
+            "cp": 1,
+            "type": "Wargear",
+            "group": "IMPERIAL KNIGHTS – Valourstrike Lance",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your opponent’s Shooting phase, just after an enemy unit has selected its targets.",
+            "target": "One IMPERIAL KNIGHTS unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
+            "effect": "Until the end of the phase, models in your unit have a 4+ invulnerable save.",
+            "restrictions": ""
+          }
         ]
       }
     },
