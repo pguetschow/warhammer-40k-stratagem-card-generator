@@ -4,7 +4,7 @@
     <div ref="underline" :style="{ borderTopColor: stripColor }" class="underline"></div>
     <div :style="{ background: metaColor }" class="meta-bg"></div>
     <div class="meta-text">
-      <strong style="font-style:normal;font-weight:600">{{ card.group }}</strong> · {{ card.type }}
+      <strong style="font-style:normal;font-weight:600">{{ card.type }}</strong>
     </div>
     <div class="body">
       <div class="sec">
