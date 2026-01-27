@@ -195,7 +195,7 @@ const cleanHtml = (text: string) =>
         "movement phase": "movement",
         "charge phase": "charge",
         "fight phase": "fight",
-        "any phase": "command"
+        "any phase": "any"
       }
       return map[p] || p
     }
