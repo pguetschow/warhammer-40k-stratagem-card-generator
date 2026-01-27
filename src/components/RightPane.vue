@@ -9,19 +9,19 @@
     <div class="body">
       <div class="sec">
         <h6 :style="{ color: stripColor }">WHEN:</h6>
-        <p>{{ card.when }}</p>
+        <p v-html="card.when"></p>
       </div>
       <div class="sec">
         <h6 :style="{ color: stripColor }">TARGET:</h6>
-        <p>{{ card.target }}</p>
+        <p v-html="card.target"></p>
       </div>
       <div class="sec">
         <h6 :style="{ color: stripColor }">EFFECT:</h6>
-        <p>{{ card.effect }}</p>
+        <p v-html="card.effect"></p>
       </div>
       <div v-if="card.restrictions" class="sec">
         <h6 :style="{ color: stripColor }">RESTRICTIONS:</h6>
-        <p>{{ card.restrictions }}</p>
+        <p v-html="card.restrictions"></p>
       </div>
     </div>
   </div>
