@@ -135,31 +135,139 @@ const showPrintPreview = ref(false)
 
 async function loadData() {
   try {
-    const res = await fetch('/data/cards.json', {cache: 'no-cache'})
-    if (!res.ok) throw new Error('HTTP ' + res.status)
-    const json = await res.json()
+    // Load combined faction metadata
+    const metaRes = await fetch("/data/factions.json", { cache: "no-cache" })
+    if (!metaRes.ok) throw new Error("Failed to load factions.json")
+    const meta = await metaRes.json()
 
-    if (json.factions) {
-      dataByFaction.value = json.factions
-      Core.value = json.factions.Core?.detachments?.['(none)'] || []
-      if (json.factionGroups && typeof json.factionGroups === 'object') {
-        factionGroups.value = json.factionGroups as FactionGroups
+    const factionIdMap = meta.mapping
+    factionGroups.value = meta.groups
+
+    // Load CSV
+    const csvRes = await fetch("/data/Stratagems.csv", { cache: "no-cache" })
+    if (!csvRes.ok) throw new Error("Failed to load Stratagems.csv")
+    const csv = await csvRes.text()
+
+    const lines = csv.split("\n").map(l => l.trim())
+    const headers = lines[0].split("|").map(h => h.trim())
+
+    const factions: Record<string, FactionData> = {}
+
+    // --- Helpers ---------------------------------------------------------
+const cleanHtml = (text: string) =>
+  text
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/<span class="kwb">/gi, "<b>")
+    .replace(/<span class="kwb2">/gi, "<b>")
+    .replace(/<\/span>/gi, "</b>")
+    .replace(/<br\s*\/?>/gi, "\n")
+    .trim()
+
+    const extractSections = (desc: string) => {
+      const d = cleanHtml(desc)
+      const get = (label: string) => {
+        const regex = new RegExp(`${label}:\\s*(.*?)(?=WHEN:|TARGET:|EFFECT:|RESTRICTIONS:|$)`, "is")
+        const match = d.match(regex)
+        return match ? match[1].trim() : ""
       }
-    } else {
-      throw new Error('Unknown JSON shape')
+      return {
+        when: get("WHEN"),
+        target: get("TARGET"),
+        effect: get("EFFECT"),
+        restrictions: get("RESTRICTIONS")
+      }
     }
 
-    if (!dataByFaction.value[faction.value]) {
-      if (dataByFaction.value.Core) {
-        faction.value = 'Core'
+    const normalizeTiming = (turn: string) => {
+      const t = turn.toLowerCase()
+      if (t.includes("your")) return "yourTurn"
+      if (t.includes("either")) return "anyTurn"
+      if (t.includes("opponent")) return "opponentTurn"
+      return "anyTurn"
+    }
+
+    const normalizePhase = (phase: string) => {
+      const p = phase.toLowerCase()
+      const map: Record<string, string> = {
+        "shooting phase": "shooting",
+        "command phase": "command",
+        "movement phase": "movement",
+        "charge phase": "charge",
+        "fight phase": "fight",
+        "any phase": "any"
+      }
+      return map[p] || p
+    }
+
+    // --- Parse CSV rows --------------------------------------------------
+    for (let i = 1; i < lines.length; i++) {
+      if (!lines[i]) continue
+
+      const cols = lines[i].split("|")
+      const row: Record<string, string> = {}
+      headers.forEach((h, idx) => (row[h] = cols[idx]?.trim() ?? ""))
+
+      // --- Determine faction --------------------------------------------
+      let factionName: string
+
+      if (row.type?.trim().toLowerCase().startsWith("core")) {
+        factionName = "Core"
+      } else if (row.faction_id && factionIdMap[row.faction_id]) {
+        factionName = factionIdMap[row.faction_id]
       } else {
-        const keys = Object.keys(dataByFaction.value)
-        if (keys.length) faction.value = keys[0]
+        factionName = "Unaligned Forces"
       }
-      detachment.value = firstDetachmentOption.value || '(none)'
+
+      // --- Ensure faction exists ----------------------------------------
+      if (!factions[factionName]) {
+        factions[factionName] = {
+          name: factionName,
+          combatPatrols: {},
+          detachments: {}
+        }
+      }
+
+      // --- Determine detachment -----------------------------------------
+      const detachmentName =
+        row.detachment?.trim() !== "" ? row.detachment.trim() : "(none)"
+
+      // Ensure detachment exists
+      if (!factions[factionName].detachments[detachmentName]) {
+        factions[factionName].detachments[detachmentName] = []
+      }
+
+      // Extract WHEN / TARGET / EFFECT / RESTRICTIONS
+      const sections = extractSections(row.description)
+      const phases = row.phase ? [normalizePhase(row.phase)] : []
+
+      // --- Push card into correct detachment -----------------------------
+      factions[factionName].detachments[detachmentName].push({
+        name: row.name,
+        cp: Number(row.cp_cost),
+        type: row.type.replace("Stratagem", "").trim(),
+        group:
+          detachmentName === "(none)"
+            ? factionName.toUpperCase()
+            : `${factionName.toUpperCase()} – ${detachmentName}`,
+        timing: normalizeTiming(row.turn),
+        phases,
+        when: sections.when,
+        target: sections.target,
+        effect: sections.effect,
+        restrictions: sections.restrictions,
+        id: row.id || crypto.randomUUID()
+      })
     }
+
+    // --- Assign to Vue state --------------------------------------------
+    dataByFaction.value = factions
+    Core.value = factions.Core?.detachments["(none)"] || []
+
+    loadError.value = false
+
   } catch (e) {
-    console.warn('Fetch failed, maybe CORS. Use a local server.', e)
+    console.warn("Failed to load factions.json or Stratagems.csv", e)
     loadError.value = true
   }
 }

@@ -1,0 +1,72 @@
+{
+  "mapping": {
+    "AC": "Adeptus Custodes",
+    "AdM": "Adeptus Mechanicus",
+    "AE": "Aeldari",
+    "AM": "Astra Militarum",
+    "AoI": "Imperial Agents",
+    "AS": "Adepta Sororitas",
+    "CD": "Chaos Daemons",
+    "CSM": "Chaos Space Marines",
+    "DG": "Death Guard",
+    "DRU": "Drukhari",
+    "EC": "Emperor’s Children",
+    "GC": "Genestealer Cults",
+    "GK": "Grey Knights",
+    "LoV": "Leagues of Votann",
+    "NEC": "Necrons",
+    "ORK": "Orks",
+    "QI": "The Inquisition",
+    "QT": "Imperial Knights",
+    "SM": "Space Marines",
+    "TAU": "T’au Empire",
+    "TS": "Thousand Sons",
+    "TYR": "Tyranids",
+    "WE": "World Eaters",
+
+    "CORE": "Core",
+    "UA": "Unaligned Forces"
+  },
+
+  "groups": {
+    "Forces of the Imperium": [
+      "Adepta Sororitas",
+      "Adeptus Custodes",
+      "Adeptus Mechanicus",
+      "Astra Militarum",
+      "Grey Knights",
+      "Imperial Knights",
+      "Space Marines",
+      "Imperial Agents",
+      "Imperial Navy",
+      "Adeptus Arbites",
+      "The Inquisition"
+    ],
+    "Forces of Chaos": [
+      "Chaos Space Marines",
+      "Chaos Daemons",
+      "Chaos Knights",
+      "Death Guard",
+      "Thousand Sons",
+      "World Eaters",
+      "Emperor’s Children"
+    ],
+    "Xenos": [
+      "Aeldari",
+      "Drukhari",
+      "Harlequins",
+      "Ynnari",
+      "Necrons",
+      "T’au Empire",
+      "Genestealer Cults",
+      "Orks",
+      "Leagues of Votann",
+      "Tyranids"
+    ],
+    "Other": [
+      "Adeptus Titanicus",
+      "Unaligned Forces",
+      "Core"
+    ]
+  }
+}
