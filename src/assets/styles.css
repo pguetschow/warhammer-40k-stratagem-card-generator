@@ -333,8 +333,9 @@ a {
     width: 40px;
     bottom: 0;
     background:
-        linear-gradient(135deg, rgba(255,255,255,.10), transparent 40%),
-        linear-gradient(135deg, #4a5236, #3d4120 60%, #23261a) !important;
+        url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22140%22%20height%3D%22140%22%3E%3Cfilter%20id%3D%22n%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.06%200.09%22%20numOctaves%3D%223%22%20seed%3D%229%22%20stitchTiles%3D%22stitch%22/%3E%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220%200%200%200%200.15%20%200%200%200%200%200.17%20%200%200%200%200%200.05%20%200%200%200%200.55%200%22/%3E%3C/filter%3E%3Crect%20width%3D%22140%22%20height%3D%22140%22%20filter%3D%22url%28%23n%29%22/%3E%3C/svg%3E") repeat,
+        linear-gradient(135deg, rgba(255,255,255,.10), transparent 40%) no-repeat,
+        linear-gradient(135deg, #4a5236, #3d4120 60%, #23261a) no-repeat !important;
     z-index: -2
 }
 
@@ -350,8 +351,7 @@ a {
     background-position: center calc(0px - var(--rail-offset-y, 0px));
     transform: scaleX(var(--rail-flip-x, 1)) rotate(var(--rail-rotate, 0deg));
     transform-origin: center;
-    mix-blend-mode: screen;
-    opacity: .16
+    opacity: .5
 }
 
 .strip.rail-motif-b::before {
