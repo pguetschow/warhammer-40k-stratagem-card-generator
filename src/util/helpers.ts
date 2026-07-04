@@ -1,9 +1,44 @@
-import {HEX_ALWAYS, HEX_ENEMY, HEX_MINE, META} from './constants'
+import {EDITION_11_TIMING, HEX_ALWAYS, HEX_ENEMY, HEX_MINE, META} from './constants'
 import type {CardData} from '../types'
 
 export function stripColorFor(card: CardData) {
     const t = (card.timing || 'everyTurn')
     return t === 'yourTurn' ? HEX_MINE : t === 'oppTurn' ? HEX_ENEMY : HEX_ALWAYS
+}
+
+/** Category-bar color for 11th Edition cards - timing-based, per the core rulebook's Stratagems Key. */
+export function timingColorFor11(card: CardData) {
+    const t = (card.timing || 'anyTurn')
+    return t === 'yourTurn' ? EDITION_11_TIMING.yourTurn : t === 'oppTurn' ? EDITION_11_TIMING.oppTurn : EDITION_11_TIMING.anyTurn
+}
+
+/**
+ * The rail's skull badge shape also encodes timing per the core rulebook's Stratagems Key:
+ * a diamond for either player's turn, a point-down pin for your turn, and a point-up pin
+ * (mirrored) for your opponent's turn.
+ */
+export function badgeShapeFor11(card: CardData): 'up' | 'down' | 'diamond' {
+    const t = (card.timing || 'anyTurn')
+    return t === 'yourTurn' ? 'down' : t === 'oppTurn' ? 'up' : 'diamond'
+}
+
+/**
+ * Deterministic per-card variation for the rail's decorative texture, so cards don't all
+ * show the exact same slice of the tiled pattern. Same card always yields the same result.
+ */
+export function railSeedFor(card: CardData) {
+    const key = card.id || card.name || ''
+    let hash = 0
+    for (let i = 0; i < key.length; i++) {
+        hash = (hash * 31 + key.charCodeAt(i)) | 0
+    }
+    hash = Math.abs(hash)
+    return {
+        offsetY: hash % 440,
+        flipX: (hash >> 3) % 2 === 0 ? 1 : -1,
+        rotate: (hash % 7) - 3, // small ±3deg tilt
+        motif: (hash >> 5) % 2 === 0 ? 'a' : 'b',
+    }
 }
 
 export function metaColorFor(card: CardData) {

@@ -1,0 +1,14 @@
+{
+  "editions": [
+    {
+      "id": "10",
+      "label": "10th Edition",
+      "sourceUrl": "https://wahapedia.ru/wh40k10ed/the-rules/data-export/"
+    },
+    {
+      "id": "11",
+      "label": "11th Edition",
+      "sourceUrl": "https://assets.warhammer-community.com/eng_01-06_warhammer40k_new40k_core_rules-was6fbu1ix-hfewhmxyiy.pdf"
+    }
+  ]
+}

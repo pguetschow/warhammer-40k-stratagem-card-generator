@@ -1,7 +1,7 @@
 <template>
   <div class="cards-grid">
     <div v-for="(c,i) in cards" :key="i" class="card-container">
-      <Card :card="c"/>
+      <Card :card="c" :edition="edition"/>
       <button class="remove-btn" title="Remove Card for Printing" @click="$emit('remove-card', c)">×</button>
     </div>
   </div>
@@ -9,9 +9,9 @@
 
 <script lang="ts" setup>
 import Card from './Card.vue'
-import type {CardData} from '../types'
+import type {CardData, EditionId} from '../types'
 
-defineProps<{ cards: CardData[], index: number }>()
+defineProps<{ cards: CardData[], index: number, edition: EditionId }>()
 defineEmits<{ (e: 'remove-card', card: CardData): void }>()
 </script>
 

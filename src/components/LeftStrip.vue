@@ -1,28 +1,35 @@
 <template>
   <div class="side">
-    <div class="diamonds-container">
-      <Diamond :color="stripColor" isCp>
-        {{ cp }}CP
-      </Diamond>
-      <Diamond v-for="(p,i) in phases" :key="i" :color="stripColor">
+    <div class="rail-icons">
+      <div v-for="(p,i) in phases" :key="i" class="phase-icon-wrap">
         <component :is="iconComponent(p)"/>
+      </div>
+      <Diamond :shape="badgeShape" color="#f4f6ed">
+        <SkullIcon/>
       </Diamond>
     </div>
-    <div :style="{ backgroundColor: stripColor }" class="strip"></div>
+    <div
+        :class="{ 'rail-motif-b': railMotif === 'b' }"
+        :style="{ backgroundColor: stripColor }"
+        class="strip"
+    ></div>
   </div>
 </template>
 <script lang="ts" setup>
 import Diamond from './Diamond.vue'
-import CmdIcon from './icons/CmdIcon.vue'
-import MoveIcon from './icons/MoveIcon.vue'
-import ShootingIcon from './icons/ShootingIcon.vue'
-import ChargeIcon from './icons/ChargeIcon.vue'
-import FightIcon from './icons/FightIcon.vue'
+import CmdIcon from './icons/CmdIcon11.vue'
+import MoveIcon from './icons/MoveIcon11.vue'
+import ShootingIcon from './icons/ShootingIcon11.vue'
+import ChargeIcon from './icons/ChargeIcon11.vue'
+import SwordsIcon from './icons/SwordsIcon.vue'
+import CheckIcon from './icons/CheckIcon.vue'
+import SkullIcon from './icons/SkullIcon.vue'
 
 const props = defineProps<{
-  cp: number,
-  phases: Array<'command' | 'movement' | 'shooting' | 'charge' | 'fight'>,
-  stripColor: string
+  phases: Array<'command' | 'movement' | 'shooting' | 'charge' | 'fight' | 'any'>,
+  stripColor: string,
+  railMotif?: 'a' | 'b',
+  badgeShape?: 'up' | 'down' | 'diamond'
 }>()
 
 function iconComponent(p: string) {
@@ -30,6 +37,7 @@ function iconComponent(p: string) {
   if (p === 'movement') return MoveIcon;
   if (p === 'shooting') return ShootingIcon;
   if (p === 'charge') return ChargeIcon;
-  return FightIcon
+  if (p === 'any') return CheckIcon;
+  return SwordsIcon
 }
 </script>

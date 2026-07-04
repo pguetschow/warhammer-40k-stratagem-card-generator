@@ -10,6 +10,17 @@ export const DIAMOND_W_PX = Math.round(DIAMOND_W_IN * INCH)
 export const HEX_ALWAYS = '#2C5A4B'
 export const HEX_ENEMY = '#A3151C'
 export const HEX_MINE = '#20455D'
+export const RAIL_W_PX = 40
+
+// 11th Edition core rulebook "Stratagems Key": the category bar is colored by which
+// turn a stratagem can be used in - green (either), blue (your turn), red (opponent's turn) -
+// sampled directly from the official core rules PDF. Kept separate from the 10th Edition
+// HEX_* constants above so that edition's card colors are untouched.
+export const EDITION_11_TIMING = {
+    anyTurn: '#007360',
+    yourTurn: '#003d68',
+    oppTurn: '#9e0a0e',
+}
 export const META = {
     CORE: '#DEDFDB',
     NECRONS: '#c2d5c1',

@@ -43,7 +43,7 @@
 
           <div class="print-grid">
             <div v-for="(card, cardIndex) in printPage" :key="cardIndex" class="print-card-wrapper">
-              <Card :card="card" class="print-card"/>
+              <Card :card="card" :edition="edition" class="print-card"/>
             </div>
           </div>
         </div>
@@ -55,10 +55,11 @@
 <script lang="ts" setup>
 import {computed} from 'vue'
 import Card from './Card.vue'
-import type {CardData} from '../types'
+import type {CardData, EditionId} from '../types'
 
 const props = defineProps<{
   visibleCards: CardData[]
+  edition: EditionId
 }>()
 
 defineEmits<{

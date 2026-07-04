@@ -1,0 +1,274 @@
+{
+  "edition": "11",
+  "editionLabel": "11th Edition",
+  "sourceUrl": "https://assets.warhammer-community.com/eng_01-06_warhammer40k_new40k_core_rules-was6fbu1ix-hfewhmxyiy.pdf",
+  "lastUpdate": "2026-07-04 (official Warhammer Community Core Rules PDF, Core Stratagems only)",
+  "factionGroups": {
+    "Forces of the Imperium": [
+      "Adepta Sororitas",
+      "Adeptus Custodes",
+      "Adeptus Mechanicus",
+      "Astra Militarum",
+      "Grey Knights",
+      "Imperial Knights",
+      "Space Marines",
+      "Imperial Agents",
+      "Imperial Navy",
+      "Adeptus Arbites",
+      "The Inquisition"
+    ],
+    "Forces of Chaos": [
+      "Chaos Space Marines",
+      "Chaos Daemons",
+      "Chaos Knights",
+      "Death Guard",
+      "Thousand Sons",
+      "World Eaters",
+      "Emperor’s Children"
+    ],
+    "Xenos": [
+      "Aeldari",
+      "Drukhari",
+      "Harlequins",
+      "Ynnari",
+      "Necrons",
+      "T’au Empire",
+      "Genestealer Cults",
+      "Orks",
+      "Leagues of Votann",
+      "Tyranids"
+    ],
+    "Other": [
+      "Adeptus Titanicus",
+      "Unaligned Forces",
+      "Unbound Adversaries",
+      "Core"
+    ]
+  },
+  "factions": {
+    "Core": {
+      "name": "Core Rules",
+      "combatPatrols": {},
+      "detachments": {
+        "(none)": [
+          {
+            "id": "core11-command-reroll",
+            "name": "COMMAND RE-ROLL",
+            "ref": "15.02",
+            "flavor": "A great commander can bend even the vagaries of fate and fortune to their will, the better to ensure victory.",
+            "cp": 1,
+            "type": "Core Stratagem",
+            "group": "CORE",
+            "timing": "anyTurn",
+            "phases": [
+              "any"
+            ],
+            "when": "Any phase, just after you make one of the following rolls for a friendly unit or model:<br>▪ Advance roll<br>▪ Charge roll<br>▪ Damage roll<br>▪ Hazard roll<br>▪ Hit roll<br>▪ Save roll<br>▪ Wound roll<br>▪ A roll to determine the number of attacks generated with a weapon.",
+            "target": "That unit or model.",
+            "effect": "You re-roll that roll. If you are rolling more than one dice together, select one of those dice to re-roll (excluding <b>charge rolls</b>, which you must re-roll in full).",
+            "restrictions": ""
+          },
+          {
+            "id": "core11-epic-challenge",
+            "name": "EPIC CHALLENGE",
+            "ref": "15.03",
+            "flavor": "The legends of the 41st millennium are replete with deadly duels between mighty champions.",
+            "cp": 1,
+            "type": "Core Stratagem",
+            "group": "CORE",
+            "timing": "anyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Fight phase, just after a friendly <b>CHARACTER</b> unit is <b>selected to fight</b>.",
+            "target": "That <b>CHARACTER</b> unit.",
+            "effect": "Select one <b>CHARACTER</b> model in your unit. Until the end of the phase, that model’s melee weapons have the [PRECISION] ability.",
+            "restrictions": ""
+          },
+          {
+            "id": "core11-insane-bravery",
+            "name": "INSANE BRAVERY",
+            "ref": "15.04",
+            "flavor": "Indifferent to their own survival, these warriors hold their ground against seemingly impossible odds.",
+            "cp": 1,
+            "type": "Core Stratagem",
+            "group": "CORE",
+            "timing": "yourTurn",
+            "phases": [
+              "command"
+            ],
+            "when": "Battle-shock step of your Command phase, just before you make a <b>battle-shock roll</b> for a friendly unit.",
+            "target": "That unit.",
+            "effect": "That <b>battle-shock roll</b> is automatically successful.",
+            "restrictions": "You cannot use this stratagem more than once per battle."
+          },
+          {
+            "id": "core11-explosives",
+            "name": "EXPLOSIVES",
+            "ref": "15.05",
+            "flavor": "Priming grenades or other explosives, these warriors draw back and hurl death into the enemy’s midst.",
+            "cp": 1,
+            "type": "Core Stratagem",
+            "group": "CORE",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase.",
+            "target": "One friendly <b>unengaged</b> <b>EXPLOSIVES/GRENADES</b> unit that is <b>eligible to shoot</b> and did not make an <b>advance move</b> this turn.",
+            "effect": "Resolve the following sequence:<br>1. Select one <b>EXPLOSIVES/GRENADES</b> model in your unit.<br>2. Select one <b>unengaged</b> enemy unit within 8\" of and <b>visible</b> to that model.<br>3. Roll six D6: for each 4+, that enemy unit suffers 1 <b>mortal wound</b> (06.02).",
+            "restrictions": ""
+          },
+          {
+            "id": "core11-crushing-impact",
+            "name": "CRUSHING IMPACT",
+            "ref": "15.06",
+            "flavor": "In extremis, armoured vehicles and rampaging monsters can use their sheer size as a weapon, ramming and crushing enemies beneath their colossal bulk, though doing so risks sustaining damage in return.",
+            "cp": 1,
+            "type": "Core Stratagem",
+            "group": "CORE",
+            "timing": "yourTurn",
+            "phases": [
+              "charge"
+            ],
+            "when": "Your Charge phase, just after a friendly <b>MONSTER/VEHICLE</b> unit ends a <b>charge move</b>.",
+            "target": "That <b>MONSTER/VEHICLE</b> unit.",
+            "effect": "Resolve the following sequence:<br>1. Select one enemy unit <b>engaged</b> with your unit.<br>2. Select one model in your unit <b>engaged</b> with that enemy unit.<br>3. Roll a number of D6 equal to the T characteristic of that model: for each 1, your unit suffers 1 <b>mortal wound</b>; for each 5+, that enemy unit suffers 1 <b>mortal wound</b> (to a maximum of 6 <b>mortal wounds</b> per unit).",
+            "restrictions": ""
+          },
+          {
+            "id": "core11-rapid-ingress",
+            "name": "RAPID INGRESS",
+            "ref": "15.07",
+            "flavor": "Be it cunning strategy, potent technology or supernatural ritual, there are many means by which a commander may hasten their warriors’ onset.",
+            "cp": 1,
+            "type": "Core Stratagem",
+            "group": "CORE",
+            "timing": "oppTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "End of your opponent’s Movement phase.",
+            "target": "One friendly unit that is in <b>strategic reserves</b> (excluding <b>AIRCRAFT</b>).",
+            "effect": "Your unit makes an <b>ingress move</b> (20.04).",
+            "restrictions": "You cannot use this stratagem during the first battle round."
+          },
+          {
+            "id": "core11-fire-overwatch",
+            "name": "FIRE OVERWATCH",
+            "ref": "15.08",
+            "flavor": "A hail of fire can drive back advancing foes.",
+            "cp": 1,
+            "type": "Core Stratagem",
+            "group": "CORE",
+            "timing": "oppTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "End of your opponent’s Movement phase.",
+            "target": "One friendly <b>unengaged</b> unit (excluding <b>TITANIC</b> units).",
+            "effect": "Your unit shoots using <b>snap shooting</b> (see below).",
+            "restrictions": ""
+          },
+          {
+            "id": "core11-snap-shooting",
+            "name": "SNAP SHOOTING",
+            "ref": "15.09",
+            "noCp": true,
+            "cp": 0,
+            "type": "",
+            "group": "CORE",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "",
+            "target": "",
+            "effect": "",
+            "restrictions": "",
+            "sections": [
+              {
+                "label": "ELIGIBLE IF:",
+                "html": "As stated in the rule allowing this shooting type."
+              },
+              {
+                "label": "EFFECT:",
+                "html": "Your unit shoots as described in Making Attacks (04)."
+              },
+              {
+                "label": "WHILE SHOOTING:",
+                "html": "<br>▪ You can only target one <b>visible</b> enemy unit within 24\" of your unit (and only if it is an eligible target).<br>▪ Each attack only hits on an unmodified hit roll of 6 (irrespective of the attacking weapon’s <b>BS</b> characteristic or any modifiers).<br>▪ You cannot re-roll hit rolls."
+              },
+              {
+                "label": "AFTER SHOOTING:",
+                "html": "Until the end of the phase, your unit is not <b>eligible to start an action</b>."
+              }
+            ]
+          },
+          {
+            "id": "core11-smokescreen",
+            "name": "SMOKESCREEN",
+            "ref": "15.10",
+            "flavor": "Even the most skilled marksmen struggle to hit targets veiled by billowing screens of smoke.",
+            "cp": 1,
+            "type": "Core Stratagem",
+            "group": "CORE",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Start of your opponent’s Shooting phase.",
+            "target": "One friendly <b>SMOKE</b> unit.",
+            "effect": "Until the end of the phase, each time an attack targets either your <b>SMOKE</b> unit, or a unit that is not <b>fully visible</b> to the attacking model because of one or more models in your <b>SMOKE</b> unit, the target has the <b>benefit of cover</b> against that attack (13.08).",
+            "restrictions": ""
+          },
+          {
+            "id": "core11-heroic-intervention",
+            "name": "HEROIC INTERVENTION",
+            "ref": "15.11",
+            "flavor": "Voices raised in furious war cries, your warriors surge forth to meet the enemy’s onslaught head-on.",
+            "cp": 1,
+            "type": "Core Stratagem",
+            "group": "CORE",
+            "timing": "oppTurn",
+            "phases": [
+              "charge"
+            ],
+            "when": "End of your opponent’s Charge phase.",
+            "target": "One friendly <b>unengaged</b> unit within 12\" of one or more enemy units. You can only select a <b>VEHICLE</b> unit if it is a <b>CHARACTER/WALKER</b> unit.",
+            "effect": "Resolve a charge with your unit (11.02). While doing so, before making the <b>charge roll</b>, you must select one of the following modes:",
+            "restrictions": "",
+            "modes": [
+              {
+                "name": "Leap to Defend",
+                "effect": "When selecting <b>charge targets</b>, you can only select enemy units that made a <b>charge move</b> this phase and are within the <b>maximum distance</b>."
+              },
+              {
+                "name": "Into the Fray",
+                "cpModifier": 1,
+                "effect": "When making the <b>charge roll</b>, if the result is greater than 6 (after modifiers), change it to 6.<br> When selecting <b>charge targets</b>, you can select <u>any</u> enemy units that are within 6\" of your unit and within the <b>maximum distance</b>."
+              }
+            ]
+          },
+          {
+            "id": "core11-counteroffensive",
+            "name": "COUNTEROFFENSIVE",
+            "ref": "15.12",
+            "flavor": "In close-quarters combat, the slightest hesitation can leave an opening for a swift foe to exploit.",
+            "cp": 2,
+            "type": "Core Stratagem",
+            "group": "CORE",
+            "timing": "oppTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Fight step of your opponent’s Fight phase, just after an enemy unit has resolved its attacks.",
+            "target": "One friendly unit that is <b>eligible to fight</b>.",
+            "effect": "Until the end of the phase, your unit has the <b>Fights First</b> ability and it must be the next unit you <b>select to fight</b> (12.04).",
+            "restrictions": ""
+          }
+        ]
+      }
+    }
+  }
+}
