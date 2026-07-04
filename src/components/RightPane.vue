@@ -35,11 +35,10 @@
           <p v-html="card.effect"></p>
         </div>
       </template>
-      <div v-if="card.modes?.length" class="modes">
+      <div v-if="card.modes?.length" ref="modesEl" class="modes">
         <div
             v-for="(mode, index) in card.modes"
             :key="mode.name"
-            :ref="(el) => setModeEl(mode, el)"
             :class="{ 'mode-extra-cp': mode.cpModifier }"
             class="mode"
         >
@@ -48,7 +47,11 @@
             <span :style="{ background: metaColor }" class="mode-name">{{ mode.name }}:</span>
             <span v-html="mode.effect"></span>
           </div>
-          <div v-if="index < card.modes.length - 1" class="mode-separator"></div>
+          <div
+              v-if="index < card.modes.length - 1"
+              :ref="(el) => setSeparatorEl(index, el)"
+              class="mode-separator"
+          ></div>
         </div>
       </div>
       <div v-if="card.restrictions" class="sec">
@@ -61,27 +64,45 @@
 <script lang="ts" setup>
 import {computed, nextTick, onBeforeUnmount, onMounted, onUpdated, ref} from 'vue'
 import type {ComponentPublicInstance} from 'vue'
-import type {CardData} from '../types'
+import type {CardData, CpBand} from '../types'
 
 const props = defineProps<{ card: CardData, stripColor: string, metaColor: string }>()
-const emit = defineEmits<{ (e: 'underline', y: number): void, (e: 'mode-cp-y', y: number | null): void }>()
+const emit = defineEmits<{ (e: 'underline', y: number): void, (e: 'mode-cp-bands', bands: CpBand[]): void }>()
 const underline = ref<HTMLElement | null>(null)
-let modeCpModifierEl: HTMLElement | null = null
+const modesEl = ref<HTMLElement | null>(null)
+const separatorEls: (HTMLElement | null)[] = []
 
-function setModeEl(mode: { cpModifier?: number }, el: Element | ComponentPublicInstance | null) {
-  if (mode.cpModifier) modeCpModifierEl = el as HTMLElement | null
+function setSeparatorEl(index: number, el: Element | ComponentPublicInstance | null) {
+  separatorEls[index] = el as HTMLElement | null
 }
 
-function calcModeCpY() {
-  if (!modeCpModifierEl) {
-    emit('mode-cp-y', null)
+// Each mode with a cpModifier gets its own colored band on the side rail, spanning
+// from the dotted separator above it (or the top of the modes list, if it's the
+// first mode) down to the separator below it (or the card's bottom edge, if it's
+// the last mode) — so the band always covers exactly that mode's own text.
+function calcModeCpBands() {
+  const modes = props.card.modes
+  const cardEl = modesEl.value?.closest('.card') as HTMLElement | null
+  if (!modes?.length || !cardEl) {
+    emit('mode-cp-bands', [])
     return
   }
-  const cardEl = modeCpModifierEl.closest('.card') as HTMLElement | null
-  if (!cardEl) return
-  const r = modeCpModifierEl.getBoundingClientRect()
   const cr = cardEl.getBoundingClientRect()
-  emit('mode-cp-y', r.top - cr.top)
+  // `top` on an absolutely-positioned child of .card is relative to .card's padding
+  // edge, but getBoundingClientRect() gives the border box's outer edge — subtract
+  // the border width so the two coordinate spaces line up.
+  const cardBorderTop = Number.parseFloat(getComputedStyle(cardEl).borderTopWidth) || 0
+  const bands: CpBand[] = []
+  modes.forEach((mode, index) => {
+    if (!mode.cpModifier) return
+    const topEl = index === 0 ? modesEl.value : separatorEls[index - 1]
+    const bottomEl = index < modes.length - 1 ? separatorEls[index] : null
+    if (!topEl) return
+    const top = topEl.getBoundingClientRect().top - cr.top - cardBorderTop
+    const bottom = bottomEl ? bottomEl.getBoundingClientRect().top - cr.top - cardBorderTop : null
+    bands.push({top, bottom, cpModifier: mode.cpModifier})
+  })
+  emit('mode-cp-bands', bands)
 }
 
 // Calibrated for the title font (Arial Black / Archivo Black), which is a wide bold-condensed cut.
@@ -112,14 +133,14 @@ function calcUnderlineY() {
 
 const onResize = () => {
   calcUnderlineY()
-  calcModeCpY()
+  calcModeCpBands()
 }
 onMounted(async () => {
   await nextTick();
   calcUnderlineY();
-  calcModeCpY();
+  calcModeCpBands();
   window.addEventListener('resize', onResize)
 })
-onUpdated(() => calcModeCpY())
+onUpdated(() => calcModeCpBands())
 onBeforeUnmount(() => window.removeEventListener('resize', onResize))
 </script>

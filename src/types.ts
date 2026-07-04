@@ -12,6 +12,13 @@ export interface CardSection {
     html: string
 }
 
+/** A colored +CP band on the side rail, covering one mode's own text extent. */
+export interface CpBand {
+    top: number
+    bottom: number | null
+    cpModifier: number
+}
+
 export interface CardData {
     id?: string
     name: string

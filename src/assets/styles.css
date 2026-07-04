@@ -145,8 +145,6 @@ a {
 .cp-modifier {
     position: absolute;
     right: 0;
-    bottom: 0;
-    top: calc(100% - 90px);
     z-index: 6;
     width: 40px;
     display: grid;
