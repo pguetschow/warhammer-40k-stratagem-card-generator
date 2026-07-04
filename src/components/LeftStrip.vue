@@ -4,7 +4,7 @@
       <div v-for="(p,i) in phases" :key="i" class="phase-icon-wrap">
         <component :is="iconComponent(p)"/>
       </div>
-      <Diamond color="#f4f6ed">
+      <Diamond :shape="badgeShape" color="#f4f6ed">
         <SkullIcon/>
       </Diamond>
     </div>
@@ -28,7 +28,8 @@ import SkullIcon from './icons/SkullIcon.vue'
 const props = defineProps<{
   phases: Array<'command' | 'movement' | 'shooting' | 'charge' | 'fight' | 'any'>,
   stripColor: string,
-  railMotif?: 'a' | 'b'
+  railMotif?: 'a' | 'b',
+  badgeShape?: 'up' | 'down' | 'diamond'
 }>()
 
 function iconComponent(p: string) {

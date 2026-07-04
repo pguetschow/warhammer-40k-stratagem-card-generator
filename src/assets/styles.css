@@ -398,6 +398,13 @@ a {
     filter: drop-shadow(0 0 2px rgba(144,184,120,.9)) drop-shadow(0 0 5px rgba(144,184,120,.55))
 }
 
+/*
+ * The badge shape encodes timing, per the core rulebook's Stratagems Key: a diamond
+ * for either player's turn, a point-down pin for your turn, a point-up (mirrored) pin
+ * for your opponent's turn. --down is the classic CSS map-pin trick (one square corner
+ * rotated -45deg); --up is the same shape flipped vertically; --diamond is a plain
+ * rotated square (all sharp corners, no pin point).
+ */
 .diamond {
     flex: 0 0 22px;
     width: 22px;
@@ -407,14 +414,27 @@ a {
     max-width: 22px;
     max-height: 22px;
     margin: 5px 0 9px;
-    transform: rotate(-45deg);
     border: 2px solid rgba(245,248,239,.88) !important;
-    border-radius: 50% 50% 50% 0;
     background: rgba(235,242,225,.12);
     box-shadow: 0 0 0 1px rgba(0,0,0,.25), 0 0 8px rgba(144,184,120,.55);
     display: grid;
     place-items: center;
     overflow: visible
+}
+
+.diamond--down {
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg)
+}
+
+.diamond--up {
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(135deg)
+}
+
+.diamond--diamond {
+    border-radius: 0;
+    transform: rotate(45deg)
 }
 
 .diamond svg {
@@ -426,12 +446,23 @@ a {
 }
 
 .iconWrap {
-    transform: rotate(45deg);
     display: grid;
     place-items: center;
     color: #f4f6ed;
     width: 17px;
     height: 17px
+}
+
+.diamond--down .iconWrap {
+    transform: rotate(45deg)
+}
+
+.diamond--up .iconWrap {
+    transform: rotate(-135deg)
+}
+
+.diamond--diamond .iconWrap {
+    transform: rotate(-45deg)
 }
 
 .cp .iconWrap {

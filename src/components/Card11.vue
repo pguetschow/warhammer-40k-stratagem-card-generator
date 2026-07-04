@@ -17,7 +17,7 @@
         class="cp-modifier"
     >+{{ band.cpModifier }}CP
     </div>
-    <LeftStrip :phases="card.phases" :railMotif="railSeed.motif" :stripColor="stripColor"/>
+    <LeftStrip :badgeShape="badgeShape" :phases="card.phases" :railMotif="railSeed.motif" :stripColor="stripColor"/>
     <RightPane :card="card" :metaColor="metaColor" :stripColor="stripColor" @mode-cp-bands="modeCpBands = $event"/>
   </div>
 </template>
@@ -25,7 +25,7 @@
 <script lang="ts" setup>
 import {computed, ref, watch} from 'vue'
 import type {CardData, CpBand} from '../types'
-import {railSeedFor, stripColorFor, timingColorFor11} from '../util/helpers'
+import {badgeShapeFor11, railSeedFor, stripColorFor, timingColorFor11} from '../util/helpers'
 import LeftStrip from './LeftStrip.vue'
 import RightPane from './RightPane.vue'
 
@@ -34,6 +34,7 @@ const stripColor = computed(() => stripColorFor(props.card))
 // The category bar / mode badges / +CP panel are colored by turn timing (see the core
 // rulebook's Stratagems Key), not by faction.
 const metaColor = computed(() => timingColorFor11(props.card))
+const badgeShape = computed(() => badgeShapeFor11(props.card))
 const railSeed = computed(() => railSeedFor(props.card))
 const modeCpBands = ref<CpBand[]>([])
 watch(() => props.card, () => {

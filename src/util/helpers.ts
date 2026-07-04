@@ -13,6 +13,16 @@ export function timingColorFor11(card: CardData) {
 }
 
 /**
+ * The rail's skull badge shape also encodes timing per the core rulebook's Stratagems Key:
+ * a diamond for either player's turn, a point-down pin for your turn, and a point-up pin
+ * (mirrored) for your opponent's turn.
+ */
+export function badgeShapeFor11(card: CardData): 'up' | 'down' | 'diamond' {
+    const t = (card.timing || 'anyTurn')
+    return t === 'yourTurn' ? 'down' : t === 'oppTurn' ? 'up' : 'diamond'
+}
+
+/**
  * Deterministic per-card variation for the rail's decorative texture, so cards don't all
  * show the exact same slice of the tiled pattern. Same card always yields the same result.
  */
