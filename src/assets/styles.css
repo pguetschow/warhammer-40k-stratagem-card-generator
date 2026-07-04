@@ -166,8 +166,8 @@ a {
     position: relative;
     margin: 0;
     padding: 5px 10px 4px 8px;
-    color: #f7f7f0 !important;
-    background: #231f20;
+    color: #dcecd2 !important;
+    background: #050505;
     font-family: 'Arial Black', 'Archivo Black', Arial, sans-serif;
     font-weight: 700;
     line-height: 1;
@@ -183,8 +183,7 @@ a {
 .title-main {
     display: flex;
     align-items: center;
-    gap: 6px;
-    max-width: 124px;
+    max-width: 178px;
     overflow: hidden
 }
 
@@ -298,14 +297,7 @@ a {
 }
 
 .mode-line {
-    display: block;
-    padding-left: 7px;
-    text-indent: -7px
-}
-
-.mode-bullet {
-    font-size: 7px;
-    margin-right: 2px
+    display: block
 }
 
 .mode-name {
@@ -316,6 +308,7 @@ a {
     font-weight: 700;
     font-size: .95em;
     padding: 1px 5px;
+    margin-right: 5px;
     text-indent: 0
 }
 
@@ -401,7 +394,8 @@ a {
     -webkit-transform: scale(1.15);
     transform: scale(1.15);
     fill: #f4f6ed !important;
-    color: #f4f6ed !important
+    color: #f4f6ed !important;
+    filter: drop-shadow(0 0 2px rgba(144,184,120,.9)) drop-shadow(0 0 5px rgba(144,184,120,.55))
 }
 
 .diamond {
@@ -417,7 +411,7 @@ a {
     border: 2px solid rgba(245,248,239,.88) !important;
     border-radius: 50% 50% 50% 0;
     background: rgba(235,242,225,.12);
-    box-shadow: 0 0 0 1px rgba(0,0,0,.25), 0 0 8px rgba(255,255,255,.2);
+    box-shadow: 0 0 0 1px rgba(0,0,0,.25), 0 0 8px rgba(144,184,120,.55);
     display: grid;
     place-items: center;
     overflow: visible
@@ -427,7 +421,8 @@ a {
     -webkit-transform: scale(1.15);
     transform: scale(1.15);
     fill: #f4f6ed !important;
-    color: #f4f6ed !important
+    color: #f4f6ed !important;
+    filter: drop-shadow(0 0 2px rgba(144,184,120,.9))
 }
 
 .iconWrap {

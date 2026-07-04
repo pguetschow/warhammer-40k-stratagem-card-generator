@@ -42,8 +42,7 @@
             class="mode"
         >
           <div class="mode-line">
-            <span class="mode-bullet">▪</span>
-            <span :style="{ background: metaColor }" class="mode-name">{{ mode.name }}:</span>
+            <span :style="{ background: metaColor }" class="mode-name">{{ mode.name }}</span>
             <span v-html="mode.effect"></span>
           </div>
           <div
@@ -104,16 +103,25 @@ function calcModeCpBands() {
   emit('mode-cp-bands', bands)
 }
 
-// Calibrated for the title font (Arial Black / Archivo Black), which is a wide bold-condensed cut.
-const MONO_CHAR_WIDTH_RATIO = 0.86
-const TITLE_MAIN_BUDGET_PX = 124
+// Matches the .title-main box's available width (rightPane width minus its padding).
+const TITLE_MAIN_BUDGET_PX = 178
 const BASE_TITLE_FONT_PX = 14
 const MIN_TITLE_FONT_PX = 6.5
+const TITLE_FONT_STACK = "'Arial Black', 'Archivo Black', Arial, sans-serif"
+let measureCanvas: HTMLCanvasElement | null = null
+
+function measureTextWidth(text: string, fontPx: number) {
+  measureCanvas ??= document.createElement('canvas')
+  const ctx = measureCanvas.getContext('2d')!
+  ctx.font = `700 ${fontPx}px ${TITLE_FONT_STACK}`
+  return ctx.measureText(text).width
+}
+
 const titleFontSize = computed(() => {
-  const len = props.card.name.length
-  const neededAtBase = len * MONO_CHAR_WIDTH_RATIO * BASE_TITLE_FONT_PX
-  if (neededAtBase <= TITLE_MAIN_BUDGET_PX) return BASE_TITLE_FONT_PX
-  return Math.max(MIN_TITLE_FONT_PX, TITLE_MAIN_BUDGET_PX / (len * MONO_CHAR_WIDTH_RATIO))
+  const name = props.card.name.toUpperCase()
+  const widthAtBase = measureTextWidth(name, BASE_TITLE_FONT_PX)
+  if (widthAtBase <= TITLE_MAIN_BUDGET_PX) return BASE_TITLE_FONT_PX
+  return Math.max(MIN_TITLE_FONT_PX, BASE_TITLE_FONT_PX * TITLE_MAIN_BUDGET_PX / widthAtBase)
 })
 
 function calcUnderlineY() {
