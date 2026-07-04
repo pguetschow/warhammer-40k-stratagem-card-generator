@@ -21,7 +21,7 @@ L 73.921536 73.728
 L 57.6 53.438976
 L 41.278464 73.728
 z
-" style="fill: currentColor"/>
+" style="fill: currentColor; stroke: currentColor; stroke-width: 3; stroke-linejoin: round"/>
         </g>
         <g id="patch_3">
           <path clip-path="url(#pfab9f69499)" d="M 31.63392 51.342336
@@ -31,7 +31,7 @@ L 73.921536 51.342336
 L 57.6 31.053312
 L 41.278464 51.342336
 z
-" style="fill: currentColor"/>
+" style="fill: currentColor; stroke: currentColor; stroke-width: 3; stroke-linejoin: round"/>
         </g>
       </g>
     </g>

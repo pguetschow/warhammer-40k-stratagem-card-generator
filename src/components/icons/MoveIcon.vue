@@ -22,7 +22,7 @@ L 64.0512 61.71264
 L 64.0512 51.47136
 L 78.88896 51.47136
 z
-" style="fill: currentColor"/>
+" style="fill: currentColor; stroke: currentColor; stroke-width: 4; stroke-linejoin: round"/>
         </g>
         <g id="patch_3">
           <path clip-path="url(#pb24850faf7)" d="M 51.664896 69.905664
@@ -30,7 +30,7 @@ L 63.535104 69.905664
 L 63.535104 67.067136
 L 51.664896 67.067136
 z
-" style="fill: currentColor"/>
+" style="fill: currentColor; stroke: currentColor; stroke-width: 4; stroke-linejoin: round"/>
         </g>
         <g id="patch_4">
           <path clip-path="url(#pb24850faf7)" d="M 51.664896 76.679424
@@ -38,7 +38,7 @@ L 63.535104 76.679424
 L 63.535104 73.840896
 L 51.664896 73.840896
 z
-" style="fill: currentColor"/>
+" style="fill: currentColor; stroke: currentColor; stroke-width: 4; stroke-linejoin: round"/>
         </g>
       </g>
     </g>
