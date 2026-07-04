@@ -17,10 +17,10 @@
 </template>
 <script lang="ts" setup>
 import Diamond from './Diamond.vue'
-import CmdIcon from './icons/CmdIcon.vue'
-import MoveIcon from './icons/MoveIcon.vue'
-import ShootingIcon from './icons/ShootingIcon.vue'
-import ChargeIcon from './icons/ChargeIcon.vue'
+import CmdIcon from './icons/CmdIcon11.vue'
+import MoveIcon from './icons/MoveIcon11.vue'
+import ShootingIcon from './icons/ShootingIcon11.vue'
+import ChargeIcon from './icons/ChargeIcon11.vue'
 import SwordsIcon from './icons/SwordsIcon.vue'
 import CheckIcon from './icons/CheckIcon.vue'
 import SkullIcon from './icons/SkullIcon.vue'

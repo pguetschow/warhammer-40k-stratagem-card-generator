@@ -25,35 +25,35 @@ C 31.54176 64.510726 34.287421 71.139337 39.174042 76.025958
 C 44.060663 80.912579 50.689274 83.65824 57.6 83.65824
 L 57.6 83.65824
 z
-" style="fill: none; stroke: currentColor; stroke-width: 5.2; stroke-linejoin: miter"/>
+" style="fill: none; stroke: currentColor; stroke-width: 8.5; stroke-linejoin: miter"/>
         </g>
         <g id="patch_3">
           <path clip-path="url(#p0a64badb0d)" d="M 50.524253 21.198437
 L 64.675747 21.198437
 L 57.6 42.5664
 z
-" style="fill: currentColor"/>
+" style="fill: currentColor; stroke: currentColor; stroke-width: 2; stroke-linejoin: round"/>
         </g>
         <g id="patch_4">
           <path clip-path="url(#p0a64badb0d)" d="M 94.001563 50.524253
 L 94.001563 64.675747
 L 72.6336 57.6
 z
-" style="fill: currentColor"/>
+" style="fill: currentColor; stroke: currentColor; stroke-width: 2; stroke-linejoin: round"/>
         </g>
         <g id="patch_5">
           <path clip-path="url(#p0a64badb0d)" d="M 64.675747 94.001563
 L 50.524253 94.001563
 L 57.6 72.6336
 z
-" style="fill: currentColor"/>
+" style="fill: currentColor; stroke: currentColor; stroke-width: 2; stroke-linejoin: round"/>
         </g>
         <g id="patch_6">
           <path clip-path="url(#p0a64badb0d)" d="M 21.198437 64.675747
 L 21.198437 50.524253
 L 42.5664 57.6
 z
-" style="fill: currentColor"/>
+" style="fill: currentColor; stroke: currentColor; stroke-width: 2; stroke-linejoin: round"/>
         </g>
       </g>
     </g>

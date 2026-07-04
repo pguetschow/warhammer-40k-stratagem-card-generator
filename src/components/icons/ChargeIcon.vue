@@ -14,24 +14,24 @@ z
       </g>
       <g id="axes_1">
         <g id="patch_2">
-          <path clip-path="url(#pfab9f69499)" d="M 18.65 77.575
-L 57.6 38.935
-L 96.55 77.575
-L 82.08 77.575
-L 57.6 67.915
-L 33.12 77.575
+          <path clip-path="url(#pfab9f69499)" d="M 31.63392 73.728
+L 57.6 41.375232
+L 83.56608 73.728
+L 73.921536 73.728
+L 57.6 53.438976
+L 41.278464 73.728
 z
-" style="fill: currentColor; stroke: currentColor; stroke-width: 3; stroke-linejoin: round"/>
+" style="fill: currentColor"/>
         </g>
         <g id="patch_3">
-          <path clip-path="url(#pfab9f69499)" d="M 18.65 51.815
-L 57.6 13.175
-L 96.55 51.815
-L 82.08 51.815
-L 57.6 42.155
-L 33.12 51.815
+          <path clip-path="url(#pfab9f69499)" d="M 31.63392 51.342336
+L 57.6 18.989568
+L 83.56608 51.342336
+L 73.921536 51.342336
+L 57.6 31.053312
+L 41.278464 51.342336
 z
-" style="fill: currentColor; stroke: currentColor; stroke-width: 3; stroke-linejoin: round"/>
+" style="fill: currentColor"/>
         </g>
       </g>
     </g>
