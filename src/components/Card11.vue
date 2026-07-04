@@ -17,7 +17,7 @@
         class="cp-modifier"
     >+{{ band.cpModifier }}CP
     </div>
-    <LeftStrip :phases="card.phases" :stripColor="stripColor"/>
+    <LeftStrip :phases="card.phases" :railMotif="railSeed.motif" :stripColor="stripColor"/>
     <RightPane :card="card" :metaColor="metaColor" :stripColor="stripColor" @mode-cp-bands="modeCpBands = $event"/>
   </div>
 </template>

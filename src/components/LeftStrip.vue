@@ -8,7 +8,11 @@
         <SkullIcon/>
       </Diamond>
     </div>
-    <div :style="{ backgroundColor: stripColor }" class="strip"></div>
+    <div
+        :class="{ 'rail-motif-b': railMotif === 'b' }"
+        :style="{ backgroundColor: stripColor }"
+        class="strip"
+    ></div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -23,7 +27,8 @@ import SkullIcon from './icons/SkullIcon.vue'
 
 const props = defineProps<{
   phases: Array<'command' | 'movement' | 'shooting' | 'charge' | 'fight' | 'any'>,
-  stripColor: string
+  stripColor: string,
+  railMotif?: 'a' | 'b'
 }>()
 
 function iconComponent(p: string) {
