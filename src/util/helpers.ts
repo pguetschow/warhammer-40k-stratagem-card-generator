@@ -12,6 +12,24 @@ export function timingColorFor11(card: CardData) {
     return t === 'yourTurn' ? EDITION_11_TIMING.yourTurn : t === 'oppTurn' ? EDITION_11_TIMING.oppTurn : EDITION_11_TIMING.anyTurn
 }
 
+/**
+ * Deterministic per-card variation for the rail's decorative texture, so cards don't all
+ * show the exact same slice of the tiled pattern. Same card always yields the same result.
+ */
+export function railSeedFor(card: CardData) {
+    const key = card.id || card.name || ''
+    let hash = 0
+    for (let i = 0; i < key.length; i++) {
+        hash = (hash * 31 + key.charCodeAt(i)) | 0
+    }
+    hash = Math.abs(hash)
+    return {
+        offsetY: hash % 320,
+        flipX: (hash >> 3) % 2 === 0 ? 1 : -1,
+        rotate: (hash % 7) - 3, // small ±3deg tilt
+    }
+}
+
 export function metaColorFor(card: CardData) {
     const g = (card.group || '').toUpperCase()
     if (g.startsWith('NECRONS')) return META.NECRONS
