@@ -177,7 +177,7 @@ a {
     display: flex;
     align-items: center;
     letter-spacing: 0;
-    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 16px, 100% 100%, 0 100%)
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 10px, 100% 100%, 0 100%)
 }
 
 .title-main {
@@ -194,14 +194,6 @@ a {
     white-space: nowrap;
     min-width: 0;
     flex: 1 1 auto
-}
-
-.title-ref {
-    font-size: 9px;
-    font-weight: 500;
-    opacity: .75;
-    flex-shrink: 0;
-    white-space: nowrap
 }
 
 .underline {

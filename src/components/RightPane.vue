@@ -3,7 +3,6 @@
     <div :style="{ color: stripColor, fontSize: titleFontSize + 'px' }" class="title">
       <div class="title-main">
         <span class="title-text">{{ card.name.toUpperCase() }}</span>
-        <span v-if="card.ref" class="title-ref">{{ card.ref }}</span>
       </div>
     </div>
     <div ref="underline" :style="{ borderTopColor: stripColor }" class="underline"></div>
@@ -108,17 +107,13 @@ function calcModeCpBands() {
 // Calibrated for the title font (Arial Black / Archivo Black), which is a wide bold-condensed cut.
 const MONO_CHAR_WIDTH_RATIO = 0.86
 const TITLE_MAIN_BUDGET_PX = 124
-const REF_FONT_PX = 9
-const NAME_REF_GAP_PX = 6
 const BASE_TITLE_FONT_PX = 14
 const MIN_TITLE_FONT_PX = 6.5
 const titleFontSize = computed(() => {
   const len = props.card.name.length
-  const refWidth = props.card.ref ? props.card.ref.length * MONO_CHAR_WIDTH_RATIO * REF_FONT_PX + NAME_REF_GAP_PX : 0
-  const nameBudget = TITLE_MAIN_BUDGET_PX - refWidth
   const neededAtBase = len * MONO_CHAR_WIDTH_RATIO * BASE_TITLE_FONT_PX
-  if (neededAtBase <= nameBudget) return BASE_TITLE_FONT_PX
-  return Math.max(MIN_TITLE_FONT_PX, nameBudget / (len * MONO_CHAR_WIDTH_RATIO))
+  if (neededAtBase <= TITLE_MAIN_BUDGET_PX) return BASE_TITLE_FONT_PX
+  return Math.max(MIN_TITLE_FONT_PX, TITLE_MAIN_BUDGET_PX / (len * MONO_CHAR_WIDTH_RATIO))
 })
 
 function calcUnderlineY() {
