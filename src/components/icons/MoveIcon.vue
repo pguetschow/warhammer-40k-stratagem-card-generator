@@ -12,7 +12,7 @@ L 0 115.2
 z
 " style="fill: none; opacity: 0"/>
       </g>
-      <g id="axes_1">
+      <g id="axes_1" transform="translate(57.6 57.6) scale(1.6) translate(-57.6 -57.6)">
         <g id="patch_2">
           <path clip-path="url(#pb24850faf7)" d="M 57.6 31.15008
 L 36.31104 51.47136
