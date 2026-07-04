@@ -246,7 +246,7 @@
               {
                 "name": "Into the Fray",
                 "cpModifier": 1,
-                "effect": "&nbsp;&nbsp;▫ When making the <b>charge roll</b>, if the result is greater than 6 (after modifiers), change it to 6.<br>&nbsp;&nbsp;▫ When selecting <b>charge targets</b>, you can select <u>any</u> enemy units that are within 6\" of your unit and within the <b>maximum distance</b>."
+                "effect": "When making the <b>charge roll</b>, if the result is greater than 6 (after modifiers), change it to 6.<br> When selecting <b>charge targets</b>, you can select <u>any</u> enemy units that are within 6\" of your unit and within the <b>maximum distance</b>."
               }
             ]
           },
