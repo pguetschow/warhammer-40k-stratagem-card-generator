@@ -445,12 +445,19 @@ a {
     filter: drop-shadow(0 0 2px rgba(144,184,120,.9))
 }
 
+/* The "up" pin's point sits opposite its rounded end, leaving less room at the
+   bottom than the "down" pin has - shrink the skull a bit more here so it clears. */
+.diamond--up svg {
+    -webkit-transform: scale(.5);
+    transform: scale(.5)
+}
+
 .iconWrap {
     display: grid;
     place-items: center;
     color: #f4f6ed;
-    width: 17px;
-    height: 17px
+    width: 18px;
+    height: 18px
 }
 
 .diamond--down .iconWrap {
