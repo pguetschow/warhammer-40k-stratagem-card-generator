@@ -1,0 +1,14 @@
+{
+  "editions": [
+    {
+      "id": "10",
+      "label": "10th Edition",
+      "sourceUrl": "https://wahapedia.ru/wh40k10ed/the-rules/data-export/"
+    },
+    {
+      "id": "11",
+      "label": "11th Edition",
+      "sourceUrl": "https://wahapedia.ru/wh40k11ed/the-rules/data-export/"
+    }
+  ]
+}
