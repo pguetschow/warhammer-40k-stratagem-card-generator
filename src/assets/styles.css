@@ -100,43 +100,43 @@ a {
 }
 
 .title {
-    margin-left: 44px;
+    margin-left: 38px;
     margin-top: 2px;
-    padding: 10px 5px;
+    padding: 8px 6px;
     color: var(--strip-color);
     font-weight: 800;
     line-height: 1.05;
-    font-size: 13px;
+    font-size: 12px;
     text-transform: uppercase;
-    height: 40px;
+    height: 39px;
     display: flex;
     align-items: center
 }
 
 .underline {
-    margin-left: 30px;
-    width: calc(100% - 30px);
+    margin-left: 24px;
+    width: calc(100% - 24px);
     height: 0;
     border-top: 2px solid var(--strip-color)
 }
 
 .meta-bg {
     position: absolute;
-    left: 35px;
+    left: 29px;
     right: 0;
-    height: 35px;
+    height: 30px;
     background: var(--meta-color);
     z-index: 1
 }
 
 .meta-text {
-    margin-left: 45px;
-    padding: 5px;
-    font-size: 9px;
+    margin-left: 38px;
+    padding: 4px 6px;
+    font-size: 8.5px;
     line-height: 1.1;
     font-style: italic;
     color: var(--meta-fg);
-    height: 35px;
+    height: 30px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -147,31 +147,31 @@ a {
 }
 
 .body {
-    margin-left: 45px;
-    padding: 5px 7px 5px 5px;
+    margin-left: 38px;
+    padding: 4px 8px 4px 5px;
     display: flex;
     flex-direction: column;
-    gap: 5px
+    gap: 3px
 }
 
 .sec h6 {
     margin: 0;
     color: var(--strip-color);
     font-weight: 800;
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: .02em
 }
 
 .sec p {
     margin: 0px;
-    font-size: 9px;
-    line-height: 1.1
+    font-size: 8.35px;
+    line-height: 1.05
 }
 
 .strip {
     position: absolute;
-    left: 10px;
-    top: 45px;
+    left: 8px;
+    top: 40px;
     width: 25px;
     bottom: 0;
     background: var(--strip-color);
@@ -188,14 +188,20 @@ a {
     position: absolute;
     display: flex;
     flex-direction: column;
-    gap: 19px;
-    left: 15px;
-    top: 32px;
+    gap: 17px;
+    left: 8px;
+    top: 29px;
 }
 
 .diamond {
+    flex: 0 0 25px;
     width: 25px;
     height: 25px;
+    min-width: 25px;
+    min-height: 25px;
+    max-width: 25px;
+    max-height: 25px;
+    aspect-ratio: 1 / 1;
     transform: rotate(45deg);
     border: 1px solid;
     background: #fff;
@@ -225,7 +231,7 @@ a {
 
 .strip {
     position: absolute;
-    left: 15px;
+    left: 8px;
     width: 25px;
     bottom: 0;
     z-index: -2
