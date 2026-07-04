@@ -22,7 +22,7 @@ export const EDITION_11_TIMING = {
     oppTurn: '#9e0a0e',
 }
 export const META = {
-    CORE: '#a01c14',
+    CORE: '#DEDFDB',
     NECRONS: '#c2d5c1',
     TYRANIDS: '#c0b2c0',
     IMPERIAL_AGENTS: '#fbfbfb',
