@@ -23,15 +23,24 @@ npm run build
 
 # (Optional) Preview the production build
 npm run preview
+
+# Refresh Wahapedia data for all configured editions
+npm run update:data
 ```
 
 ## How to collaborate
 
-All game data lives in **`cards.json`** at the project root. Keep entries consistent so the UI and print output remain predictable.
+Generated game data lives under **`public/data/<edition>/cards.json`**. The edition selector is driven by **`public/data/editions.json`**.
+
+Run `npm run update:data` to download Wahapedia’s export overview workbook, follow its linked CSV exports, and rebuild the edition JSON files.
 
 ### Top-level structure
 ```json
 {
+  "edition": "11",
+  "editionLabel": "11th Edition",
+  "sourceUrl": "https://wahapedia.ru/wh40k11ed/the-rules/data-export/",
+  "lastUpdate": "YYYY-MM-DD HH:mm:ss",
   "factionGroups": {
     "<GroupName>": ["<FactionName>"]
   },
@@ -69,8 +78,8 @@ All game data lives in **`cards.json`** at the project root. Keep entries consis
 ```
 
 ### Contribution guidelines
-1. **Add factions/detachments** under `factions["<FactionKey>"]` (`combatPatrols` or `detachments`) using consistent naming/casing.
-2. **Add stratagems** as complete objects with explicit `when`, `target`, `effect`; use `""` for `restrictions` if none.
-3. **Update grouping**: add new factions to the correct `factionGroups` entry so they appear under the right heading in the UI.
+1. **Prefer generated data**: update `scripts/update-wahapedia-data.mjs` when Wahapedia changes its export schema.
+2. **Add editions** in the script’s `EDITIONS` list; the job will rewrite stale workbook links to that edition’s Wahapedia path.
+3. **Manual data edits** should stay consistent with the generated object format and be regenerated before release.
 4. **Validate locally**: run `npm run dev` and test the affected faction/detachment; fix any console errors or rendering issues.
 5. **Keep diffs clean**: 2-space indentation, stable key ordering, no trailing commas.

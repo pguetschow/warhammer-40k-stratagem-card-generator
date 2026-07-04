@@ -13,14 +13,31 @@
             Suitable for 2.5"x 3.5" sleeves (like Magic: The Gathering)
           </p>
           <p class="app-description">
-            Based on the Stratagems available at <a href="https://wahapedia.ru/wh40k10ed">Wahapedia</a> and from the
-            official Combat Patrol PDFs.
+            Based on the Stratagems available at <a :href="sourceUrl">Wahapedia</a>.
+            <span v-if="lastUpdate">Last export update: {{ lastUpdate }}</span>
           </p>
         </div>
       </header>
 
       <section class="controls-section">
         <div class="controls-grid">
+          <div class="control-group">
+            <label class="control-label">Edition</label>
+            <select
+                v-model="selectedEdition"
+                class="control-select"
+                @change="onEditionChange"
+            >
+              <option
+                  v-for="editionOption in editions"
+                  :key="editionOption.id"
+                  :value="editionOption.id"
+              >
+                {{ editionOption.label }}
+              </option>
+            </select>
+          </div>
+
           <div class="control-group">
             <label class="control-label">Faction</label>
             <select
@@ -117,7 +134,7 @@
 import {computed, ref} from 'vue'
 import Page from './components/Page.vue'
 import PrintPreview from './components/PrintPreview.vue'
-import type {CardData, FactionData} from './types'
+import type {CardData, EditionData, EditionOption, FactionData} from './types'
 
 const ALL_DETACHMENTS_ONLY_KEY = '(all-detachments)'
 const ALL_DETACHMENTS_CP_KEY = '(all-detachments-and-combat-patrols)'
@@ -129,150 +146,57 @@ type FactionGroups = Record<string, string[]>
 const dataByFaction = ref<Record<string, FactionData>>({})
 const factionGroups = ref<FactionGroups>({})
 const Core = ref<CardData[]>([])
+const editions = ref<EditionOption[]>([])
+const selectedEdition = ref('11')
+const sourceUrl = ref('https://wahapedia.ru/wh40k11ed/the-rules/data-export/')
+const lastUpdate = ref('')
 const loadError = ref(false)
 const removedCardIds = ref<Set<string>>(new Set())
 const showPrintPreview = ref(false)
 
+async function loadEditions() {
+  try {
+    const response = await fetch('/data/editions.json', {cache: 'no-cache'})
+    if (!response.ok) throw new Error('Failed to load editions.json')
+    const manifest = await response.json()
+    editions.value = manifest.editions || []
+    if (!editions.value.some((edition) => edition.id === selectedEdition.value)) {
+      selectedEdition.value = editions.value[0]?.id || '11'
+    }
+  } catch (e) {
+    console.warn('Failed to load editions.json', e)
+    editions.value = [
+      {id: '10', label: '10th Edition', sourceUrl: 'https://wahapedia.ru/wh40k10ed/the-rules/data-export/'},
+      {id: '11', label: '11th Edition', sourceUrl: 'https://wahapedia.ru/wh40k11ed/the-rules/data-export/'},
+    ]
+  }
+}
+
 async function loadData() {
   try {
-    // Load combined faction metadata
-    const metaRes = await fetch("/data/factions.json", { cache: "no-cache" })
-    if (!metaRes.ok) throw new Error("Failed to load factions.json")
-    const meta = await metaRes.json()
+    const response = await fetch(`/data/${selectedEdition.value}/cards.json`, {cache: 'no-cache'})
+    if (!response.ok) throw new Error(`Failed to load ${selectedEdition.value}/cards.json`)
+    const editionData = await response.json() as EditionData
 
-    const factionIdMap = meta.mapping
-    factionGroups.value = meta.groups
+    dataByFaction.value = editionData.factions
+    factionGroups.value = editionData.factionGroups
+    Core.value = editionData.factions.Core?.detachments['(none)'] || []
+    sourceUrl.value = editionData.sourceUrl
+    lastUpdate.value = editionData.lastUpdate
 
-    // Load CSV
-    const csvRes = await fetch("/data/Stratagems.csv", { cache: "no-cache" })
-    if (!csvRes.ok) throw new Error("Failed to load Stratagems.csv")
-    const csv = await csvRes.text()
-
-    const lines = csv.split("\n").map(l => l.trim())
-    const headers = lines[0].split("|").map(h => h.trim())
-
-    const factions: Record<string, FactionData> = {}
-
-    // --- Helpers ---------------------------------------------------------
-const cleanHtml = (text: string) =>
-  text
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/<span class="kwb">/gi, "<b>")
-    .replace(/<span class="kwb2">/gi, "<b>")
-    .replace(/<\/span>/gi, "</b>")
-    .replace(/<br\s*\/?>/gi, "\n")
-    .trim()
-
-    const extractSections = (desc: string) => {
-      const d = cleanHtml(desc)
-      const get = (label: string) => {
-        const regex = new RegExp(`${label}:\\s*(.*?)(?=WHEN:|TARGET:|EFFECT:|RESTRICTIONS:|$)`, "is")
-        const match = d.match(regex)
-        return match ? match[1].trim() : ""
-      }
-      return {
-        when: get("WHEN"),
-        target: get("TARGET"),
-        effect: get("EFFECT"),
-        restrictions: get("RESTRICTIONS")
-      }
+    if (!dataByFaction.value[faction.value]) {
+      faction.value = dataByFaction.value.Core ? 'Core' : Object.keys(dataByFaction.value)[0] || ''
     }
-
-    const normalizeTiming = (turn: string) => {
-      const t = turn.toLowerCase()
-      if (t.includes("your")) return "yourTurn"
-      if (t.includes("either")) return "anyTurn"
-      if (t.includes("opponent")) return "opponentTurn"
-      return "anyTurn"
-    }
-
-    const normalizePhase = (phase: string) => {
-      const p = phase.toLowerCase()
-      const map: Record<string, string> = {
-        "shooting phase": "shooting",
-        "command phase": "command",
-        "movement phase": "movement",
-        "charge phase": "charge",
-        "fight phase": "fight",
-        "any phase": "any"
-      }
-      return map[p] || p
-    }
-
-    // --- Parse CSV rows --------------------------------------------------
-    for (let i = 1; i < lines.length; i++) {
-      if (!lines[i]) continue
-
-      const cols = lines[i].split("|")
-      const row: Record<string, string> = {}
-      headers.forEach((h, idx) => (row[h] = cols[idx]?.trim() ?? ""))
-
-      // --- Determine faction --------------------------------------------
-      let factionName: string
-
-      if (row.type?.trim().toLowerCase().startsWith("core")) {
-        factionName = "Core"
-      } else if (row.faction_id && factionIdMap[row.faction_id]) {
-        factionName = factionIdMap[row.faction_id]
-      } else {
-        factionName = "Unaligned Forces"
-      }
-
-      // --- Ensure faction exists ----------------------------------------
-      if (!factions[factionName]) {
-        factions[factionName] = {
-          name: factionName,
-          combatPatrols: {},
-          detachments: {}
-        }
-      }
-
-      // --- Determine detachment -----------------------------------------
-      const detachmentName =
-        row.detachment?.trim() !== "" ? row.detachment.trim() : "(none)"
-
-      // Ensure detachment exists
-      if (!factions[factionName].detachments[detachmentName]) {
-        factions[factionName].detachments[detachmentName] = []
-      }
-
-      // Extract WHEN / TARGET / EFFECT / RESTRICTIONS
-      const sections = extractSections(row.description)
-      const phases = row.phase ? [normalizePhase(row.phase)] : []
-
-      // --- Push card into correct detachment -----------------------------
-      factions[factionName].detachments[detachmentName].push({
-        name: row.name,
-        cp: Number(row.cp_cost),
-        type: row.type.replace("Stratagem", "").trim(),
-        group:
-          detachmentName === "(none)"
-            ? factionName.toUpperCase()
-            : `${factionName.toUpperCase()} – ${detachmentName}`,
-        timing: normalizeTiming(row.turn),
-        phases,
-        when: sections.when,
-        target: sections.target,
-        effect: sections.effect,
-        restrictions: sections.restrictions,
-        id: row.id || crypto.randomUUID()
-      })
-    }
-
-    // --- Assign to Vue state --------------------------------------------
-    dataByFaction.value = factions
-    Core.value = factions.Core?.detachments["(none)"] || []
-
+    detachment.value = firstDetachmentOption.value || '(none)'
+    resetRemovedCards()
     loadError.value = false
-
   } catch (e) {
-    console.warn("Failed to load factions.json or Stratagems.csv", e)
+    console.warn('Failed to load edition data', e)
     loadError.value = true
   }
 }
 
-loadData()
+loadEditions().then(loadData)
 
 const faction = ref('Core')
 const detachment = ref('(none)')
@@ -392,6 +316,10 @@ function removeCard(card: CardData) {
 
 function resetRemovedCards() {
   removedCardIds.value.clear()
+}
+
+function onEditionChange() {
+  loadData()
 }
 
 function onFactionChange() {
