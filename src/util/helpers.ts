@@ -24,7 +24,7 @@ export function railSeedFor(card: CardData) {
     }
     hash = Math.abs(hash)
     return {
-        offsetY: hash % 380,
+        offsetY: hash % 420,
         flipX: (hash >> 3) % 2 === 0 ? 1 : -1,
         rotate: (hash % 7) - 3, // small ±3deg tilt
         motif: (hash >> 5) % 2 === 0 ? 'a' : 'b',
