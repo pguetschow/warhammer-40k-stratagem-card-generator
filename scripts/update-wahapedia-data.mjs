@@ -4,20 +4,29 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import { basename, join } from 'node:path'
 import { tmpdir } from 'node:os'
 
-const EDITIONS = [
+// Editions with a real Wahapedia data export. This script fetches and rebuilds their
+// cards.json from that export.
+const SCRAPED_EDITIONS = [
   {
     id: '10',
     label: '10th Edition',
     slug: 'wh40k10ed',
     sourceUrl: 'https://wahapedia.ru/wh40k10ed/the-rules/data-export/',
   },
+]
+
+// Editions with no Wahapedia export yet. Their cards.json is hand-authored (from publicly
+// confirmed previews/reveals) and lives entirely under public/data/<id>/cards.json - this
+// script never generates or overwrites it, so 10th and 11th Edition data stay fully independent.
+const STATIC_EDITIONS = [
   {
     id: '11',
     label: '11th Edition',
-    slug: 'wh40k11ed',
-    sourceUrl: 'https://wahapedia.ru/wh40k11ed/the-rules/data-export/',
+    sourceUrl: 'https://www.belloflostsouls.net/wp-content/uploads/2026/05/40k-11th-strategems.jpg',
   },
 ]
+
+const ALL_EDITIONS = [...SCRAPED_EDITIONS, ...STATIC_EDITIONS]
 
 const FACTION_GROUPS = {
   'Forces of the Imperium': [
@@ -66,7 +75,7 @@ const PHASES = ['command', 'movement', 'shooting', 'charge', 'fight']
 
 async function main() {
   const selectedIds = parseEditionArgs()
-  const editions = EDITIONS.filter((edition) => selectedIds.has(edition.id))
+  const editions = SCRAPED_EDITIONS.filter((edition) => selectedIds.has(edition.id))
 
   for (const edition of editions) {
     const outputDir = join('public', 'data', edition.id)
@@ -82,18 +91,26 @@ async function main() {
     console.log(`${edition.label}: wrote ${countCards(data)} cards to ${outputDir}/cards.json`)
   }
 
+  for (const edition of STATIC_EDITIONS) {
+    if (!selectedIds.has(edition.id)) continue
+    console.log(
+      `${edition.label}: no Wahapedia export exists yet - public/data/${edition.id}/cards.json ` +
+      'is hand-maintained and was left untouched.',
+    )
+  }
+
   await writeFile(
     join('public', 'data', 'editions.json'),
-    `${JSON.stringify({ editions: EDITIONS.map(({ id, label, sourceUrl }) => ({ id, label, sourceUrl })) }, null, 2)}\n`,
+    `${JSON.stringify({ editions: ALL_EDITIONS.map(({ id, label, sourceUrl }) => ({ id, label, sourceUrl })) }, null, 2)}\n`,
   )
 }
 
 function parseEditionArgs() {
   const arg = process.argv.find((value) => value.startsWith('--edition='))
-  if (!arg) return new Set(EDITIONS.map((edition) => edition.id))
+  if (!arg) return new Set(ALL_EDITIONS.map((edition) => edition.id))
 
   const requested = arg.replace('--edition=', '').split(',').map((value) => value.trim())
-  const known = new Set(EDITIONS.map((edition) => edition.id))
+  const known = new Set(ALL_EDITIONS.map((edition) => edition.id))
   for (const id of requested) {
     if (!known.has(id)) {
       throw new Error(`Unknown edition "${id}". Known editions: ${[...known].join(', ')}`)
@@ -171,7 +188,7 @@ function buildCardsJson(files, edition) {
       container.detachments[detachmentName] = []
     }
 
-    container.detachments[detachmentName].push({
+    const card = {
       id: row.id,
       name: row.name,
       cp: Number.parseInt(row.cp_cost, 10) || 0,
@@ -183,7 +200,9 @@ function buildCardsJson(files, edition) {
       target: sections.target,
       effect: sections.effect,
       restrictions: sections.restrictions,
-    })
+    }
+
+    container.detachments[detachmentName].push(card)
   }
 
   sortFactionData(factions)

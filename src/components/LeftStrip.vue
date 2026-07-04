@@ -1,11 +1,11 @@
 <template>
   <div class="side">
-    <div class="diamonds-container">
-      <Diamond :color="stripColor" isCp>
-        {{ cp }}CP
-      </Diamond>
-      <Diamond v-for="(p,i) in phases" :key="i" :color="stripColor">
+    <div class="rail-icons">
+      <div v-for="(p,i) in phases" :key="i" class="phase-icon-wrap">
         <component :is="iconComponent(p)"/>
+      </div>
+      <Diamond color="#f4f6ed">
+        <SkullIcon/>
       </Diamond>
     </div>
     <div :style="{ backgroundColor: stripColor }" class="strip"></div>
@@ -17,11 +17,12 @@ import CmdIcon from './icons/CmdIcon.vue'
 import MoveIcon from './icons/MoveIcon.vue'
 import ShootingIcon from './icons/ShootingIcon.vue'
 import ChargeIcon from './icons/ChargeIcon.vue'
-import FightIcon from './icons/FightIcon.vue'
+import HammersIcon from './icons/HammersIcon.vue'
+import CheckIcon from './icons/CheckIcon.vue'
+import SkullIcon from './icons/SkullIcon.vue'
 
 const props = defineProps<{
-  cp: number,
-  phases: Array<'command' | 'movement' | 'shooting' | 'charge' | 'fight'>,
+  phases: Array<'command' | 'movement' | 'shooting' | 'charge' | 'fight' | 'any'>,
   stripColor: string
 }>()
 
@@ -30,6 +31,7 @@ function iconComponent(p: string) {
   if (p === 'movement') return MoveIcon;
   if (p === 'shooting') return ShootingIcon;
   if (p === 'charge') return ChargeIcon;
-  return FightIcon
+  if (p === 'any') return CheckIcon;
+  return HammersIcon
 }
 </script>

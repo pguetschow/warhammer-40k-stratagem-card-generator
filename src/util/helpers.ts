@@ -1,9 +1,15 @@
-import {HEX_ALWAYS, HEX_ENEMY, HEX_MINE, META} from './constants'
+import {EDITION_11_TIMING, HEX_ALWAYS, HEX_ENEMY, HEX_MINE, META} from './constants'
 import type {CardData} from '../types'
 
 export function stripColorFor(card: CardData) {
     const t = (card.timing || 'everyTurn')
     return t === 'yourTurn' ? HEX_MINE : t === 'oppTurn' ? HEX_ENEMY : HEX_ALWAYS
+}
+
+/** Category-bar color for 11th Edition cards - timing-based, per the core rulebook's Stratagems Key. */
+export function timingColorFor11(card: CardData) {
+    const t = (card.timing || 'anyTurn')
+    return t === 'yourTurn' ? EDITION_11_TIMING.yourTurn : t === 'oppTurn' ? EDITION_11_TIMING.oppTurn : EDITION_11_TIMING.anyTurn
 }
 
 export function metaColorFor(card: CardData) {

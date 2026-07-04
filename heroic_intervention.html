@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heroic Intervention — Stratagem</title>
+<style>
+  :root{
+    --paper:#d6d4cf;
+    --charcoal:#1b1a17;
+    --blood:#a01c14;
+    --army-a:#3d4120;
+    --army-b:#4a5236;
+    --ink:#1c1b18;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+    background:#2e2e2c;padding:24px;font-family:'Arial Narrow','Arial',sans-serif;
+  }
+
+  /* Card has explicit height so absolutely-positioned children are visible */
+  .card{
+    position:relative;width:526px;height:612px;max-width:100%;
+    background:var(--paper);
+    background-image:
+      radial-gradient(circle at 15% 12%, rgba(255,255,255,.30) 0, transparent 45%),
+      radial-gradient(circle at 88% 80%, rgba(0,0,0,.10) 0, transparent 50%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    box-shadow:0 20px 44px rgba(0,0,0,.55);overflow:hidden;
+  }
+
+  /* ART COLUMN — full height right strip */
+  .art-col{
+    position:absolute;top:0;right:0;bottom:0;width:80px;
+    background:linear-gradient(135deg,var(--army-b),var(--army-a) 60%,#23261a);
+    border-left:2px solid #111;
+  }
+  .art-col::before{
+    content:"";position:absolute;inset:0;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3'/%3E%3C/filter%3E%3Crect width='90' height='90' filter='url(%23m)' opacity='0.15'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+  }
+
+  /* WHITE BASE across the top-right — the "1CP" corner. Full rectangle
+     sitting behind the black title. The black title's sloped top edge lets
+     this white show through as a triangle in the upper-right, where 1CP sits. */
+  .cp-top{
+    position:absolute;top:0;right:0;width:150px;height:49px;z-index:4;
+    background:#f2f0ea;color:#111;
+    display:flex;align-items:flex-start;justify-content:flex-start;
+    font-family:'Arial Black',sans-serif;font-weight:900;font-size:22px;
+    padding:4px 0 0 40px;
+  }
+
+  /* BLACK TITLE BAND — a trapezoid. Left edge full-height; the TOP edge
+     slopes downward from left to right, so a white triangle is revealed at
+     the top-right. Bottom edge is straight/full width. */
+  .title-band{
+    position:absolute;top:0;left:0;width:526px;height:49px;
+    background:var(--charcoal);z-index:5;
+    clip-path:polygon(
+      0 0,                 /* top-left */
+      372px 0,             /* flat top edge ends here... */
+      420px 100%,          /* ...diagonal slopes DOWN-RIGHT (black widens toward bottom) */
+      446px 100%,          /* bottom edge continues to the art-column edge */
+      0 100%               /* bottom-left */
+    );
+  }
+  .title-band h1{
+    position:absolute;left:20px;top:50%;transform:translateY(-50%);
+    margin:0;color:#fff;font-family:'Arial Black','Arial',sans-serif;font-weight:900;
+    letter-spacing:1px;font-size:26px;text-transform:uppercase;line-height:1;white-space:nowrap;
+  }
+
+  /* RED SUB-BAR */
+  .sub-bar{
+    position:absolute;top:49px;left:0;width:446px;height:33px;
+    background:var(--blood);color:#fff;
+    display:flex;align-items:center;padding:0 20px;
+    font-family:'Arial Black',sans-serif;font-weight:900;
+    font-size:15px;letter-spacing:2.5px;text-transform:uppercase;z-index:4;
+  }
+
+  /* BODY */
+  .body{
+    position:absolute;top:82px;left:0;width:446px;bottom:0;
+    padding:14px 20px 18px;color:var(--ink);
+  }
+  .flavor{
+    font-family:'Courier New',monospace;font-size:15px;line-height:1.32;margin:0 0 12px;
+    padding-bottom:12px;border-bottom:2px solid var(--ink);letter-spacing:-.3px;
+  }
+  .field{font-size:14px;line-height:1.4;margin:0 0 11px;}
+  .field .lbl{font-weight:800;text-transform:uppercase;}
+  .field strong{font-weight:800;}
+  .sc{font-variant:small-caps;font-weight:800;letter-spacing:.3px;}
+  .u{text-decoration:underline;}
+  .mode{position:relative;padding-left:18px;margin:0 0 8px;font-size:14px;line-height:1.4;}
+  .mode::before{content:"\2022";position:absolute;left:2px;top:0;font-size:15px;}
+  .mode-name{display:inline-block;background:var(--blood);color:#fff;font-weight:800;padding:1px 7px;margin-bottom:2px;}
+  .sub-list{list-style:none;margin:5px 0 0;padding-left:6px;}
+  .sub-list li{position:relative;padding-left:16px;margin-bottom:5px;font-size:13.5px;line-height:1.38;}
+  .sub-list li::before{content:"\25E6";position:absolute;left:1px;top:0;font-size:14px;}
+  .divider{border:0;border-top:2px dotted #8a8a86;margin:11px 0;}
+
+  /* ART DETAILS */
+  .chevrons{position:absolute;top:70px;right:0;width:80px;text-align:center;
+    color:rgba(255,255,255,.9);line-height:.58;z-index:6;}
+  .chevrons span{display:block;font-size:38px;font-weight:900;filter:drop-shadow(0 1px 1px rgba(0,0,0,.5));}
+  .skull-badge{position:absolute;top:178px;right:12px;
+    width:56px;height:56px;border-radius:50%;border:3px solid rgba(255,255,255,.9);
+    display:flex;align-items:center;justify-content:center;z-index:6;
+    filter:drop-shadow(0 1px 2px rgba(0,0,0,.5));}
+  .skull-badge svg{width:30px;height:30px;fill:rgba(255,255,255,.92);}
+  .cp-bottom{position:absolute;right:0;bottom:0;width:80px;height:202px;
+    background:var(--blood);color:#fff;display:flex;align-items:center;justify-content:center;
+    font-family:'Arial Black',sans-serif;font-weight:900;font-size:24px;
+    z-index:6;border-top:2px solid #6e120b;}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="art-col"></div>
+
+    <div class="title-band">
+      <h1>Heroic Intervention</h1>
+    </div>
+    <div class="cp-top">1CP</div>
+
+    <div class="sub-bar">Core Stratagem</div>
+
+    <div class="chevrons"><span>&#9650;</span><span>&#9650;</span></div>
+    <div class="skull-badge">
+      <svg viewBox="0 0 24 24"><path d="M12 2C7 2 4 5.5 4 10c0 2.6 1.2 4.3 2.5 5.3V18c0 .6.4 1 1 1h1v1.5c0 .3.2.5.5.5s.5-.2.5-.5V19h1v1.5c0 .3.2.5.5.5s.5-.2.5-.5V19h1v1.5c0 .3.2.5.5.5s.5-.2.5-.5V19h1c.6 0 1-.4 1-1v-2.7C18.8 14.3 20 12.6 20 10c0-4.5-3-8-8-8zM9 12a1.6 1.6 0 110-3.2A1.6 1.6 0 019 12zm6 0a1.6 1.6 0 110-3.2A1.6 1.6 0 0115 12z"/></svg>
+    </div>
+    <div class="cp-bottom">+1CP</div>
+
+    <div class="body">
+      <p class="flavor">Voices raised in furious war cries, your warriors surge forth to meet the enemy's onslaught head-on.</p>
+      <p class="field"><span class="lbl">When:</span> End of your opponent's Charge phase.</p>
+      <p class="field"><span class="lbl">Target:</span> One friendly <strong>unengaged</strong> unit within 12" of one or more enemy units. You can only select a <span class="sc">Vehicle</span> unit if it is a <span class="sc">Character/Walker</span> unit.</p>
+      <p class="field"><span class="lbl">Effect:</span> <strong>Resolve a charge</strong> with your unit. While doing so, before making the <strong>charge roll</strong>, you must select <span class="u">one</span> of the following modes:</p>
+      <p class="mode"><span class="mode-name">Leap to Defend:</span> When selecting <strong>charge targets</strong>, you can only select enemy units that made a <strong>charge move</strong> this phase and are within the <strong>maximum distance</strong>.</p>
+      <hr class="divider">
+      <p class="mode"><span class="mode-name">Into the Fray:</span></p>
+      <ul class="sub-list">
+        <li>When making the <strong>charge roll</strong>, if the result is greater than 6 (after modifiers), change it to 6.</li>
+        <li>When selecting <strong>charge targets</strong>, you can select <span class="u">any</span> enemy units that are within 6" of your unit and within the <strong>maximum distance</strong>.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
