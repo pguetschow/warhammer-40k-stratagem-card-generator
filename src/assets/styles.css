@@ -438,8 +438,8 @@ a {
 }
 
 .diamond svg {
-    -webkit-transform: scale(1.15);
-    transform: scale(1.15);
+    -webkit-transform: scale(.68);
+    transform: scale(.68);
     fill: #f4f6ed !important;
     color: #f4f6ed !important;
     filter: drop-shadow(0 0 2px rgba(144,184,120,.9))

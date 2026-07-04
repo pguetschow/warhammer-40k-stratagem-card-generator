@@ -21,7 +21,7 @@ import CmdIcon from './icons/CmdIcon.vue'
 import MoveIcon from './icons/MoveIcon.vue'
 import ShootingIcon from './icons/ShootingIcon.vue'
 import ChargeIcon from './icons/ChargeIcon.vue'
-import HammersIcon from './icons/HammersIcon.vue'
+import SwordsIcon from './icons/SwordsIcon.vue'
 import CheckIcon from './icons/CheckIcon.vue'
 import SkullIcon from './icons/SkullIcon.vue'
 
@@ -38,6 +38,6 @@ function iconComponent(p: string) {
   if (p === 'shooting') return ShootingIcon;
   if (p === 'charge') return ChargeIcon;
   if (p === 'any') return CheckIcon;
-  return HammersIcon
+  return SwordsIcon
 }
 </script>
