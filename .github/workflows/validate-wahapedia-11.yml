@@ -1,13 +1,16 @@
 name: Validate Wahapedia 11 integration
 
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - wahapedia-11th-edition
 
 jobs:
   validate:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -24,10 +27,14 @@ jobs:
       - name: Build application
         run: npm run build
 
-      - name: Upload generated data
-        uses: actions/upload-artifact@v4
-        with:
-          name: wahapedia-11-data
-          path: |
-            public/data/11/cards.json
-            public/data/editions.json
+      - name: Commit generated data
+        run: |
+          git config user.name "Paul Fink"
+          git config user.email "15265066+pguetschow@users.noreply.github.com"
+          git add -- public/data/11/cards.json public/data/editions.json
+          if git diff --cached --quiet; then
+            echo "No generated data changes"
+            exit 0
+          fi
+          git commit -m "Sync Wahapedia 11th Edition data"
+          git push
