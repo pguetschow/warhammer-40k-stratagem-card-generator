@@ -1,0 +1,33 @@
+name: Validate Wahapedia 11 integration
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Generate 11th Edition data
+        run: npm run update:data -- --edition=11
+
+      - name: Build application
+        run: npm run build
+
+      - name: Upload generated data
+        uses: actions/upload-artifact@v4
+        with:
+          name: wahapedia-11-data
+          path: |
+            public/data/11/cards.json
+            public/data/editions.json
