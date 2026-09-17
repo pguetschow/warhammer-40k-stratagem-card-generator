@@ -13,18 +13,18 @@ const SCRAPED_EDITIONS = [
     slug: 'wh40k10ed',
     sourceUrl: 'https://wahapedia.ru/wh40k10ed/the-rules/data-export/',
   },
+  {
+    id: '11',
+    label: '11th Edition',
+    slug: 'wh40k11ed',
+    sourceUrl: 'https://wahapedia.ru/wh40k11ed/the-rules/data-export/',
+  },
 ]
 
 // Editions with no Wahapedia export yet. Their cards.json is hand-authored (from publicly
 // confirmed previews/reveals) and lives entirely under public/data/<id>/cards.json - this
 // script never generates or overwrites it, so 10th and 11th Edition data stay fully independent.
-const STATIC_EDITIONS = [
-  {
-    id: '11',
-    label: '11th Edition',
-    sourceUrl: 'https://www.belloflostsouls.net/wp-content/uploads/2026/05/40k-11th-strategems.jpg',
-  },
-]
+const STATIC_EDITIONS = []
 
 const ALL_EDITIONS = [...SCRAPED_EDITIONS, ...STATIC_EDITIONS]
 
@@ -177,6 +177,8 @@ function buildCardsJson(files, edition) {
 
   for (const row of stratagemRows) {
     if (!row.name) continue
+    // Wahapedia also exports unit abilities in this table. They are not stratagems.
+    if (/Ability\s*$/i.test(row.type || '')) continue
 
     const factionName = getFactionName(row, factionIdMap)
     const detachmentName = row.detachment?.trim() || '(none)'
@@ -191,8 +193,9 @@ function buildCardsJson(files, edition) {
     const card = {
       id: row.id,
       name: row.name,
+      flavor: cleanHtml(row.legend || ''),
       cp: Number.parseInt(row.cp_cost, 10) || 0,
-      type: normalizeType(row.type || ''),
+      type: normalizeType(row.type || '', detachmentName),
       group: detachmentName === '(none)' ? factionName.toUpperCase() : `${factionName.toUpperCase()} - ${detachmentName}`,
       timing: normalizeTiming(row.turn || ''),
       phases,
@@ -223,10 +226,27 @@ function parsePipeCsv(csv) {
   if (!lines.length) return []
 
   const headers = splitPipeLine(lines[0]).map((header) => header.trim()).filter(Boolean)
-  return lines.slice(1).map((line) => {
-    const cols = splitPipeLine(line)
+  return joinWrappedRecords(lines.slice(1), headers.length).map((record) => {
+    const cols = splitPipeLine(record)
     return Object.fromEntries(headers.map((header, index) => [header, cols[index]?.trim() || '']))
   })
+}
+
+// Wahapedia keeps line breaks inside the legend and description columns, so one record can
+// span several lines. A record is complete when it holds every column.
+function joinWrappedRecords(lines, columnCount) {
+  const records = []
+
+  for (const line of lines) {
+    const previous = records.at(-1)
+    if (previous !== undefined && splitPipeLine(previous).length < columnCount) {
+      records[records.length - 1] = `${previous}\n${line}`
+      continue
+    }
+    records.push(line)
+  }
+
+  return records
 }
 
 function splitPipeLine(line) {
@@ -280,10 +300,13 @@ function cleanHtml(text) {
     .trim()
 }
 
-function normalizeType(type) {
+function normalizeType(type, detachmentName) {
   const withoutSuffix = type.replace(/\s*Stratagem\s*$/i, '').trim()
   const parts = withoutSuffix.split(/\s+[–-]\s+/)
-  return parts.at(-1)?.trim() || withoutSuffix
+  const category = parts.at(-1)?.trim() || withoutSuffix
+  // Some rows name only the detachment, with no category. The card front already shows the
+  // detachment, so an empty type keeps the card honest.
+  return category === detachmentName ? '' : category
 }
 
 function normalizeTiming(turn) {
