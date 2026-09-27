@@ -12,14 +12,7 @@
             <br>
             Suitable for 2.5"x 3.5" sleeves (like Magic: The Gathering)
           </p>
-          <p v-if="selectedEdition === '11'" class="app-description">
-            Wahapedia has no official data export for 11th Edition yet, so this edition only
-            includes the <a :href="sourceUrl">Core Stratagems from the official Warhammer 40,000
-            Core Rules</a>. Faction and detachment stratagems will be added once an official
-            export exists.
-            <span v-if="lastUpdate">Last updated: {{ lastUpdate }}</span>
-          </p>
-          <p v-else class="app-description">
+          <p class="app-description">
             Based on the Stratagems available at <a :href="sourceUrl">Wahapedia</a>.
             <span v-if="lastUpdate">Last export update: {{ lastUpdate }}</span>
           </p>
@@ -156,7 +149,7 @@ const factionGroups = ref<FactionGroups>({})
 const Core = ref<CardData[]>([])
 const editions = ref<EditionOption[]>([])
 const selectedEdition = ref('11')
-const sourceUrl = ref('https://www.belloflostsouls.net/wp-content/uploads/2026/05/40k-11th-strategems.jpg')
+const sourceUrl = ref('https://wahapedia.ru/wh40k11ed/the-rules/data-export/')
 const lastUpdate = ref('')
 const loadError = ref(false)
 const removedCardIds = ref<Set<string>>(new Set())
@@ -175,7 +168,7 @@ async function loadEditions() {
     console.warn('Failed to load editions.json', e)
     editions.value = [
       {id: '10', label: '10th Edition', sourceUrl: 'https://wahapedia.ru/wh40k10ed/the-rules/data-export/'},
-      {id: '11', label: '11th Edition', sourceUrl: 'https://www.belloflostsouls.net/wp-content/uploads/2026/05/40k-11th-strategems.jpg'},
+      {id: '11', label: '11th Edition', sourceUrl: 'https://wahapedia.ru/wh40k11ed/the-rules/data-export/'},
     ]
   }
 }

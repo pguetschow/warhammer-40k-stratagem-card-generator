@@ -26,13 +26,16 @@ npm run preview
 
 # Refresh Wahapedia data for all configured editions
 npm run update:data
+
+# Or refresh a single edition
+npm run update:data -- --edition=11
 ```
 
 ## How to collaborate
 
 Generated game data lives under **`public/data/<edition>/cards.json`**. The edition selector is driven by **`public/data/editions.json`**.
 
-Run `npm run update:data` to download Wahapedia’s export overview workbook, follow its linked CSV exports, and rebuild the edition JSON files.
+Run `npm run update:data` to download Wahapedia’s export overview workbook, follow its linked CSV exports, and rebuild the 10th and 11th Edition JSON files.
 
 ### Top-level structure
 ```json
@@ -48,10 +51,10 @@ Run `npm run update:data` to download Wahapedia’s export overview workbook, fo
     "<FactionKey>": {
       "name": "<Display Name>",
       "combatPatrols": {
-        "<CombatPatrolName>": []    // List of Stratagem objects
+        "<CombatPatrolName>": []
       },
       "detachments": {
-        "<DetachmentName>": []      // List of Stratagem objects
+        "<DetachmentName>": []
       }
     }
   }
@@ -65,21 +68,24 @@ Run `npm run update:data` to download Wahapedia’s export overview workbook, fo
 ```json
 {
   "name": "STRING",
+  "flavor": "STRING",
   "cp": 1,
-  "type": "Battle Tactic | Strategic Ploy | Epic Deed | Wargear",
+  "type": "STRING (Wahapedia stratagem category)",
   "timing": "yourTurn | oppTurn | anyTurn | everyTurn",
   "phases": ["command", "movement", "shooting", "charge", "fight"],
   "when": "STRING (rules timing text)",
   "target": "STRING (who/what it targets)",
   "effect": "STRING (rules effect)",
   "restrictions": "STRING (can be empty)",
-  "group": "STRING (optional label, e.g., 'CORE or 'FACTION – Detachment')"
+  "group": "STRING (optional label, e.g. 'CORE' or 'FACTION – Detachment')"
 }
 ```
 
+The 11th Edition keeps Wahapedia’s full category labels such as `Epic Deed Stratagem`; the 10th Edition keeps the generator’s existing shortened category labels for backwards-compatible rendering.
+
 ### Contribution guidelines
 1. **Prefer generated data**: update `scripts/update-wahapedia-data.mjs` when Wahapedia changes its export schema.
-2. **Add editions** in the script’s `EDITIONS` list; the job will rewrite stale workbook links to that edition’s Wahapedia path.
-3. **Manual data edits** should stay consistent with the generated object format and be regenerated before release.
-4. **Validate locally**: run `npm run dev` and test the affected faction/detachment; fix any console errors or rendering issues.
+2. **Add editions** in the script’s `SCRAPED_EDITIONS` list; the job rewrites stale workbook links to that edition’s Wahapedia path.
+3. **Do not hand-edit generated card data** unless necessary; regenerate it before release.
+4. **Validate locally**: run `npm run build` and test the affected faction/detachment; fix any console errors or rendering issues.
 5. **Keep diffs clean**: 2-space indentation, stable key ordering, no trailing commas.
