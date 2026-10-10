@@ -378,6 +378,60 @@
             "effect": "Your unit can make a normal move of up to D6\".",
             "restrictions": ""
           }
+        ],
+        "Assault Brethren": [
+          {
+            "id": "sm11-ass-armour-of-contempt",
+            "name": "ARMOUR OF CONTEMPT",
+            "ref": "160",
+            "flavor": "The belligerence of the Adeptus Astartes combined with their post-human physiology makes them unyielding foes to face.",
+            "cp": 1,
+            "type": "Assault Brethren",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your opponent's Shooting phase or the Fight phase, when an enemy unit targets a friendly <b>ADEPTUS ASTARTES</b> unit.",
+            "target": "That <b>ADEPTUS ASTARTES</b> unit.",
+            "effect": "Attacks that target your unit have -1 <b>AP</b> until that enemy unit has attacked.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-ass-gene-wrought-might",
+            "name": "GENE-WROUGHT MIGHT",
+            "ref": "160",
+            "flavor": "Space Marines are blessed with incredible strength.",
+            "cp": 1,
+            "type": "Assault Brethren",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Fight phase, when a friendly <b>ADEPTUS ASTARTES</b> unit is <b>selected to fight</b>.",
+            "target": "That <b>ADEPTUS ASTARTES</b> unit.",
+            "effect": "Your unit's melee attacks have:<br>• [LANCE].<br>• <u>Or:</u> If the <b>assault doctrine</b> is active for your unit, [LANCE] and +1 <b>AP</b>.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-ass-duty-in-death",
+            "name": "DUTY IN DEATH",
+            "ref": "160",
+            "flavor": "Imminent death does not prevent a Space Marine fron enacting their final justice upon the Emperor's foes.",
+            "cp": 1,
+            "type": "Assault Brethren",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Fight phase, when an enemy unit targets a friendly <b>ADEPTUS ASTARTES</b> unit.",
+            "target": "That <b>ADEPTUS ASTARTES</b> unit.",
+            "effect": "When a model in your unit is <b>destroyed</b>, if your unit has not been selected to fight this phase, roll one D6, with +1 to that roll if the <b>assault doctrine</b> is active for your unit:<br>• On a 4+, do not remove that model from the battlefield. When your unit has fought, or at the end of the phase (whichever comes first), that model is removed from the battlefield.",
+            "restrictions": ""
+          }
         ]
       }
     }
