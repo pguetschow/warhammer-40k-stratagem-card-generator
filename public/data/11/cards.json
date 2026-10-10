@@ -594,6 +594,60 @@
             "effect": "Place your unit in <b>strategic reserves</b>.",
             "restrictions": ""
           }
+        ],
+        "Tacticus Attack Force": [
+          {
+            "id": "sm11-taf-relentless-assault",
+            "name": "RELENTLESS ASSAULT",
+            "ref": "164",
+            "flavor": "Pressing mercilessly forward, these warriors place shots and blows perfectly, no matter their targets.",
+            "cp": 1,
+            "type": "Tacticus Attack Force",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your opponent's Shooting phase or the Fight phase, when a friendly <b>TACTICUS</b> unit is <b>selected to attack</b>.",
+            "target": "That <b>TACTICUS</b> unit.",
+            "effect": " Your unit's attacks have:<br>• [SUSTAINED HITS 1: non-MONSTER/VEHICLE].<br>• <u>Or:</u> [LETHAL HITS: MONSTER/VEHICLE]",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-taf-transhuman-swiftness",
+            "name": "TRANSHUMAN SWIFTNESS",
+            "ref": "164",
+            "flavor": "Poised and aware of their foes' every move, these warriors strike at the most tactically advantageous moment.",
+            "cp": 1,
+            "type": "Tacticus Attack Force",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Fight phase, when an enemy unit has fought.",
+            "target": "One friendly <b>TACTICUS</b> unit that is within range of an <b>objective</b> and is <b>eligible to fight</b>.",
+            "effect": "Your unit has <b>Fights First</b> and <u>must</u> be the next unit you <b>select to fight</b>.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-taf-tactical-focus",
+            "name": "TACTICAL FOCUS",
+            "ref": "164",
+            "flavor": "Even amidst the fiercest fighting, this squad retains sight of their assigned mission.",
+            "cp": 1,
+            "type": "Tacticus Attack Force",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Fight phase, when a friendly <b>TACTICUS</b> unit is selected to make a <b>consolidation move</b>.",
+            "target": "That <b>TACTICUS</b> unit.",
+            "effect": "When making that <b>consolidation move</b>, your unit can move up to D3+3\".",
+            "restrictions": ""
+          }
         ]
       }
     }
