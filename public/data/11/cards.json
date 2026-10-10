@@ -486,6 +486,60 @@
             "effect": "Your unit can make a normal move of:<br>• Up to D6\". <br>• <u>Or:</u> If the <b>tactical doctrine</b> is active for your unit, up to 6\".",
             "restrictions": ""
           }
+        ],
+        "Devastator Brethren": [
+          {
+            "id": "sm11-dev-armour-of-contempt",
+            "name": "ARMOUR OF CONTEMPT",
+            "ref": "162",
+            "flavor": "The belligerence of the Adeptus Astartes combined with their post-human physiology makes them unyielding foes to face.",
+            "cp": 1,
+            "type": "Devastator Brethren",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your opponent's Shooting phase or the Fight phase, when an enemy unit targets a friendly <b>ADEPTUS ASTARTES</b> unit.",
+            "target": "That <b>ADEPTUS ASTARTES</b> unit.",
+            "effect": "Attacks that target your unit have -1 <b>AP</b> until that enemy unit has attacked.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-dev-storm-of-fire",
+            "name": "STORM OF FIRE",
+            "ref": "162",
+            "flavor": "There is no escaping the wrath of the Space Marines, and they use their weapons to bring swift death to their foes wherever they may hide.",
+            "cp": 1,
+            "type": "Devastator Brethren",
+            "group": "SPACE MARINES",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase, when a friendly <b>ADEPTUS ASTARTES</b> unit is selected to shoot.",
+            "target": "That <b>ADEPTUS ASTARTES</b> unit.",
+            "effect": "Your unit's ranged attacks have:<br>• [IGNORES COVER].<br>• <u>Or:</u> If the <b>devastator doctrine</b> is active for your unit, [IGNORES COVER] and +1 <b>AP</b>.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-dev-hail-of-vengeance",
+            "name": "HAIL OF VENGEANCE",
+            "ref": "162",
+            "flavor": "Space Marines' incredible battlefield awareness enables them to instinctively identify the origin of any enemy fire and punish their attackers.",
+            "cp": 2,
+            "type": "Devastator Brethren",
+            "group": "SPACE MARINES",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your opponent's Shooting phase, when an enemy unit has shot, if those attacks <b>destroyed</b> a model in a friendly <b>ADEPTUS ASTARTES</b> unit.",
+            "target": "That <b>ADEPTUS ASTARTES</b> unit.",
+            "effect": "Your unit shoots using <b>normal shooting</b>, but while doing so your unit can only target that enemy unit.",
+            "restrictions": ""
+          }
         ]
       }
     }
