@@ -648,6 +648,60 @@
             "effect": "When making that <b>consolidation move</b>, your unit can move up to D3+3\".",
             "restrictions": ""
           }
+        ],
+        "Tacticus Firestorm Force": [
+          {
+            "id": "sm11-tff-for-the-emperor",
+            "name": "FOR THE EMPEROR!",
+            "ref": "165",
+            "flavor": "Unflinching in their loyalty to Chapter and Primarch, battle-brothers seize and held their objectives with unrelenting determination and zealous fury.",
+            "cp": 1,
+            "type": "Tacticus Firestorm Force",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "command"
+            ],
+            "when": "Command phase.",
+            "target": "One friendly <b>TACTICUS</b> unit unit that is within range of an <b>objective</b>.",
+            "effect": "Your unit has +1 <b>OC</b> until the end of the turn.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-tff-relentless-assault",
+            "name": "RELENTLESS ASSAULT",
+            "ref": "165",
+            "flavor": "Pressing mercilessly forward, these warriors place shots and blows perfectly, no matter their targets.",
+            "cp": 1,
+            "type": "Tacticus Firestorm Force",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your opponent's Shooting phase or the Fight phase, when a friendly <b>TACTICUS</b> unit is <b>selected to attack</b>.",
+            "target": "That <b>TACTICUS</b> unit.",
+            "effect": "Your unit's attacks have:<br>• [SUSTAINED HITS 1: non-MONSTER/VEHICLE].<br>• <u>Or:</u> [LETHAL HITS: MONSTER/VEHICLE]",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-tff-point-blank-brutality",
+            "name": "POINT-BLANK BRUTALITY",
+            "ref": "165",
+            "flavor": "Transhuman skill and reaction times render these Space Marines' firearms as deadly up close as any blade.",
+            "cp": 1,
+            "type": "Tacticus Firestorm Force",
+            "group": "SPACE MARINES",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase, when a friendly engaged <b>TACTICUS</b> unit is <b>selected to shoot</b>.",
+            "target": "That <b>TACTICUS</b> unit.",
+            "effect": "Your unit's ranged attacks (excluding [BLAST] attacks) have:<br>• [CLOSE-QUARTERS].<br>• [IGNORES COVER].",
+            "restrictions": ""
+          }
         ]
       }
     }
