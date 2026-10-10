@@ -540,6 +540,60 @@
             "effect": "Your unit shoots using <b>normal shooting</b>, but while doing so your unit can only target that enemy unit.",
             "restrictions": ""
           }
+        ],
+        "Terminator Storm Force": [
+          {
+            "id": "sm11-tsf-tactical-dreadnought-fortitude",
+            "name": "TACTICAL DREADNOUGHT FORTITUDE",
+            "ref": "163",
+            "flavor": "The combination of Tactical Dreadnought armour and transhuman physiology is redoubtable indeed.",
+            "cp": 2,
+            "type": "Terminator Storm Force",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your opponent's Shooting phase or the Fight phase, when an enemy unit targets a friendly <b>ADEPTUS ASTARTES TERMINATOR</b> unit.",
+            "target": "That <b>ADEPTUS ASTARTES TERMINATOR</b> unit.",
+            "effect": "Attacks that target your unit have -1 <b>D</b> until that enemy unit has attacked.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-tsf-merciless-veterans",
+            "name": "MERCILESS VETERANS",
+            "ref": "163",
+            "flavor": "Cumulative centuries of military experience help these veterans' firepower hit home with murderous precision.",
+            "cp": 1,
+            "type": "Terminator Storm Force",
+            "group": "SPACE MARINES",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase, when a friendly <b>ADEPTUS ASTARTES TERMINATOR</b> unit is selected to shoot.",
+            "target": "That <b>ADEPTUS ASTARTES TERMINATOR</b> unit.",
+            "effect": "Your unit's ranged attacks have:<br>• [LETHAL HITS].<br>• [SUSTAINED HITS 1].",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-tsf-gunship-extraction",
+            "name": "GUNSHIP EXTRACTION",
+            "ref": "163",
+            "flavor": "Armoured gunships are often assigned to swoop in and relocate Terminator Squads in the midst of battle.",
+            "cp": 1,
+            "type": "Terminator Storm Force",
+            "group": "SPACE MARINES",
+            "timing": "oppTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "End of your opponent's Fight phase.",
+            "target": "One friendly unengaged <b>ADEPTUS ASTARTES TERMINATOR</b> unit.",
+            "effect": "Place your unit in <b>strategic reserves</b>.",
+            "restrictions": ""
+          }
         ]
       }
     }
