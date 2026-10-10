@@ -432,6 +432,60 @@
             "effect": "When a model in your unit is <b>destroyed</b>, if your unit has not been selected to fight this phase, roll one D6, with +1 to that roll if the <b>assault doctrine</b> is active for your unit:<br>• On a 4+, do not remove that model from the battlefield. When your unit has fought, or at the end of the phase (whichever comes first), that model is removed from the battlefield.",
             "restrictions": ""
           }
+        ],
+        "Tactical Brethren": [
+          {
+            "id": "sm11-tac-armour-of-contempt",
+            "name": "ARMOUR OF CONTEMPT",
+            "ref": "161",
+            "flavor": "The belligerence of the Adeptus Astartes combined with their post-human physiology makes them unyielding foes to face.",
+            "cp": 1,
+            "type": "Tactical Brethren",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your opponent's Shooting phase or the Fight phase, when an enemy unit targets a friendly <b>ADEPTUS ASTARTES</b> unit.",
+            "target": "That <b>ADEPTUS ASTARTES</b> unit.",
+            "effect": "Attacks that target your unit have -1 <b>AP</b> until that enemy unit has attacked.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-tac-domination-fire",
+            "name": "DOMINATION FIRE",
+            "ref": "161",
+            "flavor": "The Codex Astartes dictates when firepower is best used to dismay, disrupt and debilitate the enemy.",
+            "cp": 1,
+            "type": "Tactical Brethren",
+            "group": "SPACE MARINES",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase, when a friendly <b>ADEPTUS ASTARTES</b> unit has shot.",
+            "target": "That <b>ADEPTUS ASTARTES</b> unit.",
+            "effect": "Select one enemy unit hit by those attacks. That enemy unit is <b>suppressed</b> until the start of your next turn:<br>• While a unit is suppressed, that unit's attacks have -1 to hit rolls.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-tac-masterful-tactics",
+            "name": "MASTERFUL TACTICS",
+            "ref": "161",
+            "flavor": "Such is the Space Marines grasp of adaptive tactics that even the most canny enemies soon find themselves out of position.",
+            "cp": 1,
+            "type": "Tactical Brethren",
+            "group": "SPACE MARINES",
+            "timing": "oppTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "Your opponent's Movement phase, when an enemy unit ends a move within 8\" of a friendly unengaged <b>ADEPTUS ASTARTES INFANTRY/MOUNTED</b> unit.",
+            "target": "That <b>ADEPTUS ASTARTES INFANTRY/MOUNTED</b> unit.",
+            "effect": "Your unit can make a normal move of:<br>• Up to D6\". <br>• <u>Or:</u> If the <b>tactical doctrine</b> is active for your unit, up to 6\".",
+            "restrictions": ""
+          }
         ]
       }
     }
