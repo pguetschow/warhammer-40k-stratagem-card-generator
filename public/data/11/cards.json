@@ -466,7 +466,7 @@
             ],
             "when": "Your Shooting phase, when a friendly <b>ADEPTUS ASTARTES</b> unit has shot.",
             "target": "That <b>ADEPTUS ASTARTES</b> unit.",
-            "effect": "Select one enemy unit hit by those attacks. That enemy unit is <b>suppressed</b> until the start of your next turn:<br>• While a unit is suppressed, that unit's attacks have -1 to hit rolls.",
+            "effect": "Select one enemy unit hit by those attacks. That enemy unit is <b>suppressed</b> until the start of your next turn:<br>• While a unit is <b>suppressed</b>, that unit's attacks have -1 to <b>hit rolls</b>.",
             "restrictions": ""
           },
           {
