@@ -481,7 +481,7 @@
             "phases": [
               "movement"
             ],
-            "when": "Your opponent's Movement phase, when an enemy unit ends a move within 8\" of a friendly unengaged <b>ADEPTUS ASTARTES INFANTRY/MOUNTED</b> unit.",
+            "when": "Your opponent's Movement phase, when an enemy unit ends a move within 8\" of a friendly <b>unengaged ADEPTUS ASTARTES INFANTRY/MOUNTED</b> unit.",
             "target": "That <b>ADEPTUS ASTARTES INFANTRY/MOUNTED</b> unit.",
             "effect": "Your unit can make a normal move of:<br>• Up to D6\". <br>• <u>Or:</u> If the <b>tactical doctrine</b> is active for your unit, up to 6\".",
             "restrictions": ""
@@ -590,7 +590,7 @@
               "fight"
             ],
             "when": "End of your opponent's Fight phase.",
-            "target": "One friendly unengaged <b>ADEPTUS ASTARTES TERMINATOR</b> unit.",
+            "target": "One friendly <b>unengaged ADEPTUS ASTARTES TERMINATOR</b> unit.",
             "effect": "Place your unit in <b>strategic reserves</b>.",
             "restrictions": ""
           }
@@ -697,7 +697,7 @@
             "phases": [
               "shooting"
             ],
-            "when": "Your Shooting phase, when a friendly engaged <b>TACTICUS</b> unit is <b>selected to shoot</b>.",
+            "when": "Your Shooting phase, when a friendly <b>engaged TACTICUS</b> unit is <b>selected to shoot</b>.",
             "target": "That <b>TACTICUS</b> unit.",
             "effect": "Your unit's ranged attacks (excluding [BLAST] attacks) have:<br>• [CLOSE-QUARTERS].<br>• [IGNORES COVER].",
             "restrictions": ""
