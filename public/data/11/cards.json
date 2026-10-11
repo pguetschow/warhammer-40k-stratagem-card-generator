@@ -810,6 +810,60 @@
             "effect": "Ranged attacks that target your unit have -1 to <b>hit rolls</b>.",
             "restrictions": ""
           }
+        ],
+        "Gravis Linebreaker Force": [
+          {
+            "id": "sm11-glf-annihilating-force",
+            "name": "ANNIHILATING FORCE",
+            "ref": "168",
+            "flavor": "Knowing well their duty to shatter the foe's lines, these warriors strike with devastating strength.",
+            "cp": 1,
+            "type": "Gravis Linebreaker Force",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your Shooting phase or the Fight phase, when a friendly <b>GRAVIS</b> unit is <b>selected to attack</b>.",
+            "target": "That <b>GRAVIS</b> unit.",
+            "effect": "Your unit's attacks have [LETHAL HITS].",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-glf-purgation-push",
+            "name": "PURGATION PUSH",
+            "ref": "168",
+            "flavor": "Gravis assault tactics stipulate a relentless advance coupled with unfaltering firepower.",
+            "cp": 1,
+            "type": "Gravis Linebreaker Force",
+            "group": "SPACE MARINES",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase, when a friendly <b>GRAVIS</b> unit has shot.",
+            "target": "That <b>GRAVIS</b> unit.",
+            "effect": "<br>• If your unit is <b>unengaged</b>, your unit can make a <b>normal move</b> of up to 5\", and must end that move within range of an <b>objective</b>.<br>• Your unit is <u>not</u> <b>eligible to declare a charge</b> or embark within a <b>TRANSPORT</b> until the end of the turn.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-glf-armoured-impact",
+            "name": "ARMOURED IMPACT",
+            "ref": "168",
+            "flavor": "Throwing their armoured mass into an assault, a Space Marine in Gravis armour can crush and trample their foe.",
+            "cp": 1,
+            "type": "Gravis Linebreaker Force",
+            "group": "SPACE MARINES",
+            "timing": "yourTurn",
+            "phases": [
+              "charge"
+            ],
+            "when": "Your Charge phase, when a friendly <b>GRAVIS</b> unit ends a <b>charge move</b>.",
+            "target": "That <b>GRAVIS</b> unit.",
+            "effect": "When your unit ends a <b>charge move</b>, you can select one enemy unit <b>engaged</b> with your unit. If you do, roll one D6 for each model in your unit <b>engaged</b> with that enemy unit:<br>• For each 3+, that enemy unit suffers 1 <b>mortal wound</b>.",
+            "restrictions": ""
+          }
         ]
       }
     }
