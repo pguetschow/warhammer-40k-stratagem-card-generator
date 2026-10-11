@@ -1078,6 +1078,59 @@
             "effect": "Select one <b>objective</b> your unit is controlling. That <b>objective</b> is <b>secured</b>.",
             "restrictions": ""
           }
+        ],
+        "Ironstorm Spearhead": [
+          {
+            "id": "sm11-iron-layered-ceramite",
+            "name": "LAYERED CERAMITE",
+            "ref": "173",
+            "flavor": "The labours of artisans in the Chapter armoury now bear fruit.",
+            "cp": 1,
+            "type": "Ironstorm Spearhead",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "any"
+            ],
+            "when": "Any phase, when a friendly <b>ADEPTUS ASTARTES VEHICLE</b> unit suffers a <b>mortal wound</b>.",
+            "target": "That <b>ADEPTUS ASTARTES VEHICLE</b> unit.",
+            "effect": "Your unit has <b>Feel No Pain 5+</b> against <b>mortal wounds</b>.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-iron-might-of-the-machine-spirit",
+            "name": "MIGHT OF THE MACHINE SPIRIT",
+            "ref": "173",
+            "flavor": "There are many tales of machine spirits wreaking havoc on the foe, even after the crews of their vehicles are slain.",
+            "cp": 1,
+            "type": "Ironstorm Spearhead",
+            "group": "SPACE MARINES",
+            "timing": "yourTurn",
+            "phases": [
+              "command"
+            ],
+            "when": "Your Command phase.",
+            "target": "One friendly <b>ADEPTUS ASTARTES VEHICLE</b> (excluding <b>DEDICATED TRANSPORT/FLY/WALKER</b> units).",
+            "effect": "Until the start of your next Command phase, your unit can ignore modifiers to your unit's:<br>• <b>M</b>.<br>• <b>BS</b>.<br>• <b>Hit rolls</b> and <b>wound rolls</b>.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-iron-headhunter-doctrine",
+            "name": "HEADHUNTER DOCTRINE",
+            "ref": "173",
+            "flavor": "Exhaustive tactical training aids Space Marine gunners in exploiting any weakness in their targets' armour.",
+            "cp": 1,
+            "type": "Ironstorm Spearhead",
+            "group": "SPACE MARINES",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase, when a friendly <b>ADEPTUS ASTARTES VEHICLE</b> (excluding <b>DEDICATED TRANSPORT/FLY/WALKER</b> units) is selected to shoot.",
+            "target": "That <b>ADEPTUS ASTARTES VEHICLE</b> unit.",
+            "effect": "Your unit's ranged attacks have [LETHAL HITS: MONSTER/VEHICLE].",
+            "restrictions": ""
+          }
         ]
       }
     }
