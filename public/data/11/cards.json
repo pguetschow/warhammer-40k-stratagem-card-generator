@@ -1025,6 +1025,59 @@
             "effect": "Your unit has <b>MOBILE</b>.",
             "restrictions": ""
           }
+        ],
+        "Gauntlet Task Force": [
+          {
+            "id": "sm11-gaunt-aggressive-disembarkation",
+            "name": "AGGRESSIVE DISEMBARKATION",
+            "ref": "172",
+            "flavor": "Bursting out of their transport, the Space Marines are already on the move before their foes can react.",
+            "cp": 1,
+            "type": "Gauntlet Task Force",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "Any phase, when a friendly <b>ADEPTUS ASTARTES</b> unit embarked within a <b>TRANSPORT</b> is <b>selected to move</b>.",
+            "target": "That <b>ADEPTUS ASTARTES</b> unit.",
+            "effect": "While making that move, each model in your unit can be set up within the <b>set-up distance</b> of that <b>TRANSPORT</b>.<br><br><i>This allows you to set up your unit <u>within</u> the <b>set-up distance</b> of your <b>TRANSPORT</b>, instead of <u>wholly within</u> that distance.</i>",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-gaunt-duty-is-never-done",
+            "name": "DUTY IS NEVER DONE",
+            "ref": "172",
+            "flavor": "There is no time to rest upon laurels while any portion of the Emperor's realm remains in enemy hands.",
+            "cp": 1,
+            "type": "Gauntlet Task Force",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "End of the Fight phase.",
+            "target": "One friendly <b>unengaged ADEPTUS ASTARTES INFANTRY</b> unit that was <b>eligible to fight</b> this phase, is wholly within 6\" of a friendly <b>TRANSPORT</b> unit, and is eligible to embark within that <b>TRANSPORT</b> unit.",
+            "effect": "Your unit embarks within that <b>TRANSPORT</b> unit.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-gaunt-storm-and-secure",
+            "name": "STORM AND SECURE",
+            "ref": "172",
+            "flavor": "The advanced mechanised assault tactics employed by this force allow ground to be seized rapidly while on the move.",
+            "cp": 1,
+            "type": "Gauntlet Task Force",
+            "group": "SPACE MARINES",
+            "timing": "yourTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "End of your Movement phase.",
+            "target": "One friendly <b>ADEPTUS ASTARTES TRANSPORT</b> unit that has an <b>ADEPTUS ASTARTES BATTLELINE</b> unit embarked within it.",
+            "effect": "Select one <b>objective</b> your unit is controlling. That <b>objective</b> is <b>secured</b>.",
+            "restrictions": ""
+          }
         ]
       }
     }
