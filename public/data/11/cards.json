@@ -702,6 +702,60 @@
             "effect": "Your unit's ranged attacks (excluding [BLAST] attacks) have:<br>• [CLOSE-QUARTERS].<br>• [IGNORES COVER].",
             "restrictions": ""
           }
+        ],
+        "Phobos Shadow Force": [
+          {
+            "id": "sm11-pshadow-strike-from-the-shadows",
+            "name": "STRIKE FROM THE SHADOWS",
+            "ref": "166",
+            "flavor": "To evade one's enemies and sow confusion can be a deadly weapon in itself.",
+            "cp": 1,
+            "type": "Phobos Shadow Force",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your Shooting phase or the Fight phase, when a friendly <b>hidden PHOBOS</b> unit is <b>selected to attack</b>.",
+            "target": "That <b>PHOBOS</b> unit.",
+            "effect": "Your unit's attacks have:<br>• +1 <b>S</b>.<br>• [LETHAL HITS].",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-pshadow-mortis-snares",
+            "name": "MORTIS SNARES",
+            "ref": "166",
+            "flavor": "These stealth operatives lace the battlefield with explosive devices that trigger by mico-auspex and las-wire when foes blunder into them.",
+            "cp": 1,
+            "type": "Phobos Shadow Force",
+            "group": "SPACE MARINES",
+            "timing": "yourTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "End of your Movement phase.",
+            "target": "One friendly <b>unengaged PHOBOS/SCOUT SQUAD</b> unit.",
+            "effect": "If your unit is controlling an <b>objective</b>, that <b>objective</b> is <b>snared</b>. While an <b>objective</b> is <b>snared</b>, when an enemy unit ends a move within range of that <b>objective</b>, roll one D6:<br>• On a 2+, that enemy unit suffers D6 <b>mortal wounds</b>.<br>• That objective is no longer <b>snared</b>.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-pshadow-tactical-withdrawal",
+            "name": "TACTICAL WITHDRAWAL",
+            "ref": "166",
+            "flavor": "At an opportune moment, Space Marine infiltration units slip away from battle, only to relocate ready to strike the foe again.",
+            "cp": 1,
+            "type": "Phobos Shadow Force",
+            "group": "SPACE MARINES",
+            "timing": "oppTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "End of your opponent's Fight phase.",
+            "target": "One friendly unengaged <b>PHOBOS/SCOUT SQUAD</b> unit.",
+            "effect": "Place your unit in <b>strategic reserves</b>.",
+            "restrictions": ""
+          }
         ]
       }
     }
