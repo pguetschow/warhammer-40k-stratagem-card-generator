@@ -572,7 +572,7 @@
             "phases": [
               "shooting"
             ],
-            "when": "Your Shooting phase, when a friendly <b>ADEPTUS ASTARTES TERMINATOR</b> unit is selected to shoot.",
+            "when": "Your Shooting phase, when a friendly <b>ADEPTUS ASTARTES TERMINATOR</b> unit is <b>selected to shoot</b>.",
             "target": "That <b>ADEPTUS ASTARTES TERMINATOR</b> unit.",
             "effect": "Your unit's ranged attacks have:<br>• [LETHAL HITS].<br>• [SUSTAINED HITS 1].",
             "restrictions": ""
@@ -1126,7 +1126,7 @@
             "phases": [
               "shooting"
             ],
-            "when": "Your Shooting phase, when a friendly <b>ADEPTUS ASTARTES VEHICLE</b> (excluding <b>DEDICATED TRANSPORT/FLY/WALKER</b> units) is selected to shoot.",
+            "when": "Your Shooting phase, when a friendly <b>ADEPTUS ASTARTES VEHICLE</b> (excluding <b>DEDICATED TRANSPORT/FLY/WALKER</b> units) is <b>selected to shoot</b>.",
             "target": "That <b>ADEPTUS ASTARTES VEHICLE</b> unit.",
             "effect": "Your unit's ranged attacks have [LETHAL HITS: MONSTER/VEHICLE].",
             "restrictions": ""
