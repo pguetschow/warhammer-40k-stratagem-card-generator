@@ -790,7 +790,7 @@
             ],
             "when": "Your opponent's Movement phase, when an enemy unit ends a move within 8\" of a friendly <b>unengaged PHOBOS</b> unit.",
             "target": "That <b>PHOBOS</b> unit.",
-            "effect": "Your unit can make a normal move of:<br>• Up to D6\". <br>• <u>Or:</u> If the <b>tactical doctrine</b> is active for your unit, up to 6\"",
+            "effect": "Your unit can make a normal move of:<br>• Up to D6\". <br>• <u>Or:</u> If the <b>tactical doctrine</b> is active for your unit, up to 6\".",
             "restrictions": ""
           },
           {
