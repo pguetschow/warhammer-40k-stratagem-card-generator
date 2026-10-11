@@ -971,6 +971,60 @@
             "effect": "Ranged attacks that target your unit have -1 to <b>hit rolls</b>.",
             "restrictions": ""
           }
+        ],
+        "Ironclad Champions": [
+          {
+            "id": "sm11-irc-adamantine-terror",
+            "name": "ADAMANTINE TERROR",
+            "ref": "171",
+            "flavor": "Booming war cries through his vex-amplifiers, this Dreadnought rampages through the terrified foe.",
+            "cp": 1,
+            "type": "Ironclad Champions",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Start of the Fight phase.",
+            "target": "One friendly <b>DREADNOUGHT</b> unit.",
+            "effect": "Each enemy unit <b>engaged</b> with your unit makes a <b>battle-shock roll</b>, with -1 to that <b>battle-shock roll</b>.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-irc-mercy-is-weakness",
+            "name": "MERCY IS WEAKNESS",
+            "ref": "171",
+            "flavor": "Once a foe is marked for destruction, the Angels of Death must not relent until the target is annihilated.",
+            "cp": 1,
+            "type": "Ironclad Champions",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your Shooting phase or the Fight phase, when a friendly <b>DREADNOUGHT</b> unit is <b>selected to attack</b>.",
+            "target": "That <b>DREADNOUGHT</b> unit.",
+            "effect": "Your unit's attacks have:<br>• [LETHAL HITS].<br>• <u>Or:</u> [SUSTAINED HITS 1].",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-irc-unstoppable-advance",
+            "name": "UNSTOPPABLE ADVANCE",
+            "ref": "171",
+            "flavor": "Ruins, barricades, bunkers; few such structures can impede the relentless advance of an Adeptus Astartes Dreadnought.",
+            "cp": 1,
+            "type": "Ironclad Champions",
+            "group": "SPACE MARINES",
+            "timing": "yourTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "Your Movement/Charge phase, when a friendly <b>DREADNOUGHT</b> unit is <b>selected to move</b> or <b>declares a charge</b>.",
+            "target": "That <b>DREADNOUGHT</b> unit.",
+            "effect": "Your unit has <b>MOBILE</b>.",
+            "restrictions": ""
+          }
         ]
       }
     }
