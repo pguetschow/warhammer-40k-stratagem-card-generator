@@ -1131,6 +1131,217 @@
             "effect": "Your unit's ranged attacks have [LETHAL HITS: MONSTER/VEHICLE].",
             "restrictions": ""
           }
+        ],
+        "Wrath of the Rock": [
+          {
+            "id": "sm11-wotr-in-sacrifice-victory",
+            "name": "IN SACRIFICE, VICTORY",
+            "ref": "",
+            "flavor": "Those inducted into the Dark Angels’ Inner Circle will gladly give their lives in pursuit of victory, and to see the Fallen brought to justice.",
+            "cp": 1,
+            "type": "Wrath of the Rock",
+            "group": "DARK ANGELS",
+            "timing": "anyTurn",
+            "phases": [
+              "any"
+            ],
+            "when": "Any phase, when a friendly <b>DEATHWING/RAVENWING</b> unit within range of an <b>objective</b> is <b>destroyed</b>.",
+            "target": "That <b>ADEPTUS ASTARTES VEHICLE</b> unit. You can target that unit with this <b>stratagem</b> even though it is <b>destroyed</b>.",
+            "effect": "Select one <b>objective</b>:<br>• That no enemy units (excluding <b>AIRCRAFT</b> units) are within range of.<br>• That your unit was controlling at the end of the previous phase.<br>That <b>objective</b> is <b>secured</b>.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-wotr-lions-will",
+            "name": "LION'S WILL",
+            "ref": "",
+            "flavor": "Unflinching in their loyalty to Chapter and Primarch, Dark Angels battle-brothers seize and hold their objectives with unrelenting determination and zealous fury.",
+            "cp": 1,
+            "type": "Wrath of the Rock",
+            "group": "DARK ANGELS",
+            "timing": "anyTurn",
+            "phases": [
+              "command"
+            ],
+            "when": "Command phase.",
+            "target": "One friendly <b>ADEPTUS ASTARTES</b> unit that is within range of an <b>objective</b>.",
+            "effect": "Your unit has +1 <b>OC</b> until the end of the turn.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-wotr-inescapable-justice",
+            "name": "INESCAPABLE JUSTICE",
+            "ref": "",
+            "flavor": "The Dark Angels are relentless in the pursuit of their foes, striking with ruthless ferocity and precision to take the heads of those who have crossed the Chapter.",
+            "cp": 1,
+            "type": "Wrath of the Rock",
+            "group": "DARK ANGELS",
+            "timing": "anyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "The Fight phase, when a friendly <b>ADEPTUS ASTARTES</b> unit is <b>selected to fight</b>.",
+            "target": "That <b>ADEPTUS ASTARTES</b> unit.",
+            "effect": "Your unit's melee attacks have [PRECISION].",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-wotr-tactical-mastery",
+            "name": "TACTICAL MASTERY",
+            "ref": "",
+            "flavor": "When the constituent elements of the Dark Angels fight as one, the enemy is often overwhelmed and torn apart by the Chapter's tactical flexibility and mastery of rapid warfare.",
+            "cp": 1,
+            "type": "Wrath of the Rock",
+            "group": "DARK ANGELS",
+            "timing": "yourTurn",
+            "phases": [
+              "command"
+            ],
+            "when": "Your Command phase.",
+            "target": "One friendly <b>DEATHWING/RAVENWING</b> unit.",
+            "effect": "Select one <b>combat doctrine</b>. That <b>combat doctrine</b> is active for your unit until the start of your next Command phase.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-wotr-knights-of-iron",
+            "name": "KNIGHTS OF IRON",
+            "ref": "",
+            "flavor": "Atop their snarling mechanical steeds, the warriors of the Ravenwing surge through seemingly impassable terrain, smashing through rubble and ruin to unleash the wrath of the Unforgiven upon unsuspecting targets.",
+            "cp": 1,
+            "type": "Wrath of the Rock",
+            "group": "DARK ANGELS",
+            "timing": "yourTurn",
+            "phases": [
+              "movement",
+              "charge"
+            ],
+            "when": "Your Movement/Charge phase, when a friendly <b>RAVENWING</b> unit is <b>selected to move</b> or <b>declares a charge</b>.",
+            "target": "That <b>RAVENWING</b> unit.",
+            "effect": "Your unit has <b>MOBILE</b>.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-wotr-relics-of-the-dark-age",
+            "name": "RELICS OF THE DARK AGE",
+            "ref": "",
+            "flavor": "Amongst the many secrets hoarded by the Dark Angels are those technological in nature. The armouries of the Rock contain potent weapons unseen in the armouries of other Chapters.",
+            "cp": 1,
+            "type": "Wrath of the Rock",
+            "group": "DARK ANGELS",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase, when a friendly <b>ADEPTUS ASTARTES INFANTRY/MOUNTED</b> unit is <b>selected to shoot</b>.",
+            "target": "That <b>ADEPTUS ASTARTES INFANTRY/MOUNTED</b> unit.",
+            "effect": "Your unit's ranged attacks have +2 <b>S</b>.",
+            "restrictions": ""
+          }
+        ],
+        "Darkflight Pursuit": [
+          {
+            "id": "sm11-dfp-skyborne-surveillance",
+            "name": "SKYBORNE SURVEILLANCE",
+            "ref": "",
+            "flavor": "The auspicators of the Ravenwing are sleepless, and from ideal hunting vantages, there is nowhere the foe can hide for long.",
+            "cp": 1,
+            "type": "Darkflight Pursuit",
+            "group": "DARK ANGELS",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase, when a friendly <b>RAVENWING FLY</b> unit has shot.",
+            "target": "That <b>RAVENWING FLY</b> unit.",
+            "effect": "<b>Visible</b> enemy units within 6\" of your unit have +3\" <b>detection range</b>.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-dfp-we-are-vengeance",
+            "name": "WE ARE VENGEANCE",
+            "ref": "",
+            "flavor": "The Ravenwing's aerial assets are capable of swift and reactive manoeuvring to new firing positions, ensuring opportunities for rapid vengeance.",
+            "cp": 1,
+            "type": "Darkflight Pursuit",
+            "group": "DARK ANGELS",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your opponent's Shooting phase, when an enemy unit that targeted a friendly <b>unengaged RAVENWING FLY</b> unit has shot.",
+            "target": "That <b>RAVENWING FLY</b> unit.",
+            "effect": "Your unit can make a <b>normal move</b> of up to D3+3\".",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-dfp-wings-of-shadow",
+            "name": "WINGS OF SHADOW",
+            "ref": "",
+            "flavor": "Through subtle manoeuvring and empowered cameleoline armour, the swiftest of the Ravenwing evade attempts to bring their hunt to an end.",
+            "cp": 1,
+            "type": "Darkflight Pursuit",
+            "group": "DARK ANGELS",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your opponent's Shooting phase, when an enemy unit targets a friendly <b>RAVENWING FLY/MOUNTED</b> unit.",
+            "target": "That <b>RAVENWING FLY/MOUNTED</b> unit.",
+            "effect": "Your unit has <b>Stealth</b>.",
+            "restrictions": ""
+          }
+        ],
+        "Inner Circle Task Force": [
+          {
+            "id": "sm11-ictf-duty-unto-death",
+            "name": "DUTY UNTO DEATH",
+            "ref": "",
+            "flavor": "So driven by duty are the veterans of the Unforgiven that even death cannot keep them from it.",
+            "cp": 1,
+            "type": "Inner Circle Task Force",
+            "group": "DARK ANGELS",
+            "timing": "anyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "Fight phase, when an enemy unit targets a friendly <b>DEATHWING</b> unit.",
+            "target": "That <b>DEATHWING</b> unit.",
+            "effect": "When a model in your unit is <b>destroyed</b>, if your unit has not been <b>selected to fight</b> this phase, roll one D6, with +1 to that roll if your unit is <b>engaged</b> with an enemy unit within range of your <b>vowed objective</b>:<br>• On a 4+, do not remove that model from the battlefield. When your unit has fought, or at the end of the phase (whichever comes first), that model is removed from the battlefield.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-ictf-relic-teleportarium",
+            "name": "RELIC TELEPORTARIUM",
+            "ref": "",
+            "flavor": "The Deathwing employ ancient and incredibly powerful teleportariums, some older than the Great Crusade, to strike at their foes with unparalleled safety and accuracy.",
+            "cp": 1,
+            "type": "Inner Circle Task Force",
+            "group": "DARK ANGELS",
+            "timing": "yourTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "Your Movement phase, when a friendly <b>DEATHWING</b> unit with the <b>Deep Strike</b> ability is selected to make an <b>ingress move</b>.",
+            "target": "That <b>DEATHWING</b> unit.",
+            "effect": "<br>• Your unit can be set up more than 6\" horizontally from all enemy units (instead of more than 8\").<br>• Your unit is <u>not</u> <b>eligible to declare a charge</b> until the end of this turn.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-ictf-wrath-of-the-lion",
+            "name": "WRATH OF THE LION",
+            "ref": "",
+            "flavor": "Channelling the strategic puissance and measured ferocity of their gene-sire, the veterans of the Unforgiven unleash a perfectly timed and utterly lethal storm of tightly controlled violence.",
+            "cp": 1,
+            "type": "Inner Circle Task Force",
+            "group": "DARK ANGELS",
+            "timing": "yourTurn",
+            "phases": [
+              "charge"
+            ],
+            "when": "Your Charge phase, when a friendly <b>DEATHWING</b> unit ends a <b>charge move</b>.",
+            "target": "That <b>DEATHWING</b> unit.",
+            "effect": "Select one enemy unit <b>engaged</b> with your unit. If you do, roll one D6 for each model in your unit <b>engaged</b> with that enemy unit:<br>• For each 3+, that enemy unit suffers 1 <b>mortal wound</b> (to a maximum of 6 <b>mortal wounds</b>).",
+            "restrictions": ""
+          }
         ]
       }
     }
