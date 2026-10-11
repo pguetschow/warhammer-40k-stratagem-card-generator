@@ -752,8 +752,62 @@
               "fight"
             ],
             "when": "End of your opponent's Fight phase.",
-            "target": "One friendly unengaged <b>PHOBOS/SCOUT SQUAD</b> unit.",
+            "target": "One friendly <b>unengaged PHOBOS/SCOUT SQUAD</b> unit.",
             "effect": "Place your unit in <b>strategic reserves</b>.",
+            "restrictions": ""
+          }
+        ],
+        "Phobos Shock Force": [
+          {
+            "id": "sm11-pshock-strike-from-the-shadows",
+            "name": "STRIKE FROM THE SHADOWS",
+            "ref": "167",
+            "flavor": "To evade one's enemies and sow confusion can be a deadly weapon in itself.",
+            "cp": 1,
+            "type": "Phobos Shock Force",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your Shooting phase or the Fight phase, when a friendly <b>hidden PHOBOS</b> unit is <b>selected to attack</b>.",
+            "target": "That <b>PHOBOS</b> unit.",
+            "effect": "Your unit's attacks have:<br>• +1 <b>S</b>.<br>• [LETHAL HITS].",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-pshock-transhuman-reactions",
+            "name": "TRANSHUMAN REACTIONS",
+            "ref": "167",
+            "flavor": "Seemingly with the speed of instinct, these warriors reposition in response to the enemy's movements.",
+            "cp": 1,
+            "type": "Phobos Shock Force",
+            "group": "SPACE MARINES",
+            "timing": "oppTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "Your opponent's Movement phase, when an enemy unit ends a move within 8\" of a friendly <b>unengaged PHOBOS</b> unit.",
+            "target": "That <b>PHOBOS</b> unit.",
+            "effect": "Your unit can make a normal move of:<br>• Up to D6\". <br>• <u>Or:</u> If the <b>tactical doctrine</b> is active for your unit, up to 6\"",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-pshock-umbral-evasion",
+            "name": "UMBRAL EVASION",
+            "ref": "167",
+            "flavor": "A combination of technological arcana and expert training help these warriors to evade the eyes of the foe.",
+            "cp": 1,
+            "type": "Phobos Shock Force",
+            "group": "SPACE MARINES",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your opponent's Shooting phase, when an enemy unit targets a friendly <b>PHOBOS</b> unit.",
+            "target": "That <b>PHOBOS</b> unit.",
+            "effect": "Ranged attacks that target your unit have -1 to <b>hit rolls</b>.",
             "restrictions": ""
           }
         ]
