@@ -918,6 +918,59 @@
             "effect": "Select one enemy unit hit by those attacks. That enemy unit makes a <b>battle-shock roll</b>, with -1 to that <b>battle-shock roll</b>.",
             "restrictions": ""
           }
+        ],
+        "Stormlance Task Force": [
+          {
+            "id": "sm11-stf-wind-swift-evasion",
+            "name": "WIND-SWIFT EVASION",
+            "ref": "170",
+            "flavor": "Employing their steeds' pace to utmost effect, these warriors stay ever on the move.",
+            "cp": 1,
+            "type": "Stormlance Task Force",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "fight"
+            ],
+            "when": "End of the Fight phase.",
+            "target": "One friendly <b>ADEPTUS ASTARTES MOUNTED</b> unit that was eligible to fight this phase.",
+            "effect": "<br>• If your unit is <b>unengaged</b>, your unit can make a <b>normal move</b>.<br>• <u>Or:</u> If your unit is <b>unengaged</b>, your unit can make a <b>fall-back move</b>.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-stf-sudden-onslaught",
+            "name": "SUDDEN ONSLAUGHT",
+            "ref": "170",
+            "flavor": "Speed and shock are key to the Space Marine way of war: never more so than on rapid-strike missions.",
+            "cp": 1,
+            "type": "Stormlance Task Force",
+            "group": "SPACE MARINES",
+            "timing": "yourTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "Your Movement phase, when a friendly <b>ADEPTUS ASTARTES MOUNTED/SPEEDER</b> unit is selected to make an <b>advance move</b>.",
+            "target": "That <b>ADEPTUS ASTARTES MOUNTED/SPEEDER</b> unit.",
+            "effect": "Your unit can change its <b>advance rolls</b> to a 6.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-stf-hurtling-targets",
+            "name": "HURTLING TARGETS",
+            "ref": "170",
+            "flavor": "With nerves of steel and transhuman reactions, the Space Marines jink and weave cooly through incoming fire.",
+            "cp": 1,
+            "type": "Stormlance Task Force",
+            "group": "SPACE MARINES",
+            "timing": "oppTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your opponent's Shooting phase, when an enemy unit targets a friendly <b>ADEPTUS ASTARTES MOUNTED/SPEEDER</b> unit.",
+            "target": "That <b>ADEPTUS ASTARTES MOUNTED/SPEEDER</b> unit.",
+            "effect": "Ranged attacks that target your unit have -1 to <b>hit rolls</b>.",
+            "restrictions": ""
+          }
         ]
       }
     }
