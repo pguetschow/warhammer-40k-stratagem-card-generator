@@ -864,6 +864,60 @@
             "effect": "When your unit ends a <b>charge move</b>, you can select one enemy unit <b>engaged</b> with your unit. If you do, roll one D6 for each model in your unit <b>engaged</b> with that enemy unit:<br>• For each 3+, that enemy unit suffers 1 <b>mortal wound</b>.",
             "restrictions": ""
           }
+        ],
+        "Gravis Siege Force": [
+          {
+            "id": "sm11-gsf-annihilating-force",
+            "name": "ANNIHILATING FORCE",
+            "ref": "169",
+            "flavor": "Knowing well their duty to shatter the foe's lines, these warriors strike with devastating strength.",
+            "cp": 1,
+            "type": "Gravis Siege Force",
+            "group": "SPACE MARINES",
+            "timing": "anyTurn",
+            "phases": [
+              "shooting",
+              "fight"
+            ],
+            "when": "Your Shooting phase or the Fight phase, when a friendly <b>GRAVIS</b> unit is <b>selected to attack</b>.",
+            "target": "That <b>GRAVIS</b> unit.",
+            "effect": "Your unit's attacks have [LETHAL HITS].",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-gsf-stand-unyielding",
+            "name": "STAND UNYIELDING",
+            "ref": "169",
+            "flavor": "Ground claimed by Gravis-clad Adeptus Astartes cannot be taken back with ease.",
+            "cp": 1,
+            "type": "Gravis Siege Force",
+            "group": "SPACE MARINES",
+            "timing": "yourTurn",
+            "phases": [
+              "movement"
+            ],
+            "when": "End of your Movement phase.",
+            "target": "One friendly <b>GRAVIS</b> unit.",
+            "effect": "Select one <b>objective</b> your unit is controlling. That <b>objective</b> is <b>secured</b>.",
+            "restrictions": ""
+          },
+          {
+            "id": "sm11-gsf-suppression-volleys",
+            "name": "SUPPRESSION VOLLEYS",
+            "ref": "169",
+            "flavor": "Laying down hails of heavy fire, these warriors pin or drive back the foe.",
+            "cp": 1,
+            "type": "Gravis Siege Force",
+            "group": "SPACE MARINES",
+            "timing": "yourTurn",
+            "phases": [
+              "shooting"
+            ],
+            "when": "Your Shooting phase, when a friendly <b>GRAVIS</b> unit has shot.",
+            "target": "That <b>GRAVIS</b> unit.",
+            "effect": "Select one enemy unit hit by those attacks. That enemy unit makes a <b>battle-shock roll</b>, with -1 to that <b>battle-shock roll</b>.",
+            "restrictions": ""
+          }
         ]
       }
     }
