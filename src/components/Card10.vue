@@ -71,6 +71,8 @@ function iconComponent(phase: PhaseKey) {
   position: relative;
   width: 2.5in;
   height: 3.5in;
+  /* Tailwind's base styles set line-height 1.5 on the page; keep the browser default. */
+  line-height: normal;
   background: var(--bg);
   border: 3px solid var(--border);
   border-radius: 10px;
@@ -149,6 +151,24 @@ function iconComponent(phase: PhaseKey) {
   margin: 0;
   font-size: 8.35px;
   line-height: 1.05;
+}
+
+/* Tailwind's base styles strip list markers and indentation; restore the browser defaults the
+   10th Edition rules text (e.g. lists in EFFECT) was laid out with. */
+.sec10 :deep(ul),
+.sec10 :deep(ol) {
+  margin: 1em 0;
+  padding-left: 40px;
+  list-style: disc;
+}
+
+.sec10 :deep(ol) {
+  list-style: decimal;
+}
+
+.sec10 :deep(ul ul) {
+  margin: 0;
+  list-style: circle;
 }
 
 .side10 {

@@ -1,8 +1,23 @@
 <template>
-  <div class="cards-grid">
-    <div v-for="(c,i) in cards" :key="i" class="card-container">
+  <div class="grid grid-cols-[repeat(auto-fill,2.5in)] justify-center gap-x-6 gap-y-7">
+    <div
+        v-for="(c,i) in cards"
+        :key="i"
+        :class="edition === '10' && 'rounded-[10px]'"
+        class="relative shadow-xl shadow-black/40"
+    >
       <Card :card="c" :edition="edition"/>
-      <button class="remove-btn" title="Remove Card for Printing" @click="$emit('remove-card', c)">×</button>
+      <button
+          :aria-label="`Remove ${c.name} from printing`"
+          class="absolute -top-2.5 -right-2.5 z-10 grid size-7 place-items-center border border-iron-600 bg-iron-900 text-bone-300 shadow-lg shadow-black/50 transition hover:border-blood-400 hover:bg-blood-500 hover:text-bone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-400 print:hidden"
+          title="Remove card from printing"
+          type="button"
+          @click="$emit('remove-card', c)"
+      >
+        <svg aria-hidden="true" class="size-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path d="M6 6l12 12M18 6 6 18" stroke-linecap="square"/>
+        </svg>
+      </button>
     </div>
   </div>
 </template>
@@ -14,94 +29,3 @@ import type {CardData, EditionId} from '../types'
 defineProps<{ cards: CardData[], index: number, edition: EditionId }>()
 defineEmits<{ (e: 'remove-card', card: CardData): void }>()
 </script>
-
-<style scoped>
-.cards-grid {
-  display: grid;
-  row-gap: 20px;
-  column-gap: 20px;
-  justify-content: center;
-  padding: 0 20px;
-
-  /* Desktop: 4 cards per row */
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Large screens: up to 5 cards per row */
-@media (min-width: 1400px) {
-  .cards-grid {
-    grid-template-columns: repeat(auto-fit, minmax(2.6in, 1fr));
-    max-width: 1400px;
-  }
-}
-
-/* Medium screens: 3 cards per row */
-@media (max-width: 1024px) {
-  .cards-grid {
-    grid-template-columns: repeat(auto-fit, minmax(2.6in, 1fr));
-    max-width: 90vb;
-    gap: 16px;
-  }
-}
-
-/* Tablets: 2 cards per row */
-@media (max-width: 768px) {
-  .cards-grid {
-    grid-template-columns: repeat(auto-fit, minmax(2.6in, 1fr));
-    max-width: 90vb;
-    gap: 16px;
-    padding: 0 16px;
-  }
-}
-
-/* Mobile: 1 card per row */
-@media (max-width: 425px) {
-  .cards-grid {
-    grid-template-columns: repeat(auto-fit, minmax(2.6in, 1fr));
-    max-width: 90vb;
-    gap: 12px;
-    padding: 0 12px;
-  }
-}
-
-.card-container {
-  position: relative;
-  max-width: 2.5in;
-  justify-self: center;
-}
-
-.remove-btn {
-  position: absolute;
-  top: -5px;
-  right: -7px;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  border: 1px solid #ccc;
-  background: rgba(255, 255, 255);
-  color: #666;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.remove-btn:hover {
-  background: rgba(220, 53, 69);
-  color: white;
-  border-color: #dc3545;
-}
-
-@media print {
-  .remove-btn {
-    display: none !important;
-  }
-}
-</style>

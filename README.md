@@ -8,7 +8,7 @@ Available at [stratagemprint40k.app](https://stratagemprint40k.app).
 ## Requirements
 - **Node.js**: 22.12+ (Vite 5 compatible)
 - **Dependencies**: Vue 3
-- **Dev tooling**: Vite 5, TypeScript 5, `@vitejs/plugin-vue`
+- **Dev tooling**: Vite 5, TypeScript 5, `@vitejs/plugin-vue`, Tailwind CSS 4 (`@tailwindcss/vite`)
 
 ## Setup
 ```bash
@@ -98,4 +98,5 @@ The 10th Edition keeps the generator’s existing plain-text fields and shortene
 2. **Add editions** in the script’s `SCRAPED_EDITIONS` list; the job rewrites stale workbook links to that edition’s Wahapedia path.
 3. **Do not hand-edit generated card data** unless necessary; regenerate it before release.
 4. **Validate locally**: run `npm run build` and test the affected faction/detachment; fix any console errors or rendering issues.
-5. **Keep diffs clean**: 2-space indentation, stable key ordering, no trailing commas.
+5. **Styling**: the app UI uses Tailwind utilities (theme tokens in `src/assets/styles.css`); the printable card artwork is plain CSS sized in inches, in `src/assets/cards.css` and the card components.
+6. **Keep diffs clean**: 2-space indentation, stable key ordering, no trailing commas.

@@ -1,122 +1,190 @@
 <template>
-  <div :class="{ 'print-preview-active': showPrintPreview }" class="app-container">
-    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 32px;">
-      <header class="app-header">
-        <div class="header-content">
-          <h1 class="app-title">
-            WARHAMMER 40k STRATEGEM CARD PRINTER
-          </h1>
-          <p class="app-description">
-            Generate and print strategem cards for your Warhammer 40,000 battles.
-            Select your faction, detachment, and choose the stratagems for your army.
-            <br>
-            Suitable for 2.5"x 3.5" sleeves (like Magic: The Gathering)
-          </p>
-          <p class="app-description">
-            Based on the Stratagems available at <a :href="sourceUrl">Wahapedia</a>.
-            <span v-if="lastUpdate">Last export update: {{ lastUpdate }}</span>
-          </p>
+  <div
+      class="min-h-screen bg-[radial-gradient(ellipse_at_top,rgba(212,168,58,0.13),transparent_55%),radial-gradient(ellipse_at_bottom,rgba(163,21,28,0.10),transparent_60%)] bg-fixed print:bg-none"
+  >
+    <div class="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8 print:max-w-none print:p-0">
+      <header class="pt-8 pb-6 sm:pt-12 sm:pb-8 print:hidden">
+        <div class="flex flex-wrap items-start justify-between gap-6">
+          <div class="flex max-w-3xl items-start gap-5">
+            <div
+                aria-hidden="true"
+                class="mt-1 hidden size-14 shrink-0 rotate-45 place-items-center border-2 border-gold-400/80 bg-iron-900 shadow-[0_0_24px_rgba(212,168,58,0.25)] sm:grid"
+            >
+              <span class="block h-8 w-6 -rotate-45 text-gold-300">
+                <SkullIcon class="size-full"/>
+              </span>
+            </div>
+            <div>
+              <p class="font-label text-xs font-semibold tracking-[0.35em] text-gold-400 uppercase">Warhammer 40,000</p>
+              <h1 class="mt-1.5 font-gothic text-3xl font-black tracking-wider text-bone-100 uppercase [text-shadow:0_2px_12px_rgba(0,0,0,0.6)] sm:text-[2.6rem]">
+                Stratagem Card Printer
+              </h1>
+              <p class="mt-3 max-w-2xl text-sm/relaxed text-bone-300">
+                Generate and print stratagem cards for your battles: pick your faction and detachment and leave out
+                the stratagems you don't need. Sized for 2.5″ × 3.5″ sleeves (like Magic: The Gathering).
+              </p>
+              <p class="mt-2 text-xs text-bone-500">
+                Based on the stratagems available at
+                <a :href="sourceUrl" class="text-gold-400 underline-offset-2 hover:text-gold-200 hover:underline">Wahapedia</a>.
+                <span v-if="lastUpdate">Last export update: {{ lastUpdate }}</span>
+              </p>
+            </div>
+          </div>
+
+          <nav aria-label="Project links" class="flex items-center gap-2">
+            <a
+                :class="iconLinkClass"
+                aria-label="View source on GitHub"
+                href="https://github.com/pguetschow/warhammer-40k-stratagem-card-generator/"
+                rel="noopener noreferrer"
+                target="_blank"
+                title="View source on GitHub"
+            >
+              <svg aria-hidden="true" class="size-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 .5C5.73.5.9 5.33.9 11.6c0 4.87 3.16 9 7.55 10.45.55.1.76-.24.76-.54 0-.27-.01-1.16-.02-2.1-3.07.67-3.72-1.32-3.72-1.32-.5-1.27-1.22-1.61-1.22-1.61-.99-.68.08-.66.08-.66 1.1.08 1.67 1.13 1.67 1.13.98 1.67 2.58 1.18 3.21.9.1-.71.38-1.18.69-1.45-2.45-.28-5.02-1.23-5.02-5.47 0-1.21.43-2.19 1.14-2.96-.12-.28-.5-1.42.1-2.96 0 0 .95-.3 3.12 1.13a10.8 10.8 0 0 1 5.68 0c2.17-1.43 3.12-1.13 3.12-1.13.6 1.54.22 2.68.1 2.96.71.77 1.14 1.75 1.14 2.96 0 4.25-2.58 5.18-5.04 5.46.39.34.74 1.01.74 2.03 0 1.47-.01 2.65-.01 3.01 0 .3.2.65.77.54 4.38-1.46 7.54-5.58 7.54-10.45C23.1 5.33 18.27.5 12 .5Z"/>
+              </svg>
+            </a>
+            <a
+                :class="iconLinkClass"
+                aria-label="Contact us by email"
+                href="mailto:stratagemprint@gmail.com"
+                title="Contact us at stratagemprint@gmail.com"
+            >
+              <svg aria-hidden="true" class="size-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1 2.6V17h16V7.6l-7.4 5.3a1 1 0 0 1-1.2 0L4 7.6ZM19.2 7H4.8L12 12.1 19.2 7Z"/>
+              </svg>
+            </a>
+          </nav>
+        </div>
+
+        <div aria-hidden="true" class="mt-8 flex items-center gap-3">
+          <span class="h-px flex-1 bg-linear-to-r from-transparent to-gold-500/50"></span>
+          <span class="size-1.5 rotate-45 bg-gold-400"></span>
+          <span class="h-px flex-1 bg-linear-to-l from-transparent to-gold-500/50"></span>
         </div>
       </header>
 
-      <section class="controls-section">
-        <div class="controls-grid">
-          <div class="control-group">
-            <label class="control-label">Edition</label>
-            <select
-                v-model="selectedEdition"
-                class="control-select"
-                @change="onEditionChange"
-            >
-              <option
+      <section
+          v-if="!showPrintPreview"
+          class="mb-8 hud-frame p-4 shadow-2xl shadow-black/40 backdrop-blur sm:p-5 lg:sticky lg:top-3 lg:z-40 print:hidden"
+      >
+        <div class="grid gap-4 md:grid-cols-[auto_minmax(0,1fr)_minmax(0,1fr)] md:items-end">
+          <div>
+            <span id="edition-label" :class="labelClass">Edition</span>
+            <div aria-labelledby="edition-label" class="flex border border-iron-700 bg-iron-950 p-1" role="radiogroup">
+              <button
                   v-for="editionOption in editions"
                   :key="editionOption.id"
-                  :value="editionOption.id"
+                  :aria-checked="selectedEdition === editionOption.id"
+                  :class="selectedEdition === editionOption.id
+                    ? 'bg-linear-to-b from-gold-300 to-gold-500 text-iron-950'
+                    : 'text-bone-500 hover:bg-iron-800 hover:text-bone-100'"
+                  class="flex-1 px-3 py-1.5 font-label text-sm font-bold tracking-wider whitespace-nowrap uppercase transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-400"
+                  role="radio"
+                  type="button"
+                  @click="selectEdition(editionOption.id)"
               >
                 {{ editionOption.label }}
-              </option>
-            </select>
+              </button>
+            </div>
           </div>
 
-          <div class="control-group">
-            <label class="control-label">Faction</label>
-            <select
-                v-if="groupedDropdown.length"
-                v-model="faction"
-                class="control-select"
-                @change="onFactionChange"
-            >
-              <optgroup
-                  v-for="grp in groupedDropdown"
-                  :key="grp.group"
-                  :label="grp.group"
-              >
-                <option
-                    v-for="f in grp.items"
-                    :key="f.key"
-                    :value="f.key"
-                >
-                  {{ f.label }}
-                </option>
-              </optgroup>
-            </select>
+          <label class="block">
+            <span :class="labelClass">Faction</span>
+            <span class="relative block">
+              <select v-model="faction" :class="selectClass" @change="onFactionChange">
+                <template v-if="groupedDropdown.length">
+                  <optgroup v-for="grp in groupedDropdown" :key="grp.group" :label="grp.group">
+                    <option v-for="f in grp.items" :key="f.key" :value="f.key">{{ f.label }}</option>
+                  </optgroup>
+                </template>
+                <template v-else>
+                  <option v-for="(f, key) in dataByFaction" :key="key" :value="key">{{ f.name }}</option>
+                </template>
+              </select>
+              <svg aria-hidden="true" :class="chevronClass" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6" stroke-linecap="square"/>
+              </svg>
+            </span>
+          </label>
 
-            <!-- Fallback-->
-            <select
-                v-else
-                v-model="faction"
-                class="control-select"
-                @change="onFactionChange"
-            >
-              <option
-                  v-for="(f, key) in dataByFaction"
-                  :key="key"
-                  :value="key"
-              >
-                {{ f.name }}
-              </option>
-            </select>
-          </div>
-
-          <div class="control-group">
-            <label class="control-label">Detachment</label>
-            <select
-                v-model="detachment"
-                class="control-select"
-                @change="onDetachmentChange"
-            >
-              <optgroup v-for="group in detachmentGroups" :key="group.label" :label="group.label">
-                <option v-for="d in group.options" :key="d.value" :value="d.value">{{ d.label }}</option>
-              </optgroup>
-            </select>
-          </div>
-
-          <div class="control-group checkbox-group">
-            <label class="checkbox-label">
-              <input v-model="includeCore" :disabled="isCore" class="control-checkbox" type="checkbox"/>
-              <span class="checkbox-text">Include Core Stratagems</span>
-            </label>
-          </div>
+          <label class="block">
+            <span :class="labelClass">Detachment</span>
+            <span class="relative block">
+              <select v-model="detachment" :class="selectClass" @change="onDetachmentChange">
+                <optgroup v-for="group in detachmentGroups" :key="group.label" :label="group.label">
+                  <option v-for="d in group.options" :key="d.value" :value="d.value">{{ d.label }}</option>
+                </optgroup>
+              </select>
+              <svg aria-hidden="true" :class="chevronClass" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="m6 9 6 6 6-6" stroke-linecap="square"/>
+              </svg>
+            </span>
+          </label>
         </div>
 
-        <div class="action-buttons">
-          <button class="action-btn secondary-btn" @click="resetRemovedCards">
-            <span class="btn-icon">⟲</span>
-            Reset Removed Cards
-          </button>
-          <button :disabled="visibleCards.length === 0" class="action-btn primary-btn" @click="openPrintDialog">
-            <span class="btn-icon">⎙</span>
-            Print Preview ({{ visibleCards.length }} Cards)
-          </button>
+        <div class="mt-4 flex flex-wrap items-center justify-between gap-4 border-t border-iron-700 pt-4">
+          <label
+              :class="isCore ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'"
+              class="inline-flex items-center gap-3 font-label text-sm font-semibold tracking-wider text-bone-100 uppercase"
+          >
+            <input v-model="includeCore" :disabled="isCore" class="peer sr-only" type="checkbox"/>
+            <span
+                aria-hidden="true"
+                class="relative h-5 w-9 shrink-0 border border-iron-600 bg-iron-950 transition peer-checked:border-gold-500 peer-checked:bg-gold-500/25 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-gold-400 after:absolute after:top-0.5 after:left-0.5 after:size-3.5 after:bg-bone-500 after:transition peer-checked:after:translate-x-4 peer-checked:after:bg-gold-300"
+            ></span>
+            Include Core Stratagems
+          </label>
+
+          <div class="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <button
+                :class="secondaryButtonClass"
+                :disabled="removedCount === 0"
+                type="button"
+                @click="resetRemovedCards"
+            >
+              <svg aria-hidden="true" class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5" stroke-linecap="square"/>
+              </svg>
+              Reset removed
+              <span v-if="removedCount" class="bg-blood-500 px-1.5 text-xs text-bone-100">{{ removedCount }}</span>
+            </button>
+            <button
+                :class="primaryButtonClass"
+                :disabled="visibleCards.length === 0"
+                type="button"
+                @click="openPrintDialog"
+            >
+              <svg aria-hidden="true" class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M6 9V3h12v6M6 18H4v-7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7h-2M6 14h12v7H6z" stroke-linecap="square"/>
+              </svg>
+              Print preview
+              <span class="bg-iron-950/20 px-1.5 text-xs">{{ visibleCards.length }}</span>
+            </button>
+          </div>
         </div>
       </section>
 
-      <section v-if="!showPrintPreview" class="cards-section">
-        <div v-if="visibleCards.length === 0" class="no-cards-message">
-          <h3>No cards available</h3>
-          <p>Select a faction and detachment to view available strategem cards.</p>
+      <p
+          v-if="loadError"
+          class="mb-6 border border-blood-500/60 bg-blood-900/50 px-4 py-3 text-sm text-bone-100 print:hidden"
+          role="alert"
+      >
+        The card data couldn't be loaded. Please reload the page to try again.
+      </p>
+
+      <section v-if="!showPrintPreview" class="print:hidden">
+        <div v-if="visibleCards.length === 0" class="hud-frame px-6 py-16 text-center">
+          <h3 class="font-gothic text-xl font-bold tracking-wider text-bone-100 uppercase">No cards available</h3>
+          <p class="mt-2 text-sm text-bone-500">Select a faction and detachment to view available stratagem cards.</p>
         </div>
-        <Page v-else :cards="visibleCards" :edition="selectedEdition" :index="0" @remove-card="removeCard"/>
+        <template v-else>
+          <p class="mb-5 font-label text-sm tracking-wider text-bone-500 uppercase">
+            <span class="font-bold text-gold-400">{{ visibleCards.length }}</span>
+            {{ visibleCards.length === 1 ? 'card' : 'cards' }} · remove the ones you don't need with ×
+          </p>
+          <Page :cards="visibleCards" :edition="selectedEdition" :index="0" @remove-card="removeCard"/>
+        </template>
       </section>
 
       <PrintPreview
@@ -134,6 +202,8 @@
 import {computed, ref} from 'vue'
 import Page from './components/Page.vue'
 import PrintPreview from './components/PrintPreview.vue'
+import SkullIcon from './components/icons/SkullIcon.vue'
+import {primaryButtonClass, secondaryButtonClass} from './util/ui'
 import type {CardData, EditionData, EditionOption, FactionData} from './types'
 
 const ALL_DETACHMENTS_ONLY_KEY = '(all-detachments)'
@@ -144,6 +214,14 @@ const ALL_DETACHMENTS_CP_LABEL = 'All Detachments (incl. Combat Patrols)'
 // core abilities and game-mode stratagems (Boarding Actions, Challenger, ...).
 const CORE_STRATAGEMS_LABEL = 'Core Stratagems'
 
+const labelClass = 'mb-1.5 block font-label text-xs font-semibold tracking-[0.18em] text-gold-400 uppercase'
+const selectClass = 'w-full appearance-none border border-iron-700 bg-iron-950 py-2.5 pr-10 pl-3 text-sm ' +
+    'text-bone-100 transition outline-none hover:border-iron-600 focus:border-gold-400 ' +
+    'focus:ring-2 focus:ring-gold-400/25'
+const chevronClass = 'pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-gold-500'
+const iconLinkClass = 'grid size-10 place-items-center border border-iron-700 bg-iron-900 text-bone-500 ' +
+    'transition hover:border-gold-500/60 hover:text-gold-300 focus-visible:outline-2 ' +
+    'focus-visible:outline-offset-2 focus-visible:outline-gold-400'
 type FactionGroups = Record<string, string[]>
 
 const dataByFaction = ref<Record<string, FactionData>>({})
@@ -240,6 +318,8 @@ const visibleCards = computed(() => {
   return allCards.value.filter(card => !removedCardIds.value.has(getCardId(card)))
 })
 
+const removedCount = computed(() => allCards.value.length - visibleCards.value.length)
+
 
 const detachmentGroups = computed(() => {
   const f = dataByFaction.value[faction.value] || {}
@@ -325,7 +405,9 @@ function resetRemovedCards() {
   removedCardIds.value.clear()
 }
 
-function onEditionChange() {
+function selectEdition(id: string) {
+  if (id === selectedEdition.value) return
+  selectedEdition.value = id
   loadData()
 }
 
@@ -350,252 +432,3 @@ function printCards() {
   window.print()
 }
 </script>
-
-<style scoped>
-.app-container {
-  min-height: 100vh;
-  background: var(--w40k-bg);
-}
-
-.app-header {
-  text-align: center;
-  padding-bottom: 32px;
-  border-bottom: 2px solid var(--w40k-border);
-  margin-bottom: 32px;
-}
-
-.app-title {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--w40k-gold);
-  margin: 40px 20px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.app-title img {
-  height: 60px;
-  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
-}
-
-.app-description {
-  font-size: 1rem;
-  color: var(--w40k-text-muted);
-  max-width: 800px;
-  margin: 10px auto;
-  line-height: 1.6;
-}
-
-.controls-section {
-  background: var(--w40k-surface);
-  border: 1px solid var(--w40k-border);
-  padding: 32px;
-  margin-bottom: 32px;
-}
-
-@media (min-width: 1024px) {
-  .controls-section {
-    position: sticky;
-    top: 0;
-    z-index: 9999;
-  }
-
-  .print-preview-active .controls-section {
-    position: static !important;
-    top: auto !important;
-  }
-}
-
-.controls-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 24px;
-  margin-bottom: 32px;
-}
-
-.control-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.checkbox-group {
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.control-label {
-  font-weight: 700;
-  color: var(--w40k-gold);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.8rem;
-}
-
-.control-select {
-  padding: 12px 16px;
-  background: var(--w40k-dropdown);
-  border: 1px solid var(--w40k-border);
-  color: var(--w40k-text);
-  font-size: 1rem;
-  font-family: inherit;
-  outline: none;
-}
-
-.control-select:focus {
-  border-color: var(--w40k-accent);
-}
-
-.checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  font-size: 1rem;
-  color: var(--w40k-text);
-}
-
-.control-checkbox {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--w40k-accent);
-}
-
-.checkbox-text {
-  font-weight: 500;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  letter-spacing: 0.02em;
-}
-
-.action-buttons {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--w40k-border);
-  padding-top: 24px;
-}
-
-.action-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border: 1px solid var(--w40k-border);
-  background: var(--w40k-surface);
-  color: var(--w40k-text);
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-family: inherit;
-}
-
-.primary-btn {
-  background: var(--w40k-accent);
-  border-color: var(--w40k-accent);
-  color: white;
-}
-
-.primary-btn:hover:not(:disabled) {
-  background: var(--w40k-accent-hover);
-  border-color: var(--w40k-accent-hover);
-}
-
-.secondary-btn:hover {
-  background: var(--w40k-surface-light);
-  border-color: var(--w40k-text-muted);
-}
-
-.action-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.btn-icon {
-  font-size: 1.1rem;
-}
-
-.cards-section {
-  margin-top: 32px;
-}
-
-.no-cards-message {
-  text-align: center;
-  padding: 60px 20px;
-  color: var(--w40k-text-muted);
-  background: var(--w40k-surface);
-  border: 1px solid var(--w40k-border);
-  margin: 20px 0;
-}
-
-.no-cards-message h3 {
-  color: var(--w40k-gold);
-  margin: 0 0 16px 0;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.no-cards-message p {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-@media (max-width: 768px) {
-  .app-title {
-    font-size: 2rem;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .controls-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .action-buttons {
-    justify-content: center;
-    flex-direction: column;
-  }
-
-  .action-btn {
-    justify-content: center;
-  }
-}
-
-/* Print styles */
-@media print {
-  .app-container {
-    background: none !important;
-  }
-
-  .container {
-    max-width: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .app-header,
-  .controls-section {
-    display: none !important;
-  }
-
-  .cards-section {
-    display: none !important;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    background: white !important;
-  }
-}
-</style>
