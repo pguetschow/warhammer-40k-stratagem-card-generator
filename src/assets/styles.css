@@ -8,6 +8,7 @@
     --font-heavy: "Archivo Black", "Arial Black", sans-serif;
 
     --color-paper: #dcd9d2;
+    --color-title: #dcecd2;
     --color-slip: #f4f2ec;
     --color-ink: #16150f;
     --color-band: #050505;
@@ -18,14 +19,25 @@
 
 @layer base {
     body {
-        @apply min-h-screen bg-paper font-sans text-[17px]/[1.45] text-ink;
+        @apply min-h-screen paper-texture font-sans text-[17px]/[1.45] text-ink;
     }
 
     @media print {
         body {
-            @apply bg-white;
+            @apply bg-white bg-none;
         }
     }
+}
+
+/* The page is card stock: the same faint ruled texture and light falloff as the card body. Fixed to
+   the viewport, so sticky bars that reuse it line up seamlessly with the page behind them. */
+@utility paper-texture {
+    background-color: var(--color-paper);
+    background-image:
+        radial-gradient(circle at 12% 0%, rgb(255 255 255 / .35), transparent 45%),
+        repeating-linear-gradient(0deg, rgb(0 0 0 / .022) 0 1px, transparent 1px 7px),
+        repeating-linear-gradient(90deg, rgb(0 0 0 / .016) 0 1px, transparent 1px 9px);
+    background-attachment: fixed;
 }
 
 /* The card title band's cut top-right corner. */

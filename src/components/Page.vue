@@ -3,7 +3,8 @@
     <div
         v-for="(c,i) in cards"
         :key="i"
-        class="relative"
+        :class="edition === '10' && 'rounded-[10px]'"
+        class="relative shadow-[0_1px_0_rgb(0_0_0/0.2),0_10px_18px_-10px_rgb(22_21_15/0.55)]"
     >
       <Card :card="c" :edition="edition"/>
       <button

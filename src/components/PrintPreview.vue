@@ -1,7 +1,7 @@
 <template>
   <div class="print:m-0 print:p-0">
     <div
-        class="mt-6 mb-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-b-2 border-ink bg-paper py-4 lg:sticky lg:top-0 lg:z-40 print:hidden"
+        class="mt-6 mb-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-b-2 border-dotted border-[#8a8a86] paper-texture py-4 lg:sticky lg:top-0 lg:z-40 print:hidden"
     >
       <button :class="linkButtonClass" class="inline-flex items-center gap-1" type="button" @click="$emit('close')">
         <svg aria-hidden="true" class="size-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
@@ -13,7 +13,7 @@
         {{ visibleCards.length }} {{ visibleCards.length === 1 ? 'card' : 'cards' }} on {{ printPages.length }} A4
         {{ printPages.length === 1 ? 'page' : 'pages' }}. Print at 100% scale and cut along the dashed lines.
       </p>
-      <button :class="primaryButtonClass" class="sm:ml-auto" type="button" @click="$emit('print')">Print</button>
+      <PrintButton :count="visibleCards.length" class="sm:ml-auto" label="Print" @click="$emit('print')"/>
     </div>
 
     <div class="flex w-full justify-center overflow-x-auto px-1 sm:px-3 print:overflow-visible print:p-0">
@@ -60,7 +60,8 @@
 import {computed} from 'vue'
 import Card from './Card.vue'
 import type {CardData, EditionId} from '../types'
-import {linkButtonClass, primaryButtonClass} from '../util/ui'
+import PrintButton from './PrintButton.vue'
+import {linkButtonClass} from '../util/ui'
 
 const props = defineProps<{
   visibleCards: CardData[]

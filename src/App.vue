@@ -1,13 +1,50 @@
 <template>
   <div class="mx-auto max-w-6xl px-4 pt-6 pb-16 sm:px-6 sm:pt-8 print:max-w-none print:p-0">
-    <header class="print:hidden">
-      <div class="flex min-h-16 clip-corner items-center justify-between gap-4 bg-band py-3 pr-10 pl-5 [--clip:22px] sm:pl-7">
-        <h1 class="font-heavy text-[clamp(1.35rem,4vw,2rem)] leading-none text-slip uppercase">
+    <!-- The header is itself a stratagem card: title band, cost corner, category bar, rules text and rail. -->
+    <header
+        class="grid grid-cols-[minmax(0,1fr)_3.5rem] border-2 border-band bg-slip shadow-[0_1px_0_rgb(0_0_0/0.25),0_14px_28px_-18px_rgb(22_21_15/0.6)] sm:grid-cols-[minmax(0,1fr)_5rem] print:hidden"
+    >
+      <div
+          class="flex min-h-16 clip-corner items-center bg-band bg-[repeating-linear-gradient(115deg,rgb(255_255_255/0.035)_0_1px,transparent_1px_4px)] py-3 pr-8 pl-5 [--clip:22px] sm:pl-7"
+      >
+        <h1 class="font-heavy text-[clamp(1.35rem,4vw,2rem)] leading-none text-title uppercase">
           Stratagem card printer
         </h1>
-        <nav aria-label="Project links" class="flex shrink-0 gap-1">
+      </div>
+      <p
+          aria-hidden="true"
+          class="grid place-items-center pr-1 font-heavy text-[clamp(1rem,2.6vw,1.6rem)] leading-none tracking-[-0.04em] text-band"
+      >
+        40K
+      </p>
+
+      <div aria-label="Edition" class="flex bg-teal" role="radiogroup">
+        <button
+            v-for="editionOption in editions"
+            :key="editionOption.id"
+            :aria-checked="selectedEdition === editionOption.id"
+            :class="selectedEdition === editionOption.id ? 'bg-slip text-ink' : 'text-slip/85 hover:bg-teal-dark hover:text-slip'"
+            class="px-4 py-2.5 font-heavy text-[13px] tracking-[0.05em] uppercase focus-visible:outline-3 focus-visible:-outline-offset-3 focus-visible:outline-slip sm:px-5"
+            role="radio"
+            type="button"
+            @click="selectEdition(editionOption.id)"
+        >
+          {{ editionOption.label }}
+        </button>
+      </div>
+
+      <div class="relative row-span-2 flex flex-col items-center gap-4 overflow-hidden border-l-2 border-band rail-texture pt-4 pb-5">
+        <span
+            aria-hidden="true"
+            class="relative z-10 grid size-7 rotate-45 place-items-center border-2 border-[#f5f8ef]/90 bg-[#ebf2e1]/10 text-[#f4f6ed] shadow-[0_0_0_1px_rgb(0_0_0/0.25),0_0_8px_rgb(144_184_120/0.55)] sm:size-8"
+        >
+          <span class="block h-[18px] w-3.5 -rotate-45 drop-shadow-[0_0_2px_rgb(144_184_120/0.9)]">
+            <SkullIcon class="size-full"/>
+          </span>
+        </span>
+        <nav aria-label="Project links" class="relative z-10 flex flex-col items-center gap-2">
           <a
-              :class="iconLinkClass"
+              :class="railLinkClass"
               aria-label="View source on GitHub"
               href="https://github.com/pguetschow/warhammer-40k-stratagem-card-generator/"
               rel="noopener noreferrer"
@@ -19,7 +56,7 @@
             </svg>
           </a>
           <a
-              :class="iconLinkClass"
+              :class="railLinkClass"
               aria-label="Contact us by email"
               href="mailto:stratagemprint@gmail.com"
               title="Contact us at stratagemprint@gmail.com"
@@ -31,37 +68,32 @@
         </nav>
       </div>
 
-      <div aria-label="Edition" class="flex bg-teal" role="radiogroup">
-        <button
-            v-for="editionOption in editions"
-            :key="editionOption.id"
-            :aria-checked="selectedEdition === editionOption.id"
-            :class="selectedEdition === editionOption.id ? 'bg-paper text-ink' : 'text-slip/85 hover:bg-teal-dark hover:text-slip'"
-            class="px-5 py-2.5 font-heavy text-[13px] tracking-[0.05em] uppercase focus-visible:outline-3 focus-visible:-outline-offset-3 focus-visible:outline-slip"
-            role="radio"
-            type="button"
-            @click="selectEdition(editionOption.id)"
-        >
-          {{ editionOption.label }}
-        </button>
-      </div>
-
-      <div class="mt-6 max-w-[44rem]">
-        <p>
-          Print your army's stratagems as cards that fit standard 2.5 × 3.5 inch sleeves. Choose a faction and
-          detachment, take out the cards you won't use, then print.
-        </p>
-        <p class="mt-1 text-[15px] text-ink/65">
+      <div class="px-5 pt-3 pb-5 sm:px-7">
+        <p class="border-b-[1.5px] border-band pb-2 font-['Courier_Prime',monospace] text-[14px]/[1.35] text-ink/85">
           Rules text from the
-          <a :href="sourceUrl" class="font-semibold text-teal underline decoration-teal/40 underline-offset-2 hover:decoration-teal">Wahapedia data export</a><template v-if="lastUpdateLabel">, last updated {{ lastUpdateLabel }}</template>.
+          <a :href="sourceUrl" class="text-teal underline decoration-teal/40 underline-offset-2 hover:decoration-teal">Wahapedia data export</a><template v-if="lastUpdateLabel">, last updated {{ lastUpdateLabel }}</template>.
         </p>
+        <dl class="mt-3 max-w-[46rem] space-y-1.5">
+          <div>
+            <dt class="inline font-bold after:content-['_']">WHEN:</dt>
+            <dd class="inline">Before your next battle.</dd>
+          </div>
+          <div>
+            <dt class="inline font-bold after:content-['_']">TARGET:</dt>
+            <dd class="inline">The stratagems of one faction and detachment.</dd>
+          </div>
+          <div>
+            <dt class="inline font-bold after:content-['_']">EFFECT:</dt>
+            <dd class="inline">Print them as cards for standard 2.5 × 3.5 inch sleeves, leaving out the ones you won't use.</dd>
+          </div>
+        </dl>
       </div>
     </header>
 
     <section
         v-if="!showPrintPreview"
         aria-label="Card selection"
-        class="mt-6 border-b-2 border-ink bg-paper py-4 lg:sticky lg:top-0 lg:z-40 print:hidden"
+        class="mt-6 border-b-2 border-dotted border-[#8a8a86] paper-texture py-4 lg:sticky lg:top-0 lg:z-40 print:hidden"
     >
       <div class="flex flex-wrap items-end gap-x-5 gap-y-4">
         <label class="w-full sm:w-72">
@@ -109,14 +141,12 @@
           <button v-if="removedCount" :class="linkButtonClass" type="button" @click="resetRemovedCards">
             Restore {{ removedCount }} removed {{ removedCount === 1 ? 'card' : 'cards' }}
           </button>
-          <button
-              :class="primaryButtonClass"
+          <PrintButton
+              :count="visibleCards.length"
               :disabled="visibleCards.length === 0"
-              type="button"
+              label="Print preview"
               @click="openPrintDialog"
-          >
-            Print preview
-          </button>
+          />
         </div>
       </div>
     </section>
@@ -157,7 +187,9 @@
 import {computed, ref} from 'vue'
 import Page from './components/Page.vue'
 import PrintPreview from './components/PrintPreview.vue'
-import {linkButtonClass, primaryButtonClass} from './util/ui'
+import PrintButton from './components/PrintButton.vue'
+import SkullIcon from './components/icons/SkullIcon.vue'
+import {linkButtonClass} from './util/ui'
 import type {CardData, EditionData, EditionOption, FactionData} from './types'
 
 const ALL_DETACHMENTS_ONLY_KEY = '(all-detachments)'
@@ -172,8 +204,9 @@ const labelClass = 'mb-1 block text-[15px] font-semibold'
 const selectClass = 'h-11 w-full appearance-none border-2 border-ink bg-slip pr-10 pl-3 font-semibold text-ink ' +
     'focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-teal'
 const chevronClass = 'pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-ink'
-const iconLinkClass = 'grid size-10 place-items-center text-slip/70 hover:text-slip focus-visible:outline-3 ' +
-    'focus-visible:outline-offset-[-3px] focus-visible:outline-teal'
+// Drawn like the phase icons on a card's rail.
+const railLinkClass = 'grid size-9 place-items-center text-[#f4f6ed] drop-shadow-[0_0_3px_rgb(144_184_120/0.8)] ' +
+    'hover:text-white focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#f4f6ed]'
 
 type FactionGroups = Record<string, string[]>
 
