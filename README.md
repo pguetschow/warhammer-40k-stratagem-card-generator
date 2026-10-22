@@ -29,6 +29,10 @@ npm run update:data
 
 # Or refresh a single edition
 npm run update:data -- --edition=11
+
+# Or rebuild from exports downloaded earlier to <dir>/<edition slug>/*.csv
+# (e.g. <dir>/wh40k11ed/Stratagems.csv), when wahapedia.ru isn't reachable
+npm run update:data -- --from=<dir>
 ```
 
 ## How to collaborate
@@ -63,6 +67,7 @@ Run `npm run update:data` to download Wahapedia’s export overview workbook, fo
 
 - `factionGroups` clusters factions into headings (e.g., *Forces of the Imperium*, *Forces of Chaos*, *Xenos*).
 - `factions` holds each faction’s **combatPatrols** and **detachments**; each is an array of stratagem objects.
+- The `Core` faction’s `(none)` detachment holds the Core Stratagems that “Include Core Stratagems” adds to every faction. Its other detachments group the rest of Wahapedia’s faction-less entries: *Core Abilities* (11th Edition move/shoot/fight abilities), *Boarding Actions*, *Challenger* and *Mission Pack*.
 
 ### Stratagem object format
 ```json
@@ -72,7 +77,7 @@ Run `npm run update:data` to download Wahapedia’s export overview workbook, fo
   "cp": 1,
   "type": "STRING (Wahapedia stratagem category)",
   "timing": "yourTurn | oppTurn | anyTurn | everyTurn",
-  "phases": ["command", "movement", "shooting", "charge", "fight"],
+  "phases": ["command", "movement", "shooting", "charge", "fight", "any"],
   "when": "STRING (rules timing text)",
   "target": "STRING (who/what it targets)",
   "effect": "STRING (rules effect)",
@@ -81,7 +86,12 @@ Run `npm run update:data` to download Wahapedia’s export overview workbook, fo
 }
 ```
 
-The 11th Edition keeps Wahapedia’s full category labels such as `Epic Deed Stratagem`; the 10th Edition keeps the generator’s existing shortened category labels for backwards-compatible rendering.
+The 11th Edition keeps Wahapedia’s full category labels such as `Epic Deed Stratagem` and its rules markup (lists, keywords in bold). It also uses these optional fields:
+
+- `modes`: `[{ "name": "Into the Fray", "cpModifier": 1, "effect": "..." }]` for stratagems that offer a choice of modes; a `cpModifier` adds a +CP band on the card rail.
+- `noCp` and `sections`: abilities that aren’t stratagems (core move/shoot/fight abilities, Aeldari Agile Manoeuvres) have no CP cost and list their own labeled sections, e.g. `[{ "label": "MAXIMUM DISTANCE:", "html": "3\"", "boxed": true }, { "label": "ELIGIBLE IF:", "html": "..." }]`, instead of WHEN/TARGET/EFFECT.
+
+The 10th Edition keeps the generator’s existing plain-text fields and shortened category labels for backwards-compatible rendering.
 
 ### Contribution guidelines
 1. **Prefer generated data**: update `scripts/update-wahapedia-data.mjs` when Wahapedia changes its export schema.
