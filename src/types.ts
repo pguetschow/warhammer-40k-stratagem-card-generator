@@ -10,6 +10,8 @@ export interface CardMode {
 export interface CardSection {
     label: string
     html: string
+    /** Rendered as a shaded strip, e.g. a move ability's MAXIMUM DISTANCE. */
+    boxed?: boolean
 }
 
 /** A colored +CP band on the side rail, covering one mode's own text extent. */
@@ -29,7 +31,7 @@ export interface CardData {
     noCp?: boolean
     type: string
     group: string
-    timing: 'yourTurn' | 'oppTurn' | 'everyTurn' | string
+    timing: 'yourTurn' | 'oppTurn' | 'anyTurn' | 'everyTurn' | string
     phases: PhaseKey[]
     when: string
     target: string

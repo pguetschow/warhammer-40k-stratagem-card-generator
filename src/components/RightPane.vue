@@ -1,5 +1,5 @@
 <template>
-  <div class="rightPane">
+  <div ref="pane" class="rightPane">
     <div :style="{ color: stripColor, fontSize: titleFontSize + 'px' }" class="title">
       <div class="title-main">
         <span class="title-text">{{ card.name.toUpperCase() }}</span>
@@ -12,24 +12,29 @@
         <strong style="font-style:normal;font-weight:600">{{ card.type }}</strong>
       </div>
     </template>
-    <div class="body">
+    <div ref="bodyEl" :class="{ 'body--sections': card.sections?.length }" class="body">
       <p v-if="card.flavor" class="flavor" v-html="card.flavor"></p>
       <template v-if="card.sections?.length">
-        <div v-for="section in card.sections" :key="section.label" class="sec">
-          <h6 :style="{ color: stripColor }">{{ section.label }}</h6>
+        <div
+            v-for="(section, index) in card.sections"
+            :key="index"
+            :class="{ 'sec--boxed': section.boxed }"
+            class="sec"
+        >
+          <h6 v-if="section.label" :style="{ color: stripColor }">{{ section.label }}</h6>
           <p v-html="section.html"></p>
         </div>
       </template>
       <template v-else>
-        <div class="sec">
+        <div v-if="card.when" class="sec">
           <h6 :style="{ color: stripColor }">WHEN:</h6>
           <p v-html="card.when"></p>
         </div>
-        <div class="sec">
+        <div v-if="card.target" class="sec">
           <h6 :style="{ color: stripColor }">TARGET:</h6>
           <p v-html="card.target"></p>
         </div>
-        <div class="sec">
+        <div v-if="card.effect" class="sec">
           <h6 :style="{ color: stripColor }">EFFECT:</h6>
           <p v-html="card.effect"></p>
         </div>
@@ -67,6 +72,8 @@ import type {CardData, CpBand} from '../types'
 const props = defineProps<{ card: CardData, stripColor: string, metaColor: string }>()
 const emit = defineEmits<{ (e: 'underline', y: number): void, (e: 'mode-cp-bands', bands: CpBand[]): void }>()
 const underline = ref<HTMLElement | null>(null)
+const pane = ref<HTMLElement | null>(null)
+const bodyEl = ref<HTMLElement | null>(null)
 const modesEl = ref<HTMLElement | null>(null)
 const separatorEls: (HTMLElement | null)[] = []
 
@@ -90,14 +97,18 @@ function calcModeCpBands() {
   // edge, but getBoundingClientRect() gives the border box's outer edge — subtract
   // the border width so the two coordinate spaces line up.
   const cardBorderTop = Number.parseFloat(getComputedStyle(cardEl).borderTopWidth) || 0
+  // The print preview scales cards down with a CSS transform, which getBoundingClientRect()
+  // reflects but `top` does not, so convert measured distances back to unscaled pixels.
+  const zoom = cr.height / cardEl.offsetHeight || 1
+  const offsetOf = (el: HTMLElement) => (el.getBoundingClientRect().top - cr.top) / zoom - cardBorderTop
   const bands: CpBand[] = []
   modes.forEach((mode, index) => {
     if (!mode.cpModifier) return
     const topEl = index === 0 ? modesEl.value : separatorEls[index - 1]
     const bottomEl = index < modes.length - 1 ? separatorEls[index] : null
     if (!topEl) return
-    const top = topEl.getBoundingClientRect().top - cr.top - cardBorderTop
-    const bottom = bottomEl ? bottomEl.getBoundingClientRect().top - cr.top - cardBorderTop : null
+    const top = offsetOf(topEl)
+    const bottom = bottomEl ? offsetOf(bottomEl) : null
     bands.push({top, bottom, cpModifier: mode.cpModifier})
   })
   emit('mode-cp-bands', bands)
@@ -134,6 +145,48 @@ function calcUnderlineY() {
   emit('underline', r.top - cr.top)
 }
 
+// Long rules text (some 11th Edition core abilities run to a dozen bullet points) is shrunk to
+// fit the card rather than cut off at its bottom edge. If that would take the text below a
+// comfortable size, the flavor text is dropped first to make room.
+const MIN_BODY_SCALE = 0.6
+const FLAVOR_MIN_BODY_SCALE = 0.85
+
+function bodyFits(body: HTMLElement, paneEl: HTMLElement, scale: number) {
+  body.style.setProperty('--body-scale', String(scale))
+  return body.offsetTop + body.offsetHeight <= paneEl.clientHeight
+}
+
+function largestFittingScale(body: HTMLElement, paneEl: HTMLElement) {
+  if (bodyFits(body, paneEl, 1)) return 1
+  if (!bodyFits(body, paneEl, MIN_BODY_SCALE)) return MIN_BODY_SCALE
+  let lo = MIN_BODY_SCALE
+  let hi = 1
+  for (let i = 0; i < 6; i++) {
+    const mid = (lo + hi) / 2
+    if (bodyFits(body, paneEl, mid)) lo = mid
+    else hi = mid
+  }
+  return lo
+}
+
+function fitBody() {
+  const body = bodyEl.value
+  const paneEl = pane.value
+  if (!body || !paneEl) return
+  body.classList.remove('body--no-flavor')
+  let scale = largestFittingScale(body, paneEl)
+  if (scale < FLAVOR_MIN_BODY_SCALE && props.card.flavor) {
+    body.classList.add('body--no-flavor')
+    scale = largestFittingScale(body, paneEl)
+  }
+  body.style.setProperty('--body-scale', String(scale))
+}
+
+function layout() {
+  fitBody()
+  calcModeCpBands()
+}
+
 const onResize = () => {
   calcUnderlineY()
   calcModeCpBands()
@@ -141,9 +194,10 @@ const onResize = () => {
 onMounted(async () => {
   await nextTick();
   calcUnderlineY();
-  calcModeCpBands();
+  layout();
+  document.fonts?.ready.then(layout)
   window.addEventListener('resize', onResize)
 })
-onUpdated(() => calcModeCpBands())
+onUpdated(layout)
 onBeforeUnmount(() => window.removeEventListener('resize', onResize))
 </script>

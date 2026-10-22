@@ -2,7 +2,7 @@
   <div :style="{'--strip-color': stripColor, '--meta-color': metaColor}" class="card10">
     <div class="side10">
       <div class="diamonds10">
-        <div class="diamond10 cp10">
+        <div v-if="!card.noCp" class="diamond10 cp10">
           <div class="icon-wrap10">{{ card.cp }}CP</div>
         </div>
         <div v-for="(phase, index) in card.phases" :key="index" class="diamond10">
@@ -22,11 +22,11 @@
         <strong>{{ card.type }}</strong>
       </div>
       <div class="body10">
-        <div class="sec10">
+        <div v-if="card.when" class="sec10">
           <h6>WHEN:</h6>
           <p v-html="card.when"></p>
         </div>
-        <div class="sec10">
+        <div v-if="card.target" class="sec10">
           <h6>TARGET:</h6>
           <p v-html="card.target"></p>
         </div>

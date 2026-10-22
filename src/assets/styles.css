@@ -237,10 +237,15 @@ a {
     font-family: 'Courier New', monospace;
     font-style: normal;
     font-weight: 400;
-    font-size: 7.6px;
+    font-size: calc(7.6px * var(--body-scale, 1));
     line-height: 1.25;
     letter-spacing: -.01em;
     color: #1c1b18
+}
+
+/* RightPane drops the flavor text when it's needed to fit long rules text on the card. */
+.body--no-flavor .flavor {
+    display: none
 }
 
 .body {
@@ -255,7 +260,8 @@ a {
 .sec {
     display: block;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 8.0px;
+    /* --body-scale is set by RightPane to shrink long rules text until it fits the card. */
+    font-size: calc(8px * var(--body-scale, 1));
     /* line-height is set here (on the block), not on the inline h6/p below - Chromium roughly
        triples the effective line spacing of wrapped text when an explicit line-height is also
        declared on the inline element that wraps, even if the value matches this one. */
@@ -266,7 +272,7 @@ a {
     margin: 0 0 1px;
     color: #1a1a1a !important;
     font-weight: 800;
-    font-size: 8.2px;
+    font-size: 1.025em;
     letter-spacing: 0;
     display: inline
 }
@@ -285,10 +291,96 @@ a {
     margin-top: 4px
 }
 
+/* Core abilities list their steps as separate sections, divided by rules like the rulebook's. */
+.body--sections .sec + .sec {
+    margin-top: 3px;
+    padding-top: 3px;
+    border-top: 1px solid rgba(28, 27, 24, .35)
+}
+
+/* "MAXIMUM DISTANCE" / "SET-UP DISTANCE" at the top of a move ability. */
+.sec--boxed {
+    margin: 0 -8px;
+    padding: 2px 8px 3px;
+    background: rgba(28, 27, 24, .1);
+    border-left: 3px solid var(--meta-color, #1c1b18)
+}
+
+.body--sections .sec--boxed + .sec {
+    border-top: 0
+}
+
+.sec ul, .sec ol, .modes ul, .modes ol {
+    margin: 1px 0 0;
+    padding-left: 9px
+}
+
+.sec ul, .modes ul {
+    list-style: square
+}
+
+.sec ol, .modes ol {
+    padding-left: 11px
+}
+
+.sec ul ul, .modes ul ul {
+    margin-top: 0;
+    padding-left: 8px;
+    list-style: circle
+}
+
+.sec li, .modes li {
+    margin: 0;
+    padding: 0
+}
+
+.sec li + li, .modes li + li {
+    margin-top: 1px
+}
+
+.sec li::marker, .modes li::marker {
+    color: var(--meta-color, #1c1b18)
+}
+
+/* A named option inside a rule, e.g. "Desperate Escape:" or "Combat Disembark:". */
+/* Inline (not inline-block) so its background stays within the line box and can't overlap the
+   lines above and below once RightPane has shrunk the text. */
+.mode-tag {
+    margin-right: 1px;
+    padding: 0 2px;
+    background: var(--meta-color, #1c1b18);
+    color: #fff;
+    font-weight: 700;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone
+}
+
+/* An ability a stratagem grants, quoted as a box. */
+.ability-box {
+    margin-top: 2px;
+    padding: 2px 4px;
+    border: 1px solid rgba(28, 27, 24, .6);
+    background: rgba(255, 255, 255, .35)
+}
+
+/* An extra-cost alternative that couldn't be turned into a card mode. */
+.cp-alt {
+    margin-top: 2px
+}
+
+.cp-alt-badge {
+    display: inline-block;
+    margin-right: 3px;
+    padding: 0 3px;
+    background: var(--meta-color, #1c1b18);
+    color: #fff;
+    font-weight: 700
+}
+
 .modes {
     margin-top: 5px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 8.0px;
+    font-size: calc(8px * var(--body-scale, 1));
     line-height: 1.25
 }
 

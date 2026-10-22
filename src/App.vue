@@ -12,14 +12,7 @@
             <br>
             Suitable for 2.5"x 3.5" sleeves (like Magic: The Gathering)
           </p>
-          <p v-if="selectedEdition === '11'" class="app-description">
-            Wahapedia has no official data export for 11th Edition yet, so this edition only
-            includes the <a :href="sourceUrl">Core Stratagems from the official Warhammer 40,000
-            Core Rules</a>. Faction and detachment stratagems will be added once an official
-            export exists.
-            <span v-if="lastUpdate">Last updated: {{ lastUpdate }}</span>
-          </p>
-          <p v-else class="app-description">
+          <p class="app-description">
             Based on the Stratagems available at <a :href="sourceUrl">Wahapedia</a>.
             <span v-if="lastUpdate">Last export update: {{ lastUpdate }}</span>
           </p>
@@ -89,7 +82,6 @@
             <label class="control-label">Detachment</label>
             <select
                 v-model="detachment"
-                :disabled="isCore"
                 class="control-select"
                 @change="onDetachmentChange"
             >
@@ -148,6 +140,9 @@ const ALL_DETACHMENTS_ONLY_KEY = '(all-detachments)'
 const ALL_DETACHMENTS_CP_KEY = '(all-detachments-and-combat-patrols)'
 const ALL_DETACHMENTS_ONLY_LABEL = 'All Detachments'
 const ALL_DETACHMENTS_CP_LABEL = 'All Detachments (incl. Combat Patrols)'
+// The Core faction's '(none)' detachment holds the Core Stratagems; its other detachments group
+// core abilities and game-mode stratagems (Boarding Actions, Challenger, ...).
+const CORE_STRATAGEMS_LABEL = 'Core Stratagems'
 
 type FactionGroups = Record<string, string[]>
 
@@ -156,7 +151,7 @@ const factionGroups = ref<FactionGroups>({})
 const Core = ref<CardData[]>([])
 const editions = ref<EditionOption[]>([])
 const selectedEdition = ref('11')
-const sourceUrl = ref('https://www.belloflostsouls.net/wp-content/uploads/2026/05/40k-11th-strategems.jpg')
+const sourceUrl = ref('https://wahapedia.ru/wh40k11ed/the-rules/data-export/')
 const lastUpdate = ref('')
 const loadError = ref(false)
 const removedCardIds = ref<Set<string>>(new Set())
@@ -175,7 +170,7 @@ async function loadEditions() {
     console.warn('Failed to load editions.json', e)
     editions.value = [
       {id: '10', label: '10th Edition', sourceUrl: 'https://wahapedia.ru/wh40k10ed/the-rules/data-export/'},
-      {id: '11', label: '11th Edition', sourceUrl: 'https://www.belloflostsouls.net/wp-content/uploads/2026/05/40k-11th-strategems.jpg'},
+      {id: '11', label: '11th Edition', sourceUrl: 'https://wahapedia.ru/wh40k11ed/the-rules/data-export/'},
     ]
   }
 }
@@ -214,33 +209,30 @@ const isCore = computed(() => faction.value === 'Core')
 
 const allCards = computed(() => {
   const all: CardData[] = []
-  if (faction.value !== 'Core') {
-    const f = dataByFaction.value[faction.value] || {}
-    const detMap = (f as any).detachments || {}
-    const cpMap = (f as any).combatPatrols || {}
+  const f = dataByFaction.value[faction.value] || {}
+  const detMap = (f as any).detachments || {}
+  const cpMap = (f as any).combatPatrols || {}
 
-    if (detachment.value === ALL_DETACHMENTS_ONLY_KEY) {
-      for (const arr of Object.values(detMap)) {
-        if (Array.isArray(arr)) all.push(...(arr as CardData[]))
-      }
-    } else if (detachment.value === ALL_DETACHMENTS_CP_KEY) {
-      for (const arr of Object.values(detMap)) {
-        if (Array.isArray(arr)) all.push(...(arr as CardData[]))
-      }
-      for (const arr of Object.values(cpMap)) {
-        if (Array.isArray(arr)) all.push(...(arr as CardData[]))
-      }
-    } else {
-      let d: CardData[] | undefined = detMap[detachment.value]
-      if (!d) {
-        const cp = cpMap[detachment.value]
-        if (Array.isArray(cp)) d = cp as CardData[]
-      }
-      if (d) all.push(...d)
+  if (detachment.value === ALL_DETACHMENTS_ONLY_KEY) {
+    for (const arr of Object.values(detMap)) {
+      if (Array.isArray(arr)) all.push(...(arr as CardData[]))
     }
+  } else if (detachment.value === ALL_DETACHMENTS_CP_KEY) {
+    for (const arr of Object.values(detMap)) {
+      if (Array.isArray(arr)) all.push(...(arr as CardData[]))
+    }
+    for (const arr of Object.values(cpMap)) {
+      if (Array.isArray(arr)) all.push(...(arr as CardData[]))
+    }
+  } else {
+    let d: CardData[] | undefined = detMap[detachment.value]
+    if (!d) {
+      const cp = cpMap[detachment.value]
+      if (Array.isArray(cp)) d = cp as CardData[]
+    }
+    if (d) all.push(...d)
   }
-  if (includeCore.value) all.push(...Core.value)
-  if (faction.value === 'Core' && detachment.value === '(none)' && !includeCore.value) return []
+  if (includeCore.value && !isCore.value) all.push(...Core.value)
   return all
 })
 
@@ -268,7 +260,14 @@ const detachmentGroups = computed(() => {
     groups.push({label: 'Quick Select', options: quick})
   }
 
-  if (army.length) groups.push({label: 'Army Detachments', options: army.map(n => ({value: n, label: n}))})
+  if (army.length && faction.value === 'Core') {
+    groups.push({
+      label: 'Core Rules',
+      options: army.map(n => ({value: n, label: n === '(none)' ? CORE_STRATAGEMS_LABEL : n})),
+    })
+  } else if (army.length) {
+    groups.push({label: 'Army Detachments', options: army.map(n => ({value: n, label: n}))})
+  }
   if (patrols.length) groups.push({label: 'Combat Patrol', options: patrols.map(n => ({value: n, label: n}))})
 
   if (!groups.length) {
