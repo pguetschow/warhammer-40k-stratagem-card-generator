@@ -1,0 +1,1345 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta name="description" content="Wahapedia: Warhammer 40,000 11th edition, Data Export" />
+<meta name="keywords" content="Wahapedia, Warhammer 40,000 11th edition, Data Export, Powered by Wahapedia, rebusstatscom, Forces, Arbiter" />
+<style type="text/css">
+|#siteNav {min-height:96px;}
+</style>
+
+<script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
+<script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
+<script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+<script>
+	window.ezstandalone = window.ezstandalone || {};
+	ezstandalone.cmd = ezstandalone.cmd || [];
+</script>
+<script src="//ezoicanalytics.com/analytics.js"></script>
+<link rel="stylesheet" type="text/css" href="/wh40k11ed/css/fonts1.css">
+<link name="magnus_did_what" rel="stylesheet" href="/wh40k11ed/css/magnus_did_not1.css">
+<link rel="stylesheet" href="/wh40k11ed/css/main1.css">
+<link rel="stylesheet" href="/wh40k11ed/css/header1.css">
+<link rel="stylesheet" href="/wh40k11ed/css/profile1.css">
+<link rel="stylesheet" href="/wh40k11ed/css/noprint1.css">
+<link rel="icon" type="image/png" href="/wh40k11ed/img/favicon.png" />
+<link rel="stylesheet" type="text/css" href="/tooltipster/dist/css/tooltipster.bundle.min.css" />
+<link rel="manifest" href="/manifest_40k.json">
+<link rel="apple-touch-icon" sizes="57x57" href="/img/web-app/wahapedia-icon-57.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/img/web-app/wahapedia-icon-76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/img/web-app/wahapedia-icon-114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/img/web-app/wahapedia-icon-120.png">
+<link rel="apple-touch-icon" sizes="128x128" href="/img/web-app/wahapedia-icon-128.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/img/web-app/wahapedia-icon-152.png">
+<link rel="apple-touch-icon" sizes="167x167" href="/img/web-app/wahapedia-icon-167.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/web-app/wahapedia-icon-180.png">
+<link rel="apple-touch-icon" sizes="192x192" href="/img/web-app/wahapedia-icon-192.png">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+<script type="text/javascript" src="/tooltipster-scrollableTip/tooltipster-scrollableTip.min.js"></script>
+<script type="text/javascript" src="https://wahapedia.ru/scripts/jquery.cookie.js"></script><script>window.yaContextCb=window.yaContextCb||[]</script>
+<script src="https://yandex.ru/ads/system/context.js" async></script>
+
+<link rel="stylesheet" type="text/css" href="/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-noir.min.css" />
+<link rel="stylesheet" href="/wh40k11ed/css/tooltipster-noir1.css">
+<link href="/wh40k11ed/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/wh40k11ed/pagefind-boot.js"></script>
+<script src="/wh40k11ed/pagefind/pagefind-ui.js"></script>
+<title>Data Export [Warhammer 40,000 11th edition]</title>
+<link rel="preload" href="/wh40k11ed/nav.html" as="fetch" crossorigin="anonymous">
+
+<script type="text/javascript">
+window._wahapediaNavHtml = null;
+window._wahapediaNavPromise = jQuery.get('/wh40k11ed/nav.html').done(function(html) {
+	window._wahapediaNavHtml = html;
+});
+</script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LfARRUkAAAAAD0Li_kOGLUDH_77uo1aMO8YZsA4"></script>
+<script>   
+function closeLoginTooltip() {
+	$('.tooltipLogin.tooltipstered').each(function(){
+		try { $(this).tooltipster('close'); } catch (e) {}
+	});
+}
+function submitCaptcha(e) {
+	e.preventDefault();
+	var $form = $(e.currentTarget).closest('form');
+	if (!$form.length) {
+		$form = $(e.currentTarget).closest('.tooltipster-base').find('#disable-ads');
+	}
+	grecaptcha.ready(function() {
+		grecaptcha.execute('6LfARRUkAAAAAD0Li_kOGLUDH_77uo1aMO8YZsA4', {action: 'submit'}).then(function(token) {    
+			$form.find("#captcha-box").val(token);
+			if ($form.length) { $form[0].submit(); }
+		});
+	});
+}
+function loadErrors() {
+  if($(location).attr('hash') != ""){ return; }
+  let searchParams = new URLSearchParams(window.location.search);
+     if(searchParams.has('error')){
+         var $err = $('#error-login');
+         if ($err.length && !$err.text()) {
+             $err.append(document.createTextNode(searchParams.get('error')));
+             $err.show();
+         }
+     }
+     if(searchParams.has('message')){
+         var $msg = $('#email-sent');
+         if ($msg.length && !$msg.text()) {
+             $msg.append(document.createTextNode(searchParams.get('message')));
+             $msg.show();
+         }
+     }
+}
+
+$(document).on( 'click', '#btnCloseLogin', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  closeLoginTooltip();
+});
+
+$(document).on( 'click', '#btnGetPin', function(e) {
+  $(".tooltipster-box #password-text-field").val("");
+  submitCaptcha(e);
+});
+
+$(document).on( 'click', '#btnDisableAds', function(e) {
+  submitCaptcha(e);
+});
+</script>
+<script type="text/javascript">
+function switchColorTheme(){
+		var userTheme = localStorage.ColorTheme;
+		if (userTheme == undefined) {userTheme = 'default'; localStorage.ColorTheme = userTheme};
+		if ((userTheme == 'dark') || (userTheme == 'light')) {
+			document.documentElement.setAttribute('data-theme', userTheme);}
+		else if (!window.matchMedia) {
+			document.documentElement.setAttribute('data-theme', 'light');}
+		else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-theme', 'dark');}
+			else {
+				document.documentElement.setAttribute('data-theme', 'light');}
+   };
+	switchColorTheme();
+$(document).ready(function(){
+touchHover(); loadErrors(); $.get('https://wahapedia.ru/relog.php');
+window.syncUserSiteSettings = function() {
+	var data = localStorage.ShowFluff;
+	if (data == undefined) {data = 'true'; localStorage.ShowFluff = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowFluff').prop('checked', StrData);
+	ChangeShowFluff();
+
+	$(document).off('change.wahUsr', '.ShowFluff').on('change.wahUsr', '.ShowFluff', function () {
+      localStorage.ShowFluff = $(this).prop('checked') ? 'true' : 'false';
+	   ChangeShowFluff();
+   });
+
+	function ChangeShowFluff() {
+	if (localStorage.ShowFluff == 'true')
+		{$('.ShowFluff').css('display', '');}
+	else
+		{$('.ShowFluff').css('display', 'none');}
+	}
+	window.ChangeShowFAQErrata = function() {
+	if (localStorage.ShowFAQErrata == 'true')
+		{$('.faqErrataSpoiler, .faqErrataStrat').css('display', '');}
+	else
+		{$('.faqErrataSpoiler, .faqErrataStrat').css('display', 'none');}
+	};
+	var data = localStorage.ShowFAQErrata;
+	if (data == undefined) {data = 'true'; localStorage.ShowFAQErrata = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowFAQErrata').prop('checked', StrData);
+	window.ChangeShowFAQErrata();
+
+	$(document).off('change.wahUsr', '.ShowFAQErrata').on('change.wahUsr', '.ShowFAQErrata', function () {
+      localStorage.ShowFAQErrata = $(this).prop('checked') ? 'true' : 'false';
+	   window.ChangeShowFAQErrata();
+   });
+
+	var data = localStorage.ShowLegendaryDatasheets;
+	if (data == undefined) {data = 'false'; localStorage.ShowLegendaryDatasheets = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowLegendaryDatasheets').prop('checked', StrData);
+
+	$(document).off('change.wahUsr', '.ShowLegendaryDatasheets').on('change.wahUsr', '.ShowLegendaryDatasheets', function () {
+      localStorage.ShowLegendaryDatasheets = $(this).prop('checked') ? 'true' : 'false';
+	   FilterApply(false);
+   });
+	var data = localStorage.ShowForgeWorldDatasheets;
+	if (data == undefined) {data = 'true'; localStorage.ShowForgeWorldDatasheets = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowForgeWorldDatasheets').prop('checked', StrData);
+
+	$(document).off('change.wahUsr', '.ShowForgeWorldDatasheets').on('change.wahUsr', '.ShowForgeWorldDatasheets', function () {
+      localStorage.ShowForgeWorldDatasheets = $(this).prop('checked') ? 'true' : 'false';
+	   FilterApply(false);
+   });
+	var data = localStorage.ShowCrusadeRules;
+	if (data == undefined) {data = 'true'; localStorage.ShowCrusadeRules = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowCrusadeRules').prop('checked', StrData);
+
+	$(document).off('change.wahUsr', '.ShowCrusadeRules').on('change.wahUsr', '.ShowCrusadeRules', function () {
+      localStorage.ShowCrusadeRules = $(this).prop('checked') ? 'true' : 'false';
+	   FilterApply(false);
+   });
+	var data = localStorage.ShowBoardingActions;
+	if (data == undefined) {data = 'true'; localStorage.ShowBoardingActions = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowBoardingActions').prop('checked', StrData);
+	ChangeShowBoardingActions();
+
+	$(document).off('change.wahUsr', '.ShowBoardingActions').on('change.wahUsr', '.ShowBoardingActions', function () {
+      localStorage.ShowBoardingActions = $(this).prop('checked') ? 'true' : 'false';
+	   ChangeShowBoardingActions();
+	   FilterApply(false);
+   });
+
+	function ChangeShowBoardingActions() {
+	if (localStorage.ShowBoardingActions == 'true')
+		{$('.dropShowBoardingActions').css('display', '');}
+	else
+		{$('.dropShowBoardingActions').css('display', 'none');}
+	}
+	var data = localStorage.ShowNonBAStratagems;
+	if (data == undefined) {data = 'true'; localStorage.ShowNonBAStratagems = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowNonBAStratagems').prop('checked', StrData);
+
+	$(document).off('change.wahUsr', '.ShowNonBAStratagems').on('change.wahUsr', '.ShowNonBAStratagems', function () {
+      localStorage.ShowNonBAStratagems = $(this).prop('checked') ? 'true' : 'false';
+	   FilterApply(false);
+   });
+	var data = localStorage.ShowBaseSize;
+	if (data == undefined) {data = 'true'; localStorage.ShowBaseSize = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowBaseSize').prop('checked', StrData);
+	ChangeShowBaseSize();
+
+	$(document).off('change.wahUsr', '.ShowBaseSize').on('change.wahUsr', '.ShowBaseSize', function () {
+      localStorage.ShowBaseSize = $(this).prop('checked') ? 'true' : 'false';
+	   ChangeShowBaseSize();
+   });
+
+	function ChangeShowBaseSize() {
+	if (localStorage.ShowBaseSize == 'true')
+		{$('.ShowBaseSize').css('display', '');}
+	else
+		{$('.ShowBaseSize').css('display', 'none');}
+	}
+	var data = localStorage.ShowCoreStratagems;
+	if (data == undefined) {data = 'true'; localStorage.ShowCoreStratagems = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowCoreStratagems').prop('checked', StrData);
+
+	$(document).off('change.wahUsr', '.ShowCoreStratagems').on('change.wahUsr', '.ShowCoreStratagems', function () {
+      localStorage.ShowCoreStratagems = $(this).prop('checked') ? 'true' : 'false';
+	   FilterApply(false);
+   });
+	var data = localStorage.ShowDatasheetFeatures;
+	if (data == undefined) {data = 'true'; localStorage.ShowDatasheetFeatures = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowDatasheetFeatures').prop('checked', StrData);
+	ChangeShowDatasheetFeatures();
+
+	$(document).off('change.wahUsr', '.ShowDatasheetFeatures').on('change.wahUsr', '.ShowDatasheetFeatures', function () {
+      localStorage.ShowDatasheetFeatures = $(this).prop('checked') ? 'true' : 'false';
+	   ChangeShowDatasheetFeatures();
+   });
+
+	function ChangeShowDatasheetFeatures() {
+	if (localStorage.ShowDatasheetFeatures == 'true')
+		{$('.ShowDatasheetFeatures').css('display', '');}
+	else
+		{$('.ShowDatasheetFeatures').css('display', 'none');}
+	}
+	$('.ColorTheme').prop('value', localStorage.ColorTheme);
+	$(document).off('change.wahUsr', '.ColorTheme').on('change.wahUsr', '.ColorTheme', function () {
+		localStorage.ColorTheme = $(this).prop('value');
+		switchColorTheme();
+	});
+};
+window.syncUserSiteSettings();
+
+	window.wahInitPagefind = function(){
+		var boot = window.wahPagefindBoot;
+		if (typeof PagefindUI === 'undefined') {
+			if (boot) {
+				boot.showWaiting();
+				boot.watch('/wh40k11ed/pagefind/', function(){ window.wahInitPagefind(); });
+			}
+			return;
+		}
+		if (boot) { boot.hideWaiting(); boot.stopWatch(); }
+		var desk = document.querySelector('#pagefind-search-desktop');
+		if (desk && !desk.getAttribute('data-wah-pf')) {
+			new PagefindUI({
+				element: '#pagefind-search-desktop',
+				bundlePath: '/wh40k11ed/pagefind/',
+				baseUrl: '/wh40k11ed/',
+				showImages: false,
+				showSubResults: true,
+				translations: { placeholder: 'Search this site...' },
+				processResult: function(result){
+				if (!result) { return result; }
+				var fixPath = function(u){
+					if (!u) { return u; }
+					var s = String(u), hash = '', i = s.indexOf('#');
+					if (i >= 0) { hash = s.slice(i); s = s.slice(0, i); }
+					s = s.replace(/\.html?$/i, '');
+					if (s && s.charAt(s.length - 1) !== '/') { s += '/'; }
+					return s + hash;
+				};
+				var leafTitle = function(url){
+					var path = String(url || '').split('#')[0].replace(/\/+$/, '');
+					var seg = path.split('/').pop() || '';
+					if (!seg) { return ''; }
+					return seg.replace(/[-_]+/g, ' ').replace(/\b[a-z]/g, function(c){ return c.toUpperCase(); });
+				};
+				var pageUrl = fixPath((result.meta && result.meta.url) || result.url || '');
+				if (pageUrl) {
+					result.url = pageUrl;
+					if (!result.meta) { result.meta = {}; }
+					result.meta.url = pageUrl;
+				}
+				if (result.meta) {
+					var cur = String(result.meta.title || '').trim();
+					var derived = leafTitle(pageUrl);
+					if (derived) {
+						if (!cur) { result.meta.title = derived; }
+						else if (cur.toLowerCase() !== derived.toLowerCase()) {
+							var parentSlug = cur.toLowerCase().replace(/\s+/g, '-');
+							var path = String(pageUrl || '').toLowerCase();
+							if (parentSlug && path.indexOf('/' + parentSlug + '/') >= 0 && !path.endsWith('/' + parentSlug + '/')) {
+								result.meta.title = derived;
+							}
+						}
+					}
+					if (result.meta.title) {
+						result.meta.title = String(result.meta.title).replace(/\s*\d+\s*DP\b/gi, '').replace(/\s+/g, ' ').trim();
+					}
+				}
+				if (result.sub_results && result.sub_results.length) {
+					for (var i = 0; i < result.sub_results.length; i++) {
+						var sr = result.sub_results[i];
+						if (!sr) { continue; }
+						if (sr.title) {
+							sr.title = String(sr.title).replace(/\s*\d+\s*DP\b/gi, '').replace(/\s+/g, ' ').trim();
+						}
+						if (!sr.url) { continue; }
+						var fixed = fixPath(sr.url);
+						var hashAt = fixed.indexOf('#');
+						if (hashAt < 0) { sr.url = pageUrl || fixed; }
+						else if (pageUrl) { sr.url = pageUrl + fixed.slice(hashAt); }
+						else { sr.url = fixed; }
+					}
+				}
+				return result;
+			}
+			});
+			desk.setAttribute('data-wah-pf', '1');
+		}
+		var mob = document.querySelector('#pagefind-search-mobile');
+		if (mob && !mob.getAttribute('data-wah-pf')) {
+			new PagefindUI({
+				element: '#pagefind-search-mobile',
+				bundlePath: '/wh40k11ed/pagefind/',
+				baseUrl: '/wh40k11ed/',
+				showImages: false,
+				showSubResults: true,
+				translations: { placeholder: 'Search this site...' },
+				processResult: function(result){
+				if (!result) { return result; }
+				var fixPath = function(u){
+					if (!u) { return u; }
+					var s = String(u), hash = '', i = s.indexOf('#');
+					if (i >= 0) { hash = s.slice(i); s = s.slice(0, i); }
+					s = s.replace(/\.html?$/i, '');
+					if (s && s.charAt(s.length - 1) !== '/') { s += '/'; }
+					return s + hash;
+				};
+				var leafTitle = function(url){
+					var path = String(url || '').split('#')[0].replace(/\/+$/, '');
+					var seg = path.split('/').pop() || '';
+					if (!seg) { return ''; }
+					return seg.replace(/[-_]+/g, ' ').replace(/\b[a-z]/g, function(c){ return c.toUpperCase(); });
+				};
+				var pageUrl = fixPath((result.meta && result.meta.url) || result.url || '');
+				if (pageUrl) {
+					result.url = pageUrl;
+					if (!result.meta) { result.meta = {}; }
+					result.meta.url = pageUrl;
+				}
+				if (result.meta) {
+					var cur = String(result.meta.title || '').trim();
+					var derived = leafTitle(pageUrl);
+					if (derived) {
+						if (!cur) { result.meta.title = derived; }
+						else if (cur.toLowerCase() !== derived.toLowerCase()) {
+							var parentSlug = cur.toLowerCase().replace(/\s+/g, '-');
+							var path = String(pageUrl || '').toLowerCase();
+							if (parentSlug && path.indexOf('/' + parentSlug + '/') >= 0 && !path.endsWith('/' + parentSlug + '/')) {
+								result.meta.title = derived;
+							}
+						}
+					}
+					if (result.meta.title) {
+						result.meta.title = String(result.meta.title).replace(/\s*\d+\s*DP\b/gi, '').replace(/\s+/g, ' ').trim();
+					}
+				}
+				if (result.sub_results && result.sub_results.length) {
+					for (var i = 0; i < result.sub_results.length; i++) {
+						var sr = result.sub_results[i];
+						if (!sr) { continue; }
+						if (sr.title) {
+							sr.title = String(sr.title).replace(/\s*\d+\s*DP\b/gi, '').replace(/\s+/g, ' ').trim();
+						}
+						if (!sr.url) { continue; }
+						var fixed = fixPath(sr.url);
+						var hashAt = fixed.indexOf('#');
+						if (hashAt < 0) { sr.url = pageUrl || fixed; }
+						else if (pageUrl) { sr.url = pageUrl + fixed.slice(hashAt); }
+						else { sr.url = fixed; }
+					}
+				}
+				return result;
+			}
+			});
+			mob.setAttribute('data-wah-pf', '1');
+		}
+	};
+	wahInitPagefind();
+
+
+
+window.wahUnlockFiltersPaint=function(){if(window._wahFiltersPainted)return;window._wahFiltersPainted=true;$('.DetFilterBlock').addClass('DetFilterReady');document.documentElement.classList.remove('wah-boot');};
+function FilterApply(IsInit) {
+var clFlags = '';
+var comma = '';
+var clAllFlags = '.sLegendary, .sForgeWorld, .sShowBoardingActions, .sShowCoreStratagems, .sCrusadeRules';
+if (localStorage.ShowLegendaryDatasheets == 'false') {clFlags = clFlags + comma + '.sLegendary'; comma = ', ';};
+if (localStorage.ShowForgeWorldDatasheets == 'false') {clFlags = clFlags + comma + '.sForgeWorld'; comma = ', ';};
+if (localStorage.ShowCrusadeRules == 'false') {clFlags = clFlags + comma + '.sCrusadeRules'; comma = ', ';};
+if (localStorage.ShowBoardingActions == 'false') {clFlags = clFlags + comma + '.sShowBoardingActions'; comma = ', ';};
+if (localStorage.ShowCoreStratagems == 'false') {clFlags = clFlags + comma + '.sShowCoreStratagems'; comma = ', ';};
+ $('.dsVisChk').css('display', ''); $('.kwVisChk').css('display', '');
+	$(clAllFlags).show();
+	$(clFlags).hide();
+if (typeof window.wahUnlockFiltersPaint === 'function') {window.wahUnlockFiltersPaint();}
+ $('.dsVisChk').each(function() {
+	var root = this;
+	var sheets = root.getElementsByClassName('datasheet');
+	var any = false;
+	for (var i = 0; i < sheets.length; i++) {
+		var el = sheets[i];
+		var hidden = el.style.display === 'none';
+		while (!hidden && el && el !== root) {
+			if (el.style.display === 'none') { hidden = true; break; }
+			el = el.parentElement;
+		}
+		if (!hidden) { any = true; break; }
+	}
+	root.style.display = any ? '' : 'none';
+});
+ $('.kwVisChk').each(function() {
+	var kwSection = $(this);
+	var unitRows = kwSection.find('.clFl, .clFlCH');
+	var freeRows = kwSection.find('div.ATln, div.mw1, div.mw2, div.mw3').has('> a').not('.clFl, .clFlCH');
+	if (unitRows.length === 0 && freeRows.length === 0) {
+		unitRows = kwSection.find('div[style*="padding"]');
+	}
+	var anyShown = unitRows.filter(function() { return this.style.display !== 'none'; }).length > 0
+		|| freeRows.filter(function() { return this.style.display !== 'none'; }).length > 0;
+	if (anyShown) {
+		kwSection.css('display', '')}
+	else {
+		kwSection.hide()}
+});
+
+$('[id^="tooltip_content"]').each(function() {
+	var tip = $(this);
+	if (this.id === 'tooltip_contentFactionRules') {return}
+	var warn = tip.children('.tooltipSelectionWarning');
+	if (warn.length == 0) {return}
+	var contents = tip.children('.tooltipFilterBody');
+	var filtered = contents.find('.clFl, .clFlCH');
+	var anyFilteredShown = filtered.filter(function() { return this.style.display !== 'none'; }).length > 0;
+	var anySectionShown = contents.find('.kwVisChk').filter(function() { return this.style.display !== 'none'; }).length > 0;
+	var anyUnfiltered = contents.find('div[style*="padding"]').not('.clFl, .clFlCH').filter(function() { return this.style.display !== 'none'; }).length > 0
+		|| contents.find('div.ATln').has('> a').not('.clFl, .clFlCH').length > 0;
+	if (filtered.length > 0 && !anyFilteredShown && !anySectionShown && !anyUnfiltered) {
+		contents.hide();
+		warn.show()}
+	else {
+		contents.show();
+		warn.hide()}
+});
+
+UpdateTooltipster(IsInit);
+	if (typeof window.syncTooltipContent === 'function') {
+		window.syncTooltipContent();
+	}
+};
+if (!($('#siteNav').attr('data-armylist-file'))) {
+	FilterApply(true);
+}
+
+function UpdateTooltipster(IsInit) {
+	if (IsInit) { return; }
+	if (typeof window.syncTooltipContent === 'function') {
+		window.syncTooltipContent();
+	}
+};
+(function(){
+	window.wahTryInjectTooltips = function() {
+		if (window._wahTooltipsInjected) { return; }
+		if (!window._wahFiltersPainted && typeof FilterApply === 'function') { return; }
+		var html = window._wahapediaTooltipsHtml;
+		if (html == null) { return; }
+		window._wahTooltipsInjected = true;
+		var host = $('#wahTooltipsHost');
+		if (!host.length) {
+			$('body').append('<div id="wahTooltipsHost"></div>');
+			host = $('#wahTooltipsHost');
+		}
+		setTimeout(function() {
+			host.html(html);
+			if (typeof FilterApply === 'function') {
+				window._wahFilterScope = '#wahTooltipsHost';
+				FilterApply(false);
+			} else {
+				if (typeof UpdateTooltipster === 'function') { UpdateTooltipster(false); }
+				if (typeof window.syncTooltipContent === 'function') { window.syncTooltipContent(); }
+			}
+		}, 0);
+	};
+	var _unlock = window.wahUnlockFiltersPaint;
+	window.wahUnlockFiltersPaint = function() {
+		if (typeof _unlock === 'function') { _unlock(); }
+		window.wahTryInjectTooltips();
+	};
+	document.addEventListener('click', function(e) {
+		var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+		if (!a) { return; }
+		var href = a.getAttribute('href') || '';
+		var hash = '';
+		if (href.charAt(0) === '#') { hash = href.slice(1); }
+		else {
+			var hi = href.indexOf('#');
+			if (hi < 0) { return; }
+			var path = href.slice(0, hi);
+			if (path && path !== location.pathname && href.indexOf(location.pathname) < 0) { return; }
+			hash = href.slice(hi + 1);
+		}
+		if (!hash) { return; }
+		try { hash = decodeURIComponent(hash); } catch (err) {}
+		var t = document.getElementById(hash) || document.getElementsByName(hash)[0];
+		if (!t) { return; }
+		t.style.contentVisibility = 'visible';
+		t.scrollIntoView();
+	}, true);
+})();
+function applyArmyListHtml(html) {
+	var siteNav = $('#siteNav');
+	var showDatasheetsTab = siteNav.attr('data-armylist-nav') !== '0';
+	var navAl = $('#navArmyList');
+	if (navAl.length && showDatasheetsTab) { navAl.html(html); }
+	var host = $('#tooltip_contentArmyList');
+	if (!host.length) {
+		$('body').append('<div class="tooltip_templates"><span id="tooltip_contentArmyList"></span></div>');
+		host = $('#tooltip_contentArmyList');
+	}
+	host.html(html);
+	var btn = $('#btnArmyList');
+	if (btn.length) {
+		btn.attr('data-tooltip-content', '#tooltip_contentArmyList');
+	}
+	if (showDatasheetsTab) {
+		$('.NavWrapper_P').show();
+	} else {
+		$('.NavWrapper_P').hide();
+	}
+}
+window.wahRefreshTooltipFromHost = function(instance, origin) {
+	var o = origin ? $(origin) : $();
+	if (!o.length) { return; }
+	var sel = o.attr('data-tooltip-content');
+	if (!sel) { return; }
+	var host = $(sel);
+	if (!host.length) { return; }
+	try { instance.content(host); } catch (e) {}
+};
+function syncTooltipContent() {
+	$('.tooltipstered[data-tooltip-content]').each(function() {
+		var el = $(this);
+		var sel = el.attr('data-tooltip-content');
+		if (!sel) { return; }
+		var host = $(sel);
+		if (!host.length) { return; }
+		try { el.tooltipster('content', host); } catch (e) {}
+	});
+}
+window.syncTooltipContent = syncTooltipContent;
+function syncArmyListTooltipContent() {
+	syncTooltipContent();
+}
+window.syncArmyListTooltipContent = syncArmyListTooltipContent;
+function wahInjectDwArmyRows(html) {
+	var $src = $('<div>').html(html);
+	$('#navArmyList, #tooltip_contentArmyList').each(function() {
+		var $host = $(this);
+		if (!$host.length) { return; }
+		var have = {};
+		$host.find('a.cnClr[href]').each(function() { have[this.getAttribute('href')] = true; });
+		$src.find('div.i15').each(function() {
+			var a = this.querySelector('a.cnClr[href]');
+			if (!a) { return; }
+			var href = a.getAttribute('href');
+			if (!href || have[href]) { return; }
+			have[href] = true;
+			var role = '';
+			var roleEl = $(this).closest('.kwVisChk').find('.BatRole').get(0);
+			if (roleEl) { role = roleEl.textContent || ''; }
+			var $clone = $(this).clone().addClass('dsArmyExtra');
+			var placed = false;
+			if (role) {
+				$host.find('.BatRole').each(function() {
+					if (placed || (this.textContent || '') !== role) { return; }
+					$(this).closest('.kwVisChk').append($clone);
+					placed = true;
+				});
+			}
+			if (!placed) {
+				var $cols = $host.find('.NavColumns3').first();
+				if ($cols.length) { $cols.append($clone); } else { $host.append($clone); }
+			}
+		});
+	});
+}
+window.wahEnsureDwArmyList = function(done) {
+	$('#navArmyList .dsArmyExtra, #tooltip_contentArmyList .dsArmyExtra').remove();
+	var raw = localStorage.SM_AAm || '';
+	var hasDS = raw && raw !== '-' && (','+raw+',').indexOf(',DS,') !== -1;
+	var ch = localStorage.SM_CH || '';
+	if (!hasDS || ch === 'DW') { return false; }
+	var map = window._wahapediaArmyListMap || {};
+	var url = map.DW || map['DW'];
+	if (!url || window._wahDwArmyFailed) { return false; }
+	if (window._wahDwArmyHtml) { wahInjectDwArmyRows(window._wahDwArmyHtml); return false; }
+	jQuery.get(url).done(function(html) {
+		window._wahDwArmyHtml = html;
+		wahInjectDwArmyRows(html);
+		if (typeof done === 'function') { done(); }
+	}).fail(function() {
+		window._wahDwArmyFailed = true;
+		if (typeof done === 'function') { done(); }
+	});
+	return true;
+};
+function loadArmyList(url, thenFn) {
+	if (!url) {
+		$('.NavWrapper_P').hide();
+		if (typeof thenFn === 'function') { thenFn(); }
+		return;
+	}
+	jQuery.get(url).done(function(html) {
+		applyArmyListHtml(html);
+		if (typeof thenFn === 'function') { thenFn(); }
+	}).fail(function() {
+		$('.NavWrapper_P').hide();
+		if (typeof thenFn === 'function') { thenFn(); }
+	});
+}
+window.loadArmyList = loadArmyList;
+function finishAfterArmyList() {
+	if (typeof window.syncUserSiteSettings === 'function') {
+		window.syncUserSiteSettings();
+	}
+	var afterFilter = function() {
+		if (!window._wahapediaTooltipsReady) {
+			window._wahapediaTooltipsReady = true;
+if ($(window).width() >= 800) {
+	$('.no_tooltip').addClass('tooltip').removeClass('no_tooltip');
+	sidesArr = ['top', 'bottom', 'left', 'right'];
+	}
+else {
+	sidesArr = ['top', 'bottom'];
+	}
+;
+sidesArrButt = ['left'];
+$('.tooltip_').addClass('tooltip').removeClass('tooltip_');
+$('.wTable:visible').each(function (index1, element1) {
+	var trg = true;
+	$(element1).children('.bkg:visible').each(function (index2, element2) {
+		if (trg) {$(element2).addClass('bkg0').removeClass('bkg1')}
+		else {$(element2).addClass('bkg1').removeClass('bkg0')};
+		trg = !trg;
+		if ($(element2).hasClass('bkg_reset')) {trg = true};
+	});
+});
+
+if (!window._wahTooltipLazyBound) {
+	window._wahTooltipLazyBound = true;
+	window._wahTsOpts = {
+functionBefore: function(instance, helper){
+if (typeof window.wahRefreshTooltipFromHost === 'function') {window.wahRefreshTooltipFromHost(instance, helper.origin);}
+if (typeof window.wahCloseOtherTooltips === 'function') {window.wahCloseOtherTooltips(instance, helper.origin);}
+else {$.each($.tooltipster.instances(), function(i, inst){if (inst !== instance) {inst.close();}});}
+},
+		plugins: ['sideTip', 'scrollableTip'],
+		contentCloning: true,
+		position: sidesArr,
+		restoration: 'current',
+		maxWidth: 600,
+		viewportAware: true,
+		repositionOnScroll: false,
+		trigger: 'custom',
+		triggerOpen: { mouseenter: true, tap: true },
+		triggerClose: { click: true, mouseleave: true, tap: true }
+	};
+	window._wahTsOptsK = {
+functionBefore: function(instance, helper){
+if (typeof window.wahRefreshTooltipFromHost === 'function') {window.wahRefreshTooltipFromHost(instance, helper.origin);}
+if (typeof window.wahCloseOtherTooltips === 'function') {window.wahCloseOtherTooltips(instance, helper.origin);}
+else {$.each($.tooltipster.instances(), function(i, inst){if (inst !== instance) {inst.close();}});}
+},
+		plugins: ['sideTip', 'scrollableTip'],
+		contentCloning: true,
+		position: sidesArr,
+		restoration: 'current',
+		maxWidth: 600,
+		viewportAware: true,
+		repositionOnScroll: false,
+		trigger: 'custom',
+		triggerOpen: { click: true, tap: true },
+		triggerClose: { click: true, tap: true }
+	};
+	$(document).on('mouseover.wahTTLazy', '.tooltip:not(.tooltipstered)', function(){
+		var el = $(this);
+		if (el.hasClass('tooltipstered') || el.hasClass('tooltipk') || el.hasClass('tooltipLogin')
+			|| el.is('#btnContents, #btnArmyList, .tooltipContents, .tooltipArmyList')) { return; }
+		el.tooltipster(window._wahTsOpts);
+		el.tooltipster('open');
+	});
+	$(document).on('click.wahTTLazyK', '.tooltipk:not(.tooltipstered)', function(){
+		var el = $(this);
+		if (el.hasClass('tooltipstered')) { return; }
+		el.tooltipster(window._wahTsOptsK);
+		el.tooltipster('open');
+	});
+}
+if (!$('#btnContents').hasClass('tooltipstered'))
+$('#btnContents').tooltipster({
+functionBefore: function(instance, helper){
+if (typeof window.wahRefreshTooltipFromHost === 'function') {window.wahRefreshTooltipFromHost(instance, helper.origin);}
+if (typeof window.wahCloseOtherTooltips === 'function') {window.wahCloseOtherTooltips(instance, helper.origin);}
+else {$.each($.tooltipster.instances(), function(i, inst){if (inst !== instance) {inst.close();}});}
+},
+plugins: ['sideTip', 'scrollableTip'],
+position: 'left',
+restoration: 'current',
+viewportAware: true,
+arrow: false,
+positionTracker: true,
+contentCloning: true,
+repositionOnScroll: false,
+maxWidth: 1100,
+trigger: 'custom',
+triggerOpen: {
+    mouseenter: true,
+    tap: true
+},
+triggerClose: {
+    click: true,
+	 mouseleave: true,
+    tap: true
+}
+});
+if (!$('#btnArmyList').hasClass('tooltipstered'))
+$('#btnArmyList').tooltipster({
+functionBefore: function(instance, helper){
+if (typeof window.wahRefreshTooltipFromHost === 'function') {window.wahRefreshTooltipFromHost(instance, helper.origin);}
+if (typeof window.wahCloseOtherTooltips === 'function') {window.wahCloseOtherTooltips(instance, helper.origin);}
+else {$.each($.tooltipster.instances(), function(i, inst){if (inst !== instance) {inst.close();}});}
+},
+plugins: ['sideTip', 'scrollableTip'],
+position: 'left',
+restoration: 'current',
+viewportAware: true,
+arrow: false,
+positionTracker: true,
+contentCloning: true,
+repositionOnScroll: false,
+maxWidth: 1100,
+trigger: 'custom',
+triggerOpen: {
+    mouseenter: true,
+    tap: true
+},
+triggerClose: {
+    click: true,
+	 mouseleave: true,
+    tap: true
+}
+});
+$('.tooltipLogin').not('.tooltipstered').tooltipster({
+functionBefore: function(instance, helper){
+if (typeof window.wahRefreshTooltipFromHost === 'function') {window.wahRefreshTooltipFromHost(instance, helper.origin);}
+if (typeof window.wahCloseOtherTooltips === 'function') {window.wahCloseOtherTooltips(instance, helper.origin);}
+else {$.each($.tooltipster.instances(), function(i, inst){if (inst !== instance) {inst.close();}});}
+},
+plugins: ['sideTip', 'scrollableTip'],
+contentCloning: true,
+position: sidesArr,
+restoration: 'current',
+maxWidth: 600,
+viewportAware: true,
+repositionOnScroll: false,
+trigger: 'custom',
+triggerOpen: {
+    click: true,
+    tap: true
+},
+triggerClose: {
+}
+});
+if (typeof window.wahInitCardTips === 'function') { window.wahInitCardTips(); }
+
+		} else if (typeof window.syncTooltipContent === 'function') {
+			window.syncTooltipContent();
+		}
+
+		if (typeof window.wahTryInjectTooltips === 'function') { window.wahTryInjectTooltips(); }
+	};
+	if (typeof FilterApply === 'function') {
+		FilterApply(true);
+		setTimeout(afterFilter, 0);
+	} else {
+		window._wahFiltersPainted = true;
+		if (typeof UpdateTooltipster === 'function') {
+			UpdateTooltipster(true);
+		}
+		afterFilter();
+	}
+}
+function initAfterNav() {
+	var siteNav = $('#siteNav');
+	var alFile = siteNav.attr('data-armylist-file') || '';
+	var alMapRaw = siteNav.attr('data-armylist-map') || '';
+	window._wahapediaArmyListMap = {};
+	if (alMapRaw) {
+		try { window._wahapediaArmyListMap = JSON.parse(alMapRaw); } catch (e) { window._wahapediaArmyListMap = {}; }
+	}
+	var filterKey = siteNav.attr('data-armylist-filter-key') || '';
+	if (filterKey && window._wahapediaArmyListMap) {
+		var cur = localStorage[filterKey];
+		if (cur && window._wahapediaArmyListMap[cur]) {
+			alFile = window._wahapediaArmyListMap[cur];
+		} else if (window._wahapediaArmyListMap['']) {
+			alFile = window._wahapediaArmyListMap[''];
+		}
+	}
+	if (alFile) {
+		loadArmyList(alFile, finishAfterArmyList);
+	} else {
+		$('.NavWrapper_P').hide();
+		finishAfterArmyList();
+	}
+}
+function applyNavAndInit() {
+	var siteNav = $('#siteNav');
+	if (window._wahapediaNavHtml) {
+		siteNav.html(window._wahapediaNavHtml);
+	}
+	if (typeof wahInitPagefind === 'function') { wahInitPagefind(); }
+	initAfterNav();
+	if (typeof loadErrors === 'function') { loadErrors(); }
+}
+var siteNav = $('#siteNav');
+var navSrc = siteNav.attr('data-nav-src');
+if (navSrc) {
+	if (window._wahapediaNavPromise) {
+		window._wahapediaNavPromise.always(applyNavAndInit);
+	} else {
+		jQuery.get(navSrc).done(function(html) {
+			siteNav.html(html);
+			applyNavAndInit();
+		}).fail(applyNavAndInit);
+	}
+} else {
+	if (typeof wahInitPagefind === 'function') { wahInitPagefind(); }
+	initAfterNav();
+}
+function faqErrataKeepTip(el) {
+	var tipEl = el && el.closest ? el.closest('.tooltipster-base') : null;
+	if (!tipEl || !$.tooltipster || !$.tooltipster.instances) { return; }
+	window._faqErrataTipGuard = Date.now();
+	$.each($.tooltipster.instances(), function(i, inst) {
+		var t = inst.elementTooltip && inst.elementTooltip();
+		if (t && (t === tipEl || $.contains(t, el))) {
+			try { inst.reposition(); } catch (err) {}
+		}
+	});
+	$(tipEl).trigger('mouseenter');
+}
+function faqErrataDoToggle(btn) {
+	var $btn = $(btn);
+	var $sp = $btn.closest('.faqErrataSpoiler');
+	$sp.toggleClass('faqErrataCollapsed');
+	var collapsed = $sp.hasClass('faqErrataCollapsed');
+	$btn.find('.FaqErrataToggleText').text(collapsed ? ($sp.attr('data-show') || 'Show') : ($sp.attr('data-hide') || 'Hide'));
+	faqErrataKeepTip(btn);
+}
+function faqErrataFromEvent(e) {
+	var t = e.target;
+	if (!t || !t.closest) { return null; }
+	return t.closest('.btnFaqErrataToggle') || t.closest('.faqErrataSpoiler');
+}
+function faqErrataStopTipClose(e) {
+	var el = faqErrataFromEvent(e);
+	if (el && el.closest('.tooltipster-base')) { e.stopPropagation(); }
+}
+document.addEventListener('mousedown', faqErrataStopTipClose, true);
+document.addEventListener('touchend', faqErrataStopTipClose, true);
+document.addEventListener('click', function(e) {
+	var t = e.target;
+	var btn = t && t.closest ? t.closest('.btnFaqErrataToggle') : null;
+	if (btn) {
+		e.preventDefault();
+		e.stopPropagation();
+		faqErrataDoToggle(btn);
+		return;
+	}
+	faqErrataStopTipClose(e);
+}, true);
+});
+window.wahTipNode = function(el) {
+	if (!el) { return null; }
+	return el.nodeType ? el : (el[0] || null);
+};
+window.wahTipBox = function(inst) {
+	try { return inst.elementTooltip && inst.elementTooltip(); } catch (e) { return null; }
+};
+window.wahTipOrigin = function(inst) {
+	try { return inst.elementOrigin && inst.elementOrigin(); } catch (e) { return null; }
+};
+window.wahTipIsOpen = function(inst) {
+	try {
+		var s = inst.status();
+		return !!(s && (s.open || s.state === 'appearing' || s.state === 'stable'));
+	} catch (e) { return false; }
+};
+window.wahTipIsAncestorOf = function(inst, node) {
+	var tip = window.wahTipBox(inst);
+	node = window.wahTipNode(node);
+	return !!(tip && node && (tip === node || $.contains(tip, node)));
+};
+if (!window._wahTipMouseBound) {
+	window._wahTipMouseBound = true;
+	document.addEventListener('mousemove', function(e) { window._wahTipLastEl = e.target; }, true);
+}
+window.wahTipPointerOver = function(el) {
+	if (!el) { return false; }
+	var t = window._wahTipLastEl;
+	if (t && (el === t || (el.contains && el.contains(t)))) { return true; }
+	try { return $(el).is(':hover'); } catch (e) { return false; }
+};
+window.wahCloseOtherTooltips = function(opening, origin) {
+	if (!$.tooltipster || !$.tooltipster.instances) { return; }
+	origin = window.wahTipNode(origin);
+	$.each($.tooltipster.instances(), function(i, inst) {
+		if (inst === opening) { return; }
+		if (origin && window.wahTipIsAncestorOf(inst, origin)) { return; }
+		try { inst.close(); } catch (e) {}
+	});
+};
+window.wahTipHasNestedKeep = function(inst) {
+	if (!$.tooltipster || !$.tooltipster.instances) { return false; }
+	var keep = false;
+	$.each($.tooltipster.instances(), function(i, other) {
+		if (other === inst || !window.wahTipIsOpen(other)) { return; }
+		if (window.wahTipIsAncestorOf(inst, window.wahTipOrigin(other))) {
+			keep = true;
+			return false;
+		}
+	});
+	return keep;
+};
+window.wahTipChainHovered = function(inst, seen) {
+	seen = seen || [];
+	if ($.inArray(inst, seen) !== -1) { return false; }
+	seen.push(inst);
+	if (window.wahTipPointerOver(window.wahTipOrigin(inst)) || window.wahTipPointerOver(window.wahTipBox(inst))) {
+		return true;
+	}
+	var nested = false;
+	$.each($.tooltipster.instances(), function(i, other) {
+		if (other === inst || !window.wahTipIsOpen(other)) { return; }
+		if (!window.wahTipIsAncestorOf(inst, window.wahTipOrigin(other))) { return; }
+		if (window.wahTipChainHovered(other, seen)) { nested = true; return false; }
+	});
+	return nested;
+};
+window.wahSweepOrphanTooltips = function() {
+	if (window._wahSweepTipsLock) { return; }
+	if (!$.tooltipster || !$.tooltipster.instances) { return; }
+	window._wahSweepTipsLock = true;
+	try {
+		var doomed = [];
+		$.each($.tooltipster.instances(), function(i, inst) {
+			if (!window.wahTipIsOpen(inst)) { return; }
+			if (window.wahTipChainHovered(inst)) { return; }
+			doomed.push(inst);
+		});
+		$.each(doomed, function(i, inst) { try { inst.close(); } catch (e) {} });
+	} finally {
+		window._wahSweepTipsLock = false;
+	}
+};
+window.wahTipRaiseNested = function(instance, origin) {
+	var node = window.wahTipNode(origin);
+	var z = 9999999;
+	if ($.tooltipster && $.tooltipster.instances) {
+		$.each($.tooltipster.instances(), function(i, inst) {
+			if (inst === instance) { return; }
+			if (!window.wahTipIsAncestorOf(inst, node)) { return; }
+			var box = window.wahTipBox(inst);
+			if (!box) { return; }
+			var pz = parseInt($(box).css('z-index'), 10);
+			if (!isNaN(pz) && pz >= z) { z = pz + 2; }
+		});
+	}
+	var myBox = window.wahTipBox(instance);
+	if (myBox) { $(myBox).css('z-index', z); }
+};
+
+window.wahWrapCgCard = function(html) {
+	if (typeof DOM_Wrap === 'function') { return DOM_Wrap(html || ''); }
+	if (typeof CA7_Wrap === 'function') { return CA7_Wrap(html || ''); }
+	if (typeof WEC_Wrap === 'function') { return WEC_Wrap(html || ''); }
+	if (typeof WBD_Wrap === 'function') { return WBD_Wrap(html || ''); }
+	if (typeof WTM_Wrap === 'function') { return WTM_Wrap(html || ''); }
+	return '<div class="cgCardCA7">' + (html || '') + '</div>';
+};
+window.wahFdCardHtml = function(key) {
+	if (!key || typeof ContentFD === 'undefined' || !ContentFD) { return ''; }
+	var keys = (typeof wahFDKey !== 'undefined' && wahFDKey) ? wahFDKey : [];
+	for (var i = 0; i < keys.length; i++) { if (keys[i] === key) { return ContentFD[i] || ''; } }
+	return '';
+};
+window.wahCardTipOpts = function(initFn) {
+	if (typeof sidesArr === 'undefined') { sidesArr = ['top', 'bottom', 'left', 'right']; }
+	return {
+		functionBefore: function(instance, helper) {
+			if (typeof window.wahRefreshTooltipFromHost === 'function') { window.wahRefreshTooltipFromHost(instance, helper.origin); }
+			if (typeof window.wahCloseOtherTooltips === 'function') { window.wahCloseOtherTooltips(instance, helper.origin); }
+			else { $.each($.tooltipster.instances(), function(i, inst) { if (inst !== instance) { inst.close(); } }); }
+		},
+		plugins: ['sideTip', 'scrollableTip'],
+		contentCloning: true,
+		position: sidesArr,
+		restoration: 'none',
+		maxWidth: 540,
+		viewportAware: true,
+		repositionOnScroll: false,
+		trigger: 'custom',
+		triggerOpen: { mouseenter: true, tap: true },
+		triggerClose: { click: true, mouseleave: true, tap: true },
+		functionInit: initFn
+	};
+};
+window.wahInitCardTips = function() {
+	if (!$.fn || !$.fn.tooltipster) { return; }
+	try { $('.ca7FdPickBtn.tooltipstered, .ca7FdTip.tooltipstered, .DOM_StashTip.tooltipstered').tooltipster('destroy'); } catch (e) {}
+	if (typeof ContentFD !== 'undefined' && ContentFD && ContentFD.length) {
+		$('.ca7FdPickBtn, .ca7FdTip').not('.tooltipstered').tooltipster(window.wahCardTipOpts(function(instance, helper) {
+			var key = $(helper.origin).attr('data-fd');
+			instance.content($('<div class="DOM_StashTipCard"></div>').html(window.wahWrapCgCard(window.wahFdCardHtml(key))));
+		}));
+	}
+	if ($('.DOM_StashTip').length) {
+		$('.DOM_StashTip').not('.tooltipstered').tooltipster(window.wahCardTipOpts(function(instance, helper) {
+			var el = $(helper.origin);
+			var k = el.attr('data-k');
+			var i = parseInt(el.attr('data-i'), 10);
+			var arr = (k === 'bh') ? (typeof ContentBH !== 'undefined' ? ContentBH : [])
+				: (k === 'bs') ? (typeof ContentBS !== 'undefined' ? ContentBS : [])
+				: (typeof ContentRL !== 'undefined' ? ContentRL : []);
+			instance.content($('<div class="DOM_StashTipCard"></div>').html(window.wahWrapCgCard(arr[i] || '')));
+		}));
+	}
+};
+function wahFitCardTooltip(instance) {
+	var tip = instance && instance.elementTooltip && instance.elementTooltip();
+	if (!tip) return;
+	var $tip = $(tip);
+	if (!$tip.find('.cgCardCA7, .cgCardLCA, .DOM_StashTipCard').length) return;
+	var cap = $tip.height();
+	if (!(cap > 0)) return;
+	$tip.css('min-height', 0);
+	$tip.children('.tooltipster-box').css({minHeight: 0, flex: '1 1 0%', overflow: 'hidden', maxHeight: cap + 'px'});
+	$tip.find('.tooltipster-content').css({
+		minHeight: 0,
+		maxHeight: cap + 'px',
+		overflowY: 'auto',
+		overflowX: 'hidden',
+		boxSizing: 'border-box',
+		webkitOverflowScrolling: 'touch'
+	});
+}
+$.tooltipster.setDefaults({
+arrow: true,
+delay: [200, 200],
+interactive: true,
+functionReady: function(instance, helper) {
+	if (typeof window.ChangeShowFAQErrata === 'function') { window.ChangeShowFAQErrata(); }
+	if (typeof window.wahTipRaiseNested === 'function') { window.wahTipRaiseNested(instance, helper.origin); }
+	if (!instance._wahCloseBound) {
+		instance._wahCloseBound = true;
+		instance.on('close', function(event) {
+			if (Date.now() - (window._faqErrataTipGuard || 0) < 500) { event.stop(); return; }
+			if (event.event && event.event.target && $(event.event.target).closest('.faqErrataSpoiler, .btnFaqErrataToggle').length) { event.stop(); return; }
+			if (typeof window.wahTipHasNestedKeep === 'function' && window.wahTipHasNestedKeep(instance)) { event.stop(); }
+		});
+	}
+	if (typeof wahFitCardTooltip === 'function') {
+		if (!instance._wahCardFitBound) {
+			instance._wahCardFitBound = true;
+			instance.on('repositioned', function(){ wahFitCardTooltip(instance); });
+		}
+		wahFitCardTooltip(instance);
+		requestAnimationFrame(function(){ wahFitCardTooltip(instance); });
+	}
+},
+functionAfter: function() {
+	if (typeof window.wahSweepOrphanTooltips === 'function') { window.wahSweepOrphanTooltips(); }
+},
+theme: ['tooltipster-noir', 'tooltipster-noir-customized']
+});
+</script>
+<script type="text/javascript">
+var touchHover = function() {
+    $('.tooltip, .tooltipLogin').on('touchstart', function(e) {
+          e.preventDefault();
+          return false;
+    });
+};
+$(document).ready(function() { touchHover(); });
+</script>
+</head>
+
+<body>
+<!--noindex-->
+
+<script type="text/javascript">
+$(document).ready(function(){
+var CookieSet = $.cookie('no_ads_for_boosters');
+
+if (jQuery.cookie('no_ads_for_boosters')!='turn_it_off') {
+window.yaContextCb.push(()=>{
+	Ya.Context.AdvManager.render({
+		"blockId": "R-A-3376916-3",
+		"renderTo": "yandex_rtb_R-A-3376916-3",
+		"type": "feed"
+	})
+})
+window.yaContextCb.push(()=>{
+	Ya.Context.AdvManager.render({
+		"blockId": "R-A-3376916-2",
+		"type": "fullscreen",
+		"platform": "desktop"
+	})
+})
+window.yaContextCb.push(()=>{
+	Ya.Context.AdvManager.render({
+		"blockId": "R-A-3376916-1",
+		"type": "fullscreen",
+		"platform": "touch"
+	})
+})
+window.yaContextCb.push(()=>{
+	Ya.Context.AdvManager.render({
+		"blockId": "R-A-3376916-5",
+		"type": "floorAd",
+		"platform": "touch"
+	})
+})
+window.yaContextCb.push(()=>{
+	Ya.Context.AdvManager.render({
+		"blockId": "R-A-3376916-6",
+		"type": "floorAd",
+		"platform": "desktop"
+	})
+})
+}});</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+var CookieSet = $.cookie('no_ads_for_boosters');
+
+if (jQuery.cookie('no_ads_for_boosters')=='turn_it_off') {
+	var oldlink = document.getElementsByTagName("link").namedItem('magnus_did_what');
+	oldlink.href = "/wh40k11ed/css/magnus_did1.css";
+}
+});
+</script>
+<div id="wrapper2">
+<div id="wrapper">
+<div class="noprint">
+<div id="siteNav" data-nav-src="/wh40k11ed/nav.html"></div>
+</div>
+<h1 class="page_header"><span class="page_header_span">Data Export</span></h1>
+<div class="noprint">
+
+</div>
+<!--/noindex-->
+<div id="wahMainContent">
+<div class="BreakInsideAvoid frameDark Corner31" style="width:294px;max-width:390px;"><div class="contentsBody"><div class="contents_header">Contents</div><div class="mw3 i10 ATln"><a href="#Data-Export" class="cnClrInv"><b>Data Export</b></a></div><div class="mw3 i10 ATln"><a href="#Powered-by-Wahapedia" class="cnClrInv"><b>Powered by Wahapedia</b></a></div><div class="mw3 i30 ATln"><a href="#rebusstats.com" class="cnClrInv">rebusstats.com</a></div><div class="mw3 i30 ATln"><a href="#Forces" class="cnClrInv">Forces</a></div><div class="mw3 i30 ATln"><a href="#Arbiter" class="cnClrInv">Arbiter</a></div></div></div>
+<a name="Data-Export"></a><h3 id="Data-Export" class="outline_header" style="display:flex; align-items:baseline;justify-content:space-between;">Data Export</h3><div class="Columns3">I have been asked many times to provide an API (web service) for accessing wahapedical data. I do not have the ability to run a web server 24 hours a day, providing data on demand. In addition, I do not see the need to provide data in this mode (it is not an airport website after all). However, there are some things that can be done.<br><br><div class="BreakInsideAvoid"><span class="h_custom">WHAT?</span><br>Here is the export data for all datasheets / abilities / stratagems. Data I provide is a set of <a href="https://en.wikipedia.org/wiki/Comma-separated_values">csv</a> files linked through identifiers. For now export data is being done for the 40k and AoS. There will be demand for the rest of the games - I will add as far as possible.<br></div><span class="h_custom">HOW?</span><br>The picture below shows an example of how the export data is related to the display of the <a href="/wh40k11ed/factions/space-marines/Crusader-Squad">Crusader Squad</a> page on the site.<br><br><span class="h_custom">WHERE?</span><br>Specification with links to all files situated <a href="/wh40k11ed/Export%20Data%20Specs.xlsx?v=20260817b">here</a>. The specification text is given in Russian and English.<br><br><div class="BreakInsideAvoid"><span class="h_custom">WHEN?</span><br>The files will be updated as the site is updated. Roughly speaking: I corrected an error in the ability - I update files, added a datasheet - I update files. It takes 15 minutes.<br><br></div><span class="h_custom">WHY?</span><br>The export data can be used to research game mechanics and develop related interfaces. When publishing your work, mentioning Wahapedia is highly recommended. For example, with the inscription "powered by Wahapedia". And of course, show off your work! Worthy ones I will publish on my <a href="https://discord.gg/VAXG2jRjXY">Discord server</a>.<br><br>If the provided data turned out to be useful to you, consider the opportunity to <a href="/wh40k11ed/the-rules/author/#Support">support</a> the project.</div><br><img class="img-opa" src="ExportDataExample.png"></img><div class="noprint page_breaker_ads"><div class="page_ads_br1"></div><div class="page_ads_br2"></div>
+<div class="page_ads_wrapper"><div id="ezoic-pub-ad-placeholder-116"> </div><script>ezstandalone.cmd.push(function() {ezstandalone.showAds(116)});</script></div>
+<div class="page_ads_br2"></div><div class="page_ads_br3"></div></div><a name="Powered-by-Wahapedia"></a><h3 id="Powered-by-Wahapedia" class="outline_header" style="display:flex; align-items:baseline;justify-content:space-between;">Powered by Wahapedia</h3><p><b>Below you will find exciting examples of <a href="/wh40k11ed/the-rules/data-export/#Data-Export">Export Data</a> usage.</b></p><div><br></div><a name="rebusstats.com"></a><h3 id="rebusstats.com" style="display:flex; align-items:baseline;">rebusstats.com</h3><a target="_blank" href="https://rebusstats.com/">Rebus Stats</a> is a mathhammer tool using Wahapedia’s data export. Upload your roster files from the official 40K app or New Recruit and see graphed damage output across your entire army against various enemy profiles, plus how many wounds your units can withstand from enemies of different toughness values.<br><br>Modify units with buffs or debuffs and recalculate to compare. Which weapon loadout is best? Should you take the leader with full re-rolls or +1 Toughness? Use Rebus Stats to find out!<br><br><div style="display:flex; justify-content:center; align-items:center;"><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/rebusstats1.png" style="margin:0px"></div></div><br><div style="display:flex; justify-content:center; align-items:center;"><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/rebusstats2.png" style="margin:0px"></div></div><br><div style="display:flex; justify-content:center; align-items:center;"><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/rebusstats3.png" style="margin:0px"></div></div><br><div style="display:flex; justify-content:center; align-items:center;"><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/rebusstats4.png" style="margin:0px"></div></div><div class="noprint page_breaker_ads"><div class="page_ads_br1"></div><div class="page_ads_br2"></div>
+<div class="page_ads_wrapper"><div id="ezoic-pub-ad-placeholder-117"> </div><script>ezstandalone.cmd.push(function() {ezstandalone.showAds(117)});</script><div id="yandex_rtb_R-A-3376916-8"></div>
+<script type="text/javascript">
+$(document).ready(function(){
+var CookieSet = $.cookie('no_ads_for_boosters');
+
+if (jQuery.cookie('no_ads_for_boosters')!='turn_it_off') {
+window.yaContextCb.push(()=>{
+	Ya.Context.AdvManager.render({
+		"blockId": "R-A-3376916-8",
+		"renderTo": "yandex_rtb_R-A-3376916-8"
+	})
+})
+}});</script></div>
+<div class="page_ads_br2"></div><div class="page_ads_br3"></div></div><a name="Forces"></a><h3 id="Forces" style="display:flex; align-items:baseline;">Forces</h3><a target="_blank" href="https://offblastsoftworks.com/forces">Forces</a> is a tool for organizing and viewing NewRecruit rosters while you play. It now supports basic roster editing in the app, can it can be used on it’s own to create lists for every game system.<br><br><div class="Columns3"><div class=" img-opa"><img border="0" src="/wh40k10ed/img/powered/forces1.png" style="max-width:330px"></div><div class=" img-opa"><img border="0" src="/wh40k10ed/img/powered/forces2.png" style="max-width:330px"></div><div class=" img-opa"><img border="0" src="/wh40k10ed/img/powered/forces3.png" style="max-width:330px"></div><div class=" img-opa"><img border="0" src="/wh40k10ed/img/powered/forces4.png" style="max-width:330px"></div><div class=" img-opa"><img border="0" src="/wh40k10ed/img/powered/forces5.png" style="max-width:330px"></div><div class=" img-opa"><img border="0" src="/wh40k10ed/img/powered/forces6.png" style="max-width:330px"></div></div><div class="noprint page_breaker_ads"><div class="page_ads_br1"></div><div class="page_ads_br2"></div>
+<div class="page_ads_wrapper"><div id="ezoic-pub-ad-placeholder-118"> </div><script>ezstandalone.cmd.push(function() {ezstandalone.showAds(118)});</script></div>
+<div class="page_ads_br2"></div><div class="page_ads_br3"></div></div><a name="Arbiter"></a><h3 id="Arbiter" style="display:flex; align-items:baseline;">Arbiter</h3>Meet <a target="_blank" href="https://www.s3hobbies.com/#products">Arbiter</a> your AI Rules Judge:<br><br>Arbiter is a free AI-powered rules assistant built for tabletop gamers. Ask it a rules question in plain English and get a clear, sourced answer in seconds, no more flipping through PDFs mid-game.<br><br>For <i>Warhammer 40k</i>, Arbiter draws on official 10th Edition rules, faction packs, balance dataslates, and Wahapedia data to answer questions about core mechanics, datasheets, stratagems, detachment rules, and more. It also supports <i>Magic: The Gathering</i> and <i>Warmachine</i>, with additional games on the way.<br><br>Arbiter is currently in beta. It’s maintained by a husband-and-wife team as a passion project for the tabletop community. We’re actively improving accuracy and expanding coverage, so feedback is welcome, it helps us make Arbiter better for everyone.<br><br><div style="display:flex; justify-content:center; align-items:center;"><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/Arbiter1.png" style="margin:0px"></div></div><br><div style="display:flex; justify-content:center; align-items:center;"><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/Arbiter2.png" style="margin:0px"></div></div>
+<!--noindex--><div class="tooltip_templates"><span id="tooltip_contentLoginForm"><form action="/login.php" method="POST" id="disable-ads">
+<div class="lfWrapper">
+<button type="button" class="lfClose" id="btnCloseLogin" aria-label="Close"></button>
+<h4 style="padding-bottom:6px">Disable Ads</h4>
+<label class="lfLabel" for="email" id="email">E-mail:</label> <input id="user-text-field" type="email" class="lfInput_w lfInput" autocomplete="username" name="email" id="email" value="" />
+<br><div><label class="lfLabel" for="passcode" type="password">Pin code:</label> <input id="password-text-field" type="password" autocomplete="current-password" style="width:68px" class="lfInput" name="passcode" value="" /> <button class="lfButton" id="btnDisableAds">Disable Ads</button></div>
+<input type="text" style="display:none"  name="g-recaptcha-response" id="captcha-box"></input>
+<button class="lfDisableAds" id="btnGetPin">Get new pin code</button>
+<br><a href="https://boosty.to/wahapedia">Boosty</a> subscribers may disable ads:
+<br>1. Enter e-mail you have used to login on Boosty.
+<br>2. Press <b>Get new pin code</b> button (if you don’t have it already)
+<br>3. Enter pin code.
+<br>
+<br><i>Note that login database updated once a day. So, if you are a new booster - try tomorrow. And thank you!</i>
+</div>
+</form></span></div><div class="tooltip_templates"><span id="tooltip_contentTooltipContents"><div class="tooltipSelectionWarning" style="display:none"><div class="WahapediaWarningSign"></div>This datasheet does not meet the selection criteria (see <b>Settings</b> tab).</div><span class="tooltipFilterBody"><div class="contentsWrap"><div class="BreakInsideAvoid frameDark Corner31" style="width:fit-content;max-width:100%;box-sizing:border-box;min-width:0;overflow:hidden;"><div class="contentsBody"><div class="contents_header">Contents</div><div class="mw3 i10 ATln"><a href="#Data-Export" class="cnClrInv"><b>Data Export</b></a></div><div class="mw3 i10 ATln"><a href="#Powered-by-Wahapedia" class="cnClrInv"><b>Powered by Wahapedia</b></a></div><div class="mw3 i30 ATln"><a href="#rebusstats.com" class="cnClrInv">rebusstats.com</a></div><div class="mw3 i30 ATln"><a href="#Forces" class="cnClrInv">Forces</a></div><div class="mw3 i30 ATln"><a href="#Arbiter" class="cnClrInv">Arbiter</a></div></div></div></div></span></span></div><!--/noindex-->
+<div id="wahTooltipsHost"></div>
+<div style="clear:both"></div>
+<!--noindex-->
+
+</div>
+</div>
+<div class="noprint"><div id="btnBackToTop"></div></div>
+<div class="tooltipContents btnContents_NoAL" data-tooltip-content="#tooltip_contentTooltipContents" id="btnContents"></div>
+
+<script type='text/javascript'>
+$(window).scroll(function() {
+if ($(this).scrollTop() >= 200) {
+$('#btnBackToTop').fadeIn(300); 
+} else {
+$('#btnBackToTop').fadeOut(300); 
+}
+});
+
+$('#btnBackToTop').on('touchstart', function () {
+	'use strict';
+	$(this).attr('style', 'background-image: url(/wh40k11ed/img/Button_ToTop_Hover.png); background-image: var(--button-to-top-hover)');
+	$(this).fadeIn(300);
+	return true;
+});
+
+$('#btnBackToTop').on('touchend', function () {
+	'use strict';
+	$(this).attr('style', 'background-image: url(/wh40k11ed/img/Button_ToTop.png); background-image: var(--button-to-top)');
+		$(this).fadeOut(300);
+   document.body.scrollTop = 0;
+	document.documentElement.scrollTop = 0;
+	return true;
+});
+
+$('#btnBackToTop').on('click', function () { 
+	'use strict';
+   document.body.scrollTop = 0;
+   document.documentElement.scrollTop = 0;
+	return true;
+});
+
+$('#btnArmyList').on('touchstart', function () {
+	'use strict';
+	$(this).attr('style', 'background-image: url(/wh40k11ed/img/Button_ArmyList_Hover.png); background-image: var(--button-army-list-hover)');
+	return true;
+});
+$('#btnArmyList').on('touchend', function () {
+	'use strict';
+	$(this).attr('style', 'background-image: url(/wh40k11ed/img/Button_ArmyList.png); background-image: var(--button-army-list)');
+	return true;
+});
+
+$('#btnContents').on('touchstart', function () {
+	'use strict';
+	$(this).attr('style', 'background-image: url(/wh40k11ed/img/Button_Contents_Hover.png); background-image: var(--button-contents-hover)');
+	return true;
+});
+$('#btnContents').on('touchend', function () {
+	'use strict';
+	$(this).attr('style', 'background-image: url(/wh40k11ed/img/Button_Contents.png); background-image: var(--button-contents)');
+	return true;
+});
+</script>
+<div class="noprint">
+	<div align="center"><div class="author">© Vyacheslav Maltsev 2013-2026</div></div>
+	<div style="display:flex;justify-content:center;align-items:center;">
+		<div class="social_buttons">
+			<a target="_blank" href="https://boosty.to/wahapedia"><div class="boosty_logo no_tooltip" title="Support on Boosty"></div></a>
+			<a target="_blank" href="https://vk.com/wahapedia"><div class="social_vk no_tooltip" title="Follow on VKontakte"></div></a>
+			<a target="_blank" href="https://discord.gg/VAXG2jRjXY"><div class="social_dd no_tooltip" title="Join Discord server"></div></a>
+			<a target="_blank" href="mailto:info@wahapedia.ru"><div class="social_email no_tooltip" title="Send e-mail"></div></a>
+		</div>		
+	</div>
+	<div id="ezoic-pub-ad-placeholder-103"></div><script>ezstandalone.cmd.push(function() {ezstandalone.showAds(103)});</script><div id="yandex_rtb_R-A-3376916-3"></div>
+</div>
+</div>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-57173050-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YCMHCMW8RQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YCMHCMW8RQ');
+</script>
+<!--/noindex-->
+
+</body>
+</html>

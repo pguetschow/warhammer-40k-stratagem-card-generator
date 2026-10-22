@@ -1,0 +1,811 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Wahapedia: Warhammer 40,000 10th edition, Data Export" />
+<meta name="keywords" content="Wahapedia, Warhammer 40,000 10th edition, Data Export, Powered by Wahapedia, rebusstatscom, Forces, Arbiter, Dicecodex" />
+
+<script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
+<script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
+<script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+<script>
+	window.ezstandalone = window.ezstandalone || {};
+	ezstandalone.cmd = ezstandalone.cmd || [];
+</script>
+<script src="//ezoicanalytics.com/analytics.js"></script>
+<link rel="stylesheet" type="text/css" href="/wh40k10ed/css/fonts16.css">
+<link name="magnus_did_what" rel="stylesheet" href="/wh40k10ed/css/magnus_did_not16.css">
+<link rel="stylesheet" href="/wh40k10ed/css/main16.css">
+<link rel="stylesheet" href="/wh40k10ed/css/header16.css">
+<link rel="stylesheet" href="/wh40k10ed/css/profile16.css">
+<link rel="stylesheet" href="/wh40k10ed/css/noprint16.css">
+<link rel="icon" type="image/png" href="/wh40k10ed/img/favicon.png" />
+<link rel="stylesheet" type="text/css" href="/tooltipster/dist/css/tooltipster.bundle.min.css" />
+<link rel="manifest" href="/manifest_40k10.json">
+<link rel="apple-touch-icon" sizes="57x57" href="/img/web-app/wahapedia-icon-57.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/img/web-app/wahapedia-icon-76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/img/web-app/wahapedia-icon-114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/img/web-app/wahapedia-icon-120.png">
+<link rel="apple-touch-icon" sizes="128x128" href="/img/web-app/wahapedia-icon-128.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/img/web-app/wahapedia-icon-152.png">
+<link rel="apple-touch-icon" sizes="167x167" href="/img/web-app/wahapedia-icon-167.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/web-app/wahapedia-icon-180.png">
+<link rel="apple-touch-icon" sizes="192x192" href="/img/web-app/wahapedia-icon-192.png">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+<script type="text/javascript" src="/tooltipster-scrollableTip/tooltipster-scrollableTip.min.js"></script>
+<script type="text/javascript" src="https://wahapedia.ru/scripts/jquery.cookie.js"></script><script>window.yaContextCb=window.yaContextCb||[]</script>
+<script src="https://yandex.ru/ads/system/context.js" async></script>
+
+<link rel="stylesheet" type="text/css" href="/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-noir.min.css" />
+<link rel="stylesheet" href="/wh40k10ed/css/tooltipster-noir16.css">
+<title>Data Export [Warhammer 40,000 10th edition]</title>
+<script src="https://www.google.com/recaptcha/api.js?render=6LfARRUkAAAAAD0Li_kOGLUDH_77uo1aMO8YZsA4"></script>
+<script>   
+function submitCaptcha(e) {
+	e.preventDefault();
+	grecaptcha.ready(function() {
+		grecaptcha.execute('6LfARRUkAAAAAD0Li_kOGLUDH_77uo1aMO8YZsA4', {action: 'submit'}).then(function(token) {    
+			$(".tooltipster-box #captcha-box").val(token);
+			$(".tooltipster-box #disable-ads").submit();
+		});
+	});
+}
+function loadErrors() {
+  if($(location).attr('hash') == ""){
+  let searchParams = new URLSearchParams(window.location.search);
+     if(searchParams.has('error')){
+         err = document.createTextNode(searchParams.get('error'));
+         $('#error-login').append(err);
+         $('#error-login').show();
+     }
+     if(searchParams.has('message')){
+         msg = document.createTextNode(searchParams.get('message'));
+         $('#email-sent').append(msg);
+         $('#email-sent').show();
+     }
+  }
+}
+
+$(document).on( 'click', '#btnGetPin', function(e) {
+  $(".tooltipster-box #password-text-field").val("");
+  submitCaptcha(e);
+});
+
+$(document).on( 'click', '#btnDisableAds', function(e) {
+  submitCaptcha(e);
+});
+</script>
+<script type="text/javascript">
+function switchColorTheme(){
+		var userTheme = localStorage.ColorTheme;
+		if (userTheme == undefined) {userTheme = 'default'; localStorage.ColorTheme = userTheme};
+		if ((userTheme == 'dark') || (userTheme == 'light')) {
+			document.documentElement.setAttribute('data-theme', userTheme);}
+		else if (!window.matchMedia) {
+			document.documentElement.setAttribute('data-theme', 'light');}
+		else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-theme', 'dark');}
+			else {
+				document.documentElement.setAttribute('data-theme', 'light');}
+   };
+	switchColorTheme();
+$(document).ready(function(){
+touchHover(); loadErrors(); $.get('https://wahapedia.ru/relog.php');
+	var data = localStorage.ShowFluff;
+	if (data == undefined) {data = 'true'; localStorage.ShowFluff = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowFluff').prop('checked', StrData);
+	ChangeShowFluff();
+
+	$('.ShowFluff').change(function () {
+      localStorage.ShowFluff = $(this).prop('checked');
+	   ChangeShowFluff();
+   });
+
+	function ChangeShowFluff() {
+	if (localStorage.ShowFluff == 'true')
+		{$('.ShowFluff').css('display', '');}
+	else
+		{$('.ShowFluff').css('display', 'none');}
+	}
+	var data = localStorage.ShowLegendaryDatasheets;
+	if (data == undefined) {data = 'false'; localStorage.ShowLegendaryDatasheets = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowLegendaryDatasheets').prop('checked', StrData);
+
+	$('.ShowLegendaryDatasheets').change(function () {
+      localStorage.ShowLegendaryDatasheets = $(this).prop('checked');
+	   FilterApply(false);
+   });
+	var data = localStorage.ShowForgeWorldDatasheets;
+	if (data == undefined) {data = 'true'; localStorage.ShowForgeWorldDatasheets = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowForgeWorldDatasheets').prop('checked', StrData);
+
+	$('.ShowForgeWorldDatasheets').change(function () {
+      localStorage.ShowForgeWorldDatasheets = $(this).prop('checked');
+	   FilterApply(false);
+   });
+	var data = localStorage.ShowCrusadeRules;
+	if (data == undefined) {data = 'true'; localStorage.ShowCrusadeRules = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowCrusadeRules').prop('checked', StrData);
+
+	$('.ShowCrusadeRules').change(function () {
+      localStorage.ShowCrusadeRules = $(this).prop('checked');
+	   FilterApply(false);
+   });
+	var data = localStorage.ShowBoardingActions;
+	if (data == undefined) {data = 'true'; localStorage.ShowBoardingActions = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowBoardingActions').prop('checked', StrData);
+	ChangeShowBoardingActions();
+
+	$('.ShowBoardingActions').change(function () {
+      localStorage.ShowBoardingActions = $(this).prop('checked');
+	   ChangeShowBoardingActions();
+	   FilterApply(false);
+   });
+
+	function ChangeShowBoardingActions() {
+	if (localStorage.ShowBoardingActions == 'true')
+		{$('.dropShowBoardingActions').css('display', '');}
+	else
+		{$('.dropShowBoardingActions').css('display', 'none');}
+	}
+	var data = localStorage.ShowNonBAStratagems;
+	if (data == undefined) {data = 'true'; localStorage.ShowNonBAStratagems = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowNonBAStratagems').prop('checked', StrData);
+
+	$('.ShowNonBAStratagems').change(function () {
+      localStorage.ShowNonBAStratagems = $(this).prop('checked');
+	   FilterApply(false);
+   });
+	var data = localStorage.ShowBaseSize;
+	if (data == undefined) {data = 'true'; localStorage.ShowBaseSize = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowBaseSize').prop('checked', StrData);
+	ChangeShowBaseSize();
+
+	$('.ShowBaseSize').change(function () {
+      localStorage.ShowBaseSize = $(this).prop('checked');
+	   ChangeShowBaseSize();
+   });
+
+	function ChangeShowBaseSize() {
+	if (localStorage.ShowBaseSize == 'true')
+		{$('.ShowBaseSize').css('display', '');}
+	else
+		{$('.ShowBaseSize').css('display', 'none');}
+	}
+	var data = localStorage.ShowCoreStratagems;
+	if (data == undefined) {data = 'true'; localStorage.ShowCoreStratagems = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowCoreStratagems').prop('checked', StrData);
+
+	$('.ShowCoreStratagems').change(function () {
+      localStorage.ShowCoreStratagems = $(this).prop('checked');
+	   FilterApply(false);
+   });
+	var data = localStorage.ShowDatasheetFeatures;
+	if (data == undefined) {data = 'true'; localStorage.ShowDatasheetFeatures = data};
+
+	var StrData; if (data == 'true') {StrData = true} else {StrData = false};
+	$('.ShowDatasheetFeatures').prop('checked', StrData);
+	ChangeShowDatasheetFeatures();
+
+	$('.ShowDatasheetFeatures').change(function () {
+      localStorage.ShowDatasheetFeatures = $(this).prop('checked');
+	   ChangeShowDatasheetFeatures();
+   });
+
+	function ChangeShowDatasheetFeatures() {
+	if (localStorage.ShowDatasheetFeatures == 'true')
+		{$('.ShowDatasheetFeatures').css('display', '');}
+	else
+		{$('.ShowDatasheetFeatures').css('display', 'none');}
+	}
+	$('.ColorTheme').prop('value', localStorage.ColorTheme);
+	$('.ColorTheme').change(function () {
+		localStorage.ColorTheme = $(this).prop('value');
+		switchColorTheme();
+	});	
+	$(window).on('load', function() {
+		$('.ya-site-form__input-text').addClass('ya_input');
+	});
+
+
+function FilterApply(IsInit) {
+var clFlags = '';
+var comma = '';
+var clAllFlags = '.sLegendary, .sForgeWorld, .sShowBoardingActions, .sShowCoreStratagems, .sCrusadeRules';
+if (localStorage.ShowLegendaryDatasheets == 'false') {clFlags = clFlags + comma + '.sLegendary'; comma = ', ';};
+if (localStorage.ShowForgeWorldDatasheets == 'false') {clFlags = clFlags + comma + '.sForgeWorld'; comma = ', ';};
+if (localStorage.ShowCrusadeRules == 'false') {clFlags = clFlags + comma + '.sCrusadeRules'; comma = ', ';};
+if (localStorage.ShowBoardingActions == 'false') {clFlags = clFlags + comma + '.sShowBoardingActions'; comma = ', ';};
+if (localStorage.ShowCoreStratagems == 'false') {clFlags = clFlags + comma + '.sShowCoreStratagems'; comma = ', ';};
+
+	$(clAllFlags).show();
+	$(clFlags).hide();
+
+UpdateTooltipster(IsInit);
+};
+FilterApply(true);
+
+function UpdateTooltipster(IsInit) {
+if (!IsInit) 
+	{
+	 $('.tooltip').filter('.tooltipstered').tooltipster('destroy');
+	 $('.tooltipk').filter('.tooltipstered').tooltipster('destroy');
+	 $('.tooltipArmyList').filter('.tooltipstered').tooltipster('destroy');
+	 $('.tooltipContents').filter('.tooltipstered').tooltipster('destroy');
+	 
+	 if ($(window).width() >= 800) {
+	$('.no_tooltip').addClass('tooltip').removeClass('no_tooltip');
+	sidesArr = ['top', 'bottom', 'left', 'right'];
+	}
+else {
+	sidesArr = ['top', 'bottom'];
+	}
+;
+sidesArrButt = ['left'];
+$('.tooltip_').addClass('tooltip').removeClass('tooltip_');
+$('.tooltip:hidden').addClass('tooltip_').removeClass('tooltip');
+$('.wTable:visible').each(function (index1, element1) {
+	var trg = true;
+	$(element1).children('.bkg:visible').each(function (index2, element2) {
+		if (trg) {$(element2).addClass('bkg0').removeClass('bkg1')}
+		else {$(element2).addClass('bkg1').removeClass('bkg0')};
+		trg = !trg;
+		if ($(element2).hasClass('bkg_reset')) {trg = true};
+	});
+});
+
+$('.tooltip').tooltipster({
+functionBefore: function(instance, helper){
+$.each($.tooltipster.instances(), function(i, instance){
+	instance.close();
+});
+},
+plugins: ['sideTip', 'scrollableTip'],
+contentCloning: true,
+position: sidesArr,
+restoration: 'current',
+maxWidth: 600,
+viewportAware: true,
+repositionOnScroll: false,
+trigger: 'custom',
+triggerOpen: {
+    mouseenter: true,
+    tap: true
+},
+triggerClose: {
+    click: true,
+	 mouseleave: true,
+    tap: true
+}
+});
+$('.tooltipContents').tooltipster({
+functionBefore: function(instance, helper){
+$.each($.tooltipster.instances(), function(i, instance){
+	instance.close();
+});
+},
+plugins: ['sideTip', 'scrollableTip'],
+position: 'left',
+restoration: 'current',
+viewportAware: true,
+arrow: false,
+positionTracker: true,
+contentCloning: true,
+repositionOnScroll: false,
+maxWidth: 1100,
+trigger: 'custom',
+triggerOpen: {
+    mouseenter: true,
+    tap: true
+},
+triggerClose: {
+    click: true,
+	 mouseleave: true,
+    tap: true
+}
+});
+$('.tooltipArmyList').tooltipster({
+functionBefore: function(instance, helper){
+$.each($.tooltipster.instances(), function(i, instance){
+	instance.close();
+});
+},
+plugins: ['sideTip', 'scrollableTip'],
+position: 'left',
+restoration: 'current',
+viewportAware: true,
+arrow: false,
+positionTracker: true,
+contentCloning: true,
+repositionOnScroll: false,
+maxWidth: 1100,
+trigger: 'custom',
+triggerOpen: {
+    mouseenter: true,
+    tap: true
+},
+triggerClose: {
+    click: true,
+	 mouseleave: true,
+    tap: true
+}
+});
+$('.tooltipk').tooltipster({
+functionBefore: function(instance, helper){
+$.each($.tooltipster.instances(), function(i, instance){
+	instance.close();
+});
+},
+plugins: ['sideTip', 'scrollableTip'],
+contentCloning: true,
+position: sidesArr,
+restoration: 'current',
+maxWidth: 600,
+viewportAware: true,
+repositionOnScroll: false,
+trigger: 'custom',
+triggerOpen: {
+    click: true,
+    tap: true
+},
+triggerClose: {
+    click: true,
+    tap: true
+}
+});
+	 }
+};
+if ($(window).width() >= 800) {
+	$('.no_tooltip').addClass('tooltip').removeClass('no_tooltip');
+	sidesArr = ['top', 'bottom', 'left', 'right'];
+	}
+else {
+	sidesArr = ['top', 'bottom'];
+	}
+;
+sidesArrButt = ['left'];
+$('.tooltip_').addClass('tooltip').removeClass('tooltip_');
+$('.tooltip:hidden').addClass('tooltip_').removeClass('tooltip');
+$('.wTable:visible').each(function (index1, element1) {
+	var trg = true;
+	$(element1).children('.bkg:visible').each(function (index2, element2) {
+		if (trg) {$(element2).addClass('bkg0').removeClass('bkg1')}
+		else {$(element2).addClass('bkg1').removeClass('bkg0')};
+		trg = !trg;
+		if ($(element2).hasClass('bkg_reset')) {trg = true};
+	});
+});
+
+$('.tooltip').tooltipster({
+functionBefore: function(instance, helper){
+$.each($.tooltipster.instances(), function(i, instance){
+	instance.close();
+});
+},
+plugins: ['sideTip', 'scrollableTip'],
+contentCloning: true,
+position: sidesArr,
+restoration: 'current',
+maxWidth: 600,
+viewportAware: true,
+repositionOnScroll: false,
+trigger: 'custom',
+triggerOpen: {
+    mouseenter: true,
+    tap: true
+},
+triggerClose: {
+    click: true,
+	 mouseleave: true,
+    tap: true
+}
+});
+$('.tooltipContents').tooltipster({
+functionBefore: function(instance, helper){
+$.each($.tooltipster.instances(), function(i, instance){
+	instance.close();
+});
+},
+plugins: ['sideTip', 'scrollableTip'],
+position: 'left',
+restoration: 'current',
+viewportAware: true,
+arrow: false,
+positionTracker: true,
+contentCloning: true,
+repositionOnScroll: false,
+maxWidth: 1100,
+trigger: 'custom',
+triggerOpen: {
+    mouseenter: true,
+    tap: true
+},
+triggerClose: {
+    click: true,
+	 mouseleave: true,
+    tap: true
+}
+});
+$('.tooltipArmyList').tooltipster({
+functionBefore: function(instance, helper){
+$.each($.tooltipster.instances(), function(i, instance){
+	instance.close();
+});
+},
+plugins: ['sideTip', 'scrollableTip'],
+position: 'left',
+restoration: 'current',
+viewportAware: true,
+arrow: false,
+positionTracker: true,
+contentCloning: true,
+repositionOnScroll: false,
+maxWidth: 1100,
+trigger: 'custom',
+triggerOpen: {
+    mouseenter: true,
+    tap: true
+},
+triggerClose: {
+    click: true,
+	 mouseleave: true,
+    tap: true
+}
+});
+$('.tooltipk').tooltipster({
+functionBefore: function(instance, helper){
+$.each($.tooltipster.instances(), function(i, instance){
+	instance.close();
+});
+},
+plugins: ['sideTip', 'scrollableTip'],
+contentCloning: true,
+position: sidesArr,
+restoration: 'current',
+maxWidth: 600,
+viewportAware: true,
+repositionOnScroll: false,
+trigger: 'custom',
+triggerOpen: {
+    click: true,
+    tap: true
+},
+triggerClose: {
+    click: true,
+    tap: true
+}
+});
+
+
+});
+$.tooltipster.setDefaults({
+arrow: true,
+delay: [200, 200],
+interactive: true,
+theme: ['tooltipster-noir', 'tooltipster-noir-customized']
+});
+</script>
+<script type="text/javascript">
+var touchHover = function() {
+    $('.tooltip').on('touchstart', function(e) {
+          e.preventDefault();
+          return false;
+    });
+};
+$(document).ready(function() { touchHover(); });
+</script>
+</head>
+
+<body>
+<!--noindex-->
+
+<script type="text/javascript">
+$(document).ready(function(){
+var CookieSet = $.cookie('no_ads_for_boosters');
+
+if (jQuery.cookie('no_ads_for_boosters')!='turn_it_off') {
+window.yaContextCb.push(()=>{
+	Ya.Context.AdvManager.render({
+		"blockId": "R-A-3376916-3",
+		"renderTo": "yandex_rtb_R-A-3376916-3",
+		"type": "feed"
+	})
+})
+window.yaContextCb.push(()=>{
+	Ya.Context.AdvManager.render({
+		"blockId": "R-A-3376916-2",
+		"type": "fullscreen",
+		"platform": "desktop"
+	})
+})
+window.yaContextCb.push(()=>{
+	Ya.Context.AdvManager.render({
+		"blockId": "R-A-3376916-1",
+		"type": "fullscreen",
+		"platform": "touch"
+	})
+})
+window.yaContextCb.push(()=>{
+	Ya.Context.AdvManager.render({
+		"blockId": "R-A-3376916-5",
+		"type": "floorAd",
+		"platform": "touch"
+	})
+})
+window.yaContextCb.push(()=>{
+	Ya.Context.AdvManager.render({
+		"blockId": "R-A-3376916-6",
+		"type": "floorAd",
+		"platform": "desktop"
+	})
+})
+}});</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+var CookieSet = $.cookie('no_ads_for_boosters');
+
+if (jQuery.cookie('no_ads_for_boosters')=='turn_it_off') {
+	var oldlink = document.getElementsByTagName("link").namedItem('magnus_did_what');
+	oldlink.href = "/wh40k10ed/css/magnus_did16.css";
+}
+});
+</script>
+<div id="wrapper2">
+<div id="wrapper">
+<div class="noprint">
+<div style="position:relative"><div class="SiteHeader_wrapper"><div class="SiteHeader"><a href="/"><div class="SiteHeader_A"></div></a></div></div>
+
+	<div class="NavWrapper_M">
+
+	<div class="NavDropdown_Search">
+	<div class="NavBtn_Search">&nbsp;</div>
+	<div class="NavDropdown-content_Search">
+		<div class="yandex_search_line_short"><div class="ya-site-form ya-site-form_inited_no" data-bem="{&quot;action&quot;:&quot;http://wahapedia.ru/wh40k10ed/search.html&quot;,&quot;arrow&quot;:false,&quot;bg&quot;:&quot;transparent&quot;,&quot;fontsize&quot;:16,&quot;fg&quot;:&quot;#000000&quot;,&quot;language&quot;:&quot;en&quot;,&quot;logo&quot;:&quot;rb&quot;,&quot;publicname&quot;:&quot;Yandex Site Search #3287542&quot;,&quot;suggest&quot;:true,&quot;target&quot;:&quot;_self&quot;,&quot;tld&quot;:&quot;com&quot;,&quot;type&quot;:2,&quot;usebigdictionary&quot;:true,&quot;searchid&quot;:3287542,&quot;input_fg&quot;:&quot;#000000&quot;,&quot;input_bg&quot;:&quot;#ffffff&quot;,&quot;input_fontStyle&quot;:&quot;normal&quot;,&quot;input_fontWeight&quot;:&quot;normal&quot;,&quot;input_placeholder&quot;:&quot;Search this site...&quot;,&quot;input_placeholderColor&quot;:&quot;#999999&quot;,&quot;input_borderColor&quot;:&quot;#7f9db9&quot;}"><form action="https://yandex.com/search/site/" method="get" target="_self" accept-charset="utf-8"><input type="hidden" name="searchid" value="3287542"/><input type="hidden" name="l10n" value="en"/><input type="hidden" name="reqenc" value=""/><input type="search" name="text" value=""/><input type="submit" value="Search"/></form></div><style type="text/css">.ya-page_js_yes .ya-site-form_inited_no { display: none; }</style><script type="text/javascript">(function(w,d,c){var s=d.createElement('script'),h=d.getElementsByTagName('script')[0],e=d.documentElement;if((' '+e.className+' ').indexOf(' ya-page_js_yes ')===-1){e.className+=' ya-page_js_yes';}s.type='text/javascript';s.async=true;s.charset='utf-8';s.src=(d.location.protocol==='https:'?'https:':'http:')+'//site.yandex.net/v2.0/js/all.js';h.parentNode.insertBefore(s,h);(w[c]||(w[c]=[])).push(function(){Ya.Site.Form.init()})})(window,document,'yandex_site_callbacks');</script></div>
+	</div>
+	</div>
+<div class="NavDropdown_A">
+	<div class="NavBtn_A">&nbsp;</div>
+	<div class="NavDropdown-content_A">
+		<div class="FactionHeader"></div><a href="/wh40k10ed/the-rules/author">Author</a><a href="/wh40k10ed/the-rules/community">Community</a><a href="/wh40k10ed/the-rules/data-export">Data Export</a><a href="/wh40k10ed/the-rules/subscribe">Subscribe</a>
+	</div>
+	</div>
+	<div class="NavDropdown_S">
+	<div class="NavBtn_S">&nbsp;</div>
+	<div class="NavDropdown-content_S">
+		<div class="armylist_header">Settings</div><div style="clear:both"></div><label class="container">
+<input checked="true" type="checkbox" class="ShowFluff"></input>
+	<span class="checkmark"></span>Show fluff text
+</label>
+<label class="container">
+<input checked="true" type="checkbox" class="ShowLegendaryDatasheets"></input>
+	<span class="checkmark"></span>Show Legends and not recommended rules/datasheets
+</label>
+<label class="container">
+<input checked="true" type="checkbox" class="ShowForgeWorldDatasheets"></input>
+	<span class="checkmark"></span>Show Forge World datasheets
+</label>
+<label class="container">
+<input checked="true" type="checkbox" class="ShowCrusadeRules"></input>
+	<span class="checkmark"></span>Show Crusade Rules
+</label>
+<label class="container">
+<input checked="true" type="checkbox" class="ShowBoardingActions"></input>
+	<span class="checkmark"></span>Show Boarding Actions rules
+</label>
+<label class="container">
+<input checked="true" type="checkbox" class="ShowBaseSize"></input>
+	<span class="checkmark"></span>Show base size
+</label>
+<label class="container">
+<input checked="true" type="checkbox" class="ShowCoreStratagems"></input>
+	<span class="checkmark"></span>Show Core Stratagems
+</label>
+<label class="container">
+<input checked="true" type="checkbox" class="ShowDatasheetFeatures"></input>
+	<span class="checkmark"></span>Show datasheet features (Stratagems, Enhancements, etc.)
+</label>
+<label class="container" style="padding-left:0px">Color theme: 
+	<select class="ctrlSelect ColorTheme" size="1">
+		<option class="ctrlOption" value="default">OS default</option>
+		<option class="ctrlOption" value="light">Bright</option>
+		<option class="ctrlOption" value="dark">Dark</option>
+	</select>
+</label>
+	</div>
+	</div>
+<div class="NavDropdown">
+	<div class="NavBtn NavBtn_TheRules">The Rules</div>
+	<div class="NavDropdown-content">
+		<div class="NavColumns2"><div class="FactionHeader"></div><a href="/wh40k10ed/the-rules/quick-start-guide">Quick Start Guide</a><a href="/wh40k10ed/the-rules/core-rules">Core Rules</a><a href="/wh40k10ed/the-rules/crusade-rules">Crusade Rules</a><a href="/wh40k10ed/the-rules/rules-commentary">Rules Commentary</a><a href="/wh40k10ed/the-rules/faqs">FAQs</a><div class="NavColumns_indent_solid"><br></div><div class="BreakInsideAvoid"><div class="FactionHeader">Matched Mission Packs</div><a href="/wh40k10ed/the-rules/leviathan">Leviathan<img class="tooltip img-inv-1 logo2" src="/wh40k10ed/img/MissionGenerator.png"></a><a href="/wh40k10ed/the-rules/pariah-nexus-battles">Pariah Nexus Battles<img class="tooltip img-inv-1 logo2" src="/wh40k10ed/img/MissionGenerator.png"></a><a href="/wh40k10ed/the-rules/chapter-approved-2025-26">Chapter Approved 2025-26<img class="tooltip img-inv-1 logo2" src="/wh40k10ed/img/MissionGenerator.png"></a><div class="NavColumns_indent_solid"><br></div></div><div class="BreakInsideAvoid"><div class="FactionHeader">Crusade Mission Packs</div><a href="/wh40k10ed/the-rules/tyrannic-war">Tyrannic War</a><a href="/wh40k10ed/the-rules/pariah-nexus">Pariah Nexus</a><a href="/wh40k10ed/the-rules/nachmund-gauntlet">Nachmund Gauntlet</a><a href="/wh40k10ed/the-rules/armageddon">Armageddon</a><div class="NavColumns_indent_solid"><br></div></div><div class="BreakInsideAvoid"><div class="FactionHeader">Campaigns</div><a href="/wh40k10ed/the-rules/war-on-the-vespator-front">War on the Vespator Front</a><div class="NavColumns_indent_solid"><br></div></div><div class="BreakInsideAvoid"><div class="FactionHeader">Boarding Actions</div><a href="/wh40k10ed/the-rules/boarding-action-rules">Boarding Action Rules</a><a href="/wh40k10ed/the-rules/dread-incursions">Dread Incursions</a><div class="NavColumns_indent_solid"><br></div></div><div class="BreakInsideAvoid"><div class="FactionHeader">Others</div><a href="/wh40k10ed/the-rules/bunker">Bunker</a></div></div>
+	</div>
+	</div>
+	<div class="NavDropdown">
+	<div class="NavBtn NavBtn_Factions">Factions</div>
+	<div class="NavDropdown-content">
+		<div class="NavColumns2"><div class="BreakInsideAvoid"><div class="FactionHeader">Imperium</div><a   href="/wh40k10ed/factions/adepta-sororitas">Adepta Sororitas</a><a   href="/wh40k10ed/factions/adeptus-custodes">Adeptus Custodes</a><a   href="/wh40k10ed/factions/adeptus-mechanicus">Adeptus Mechanicus</a><a   href="/wh40k10ed/factions/adeptus-titanicus">Adeptus Titanicus</a><a   href="/wh40k10ed/factions/astra-militarum">Astra Militarum</a><a   href="/wh40k10ed/factions/grey-knights">Grey Knights</a><a   href="/wh40k10ed/factions/imperial-agents">Imperial Agents</a><a   href="/wh40k10ed/factions/imperial-knights">Imperial Knights</a><a   href="/wh40k10ed/factions/space-marines">Space Marines</a><div style="height:16px"></div></div><div class="BreakInsideAvoid"><div class="FactionHeader">Chaos</div><a   href="/wh40k10ed/factions/chaos-daemons">Chaos Daemons</a><a   href="/wh40k10ed/factions/chaos-knights">Chaos Knights</a><a   href="/wh40k10ed/factions/chaos-space-marines">Chaos Space Marines</a><a   href="/wh40k10ed/factions/death-guard">Death Guard</a><a   href="/wh40k10ed/factions/emperor-s-children">Emperor’s Children</a><a   href="/wh40k10ed/factions/thousand-sons">Thousand Sons</a><a   href="/wh40k10ed/factions/world-eaters">World Eaters</a><div style="height:16px"></div></div><div class="BreakInsideAvoid"><div class="FactionHeader">Xenos</div><a   href="/wh40k10ed/factions/aeldari">Aeldari</a><a   href="/wh40k10ed/factions/drukhari">Drukhari</a><a   href="/wh40k10ed/factions/genestealer-cults">Genestealer Cults</a><a   href="/wh40k10ed/factions/leagues-of-votann">Leagues of Votann</a><a   href="/wh40k10ed/factions/necrons">Necrons</a><a   href="/wh40k10ed/factions/orks">Orks</a><a   href="/wh40k10ed/factions/t-au-empire">T’au Empire</a><a   href="/wh40k10ed/factions/tyranids">Tyranids</a><div style="height:16px"></div></div><div class="BreakInsideAvoid"><div class="FactionHeader">Unaligned</div><a   href="/wh40k10ed/factions/unaligned-forces">Unaligned Forces</a><div style="height:16px"></div></div></div>
+	</div>
+	</div>
+</div>
+<div class="NavUnderline_M"></div>
+
+<div class="logoBW_float">
+<a target="_blank" href="https://boosty.to/wahapedia"><div class="boosty_logoBW no_tooltip" title="Support on Boosty"></div></a>
+<a class="noads_logoBW tooltip" data-tooltip-content="#tooltip_contentLoginForm"></a>
+<div class="slide-bottom" id="error-login"></div>
+<div class="slide-bottom" id="email-sent"></div>
+</div>
+</div>
+
+<div class="yandex_search_line yandex_search_line_show">
+<div class="ya-site-form ya-site-form_inited_no" data-bem="{&quot;action&quot;:&quot;http://wahapedia.ru/wh40k10ed/search.html&quot;,&quot;arrow&quot;:false,&quot;bg&quot;:&quot;transparent&quot;,&quot;fontsize&quot;:16,&quot;fg&quot;:&quot;#000000&quot;,&quot;language&quot;:&quot;en&quot;,&quot;logo&quot;:&quot;rb&quot;,&quot;publicname&quot;:&quot;Yandex Site Search #3287542&quot;,&quot;suggest&quot;:true,&quot;target&quot;:&quot;_self&quot;,&quot;tld&quot;:&quot;com&quot;,&quot;type&quot;:2,&quot;usebigdictionary&quot;:true,&quot;searchid&quot;:3287542,&quot;input_fg&quot;:&quot;#000000&quot;,&quot;input_bg&quot;:&quot;#ffffff&quot;,&quot;input_fontStyle&quot;:&quot;normal&quot;,&quot;input_fontWeight&quot;:&quot;normal&quot;,&quot;input_placeholder&quot;:&quot;Search this site...&quot;,&quot;input_placeholderColor&quot;:&quot;#999999&quot;,&quot;input_borderColor&quot;:&quot;#7f9db9&quot;}"><form action="https://yandex.com/search/site/" method="get" target="_self" accept-charset="utf-8"><input type="hidden" name="searchid" value="3287542"/><input type="hidden" name="l10n" value="en"/><input type="hidden" name="reqenc" value=""/><input type="search" name="text" value=""/><input type="submit" value="Search"/></form></div><style type="text/css">.ya-page_js_yes .ya-site-form_inited_no { display: none; }</style><script type="text/javascript">(function(w,d,c){var s=d.createElement('script'),h=d.getElementsByTagName('script')[0],e=d.documentElement;if((' '+e.className+' ').indexOf(' ya-page_js_yes ')===-1){e.className+=' ya-page_js_yes';}s.type='text/javascript';s.async=true;s.charset='utf-8';s.src=(d.location.protocol==='https:'?'https:':'http:')+'//site.yandex.net/v2.0/js/all.js';h.parentNode.insertBefore(s,h);(w[c]||(w[c]=[])).push(function(){Ya.Site.Form.init()})})(window,document,'yandex_site_callbacks');</script>
+</div>
+<div style="clear:both"></div>
+</div>
+<h1 class="page_header"><span class="page_header_span">Data Export</span></h1>
+<div class="noprint">
+
+</div>
+<!--/noindex-->
+<div class="BreakInsideAvoid frameDark Corner31" style="width:294px;max-width:390px;"><span ><div class="contents_header">Contents</div><div class="mw3 i10"><a href="#Data-Export" class="cnClrInv"><b>Data Export</b></a></div><div class="mw3 i10"><a href="#Powered-by-Wahapedia" class="cnClrInv"><b>Powered by Wahapedia</b></a></div><div class="mw3 i30"><a href="#rebusstats.com" class="cnClrInv">rebusstats.com</a></div><div class="mw3 i30"><a href="#Forces" class="cnClrInv">Forces</a></div><div class="mw3 i30"><a href="#Arbiter" class="cnClrInv">Arbiter</a></div><div class="mw3 i30"><a href="#Dicecodex" class="cnClrInv">Dicecodex</a></div></span></div>
+<a name="Data-Export"></a><h3 class="outline_header" style="display:flex;">Data Export</h3><div class="Columns3">I have been asked many times to provide an API (web service) for accessing wahapedical data. I do not have the ability to run a web server 24 hours a day, providing data on demand. In addition, I do not see the need to provide data in this mode (it is not an airport website after all). However, there are some things that can be done.<br><br><div class="BreakInsideAvoid"><span class="h_custom">WHAT?</span><br>Here is the export data for all datasheets / abilities / stratagems. Data I provide is a set of <a href="https://en.wikipedia.org/wiki/Comma-separated_values">csv</a> files linked through identifiers. For now export data is being done for the 40k and AoS. There will be demand for the rest of the games - I will add as far as possible.<br></div><span class="h_custom">HOW?</span><br>The picture below shows an example of how the export data is related to the display of the <a href="/wh40k10ed/factions/space-marines/Crusader-Squad">Crusader Squad</a> page on the site.<br><br><span class="h_custom">WHERE?</span><br>Specification with links to all files situated <a href="/wh40k10ed/Export%20Data%20Specs.xlsx">here</a>. The specification text is given in Russian and English.<br><br><div class="BreakInsideAvoid"><span class="h_custom">WHEN?</span><br>The files will be updated as the site is updated. Roughly speaking: I corrected an error in the ability - I update files, added a datasheet - I update files. It takes 15 minutes.<br><br></div><span class="h_custom">WHY?</span><br>The export data can be used to research game mechanics and develop related interfaces. When publishing your work, mentioning Wahapedia is highly recommended. For example, with the inscription "powered by Wahapedia". And of course, show off your work! Worthy ones I will publish on my <a href="https://discord.gg/VAXG2jRjXY">Discord server</a>.<br><br>If the provided data turned out to be useful to you, consider the opportunity to <a href="/wh40k10ed/the-rules/author/#Support">support</a> the project.</div><br><img class="img-opa" src="ExportDataExample.png"></img><div class="noprint page_breaker_ads"><div class="page_ads_br1"></div><div class="page_ads_br2"></div>
+<div class="page_ads_wrapper"><div id="ezoic-pub-ad-placeholder-116"> </div><script>ezstandalone.cmd.push(function() {ezstandalone.showAds(116)});</script></div>
+<div class="page_ads_br2"></div><div class="page_ads_br3"></div></div><a name="Powered-by-Wahapedia"></a><h3 class="outline_header" style="display:flex;">Powered by Wahapedia</h3><p><b>Below you will find exciting examples of <a href="/wh40k10ed/the-rules/data-export/#Data-Export">Export Data</a> usage.</b></p><div><br></div><a name="rebusstats.com"></a><h3 style="display:flex;">rebusstats.com</h3><a target="_blank" href="https://rebusstats.com/">Rebus Stats</a> is a mathhammer tool using Wahapedia’s data export. Upload your roster files from the official 40K app or New Recruit and see graphed damage output across your entire army against various enemy profiles, plus how many wounds your units can withstand from enemies of different toughness values.<br><br>Modify units with buffs or debuffs and recalculate to compare. Which weapon loadout is best? Should you take the leader with full re-rolls or +1 Toughness? Use Rebus Stats to find out!<br><br><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/rebusstats1.png" style="margin:0px"></div><br><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/rebusstats2.png" style="margin:0px"></div><br><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/rebusstats3.png" style="margin:0px"></div><br><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/rebusstats4.png" style="margin:0px"></div><div class="noprint page_breaker_ads"><div class="page_ads_br1"></div><div class="page_ads_br2"></div>
+<div class="page_ads_wrapper"><div id="ezoic-pub-ad-placeholder-117"> </div><script>ezstandalone.cmd.push(function() {ezstandalone.showAds(117)});</script><div id="yandex_rtb_R-A-3376916-8"></div>
+<script type="text/javascript">
+$(document).ready(function(){
+var CookieSet = $.cookie('no_ads_for_boosters');
+
+if (jQuery.cookie('no_ads_for_boosters')!='turn_it_off') {
+window.yaContextCb.push(()=>{
+	Ya.Context.AdvManager.render({
+		"blockId": "R-A-3376916-8",
+		"renderTo": "yandex_rtb_R-A-3376916-8"
+	})
+})
+}});</script></div>
+<div class="page_ads_br2"></div><div class="page_ads_br3"></div></div><a name="Forces"></a><h3 style="display:flex;">Forces</h3><a target="_blank" href="https://offblastsoftworks.com/forces">Forces</a> is a tool for organizing and viewing NewRecruit rosters while you play. It now supports basic roster editing in the app, can it can be used on it’s own to create lists for every game system.<br><br><div class="Columns3"><div class=" img-opa"><img border="0" src="/wh40k10ed/img/powered/forces1.png" style="max-width:330px"></div><div class=" img-opa"><img border="0" src="/wh40k10ed/img/powered/forces2.png" style="max-width:330px"></div><div class=" img-opa"><img border="0" src="/wh40k10ed/img/powered/forces3.png" style="max-width:330px"></div><div class=" img-opa"><img border="0" src="/wh40k10ed/img/powered/forces4.png" style="max-width:330px"></div><div class=" img-opa"><img border="0" src="/wh40k10ed/img/powered/forces5.png" style="max-width:330px"></div><div class=" img-opa"><img border="0" src="/wh40k10ed/img/powered/forces6.png" style="max-width:330px"></div></div><div class="noprint page_breaker_ads"><div class="page_ads_br1"></div><div class="page_ads_br2"></div>
+<div class="page_ads_wrapper"><div id="ezoic-pub-ad-placeholder-118"> </div><script>ezstandalone.cmd.push(function() {ezstandalone.showAds(118)});</script></div>
+<div class="page_ads_br2"></div><div class="page_ads_br3"></div></div><a name="Arbiter"></a><h3 style="display:flex;">Arbiter</h3>Meet <a target="_blank" href="https://www.s3hobbies.com/#products">Arbiter</a> your AI Rules Judge:<br><br>Arbiter is a free AI-powered rules assistant built for tabletop gamers. Ask it a rules question in plain English and get a clear, sourced answer in seconds, no more flipping through PDFs mid-game.<br><br>For <i>Warhammer 40k</i>, Arbiter draws on official 10th Edition rules, faction packs, balance dataslates, and Wahapedia data to answer questions about core mechanics, datasheets, stratagems, detachment rules, and more. It also supports <i>Magic: The Gathering</i> and <i>Warmachine</i>, with additional games on the way.<br><br>Arbiter is currently in beta. It’s maintained by a husband-and-wife team as a passion project for the tabletop community. We’re actively improving accuracy and expanding coverage, so feedback is welcome, it helps us make Arbiter better for everyone.<br><br><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/Arbiter1.png" style="margin:0px"></div><br><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/Arbiter2.png" style="margin:0px"></div><div class="noprint page_breaker_ads"><div class="page_ads_br1"></div><div class="page_ads_br2"></div>
+<div class="page_ads_wrapper"><div id="ezoic-pub-ad-placeholder-119"> </div><script>ezstandalone.cmd.push(function() {ezstandalone.showAds(119)});</script><div id="yandex_rtb_R-A-3376916-9"></div>
+<script type="text/javascript">
+$(document).ready(function(){
+var CookieSet = $.cookie('no_ads_for_boosters');
+
+if (jQuery.cookie('no_ads_for_boosters')!='turn_it_off') {
+window.yaContextCb.push(()=>{
+	Ya.Context.AdvManager.render({
+		"blockId": "R-A-3376916-9",
+		"renderTo": "yandex_rtb_R-A-3376916-9"
+	})
+})
+}});</script></div>
+<div class="page_ads_br2"></div><div class="page_ads_br3"></div></div><a name="Dicecodex"></a><h3 style="display:flex;">Dicecodex</h3><a target="_blank" href="https://dicecodex.com/">Dicecodex</a> is a responsive web app, also adapted for mobile, that lets users browse and analyze units from all Warhammer 40K armies.<br><br>It has two main sections:<br><ol><li><b>Army Inspector</b><br>This section lets you select one army or all armies at once. In table mode, you can sort and filter units to find which ones are the most effective for a competitive list. You can also open each unit to view its full profile, weapons, abilities, and rules.</li><li><b>Versus</b><br>This is the most powerful feature. You select an attacking unit and a defending unit, then move to the Versus screen. There, you can review both units attributes, configure the number of models on each side, select weapons, and apply any relevant bonuses.</li></ol><br>After that, the system automatically reads the stats and modifiers and lets you choose between three simulation modes:<br><ul><li><b>Dice mode:</b> rolls the dice and shows the results step by step, including possible attacker and defender re-rolls, with a full explanation of each roll to simulate a real tabletop situation.</li><li><b>Average mode:</b> calculates the expected result as if the situation were repeated thousands of times, including charts.</li><li><b>Odds mode:</b> shows the most probable outcomes, also with charts, to help make the best decision in each matchup.</li></ul><br>With these modes, DiceCodex helps you predict the outcome of a battle and act like a real general, choosing the best tactical option to lead your army to victory.<br><br>All dropdowns support favorites, so users can keep their most frequently used miniatures always close at hand.<br><br>The open/closed state of the configuration panels is also saved, so the application keeps the user’s preferred layout every time they come back.<br><br><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/Dicecodex1.png" style="margin:0px"></div><br><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/Dicecodex2.png" style="margin:0px"></div><br><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/Dicecodex3.png" style="margin:0px"></div><br><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/Dicecodex4.png" style="margin:0px"></div><br><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/Dicecodex6.png" style="margin:0px"></div><br><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/Dicecodex7.png" style="margin:0px"></div><br><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/Dicecodex8.png" style="margin:0px"></div><br><div class=" img-opa" style="clear:both;display:flex;justify-content:center;align-items:center;"><img border="0" src="/wh40k10ed/img/powered/Dicecodex5.png" style="margin:0px"></div>
+<!--noindex--><div class="tooltip_templates"><span id="tooltip_contentTooltipContents"><div style="display:flex;justify-content:center;align-items:center;"><div class="BreakInsideAvoid frameDark Corner31" style="max-width:100%;"><span ><div class="contents_header">Contents</div><div class="mw3 i10"><a href="#Data-Export" class="cnClrInv"><b>Data Export</b></a></div><div class="mw3 i10"><a href="#Powered-by-Wahapedia" class="cnClrInv"><b>Powered by Wahapedia</b></a></div><div class="mw3 i30"><a href="#rebusstats.com" class="cnClrInv">rebusstats.com</a></div><div class="mw3 i30"><a href="#Forces" class="cnClrInv">Forces</a></div><div class="mw3 i30"><a href="#Arbiter" class="cnClrInv">Arbiter</a></div><div class="mw3 i30"><a href="#Dicecodex" class="cnClrInv">Dicecodex</a></div></span></div></div></span></div><div class="tooltip_templates"><span id="tooltip_contentLoginForm"><form action="/login.php" method="POST" id="disable-ads">
+<div class="lfWrapper">
+<h4 style="padding-bottom:6px">Disable Ads</h4>
+<label class="lfLabel" for="email" id="email">E-mail:</label> <input id="user-text-field" type="email" class="lfInput_w lfInput" autocomplete="username" name="email" id="email" value="" />
+<br><div><label class="lfLabel" for="passcode" type="password">Pin code:</label> <input id="password-text-field" type="password" autocomplete="current-password" style="width:68px" class="lfInput" name="passcode" value="" /> <button class="lfButton" id="btnDisableAds">Disable Ads</button></div>
+<input type="text" style="display:none"  name="g-recaptcha-response" id="captcha-box"></input>
+<button class="lfDisableAds" id="btnGetPin">Get new pin code</button>
+<br><a href="https://boosty.to/wahapedia">Boosty</a> subscribers may disable ads:
+<br>1. Enter e-mail you have used to login on Boosty.
+<br>2. Press <b>Get new pin code</b> button (if you don’t have it already)
+<br>3. Enter pin code.
+<br>
+<br><i>Note that login database updated once a day. So, if you are a new booster - try tomorrow. And thank you!</i>
+</div>
+</form></span></div><!--/noindex-->
+<div style="clear:both"></div>
+<!--noindex-->
+
+<div class="noprint"><div id="btnBackToTop"></div></div>
+<div class="tooltipContents btnContents_NoAL" data-tooltip-content="#tooltip_contentTooltipContents" id="btnContents"></div>
+
+<script type='text/javascript'>
+$(window).scroll(function() {
+if ($(this).scrollTop() >= 200) {
+$('#btnBackToTop').fadeIn(300); 
+} else {
+$('#btnBackToTop').fadeOut(300); 
+}
+});
+
+$('#btnBackToTop').on('touchstart', function () {
+	'use strict';
+	$(this).attr('style', 'background-image: url(/wh40k10ed/img/Button_ToTop_Hover.png); background-image: var(--button-to-top-hover)');
+	$(this).fadeIn(300);
+	return true;
+});
+
+$('#btnBackToTop').on('touchend', function () {
+	'use strict';
+	$(this).attr('style', 'background-image: url(/wh40k10ed/img/Button_ToTop.png); background-image: var(--button-to-top)');
+		$(this).fadeOut(300);
+   document.body.scrollTop = 0;
+	document.documentElement.scrollTop = 0;
+	return true;
+});
+
+$('#btnBackToTop').on('click', function () { 
+	'use strict';
+   document.body.scrollTop = 0;
+   document.documentElement.scrollTop = 0;
+	return true;
+});
+
+$('#btnArmyList').on('touchstart', function () {
+	'use strict';
+	$(this).attr('style', 'background-image: url(/wh40k10ed/img/Button_ArmyList_Hover.png); background-image: var(--button-army-list-hover)');
+	return true;
+});
+$('#btnArmyList').on('touchend', function () {
+	'use strict';
+	$(this).attr('style', 'background-image: url(/wh40k10ed/img/Button_ArmyList.png); background-image: var(--button-army-list)');
+	return true;
+});
+
+$('#btnContents').on('touchstart', function () {
+	'use strict';
+	$(this).attr('style', 'background-image: url(/wh40k10ed/img/Button_Contents_Hover.png); background-image: var(--button-contents-hover)');
+	return true;
+});
+$('#btnContents').on('touchend', function () {
+	'use strict';
+	$(this).attr('style', 'background-image: url(/wh40k10ed/img/Button_Contents.png); background-image: var(--button-contents)');
+	return true;
+});
+</script>
+</div>
+<div class="noprint">
+	<div align="center"><div class="author">© Vyacheslav Maltsev 2013-2026</div></div>
+	<div style="display:flex;justify-content:center;align-items:center;">
+		<div class="social_buttons">
+			<a target="_blank" href="https://boosty.to/wahapedia"><div class="boosty_logo no_tooltip" title="Support on Boosty"></div></a>
+			<a target="_blank" href="https://vk.com/wahapedia"><div class="social_vk no_tooltip" title="Follow on VKontakte"></div></a>
+			<a target="_blank" href="https://discord.gg/VAXG2jRjXY"><div class="social_dd no_tooltip" title="Join Discord server"></div></a>
+			<a target="_blank" href="mailto:info@wahapedia.ru"><div class="social_email no_tooltip" title="Send e-mail"></div></a>
+		</div>		
+	</div>
+	<div id="ezoic-pub-ad-placeholder-103"></div><script>ezstandalone.cmd.push(function() {ezstandalone.showAds(103)});</script><div id="yandex_rtb_R-A-3376916-3"></div>
+</div>
+</div>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-57173050-3', 'auto');
+ga('send', 'pageview');
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YCMHCMW8RQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YCMHCMW8RQ');
+</script>
+<!--/noindex-->
+</body>
+</html>
