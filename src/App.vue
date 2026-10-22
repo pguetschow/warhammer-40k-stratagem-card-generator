@@ -82,7 +82,6 @@
             <label class="control-label">Detachment</label>
             <select
                 v-model="detachment"
-                :disabled="isCore"
                 class="control-select"
                 @change="onDetachmentChange"
             >
@@ -141,6 +140,9 @@ const ALL_DETACHMENTS_ONLY_KEY = '(all-detachments)'
 const ALL_DETACHMENTS_CP_KEY = '(all-detachments-and-combat-patrols)'
 const ALL_DETACHMENTS_ONLY_LABEL = 'All Detachments'
 const ALL_DETACHMENTS_CP_LABEL = 'All Detachments (incl. Combat Patrols)'
+// The Core faction's '(none)' detachment holds the Core Stratagems; its other detachments group
+// core abilities and game-mode stratagems (Boarding Actions, Challenger, ...).
+const CORE_STRATAGEMS_LABEL = 'Core Stratagems'
 
 type FactionGroups = Record<string, string[]>
 
@@ -207,33 +209,30 @@ const isCore = computed(() => faction.value === 'Core')
 
 const allCards = computed(() => {
   const all: CardData[] = []
-  if (faction.value !== 'Core') {
-    const f = dataByFaction.value[faction.value] || {}
-    const detMap = (f as any).detachments || {}
-    const cpMap = (f as any).combatPatrols || {}
+  const f = dataByFaction.value[faction.value] || {}
+  const detMap = (f as any).detachments || {}
+  const cpMap = (f as any).combatPatrols || {}
 
-    if (detachment.value === ALL_DETACHMENTS_ONLY_KEY) {
-      for (const arr of Object.values(detMap)) {
-        if (Array.isArray(arr)) all.push(...(arr as CardData[]))
-      }
-    } else if (detachment.value === ALL_DETACHMENTS_CP_KEY) {
-      for (const arr of Object.values(detMap)) {
-        if (Array.isArray(arr)) all.push(...(arr as CardData[]))
-      }
-      for (const arr of Object.values(cpMap)) {
-        if (Array.isArray(arr)) all.push(...(arr as CardData[]))
-      }
-    } else {
-      let d: CardData[] | undefined = detMap[detachment.value]
-      if (!d) {
-        const cp = cpMap[detachment.value]
-        if (Array.isArray(cp)) d = cp as CardData[]
-      }
-      if (d) all.push(...d)
+  if (detachment.value === ALL_DETACHMENTS_ONLY_KEY) {
+    for (const arr of Object.values(detMap)) {
+      if (Array.isArray(arr)) all.push(...(arr as CardData[]))
     }
+  } else if (detachment.value === ALL_DETACHMENTS_CP_KEY) {
+    for (const arr of Object.values(detMap)) {
+      if (Array.isArray(arr)) all.push(...(arr as CardData[]))
+    }
+    for (const arr of Object.values(cpMap)) {
+      if (Array.isArray(arr)) all.push(...(arr as CardData[]))
+    }
+  } else {
+    let d: CardData[] | undefined = detMap[detachment.value]
+    if (!d) {
+      const cp = cpMap[detachment.value]
+      if (Array.isArray(cp)) d = cp as CardData[]
+    }
+    if (d) all.push(...d)
   }
-  if (includeCore.value) all.push(...Core.value)
-  if (faction.value === 'Core' && detachment.value === '(none)' && !includeCore.value) return []
+  if (includeCore.value && !isCore.value) all.push(...Core.value)
   return all
 })
 
@@ -261,7 +260,14 @@ const detachmentGroups = computed(() => {
     groups.push({label: 'Quick Select', options: quick})
   }
 
-  if (army.length) groups.push({label: 'Army Detachments', options: army.map(n => ({value: n, label: n}))})
+  if (army.length && faction.value === 'Core') {
+    groups.push({
+      label: 'Core Rules',
+      options: army.map(n => ({value: n, label: n === '(none)' ? CORE_STRATAGEMS_LABEL : n})),
+    })
+  } else if (army.length) {
+    groups.push({label: 'Army Detachments', options: army.map(n => ({value: n, label: n}))})
+  }
   if (patrols.length) groups.push({label: 'Combat Patrol', options: patrols.map(n => ({value: n, label: n}))})
 
   if (!groups.length) {
