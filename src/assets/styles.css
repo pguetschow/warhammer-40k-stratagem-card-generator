@@ -1,43 +1,24 @@
 @import "tailwindcss";
 @import "./cards.css";
 
+/* The app borrows its look from the 11th Edition cards it prints: rulebook paper, the black title
+   band with its clipped corner, the teal category bar and the cards' own Archivo typefaces. */
 @theme {
-    /* Same stack the app has always used: the 10th Edition cards inherit it, so it must not change. */
-    --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    --font-gothic: "Cinzel", "Trajan Pro", Georgia, serif;
-    --font-label: "Archivo Narrow", "Arial Narrow", Arial, sans-serif;
+    --font-sans: "Archivo Narrow", "Arial Narrow", Arial, sans-serif;
+    --font-heavy: "Archivo Black", "Arial Black", sans-serif;
 
-    /* Grimdark palette: Imperial gold, aged bone, gunmetal and blood. */
-    --color-gold-200: #f4e2a8;
-    --color-gold-300: #e8c56b;
-    --color-gold-400: #d4a83a;
-    --color-gold-500: #b8892a;
-    --color-gold-600: #8a6620;
-    --color-bone-100: #ede5d1;
-    --color-bone-300: #c8bea5;
-    --color-bone-500: #8e856f;
-    --color-iron-600: #3a342a;
-    --color-iron-700: #2b2720;
-    --color-iron-800: #1c1a16;
-    --color-iron-900: #13120f;
-    --color-iron-950: #0b0a08;
-    --color-blood-400: #c9302c;
-    --color-blood-500: #a3151c;
-    --color-blood-900: #3b0b0d;
+    --color-paper: #dcd9d2;
+    --color-slip: #f4f2ec;
+    --color-ink: #16150f;
+    --color-band: #050505;
+    --color-teal: #007360;
+    --color-teal-dark: #005446;
+    --color-blood: #9e0a0e;
 }
 
 @layer base {
-    html {
-        color-scheme: dark;
-    }
-
     body {
-        @apply min-h-screen bg-iron-950 font-sans text-bone-300 antialiased;
-    }
-
-    select option,
-    select optgroup {
-        @apply bg-iron-900 text-bone-100;
+        @apply min-h-screen bg-paper font-sans text-[17px]/[1.45] text-ink;
     }
 
     @media print {
@@ -47,38 +28,9 @@
     }
 }
 
-/* A dark plate with gold brackets on two corners, like a cogitator display. */
-@utility hud-frame {
-    position: relative;
-    border: 1px solid var(--color-iron-700);
-    background-color: color-mix(in oklab, var(--color-iron-900) 90%, transparent);
-
-    &::before,
-    &::after {
-        content: "";
-        position: absolute;
-        width: 14px;
-        height: 14px;
-        border: 0 solid var(--color-gold-400);
-        pointer-events: none;
-    }
-
-    &::before {
-        top: -1px;
-        left: -1px;
-        border-width: 2px 0 0 2px;
-    }
-
-    &::after {
-        right: -1px;
-        bottom: -1px;
-        border-width: 0 2px 2px 0;
-    }
-}
-
-/* Cut corners, echoing the card title's clipped edge. */
-@utility chamfer {
-    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+/* The card title band's cut top-right corner. */
+@utility clip-corner {
+    clip-path: polygon(0 0, calc(100% - var(--clip, 14px)) 0, 100% var(--clip, 14px), 100% 100%, 0 100%);
 }
 
 /* Dashed cutting guides on the print sheets. */

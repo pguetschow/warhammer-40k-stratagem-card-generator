@@ -71,7 +71,9 @@ function iconComponent(phase: PhaseKey) {
   position: relative;
   width: 2.5in;
   height: 3.5in;
-  /* Tailwind's base styles set line-height 1.5 on the page; keep the browser default. */
+  /* The page around the cards has its own font and Tailwind's base styles set line-height 1.5;
+     keep the font stack and browser-default line height these cards were laid out with. */
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   line-height: normal;
   background: var(--bg);
   border: 3px solid var(--border);
