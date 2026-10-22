@@ -39,7 +39,7 @@
         repeating-linear-gradient(0deg, rgba(0,0,0,.025) 0 1px, transparent 1px 7px),
         repeating-linear-gradient(90deg, rgba(0,0,0,.018) 0 1px, transparent 1px 9px);
     mix-blend-mode: multiply;
-    opacity: .35;
+    opacity: .25;
     z-index: 0
 }
 
@@ -158,15 +158,15 @@
 }
 
 .flavor {
-    margin: 0 0 3px;
-    padding-bottom: 3px;
+    margin: 0 0 4px;
+    padding-bottom: 4px;
     border-bottom: 1.5px solid #1c1b18;
-    font-family: 'Courier New', monospace;
+    font-family: 'Courier Prime', 'Courier New', monospace;
     font-style: normal;
     font-weight: 400;
     font-size: calc(7.6px * var(--body-scale, 1));
     line-height: 1.25;
-    letter-spacing: -.01em;
+    letter-spacing: -.02em;
     color: #1c1b18
 }
 
@@ -181,26 +181,31 @@
     display: flex;
     flex-direction: column;
     gap: 1px;
-    color: #1a1a1a
+    color: #141310
+}
+
+/* Rules text is set in a condensed face like the rulebook's cards, which leaves room for a larger,
+   easier to read size on the small card. */
+.sec, .modes {
+    font-family: 'Archivo Narrow', 'Arial Narrow', Arial, sans-serif;
 }
 
 .sec {
     display: block;
-    font-family: Arial, Helvetica, sans-serif;
     /* --body-scale is set by RightPane to shrink long rules text until it fits the card. */
-    font-size: calc(8px * var(--body-scale, 1));
+    font-size: calc(9px * var(--body-scale, 1));
     /* line-height is set here (on the block), not on the inline h6/p below - Chromium roughly
        triples the effective line spacing of wrapped text when an explicit line-height is also
        declared on the inline element that wraps, even if the value matches this one. */
-    line-height: 1.25
+    line-height: 1.3
 }
 
 .sec h6 {
     margin: 0 0 1px;
-    color: #1a1a1a !important;
-    font-weight: 800;
-    font-size: 1.025em;
-    letter-spacing: 0;
+    color: #141310 !important;
+    font-weight: 700;
+    font-size: 1em;
+    letter-spacing: .01em;
     display: inline
 }
 
@@ -215,7 +220,15 @@
 }
 
 .sec + .sec {
-    margin-top: 4px
+    margin-top: .5em
+}
+
+/* Keywords (MONSTER, [INDIRECT FIRE], ...): bold capitals a size down, like the rulebook's small
+   caps, so they read apart from bold rules terms such as "charge roll". */
+.kw {
+    font-weight: 700;
+    font-size: .9em;
+    letter-spacing: .02em
 }
 
 /* Core abilities list their steps as separate sections, divided by rules like the rulebook's. */
@@ -238,22 +251,22 @@
 }
 
 .sec ul, .sec ol, .modes ul, .modes ol {
-    margin: 1px 0 0;
-    padding-left: 9px
+    margin: .15em 0 0;
+    padding-left: 1.1em
 }
 
 .sec ul, .modes ul {
-    list-style: square
+    list-style: disc
 }
 
 .sec ol, .modes ol {
-    padding-left: 11px;
+    padding-left: 1.3em;
     list-style: decimal
 }
 
 .sec ul ul, .modes ul ul {
-    margin-top: 0;
-    padding-left: 8px;
+    margin-top: .1em;
+    padding-left: 1em;
     list-style: circle
 }
 
@@ -263,11 +276,11 @@
 }
 
 .sec li + li, .modes li + li {
-    margin-top: 1px
+    margin-top: .15em
 }
 
 .sec li::marker, .modes li::marker {
-    color: var(--meta-color, #1c1b18)
+    color: #1c1b18
 }
 
 /* A named option inside a rule, e.g. "Desperate Escape:" or "Combat Disembark:". */
@@ -307,9 +320,8 @@
 
 .modes {
     margin-top: 5px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: calc(8px * var(--body-scale, 1));
-    line-height: 1.25
+    font-size: calc(9px * var(--body-scale, 1));
+    line-height: 1.3
 }
 
 .mode {
@@ -324,18 +336,16 @@
     display: inline-block;
     background: var(--meta-color, #a01c14);
     color: #fff;
-    font-family: 'Arial Black', 'Archivo Black', Arial, sans-serif;
     font-weight: 700;
-    font-size: .95em;
-    padding: 1px 5px;
-    margin-right: 5px;
+    line-height: 1.25;
+    padding: 0 4px;
+    margin-right: 4px;
     text-indent: 0
 }
 
 .mode-separator {
-    margin: 3px -8px 3px -6px;
-    border-top: 2px dotted #111;
-    opacity: .9
+    margin: 4px -8px 4px -6px;
+    border-top: 2px dotted #8a8a86
 }
 
 .strip {

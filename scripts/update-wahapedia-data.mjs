@@ -559,7 +559,7 @@ function makeMode(name, nodes, cpModifier) {
 }
 
 function renderSection(nodes) {
-  return renderNodes(nodes)
+  return mergeKeywords(renderNodes(nodes))
     .replace(/<\/b>(\s*)<b>/g, '$1')
     .replace(/\s+/g, ' ')
     .replace(/(?:\s*<br>)+\s*(?=<(?:ul|ol)>)/g, '')
@@ -577,6 +577,14 @@ function listDashedLines(html) {
   return `<ul>${lines.map((line) => `<li>${line.replace(dashed, '$1')}</li>`).join('')}</ul>`
 }
 
+// Wahapedia wraps each word of a keyword separately ("[INDIRECT" "FIRE]"); join neighbours.
+function mergeKeywords(html) {
+  const adjacent = /(<span class="kw">[^<]*)<\/span>(\s*)<span class="kw">/g
+  let merged = html
+  while (adjacent.test(merged)) merged = merged.replace(adjacent, '$1$2')
+  return merged
+}
+
 function renderNodes(nodes) {
   return nodes.map(renderNode).join('')
 }
@@ -586,7 +594,7 @@ function renderNode(node) {
 
   const inner = renderNodes(node.children)
   if (hasClass(node, 'redPad')) return `<span class="mode-tag">${inner}</span>`
-  if (hasClass(node, 'kwb') || hasClass(node, 'kwb2')) return `<b>${inner}</b>`
+  if (hasClass(node, 'kwb') || hasClass(node, 'kwb2')) return `<span class="kw">${inner}</span>`
   if (hasClass(node, 'blueAbility')) return `<div class="ability-box">${inner}</div>`
   if (hasClass(node, 'str11CP2')) return `<span class="cp-alt-badge">${inner}</span>`
   if (hasClass(node, 'str11Text2')) return `<div class="cp-alt">${inner}</div>`
