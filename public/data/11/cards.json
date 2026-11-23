@@ -2,7 +2,7 @@
   "edition": "11",
   "editionLabel": "11th Edition",
   "sourceUrl": "https://wahapedia.ru/wh40k11ed/the-rules/data-export/",
-  "lastUpdate": "2026-10-21 16:06:23",
+  "lastUpdate": "2026-11-23 01:43:36",
   "factionGroups": {
     "Forces of the Imperium": [
       "Adepta Sororitas",
@@ -3118,7 +3118,7 @@
               "shooting",
               "fight"
             ],
-            "when": "Your opponent’s Shooting phase orthe Fight phase, just after an enemy unit has selected its targets.",
+            "when": "Your opponent’s Shooting phase or the Fight phase, just after an enemy unit has selected its targets.",
             "target": "One SICARIAN, PTERAXII or SYDONIAN unit from your army that was selected as the target of one or more of the attacking unit’s attacks.",
             "effect": "Until the end of the phase, models in your unit have the Feel No Pain 5+ ability.",
             "restrictions": ""
@@ -9896,7 +9896,7 @@
             ],
             "when": "Your opponent’s Movement phase, when an enemy unit (excluding <b>MONSTER</b> and <b>VEHICLES</b>) is selected to Fall Back.",
             "target": "One HERETIC ASTARTES DAEMON VEHICLE or Vashtorr the Arkifane unit from your army that is within Engagement Range of that enemy unit.",
-            "effect": "Until the end of the phase, each time an enemy unit (excluding <b>MONSTERS</b> and <b>VEHICLES</b>) that is within Engagement Range of your unit Falls Back, all models in that enemy unit must take a Desperate Escape test. When doing so, of that enemy unit is Battle-shocked, substract 1 from each of those tests.",
+            "effect": "Until the end of the phase, each time an enemy unit (excluding <b>MONSTERS</b> and <b>VEHICLES</b>) that is within Engagement Range of your unit Falls Back, all models in that enemy unit must take a Desperate Escape test. When doing so, if that enemy unit is Battle-shocked, substract 1 from each of those tests.",
             "restrictions": ""
           },
           {
@@ -23192,7 +23192,7 @@
             ],
             "when": "Start of the Fight phase.",
             "target": "One friendly engaged THOUSAND SONS PSYKER unit.",
-            "effect": "Start of the Fight phase. One friendly engaged Thousand Sons Psyker unit. Select one enemy unit engaged with your unit. Roll six D6: For each 4+, that enemy unit suffers 1 mortal wound.",
+            "effect": "Select one enemy unit <b>engaged</b> with your unit. Roll six D6: For each 4+, that enemy unit suffers 1 mortal wound.",
             "restrictions": ""
           },
           {
